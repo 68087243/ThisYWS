@@ -164,7 +164,7 @@ function get_cover($id, $type){
             default:
 				$url = D('Upload')->getPath($id);
 				if(!strstr($url,"http://")){
-					$url='http://static.'.DOMAIN().$url;
+					$url='http://www.'.DOMAIN().$url;
 				}
                 
                 break;
