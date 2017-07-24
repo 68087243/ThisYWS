@@ -1,0 +1,179 @@
+@charset "utf-8";
+/*css reset*/
+html{-webkit-font-smoothing:antialiased}
+body,h1,h2,h3,h4,h5,h6,p,dl,dt,dd,ul,ol,li,form,button,input,textarea,th,td{margin:0;padding:0}
+body,button,input,select,textarea{font:12px tahoma,\5b8b\4f53}
+h1,h2,h3,h4,h5,h6{font-size:100%}
+address,cite,dfn,em,var,i{font-style:normal}
+code,kbd,pre,samp{font-family:courier new,courier,monospace}
+form{display:inline}
+small{font-size:12px}
+ul,ol{list-style:none}
+a{text-decoration:none;color:#333}
+a:hover{text-decoration:underline;color:#CB3131}
+sup{vertical-align:text-top}
+sub{vertical-align:text-bottom}
+img{vertical-align:top;border:0;-ms-interpolation-mode:bicubic}
+button,input,select,textarea{font-size:100%}
+table{border-collapse:collapse;border-spacing:0}
+input,button,select,textarea{outline:none}
+textarea{resize:none}
+/*common*/
+.hidden{display:none}
+.nohidden{display:block}
+.clearfix{zoom:1}
+.clearfix:after{content:'\20';display:block;height:0;clear:both}
+.mini960,.top_banner,.nav_ul,.con1,.con2,.listbox,.w960{width:960px;margin:0 auto}
+.kaifu_t,.titbox,.kefubtn,.p2,.p3,.p4 a,#temp4 .JQ-slide-nav a,.go_a:hover,.page_prev,.page_next{background:url(../images/btn.jpg) no-repeat;overflow:hidden}
+.kaifu_c,.xyxbox,.xiaobox,.kfbox,#temp4,.u_photo,.game3,.qabox,.h1046,.txt_con{border:1px solid #D8D8D8;border-top:none}
+.top_logo a,.kefubtn{text-indent:-999em;overflow:hidden}
+/*mini nav*/
+.mininav,.all_txt,.hd_jiao{background:url(../images/mini_bg.png) no-repeat}
+.mininav{height:31px;background-color:#F6F6F6;background-repeat:repeat-x}
+.mini960{height:31px;line-height:30px}
+.mini_l{float:left;color:#e7e7e7;text-indent:-10px}
+.mini_l a{margin:0 10px;color:#666}
+.mini_l a:hover,.all_txt:hover,#site_fav:hover{color:#CB3131}
+.mini_r{float:right;width:337px;_width:340px;color:#e7e7e7}
+.mini_r a,#site_fav{margin:0 7px}
+#site_fav{color:#666;cursor:pointer}
+#site_fav:hover{text-decoration:underline}
+.all_game{float:right;position:relative;z-index:9999}
+.all_txt{display:block;padding:0 14px 0 7px;color:#666;cursor:pointer;background-position:right -46px}
+.hd_pop{display:none;position:absolute;top:30px;right:0;width:349px;padding:2px;border:2px solid #C6C6C6;background:#fff;z-index:9999}
+.hd_jiao{width:12px;height:8px;position:absolute;background-position:0 -110px;right:22px;top:-8px}
+.pop_ul{width:348px;border-left:1px solid #EBEBEB;border-top:1px solid #EBEBEB}
+.pop_ul li{float:left;width:84px;height:27px;padding:1px;border-right:1px dotted #DEDEDE;border-bottom:1px solid #DEDEDE;overflow:hidden}
+.pop_ul a{display:block;width:75px;height:27px;line-height:27px;margin:0;padding-left:9px}
+.pop_ul a:hover{text-decoration:none;background:#F3F3F3}
+.all_game:hover .hd_pop{display:block;width:349px;padding:2px}
+/*banner*/
+.top_banner{height:76px;overflow:hidden}
+.top_logo,.top_logo a,.top_logo i{width:201px;height:35px}
+.top_logo{float:left;margin-top:22px;position:relative}
+.top_logo a,.top_logo i{position:absolute;left:0;top:0;display:block}
+.top_logo a{z-index:2}
+.top_logo i{background:url(../images/web_logo.png) no-repeat;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src="http://static.2144.cn/web/theme/site/images/web_logo.png");_background:none}
+.top_banner .game_ad{float:right;width:720px}
+.top_banner .game_ad img{width:763px;height:76px}
+/*main nav*/
+.navbox{height:37px;border-bottom:1px solid #D8D8D8;background:url(../images/nav_r.jpg) repeat-x}
+.nav_ul{height:37px}
+.nav_ul li{position:relative;float:left;width:108px;height:37px;background:url(../images/libg.jpg) no-repeat left top}
+.nav_ul li.first_li{width:76px;background:none}
+.nav_ul a{display:block;width:107px;height:37px;line-height:37px;margin-left:1px;text-align:center;color:#fff;font-family:\5FAE\8F6F\96C5\9ED1;font-size:15px}
+.nav_ul .first_li a{width:75px}
+.nav_ul a:hover,.nav_ul a.cur{text-decoration:none;background:url(../images/nav_hover.jpg) no-repeat center top;color:#fff}
+.nav_ul i{position:absolute;left:66px;top:-6px;width:23px;height:14px;background:url(../images/new_j.png) no-repeat;}
+/*user box*/
+.userbox{border:1px solid #D8D8D8}
+.user_c{border:3px solid #EDEDED;padding:0 15px;height:240px}
+.logbefore{position:relative}
+.nambox input,.pasbox input,.subbox input,.mian_btn,.anwrap i,.fuwubtn a{background:url(../images/u_btn.jpg) no-repeat;overflow:hidden}
+.nambox{height:30px;margin-top:22px}
+.nambox input,.pasbox input{width:177px;height:20px;line-height:20px;padding:5px 5px 5px 40px;border:none;color:#999}
+.pasbox{position:relative;height:30px;margin-top:10px}
+.pasbox input{background-position:0 -40px}
+#passtips{position:absolute;top:8px;left:39px;color:#999;font-size:13px;background:transparent;cursor:text}
+.npbox{height:15px;margin-top:12px}
+.npbox a{color:#666;float:right}
+.npbox a:hover{color:#f00}
+.npbox label{margin-left:2px;color:#666}
+.npbox input{margin-right:4px;vertical-align:middle}
+.subbox{text-align:center;margin-top:18px}
+.subbox input{width:146px;height:42px;border:none;background-position:0 -160px;cursor:pointer}
+.subbox input:hover{background-position:0 -210px}
+.subbox p{height:27px;padding-top:15px}
+.subbox img{width:16px;height:16px;margin-right:5px}
+.mianfei{margin-top:15px;height:26px}
+.mianfei a{float:left;text-align:center}
+.mian_btn{width:74px;height:26px;line-height:26px;vertical-align:middle;text-align:center;color:#CB3131;background-position:0 -260px}
+.mian_btn:hover{text-decoration:none;color:#CB3131;background-position:-90px -260px}
+.qq_btn{margin-left:9px;padding:0 8px 0 18px;height:26px;line-height:26px;background:url(../images/u_qq.png) no-repeat 0 5px}
+.login_tips{position:absolute;top:-26px;left:0;width:222px;height:30px;line-height:24px;text-indent:28px;color:#D8624E;background:url(../images/login_tips.png) no-repeat}
+.login_tips i{float:right;width:20px;height:20px;margin:2px 2px 0 0;cursor:pointer}
+.toubox{height:48px;margin-top:13px}
+.tou_a{float:left;width:40px;height:40px;border:2px solid #D4D4D4;padding:2px}
+.tou_a img{width:40px;height:40px}
+.toubox p{float:right;width:165px;height:24px;line-height:24px}
+/*qq user*/
+.u_qq{display:inline-block;width:120px;padding-left:20px;overflow:hidden;background:url(../images/u_qq.png) no-repeat 0 4px}
+.tuichu{float:right;color:#249908}
+.tuichu:hover{color:#CB3131}
+.u_name{display:inline-block;max-width:90px;vertical-align:middle;color:#CB3131;overflow:hidden}
+.u_name:hover{color:#CB3131}
+.p_an{position:relative}
+.anquan{color:#249908}
+.anwrap{float:right;color:#ED953E;margin-right:5px;_margin-top:6px}
+.anwrap i{display:inline-block;width:67px;height:11px;overflow:hidden;font-size:0;line-height:0;background-position:-156px -170px}
+.anwrap .an_ico{margin:0 0 0 6px;vertical-align:middle}
+.anwrap .an_ico i{z-index:99;background-position:-156px -181px}
+.an_pop{position:absolute;top:21px;left:-6px;width:132px;height:49px;padding:7px 1px 0 9px;color:#D8624E;line-height:18px;background:url(../images/an_ico.png) no-repeat;overflow:hidden}
+.an_pop i{float:right;width:20px;height:20px;cursor:pointer}
+.an_pop span{float:left;margin-top:6px}
+.an_pop span a,.an_pop span a:hover{color:#D8624E;text-decoration:underline}
+.ipbox{height:36px;margin-top:10px;line-height:1.5;color:#666;overflow:hidden}
+.fuwubtn{margin-top:10px;height:24px;line-height:24px}
+.fuwubtn a{float:left;width:70px;height:24px;margin-right:4px;color:#666;text-align:center;background-position:-156px -216px}
+.fuwubtn a:hover{color:#CB3131}
+.gamecookie{height:76px;margin-top:12px}
+.gamecookie h3{height:25px;line-height:25px;text-indent:4px;border-bottom:1px solid #E4E4E4;font-weight:normal}
+.s1{display:block;height:16px;line-height:16px;padding-left:5px;margin-top:6px;overflow:hidden}
+.s1:hover{text-decoration:none}
+.s1 img{width:16px;height:16px;margin-right:4px}
+.s2,.s3{float:right;margin-right:12px;cursor:pointer}
+.s3{color:#249908;margin-right:1px}
+.s1:hover .s3{color:#CB3131}
+.w260{float:left;width:260px}
+/*kaifu list*/
+.kaifu_t{height:30px;line-height:30px;margin-top:10px}
+.kaifu_t h2{float:left;font-size:14px;font-weight:bold;color:#333;padding-left:31px}
+.kaifu_c{padding:0 11px 0 29px;background:url(../images/kf_ico.png) repeat-y 11px 0;overflow:hidden}
+.kaifu_c p{margin-top:-1px;_position:relative}
+.kaifu_c a{display:block;height:29px;line-height:29px;color:#666;text-align:left;border-top:1px dashed #ddd;overflow:hidden;cursor:pointer}
+.kaifu_c a:hover{text-decoration:none;color:#666;background:#F3F3F3}
+.kaifu_c a.red_a,.kaifu_c a.red_a:hover{color:#CB3131}
+.kaifu_c strong,.kaifu_c span{float:left;margin-left:17px}
+.kaifu_c span em{margin-left:16px}
+.kaifu_c span{width:82px;margin-left:2px}
+.kaifu_c i{float:right;margin-right:2px}
+.titbox{height:30px;line-height:30px;margin-top:10px;border-right:1px solid #D8D8D8;border-left:2px solid #D23C3C;background-position:0 -40px;background-repeat:repeat-x}
+.titbox h2{float:left;padding-left:10px;color:#333;font-family:\5FAE\8F6F\96C5\9ED1;font-size:15px}
+.more,.laba{background:url(../images/ico.png) no-repeat 0 13px}
+.more{float:right;color:#249908;padding-left:11px;margin-right:10px}
+/*gao xiao*/
+.xiaobox{padding:1px 0 5px}
+.xiaobox a{float:left;width:111px;height:95px;margin:10px 0 0 12px;text-align:center;line-height:1.8;overflow:hidden}
+.xiaobox a img{width:111px;height:70px;margin-bottom:2px}
+/*question*/
+.qabox li,.newsbox li{background:url(../images/dot.png) no-repeat 3px 14px;overflow:hidden}
+.qabox{padding:4px 15px 10px}
+.qabox li{float:left;width:220px;height:27px;line-height:27px;border-bottom:1px dashed #E7E7E7;padding-left:8px;background-position:0 -34px}
+.qabox li a{color:#666}
+.qabox li a:hover{color:#CB3131}
+/*page*/
+.pagenav{height:21px;text-align:center;padding:9px 0;font-size:0;overflow:hidden}
+.pagenav a{display:inline-block;vertical-align:middle;font-size:12px;margin:0 2px;padding:0 6px;height:19px;line-height:19px;color:#666;border:1px solid #D5D5D5}
+.pagenav a:hover{text-decoration:none;color:#249908}
+.pagenav .page_cur{border-color:#249908;color:#249908;background:#DCF5D6}
+.pagenav a.page_prev,.pagenav a.page_next{width:61px;height:21px;line-height:21px;border:none;padding:0}
+.pagenav a.page_prev{background-position:-82px -265px;text-indent:12px}
+.pagenav a.page_next{background-position:-160px -265px;text-indent:-14px}
+/*footer links*/
+.f_links{height:169px;margin-top:20px;border-top:1px solid #D8D8D8;background:#FBFBFB}
+.links{width:960px;margin:0 auto}
+.links li{float:left;width:170px;padding-left:70px}
+.links li h4,.link_a a{background:url(../images/f_ico.png) no-repeat}
+.links li h4{height:16px;line-height:16px;font-weight:normal;margin-top:25px;padding-left:22px;font-size:14px;color:#666}
+.links li h4.h4_2{background-position:0 -50px}
+.links li h4.h4_3{background-position:0 -99px}
+.links li h4.h4_4{background-position:0 -150px}
+.link_a{padding-left:22px;margin-top:4px}
+.link_a a{display:block;width:92px;height:26px;line-height:26px;padding-left:8px;color:#999;background-position:-12px -224px}
+.link_a a:hover{color:#999}
+.tips_p{height:32px;line-height:32px;text-align:center;color:#999;border-top:1px solid #D8D8D8;border-bottom:1px solid #D8D8D8;background:#FAFAFA}
+/*footer*/
+#footer{text-align:center;margin-top:12px;padding-bottom:10px;line-height:2.2}
+#footer p{height:30px;line-height:30px;overflow:hidden;color:#C1C1C1}
+#footer a{margin:0 9px;color:#999}
+#footer span{display:block;color:#999}

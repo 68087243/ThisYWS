@@ -1,0 +1,263 @@
+<style type="text/css">
+    .builder .toolbar>div>.btn{
+        margin-right: 5px;
+    }
+    .builder .toolbar .btn,
+    .builder .toolbar .nav-pills{
+        margin-bottom: 10px;
+    }
+    .builder .toolbar .tab{
+        margin:0px 10px;
+    }
+	
+	.well {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+}
+</style>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/huploadify/huploadify.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/chosen/chosen.min.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/chosen/chosen.icons.min.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/daterangepicker/daterangepicker-bs3.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/tokeninput/token-input.css">
+<script type="text/javascript" src="__PUBLIC__/kindeditor/kindeditor-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__PUBLIC__/huploadify/huploadify.js" charset="utf-8"></script>
+<script type="text/javascript" src="__PUBLIC__/chosen/chosen.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__PUBLIC__/chosen/chosen.icons.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__PUBLIC__/daterangepicker/moment.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__PUBLIC__/daterangepicker/daterangepicker.js" charset="utf-8"></script>
+<script type="text/javascript" src="__PUBLIC__/tokeninput/jquery.tokeninput.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/jquery/jquery.dragsort.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        window.daterangepicker_locale = {
+            applyLabel: '确定',
+            cancelLabel: '取消',
+            fromLabel: '从',
+            toLabel: '到',
+            customRangeLabel: '自定义',
+            daysOfWeek: ['日', '一', '二', '三', '四', '五','六'],
+            monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+            firstDay: 1
+        };
+    });
+</script>
+<div class="builder {$builder_class}">
+    <div class="row toolbar">
+        <notempty name="form_items">
+            <div class="col-xs-12">
+             <form action="{$url}" method="get" class="form builder-form">
+				   <div class="search_type cc mb10"> 
+						<div class="mb10 well">
+							<span class="mr20">
+				<volist name="form_items" id="form">
+				{$form.title}:
+					<switch name="form.type">
+                        <case value="hidden">
+                            <input type="hidden" class="form-control" name="{$form.name}" value="{$form.value}" {$form.extra_attr}>
+                        </case>
+                        <!-- 数字 -->
+                        <case value="num">
+                            <input type="text" class="form-control num" name="{$form.name}" value="{$form.value}" {$form.extra_attr}>
+                        </case>
+                        <!-- 字符串 -->
+                        <case value="text">
+                            <input type="text" class="text" name="{$form.name}" value="{$form.value}" {$form.extra_attr}>
+                        </case>
+                        <!-- 文本 -->
+                        <case value="textarea">
+                            <textarea class="form-control textarea" name="{$form.name}" {$form.extra_attr}>{$form.value}</textarea>
+                        </case>
+                        <!-- 数组 -->
+                        <case value="array">
+                            <textarea class="form-control textarea" name="{$form.name}" {$form.extra_attr}>{$form.value}</textarea>
+                        </case>
+                        <!-- 密码 -->
+                        <case value="password">
+                            <input type="password" class="form-control password" name="{$form.name}" value="{$form.value}" {$form.extra_attr}>
+                        </case>
+                        <!-- 单选按钮 -->
+                        <case value="radio">
+                            <foreach name="form.options" item="option" key="option_key">
+                                <label class="radio-inline" for="{$form.name}{$option_key}">
+                                    <input type="radio" id="{$form.name}{$option_key}" class="checkbox" name="{$form.name}" value="{$option_key}" <eq name="form.value" value="$option_key"> checked</eq> {$form.extra_attr}> {$option}
+                                </label>
+                            </foreach>
+                        </case>
+                        <!-- 复选框 -->
+                        <case value="checkbox">
+                            <foreach name="form.options" item="option" key="option_key">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" name="{$form.name}[]" value="{$option_key}" <in name="option_key" value="$form.value"> checked</in> {$form.extra_attr}>{$option}
+                                </label>
+                            </foreach>
+                        </case>
+                        <!-- 下拉框 -->
+                        <case value="select">
+                            <select name="{$form.name}"  {$form.extra_attr}>
+                                <option value=''>请选择：</option>
+                                <foreach name="form.options" item="option" key="option_key">
+                                    <option value="{$option_key}" <eq name="form.value" value="$option_key"> selected</eq>>{$option}</option>
+                                </foreach>
+                            </select>
+                        </case>
+                        <!-- 图标 -->
+                        <case value="icon">
+                            <select class="chosen-icon" name="{$form.name}" data-value="{$form.value}" {$form.extra_attr}></select>
+                        </case>
+                        <!-- 日期 -->
+                        <case value="date">
+                            <input type="text" class="date time_{$key}" name="{$form.name}" value="<notempty name='form.value'>{$form.value|time_format='Y-m-d'}</notempty>" {$form.extra_attr}>
+                            <script type="text/javascript">
+                                $(function(){
+                                    $(".time_{$key}").daterangepicker({
+                                        showDropdowns: true,
+                                        singleDatePicker: true,
+                                        startDate: moment().subtract(0, 'days'),
+                                        format: 'YYYY-MM-DD',
+                                        locale: window.daterangepicker_locale
+                                    });
+                                });
+                            </script>
+                        </case>
+						
+						 <case value="timetotime">
+                            <input type="text" class="time time_{$key}" name="{$form.name}_start" value="{$Think.get.date_start}" {$form.extra_attr}>至 <input type="text" class="time time_{$key+100}" name="{$form.name}_end" value="{$Think.get.date_end}" {$form.extra_attr}>
+							
+							
+                            <script type="text/javascript">
+                                $(function(){
+                                    $(".time_{$key}").daterangepicker({
+                                        showDropdowns: true,
+                                        singleDatePicker: true,
+                                        startDate: moment().subtract(0, 'days'),
+                                        timePicker: true,
+                                        timePickerIncrement: 5,
+                                        format: 'YYYY-MM-DD h:mm',
+                                        locale: window.daterangepicker_locale
+                                    });
+									$(".time_{$key+100}").daterangepicker({
+                                        showDropdowns: true,
+                                        singleDatePicker: true,
+                                        startDate: moment().subtract(0, 'days'),
+                                        timePicker: true,
+                                        timePickerIncrement: 5,
+                                        format: 'YYYY-MM-DD h:mm',
+                                        locale: window.daterangepicker_locale
+                                    });
+                                });
+                            </script>
+                        </case>
+                        <!-- 时间 -->
+                        <case value="time">
+                            <input type="text" class="time time_{$key}" name="{$form.name}" value="<notempty name='form.value'>{$form.value|time_format}</notempty>" {$form.extra_attr}>
+                            <script type="text/javascript">
+                                $(function(){
+                                    $(".time_{$key}").daterangepicker({
+                                        showDropdowns: true,
+                                        singleDatePicker: true,
+                                        startDate: moment().subtract(0, 'days'),
+                                        timePicker: true,
+                                        timePickerIncrement: 5,
+                                        format: 'YYYY-MM-DD h:mm',
+                                        locale: window.daterangepicker_locale
+                                    });
+                                });
+                            </script>
+                        </case>
+					</switch>&nbsp;&nbsp;
+			</volist>
+						<input type="submit" class="btn btn-primary" name="submit1" value="搜索">
+							</span>
+						</div> 
+					</div>
+				</form>
+            </div>
+        </notempty>
+        
+   
+      
+    </div>
+    <div class="data-table" id="data_table" style="width: 100%;height:800px;"></div>
+</div>
+<import type="js" file="jquery.echartsmin" 	/>
+<script type="text/javascript">
+$(document).ready(function() {
+var myChart = echarts.init(document.getElementById('data_table'));
+      var option = {
+	  title: {
+			show : true,
+			text : '{$echarts_title}'
+	  },
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+	toolbox: {
+        feature: {
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    legend: {
+        data:[{$echarts_legend}]
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            data : [{$echarts_category}]
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+		<volist name="echarts_field" id="vo">
+		{
+            name:'{$vo.name}',
+            type:'bar',
+			label: {
+                normal: {
+                    show: true
+                }
+            },
+			markPoint : {
+                data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                ]
+            },
+            markLine : {
+                data : [
+                    {type : 'average', name: '平均值'}
+                ]
+            },
+            data:[{$vo.data}]
+        },
+		</volist>
+    ]
+};
+myChart.setOption(option);
+});
+</script>

@@ -1,0 +1,248 @@
+
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title>Mix</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <link href="__PUBLIC__/bui/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/bui/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/bui/assets/css/page-min.css" rel="stylesheet" type="text/css" />   <!-- 下面的样式，仅是为了显示代码，而不应该在项目中使用-->
+   <link href="__PUBLIC__/bui/assets/css/prettify.css" rel="stylesheet" type="text/css" />
+   <style type="text/css">
+    code {
+      padding: 0px 4px;
+      color: #d14;
+      background-color: #f7f7f9;
+      border: 1px solid #e1e1e8;
+    }
+   </style>
+ </head>
+ <body>
+  
+  <div class="container">
+    <div class="row">
+      <form id="searchForm" class="form-horizontal span24 bui-form-horizontal bui-form bui-form-field-container" aria-disabled="false" method="get" action="" aria-pressed="false">
+        <div class="row">
+ 
+		  <php>$MixGame=M('MixGame')->select();</php>
+          <div class="control-group span8">
+            <label class="control-label">游戏：</label>
+            <div class="controls">
+              <select name="gid" id="gid" class="bui-form-field-select bui-form-field" aria-disabled="false" onchange="var s=$('#sid');$.post('{:U('Api/Game/ajaxGameServerBygid')}',{gid:$('#gid').val()},function(re){s.empty();document.getElementById('sid').options.add(new Option('全服',0));if(re!=''&&re!='[]'){var temp=0;$.each(re,function(index,item){document.getElementById('sid').options.add(new Option(item.name,item.id))})}});" >
+			  <option value="0">无</option>
+			  <volist name="MixGame" id="vo">
+				 <option value="{$vo.gid}"><php>$__game=M('Game')->cache(9999)->find($vo['gid']);echo $__game['name'];</php></option>
+			  </volist>
+              </select>
+            </div>
+          </div>
+		  
+		  <div class="control-group span8">
+            <label class="control-label">区服：</label>
+            <div class="controls">
+              <select name="sid" id="sid" class="bui-form-field-select bui-form-field" aria-disabled="false">
+              </select>
+            </div>
+          </div>
+		  
+		  <div class="control-group span8">
+            <div class="controls">
+              <select name="clstatus" id="clstatus" class="bui-form-field-select bui-form-field" aria-disabled="false">
+			   <option value="0">回复状态</option>
+			   <option value="已回复">已回复</option>
+			   <option value="未回复">未回复</option>
+              </select>
+            </div>
+          </div>
+		  
+        </div>
+        <div class="row">
+          <div class="control-group span9">
+            <label class="control-label">时间：</label>
+            <div class="controls">
+              <input type="text" class="calendar bui-form-field-date bui-form-field" name="start_time" aria-disabled="false" aria-pressed="false"><span> - </span><input name="end_time" type="text" class="calendar bui-form-field-date bui-form-field" aria-disabled="false">
+            </div>
+          </div>
+          <div class="span3 offset2">
+            <button type="button" id="btnSearch" class="button button-primary">搜索</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="search-grid-container">
+      <div id="grid"></div>
+    </div>
+  </div>
+  
+  <div id="content" class="hide">
+      <form id="J_Form" class="form-horizontal" action="{:U('Mix/Main/operate')}" method="POST">
+        <div class="row">
+          <div class="control-group span8">
+            <label class="control-label"><s>*</s>游戏：</label>
+            <div class="controls">
+             <select name="gid" id="gidsb" class="bui-form-field-select bui-form-field" aria-disabled="false" onchange="var s=$('#sidsb');$.post('{:U('Api/Game/ajaxGameServerBygid')}',{gid:$('#gidsb').val()},function(re){s.empty();if(re!=''&&re!='[]'){var temp=0;$.each(re,function(index,item){document.getElementById('sidsb').options.add(new Option(item.name,item.id))})}});" >
+			  <volist name="MixGame" id="vo">
+				 <option value="{$vo.gid}"><php>$__game=M('Game')->cache(9999)->find($vo['gid']);echo $__game['name'];</php></option>
+			  </volist>
+              </select>
+            </div>
+          </div>
+          <div class="control-group span8">
+            <div class="controls">
+              <select  data-rules="{required:true}"  name="sid" id="sidsb" class="input-normal"> 
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="control-group span15 ">
+            <label class="control-label">电话：</label>
+            <div id="range" class="controls bui-form-group" data-rules="{dateRange : true}">
+              <input type="text" class="control-text bui-form-field" name="phone" aria-disabled="false" aria-pressed="false">
+            </div>
+          </div>
+        </div>
+		
+		<div class="row">
+          <div class="control-group span15 ">
+            <label class="control-label">QQ：</label>
+            <div id="range" class="controls bui-form-group" data-rules="{dateRange : true}">
+              <input type="text" class="control-text bui-form-field" name="qq" aria-disabled="false" aria-pressed="false">
+            </div>
+          </div>
+        </div>
+		
+		<div class="row">
+          <div class="control-group span15 ">
+            <label class="control-label">标题：</label>
+            <div id="range" class="controls bui-form-group" data-rules="{dateRange : true}">
+              <input type="text" class="control-text bui-form-field" name="title" data-rules="{required:true}" aria-disabled="false" aria-pressed="false">
+            </div>
+          </div>
+        </div>
+		
+        <div class="row">
+          <div class="control-group span15">
+            <label class="control-label">内容：</label>
+            <div class="controls control-row4">
+              <textarea name="content" class="input-large" data-rules="{required:true}"  type="text"></textarea>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  <script type="text/javascript" src="__PUBLIC__/bui/assets/js/jquery-1.8.1.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/bui/assets/js/bui-min.js"></script>
+
+
+  <script type="text/javascript" src="__PUBLIC__/bui/assets/js/config-min.js"></script>
+  <script type="text/javascript">
+    BUI.use('common/page');
+  </script>
+  <!-- 仅仅为了显示代码使用，不要在项目中引入使用-->
+  <script type="text/javascript" src="__PUBLIC__/bui/assets/js/prettify.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      prettyPrint();
+    });
+  </script> 
+  
+  
+<script type="text/javascript">
+  BUI.use(['common/search','bui/overlay','bui/grid',],function (Search,Overlay,Grid) {
+    
+      columns = [
+          {title:'标题',dataIndex:'title',width:150},
+          {title:'游戏',dataIndex:'gamename',width:150},
+          {title:'电话',dataIndex:'phone',width:150},
+		  {title:'QQ',dataIndex:'qq',width:100},
+		  {title:'内容',dataIndex:'content',width:400},
+		  {title:'提交时间',dataIndex:'ctime',width:150},
+          {title:'回复状态',dataIndex:'clstatus',width:80},
+		  {title:'回复',dataIndex:'reply',width:400},
+		  {title:'回复时间',dataIndex:'utime',width:150}
+		 
+        ],
+      store = Search.createStore('{:U('Mix/Main/operate_ask_json')}'),
+	  editing = new Grid.Plugins.DialogEditing({
+        contentId : 'content',
+        triggerCls : 'btn-edit',
+		editor : {
+			title: '提交工单',
+			success : function(){
+				var edtor = this,
+				form = edtor.get('form'),
+				editType = editing.get('addType'),
+				url = '{:U('Mix/Main/operate_ask')}'; 
+                form.valid();
+                if(form.isValid()){
+                  form.ajaxSubmit({
+                    url : url,
+                    success : function(data){
+                      edtor.accept();
+                    }
+                  });
+                }
+            }
+        }
+      }),
+      gridCfg = Search.createGridCfg(columns,{
+        plugins : [BUI.Grid.Plugins.CheckSelection,editing],
+		tbar : {
+          items : [
+            {text : '<i class="icon-plus"></i>提交工单',btnCls : 'button button-small',handler:addFunction}
+          ]}
+      });
+
+    var  search = new Search({
+        store : store,
+        gridCfg : gridCfg
+      }),
+      grid = search.get('grid');
+    //删除操作
+    function delFunction(){
+      var selections = grid.getSelection();
+      delItems(selections);
+    }
+
+	function addFunction(){
+      var newData = {qq :'{$mixinfo.qq}',phone:'{$mixinfo.mobile}'};
+      editing.add(newData); //添加记录后，直接编辑
+    }
+    function delItems(items){
+      var ids = [];
+      BUI.each(items,function(item){
+        ids.push(item.id);
+      });
+
+      if(ids.length){
+        BUI.Message.Confirm('确认要删除选中的记录么？',function(){
+          $.ajax({
+            url : '../data/del.php',
+            dataType : 'json',
+            data : {ids : ids},
+            success : function(data){
+              if(data.success){ //删除成功
+                search.load();
+              }else{ //删除失败
+                BUI.Message.Alert('删除失败！');
+              }
+            }
+        });
+        },'question');
+      }
+    }
+
+    //监听事件，删除一条记录
+    grid.on('cellclick',function(ev){
+      var sender = $(ev.domTarget); //点击的Dom
+      if(sender.hasClass('btn-del')){
+        var record = ev.record;
+        delItems([record]);
+      }
+    });
+  });
+</script>
+
+<body>
+</html>  

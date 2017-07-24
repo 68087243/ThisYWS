@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="edge">
+    <meta name="keywords" content="{$meta_keywords}">
+    <meta name="description" content="{$meta_description}">
+    <block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+    {:hook("PageHeader")}
+
+    <script type="text/javascript">
+        {:W('Common/Public/script')}
+    </script>
+
+    <style type="text/css">
+        .topbox{
+            background: -moz-linear-gradient(top, rgba(255,255,255,0) 80%, #EFEFEF),url({$gamedata.pic.pic_site_bg|get_cover=###}) no-repeat center;
+            background: -webkit-linear-gradient(top, rgba(255,255,255,0) 80%, #EFEFEF),url({$gamedata.pic.pic_site_bg|get_cover=###}) no-repeat center;
+            background: -o-linear-gradient(top, rgba(255,255,255,0) 80%, #EFEFEF),url({$gamedata.pic.pic_site_bg|get_cover=###}) no-repeat center;
+        }
+    </style>
+    <import type='css' file="theme.css.index" />
+    <import type='css' file="theme.css.common" />
+    <import type='js' file="jquery.jquery183min" />
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var topboxbg_url = '{$gamedata.pic.pic_site_bg|get_cover=###}';
+            var topboxbg_img = new Image();
+            topboxbg_img.src = topboxbg_url;
+            topboxbg_img.onload = function(){
+                $('.topbox').css('height',topboxbg_img.height + 'px');
+            };
+        });
+    </script>
+    <block name="style"></block>
+    <import type='css' file="theme.css.game" />
+    <import type='css' file="theme.css.allstyle" />
+    <block name="script"></block>
+</head>
+<body>
+<div class="w-topbar">
+    <div class="w-topbarm">
+        <div class="w-tl">
+            <a href="{:U('Game/index/index')}" target="_blank">游戏首页</a>|<a href="{:U('User/Vip/index')}" target="_blank">VIP中心</a>|<a href="{:U('Shop/index/index')}" target="_blank">积分商城</a>|<a href="{:U('Forum/index/index')}" target="_blank">游戏论坛</a>
+        </div>
+        <div class="w-tr" id="w-baright">
+            <div class="w-favall">
+                <a href="#" target="_self" id="sitefav">加入收藏</a>|<a target="_blank" href="{:U('Home/index/desktop')}">保存到桌面</a>
+            </div>
+            <div class="w-twrap" id="w-thotId">
+                <span class="w-twrapbtn">热门游戏</span>
+                <div class="w-twrapsub">
+                    <div class="w-twrapbox">
+                        <ul class="w-thotgames">
+                        </ul>
+                    </div>
+                    <div class="w-thotico">
+                    </div>
+                </div>
+            </div>
+            <div id="w-tmyplayId" class="w-twrap w-tmypb">
+                <span class="w-twrapbtn">我玩过的</span>
+                <div class="w-twrapsub">
+                    <div class="w-twrapbox">
+                        <present name="__USER__">
+                            <div class="w-myplay">
+                            </div>
+                            <a href="{:U('User/record/index')}" class="w-mpmore" target="_blank">查看更多</a>
+                            <else />
+                            <div class="w-pno_tp">
+                                <span>请<a href="#" target="_self" id="w-tplog">登录</a>后查看游戏记录</span>
+                            </div>
+                        </present>
+                    </div>
+                    <div class="w-thotico">
+                    </div>
+                </div>
+            </div>
+            <div class="w-favall" id="w-favall">
+                <notpresent name="__USER__">
+                    <a href="#" target="_self" id="w-log">登录</a>|<a href="#" target="_self" id="w-reg">注册</a>|
+                </notpresent>
+            </div>
+            <div id="w-tmyId" class="w-twrap w-tmypb">
+                <present name="__USER__">
+                    <span class="w-twrapbtn">{$__USER__.username}</span>
+                    <div class="w-twrapsub">
+                        <div class="w-twrapbox">
+                            <div class="w-nameinfo">
+                            </div>
+                            <ul class="w-infosub">
+                            </ul>
+                        </div>
+                        <div class="w-thotico">
+                        </div>
+                    </div>
+                </present>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="g-header">
+    <div class="g-main fix">
+        <div class="header-nav fl">
+            <div class="nav-box fl">
+                <div class="homepage fl"> <a href="http://mall.9377.com" class="menu-sty nav-menu"><i class="icon i-home"></i>商城首页</a> </div>
+                <div class="nav fl">
+                    <a href="http://mall.9377.com/list.php?cat=1">实物兑换</a> |
+                    <a href="http://mall.9377.com/list.php?cat=2">虚宝兑换</a> |
+                    <a href="http://mall.9377.com/lottery.php" target="_blank" class="">积分抽奖</a> |
+                    <a href="http://mall.9377.com/task.php">任务中心</a> |
+                    <a href="http://www.9377.com/users/users_index.php">用户中心</a> |
+                    <a href="http://www.9377.com/game_center.php" target="_blank">游戏中心</a>
+                </div>
+            </div>
+            <a href="http://mall.9377.com/order.php" class="header-cart fr">
+                <span class="cart-txt fl"><i class="icon i-cart"></i>我的购物车</span>
+                <span class="cart-num fl" id="cart-num">0</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="g-container index-bg">
+    <div class="g-main">
+        <block name="body">这里是内容</block>
+    </div>
+</div>
+
+
+<block name="link"></block>
+
+<block name="footer"><div class="w-ftwrap"><div class="w-fnav"><div class="w-fnavbox"><div class="w-fnav-w"><h5 class="w-fnav-z">帐号服务</h5><ul><li><a target="_blank" href="{:U('User/Public/register')}">帐号注册</a></li><li><a target="_blank" href="{:U('User/safe/index')}">修改密码</a></li><li><a target="_blank" href="{:U('User/safe/index',array('t'=>'yxyz'))}">绑定邮箱</a></li><li><a target="_blank" href="{:U('Service/ticket/10')}">找回帐号</a></li></ul></div><div class="w-fnav-w"><h5 class="w-fnav-k">客服中心</h5><ul><li><a target="_blank" href="{:U('Service/Index/Index')}">客服首页</a></li><li><a target="_blank" href="{:U('Forum/index/index')}">论坛交流</a></li><li><a target="_blank" href="{:U('Service/Index/Index')}">常见问题</a></li><li><a target="_blank" href="{:U('Service/Index/Index')}">在线客服</a></li></ul></div><div class="w-fnav-w"><h5 class="w-fnav-r">热门游戏</h5><ul><volist name=":W('Common/Game/RecommendedGame',Array('j',4,'IndexFooterRecomme11'))" id="ig"><li><a target="_blank" href="{$ig.gameurl}">{$ig.name}</a></li></volist></ul></div><div class="w-fnav-w w-fnav-long"><h5 class="w-fnav-c">旗下站点</h5><ul><li><a target="_blank" href="{:U('Home/index/index')}">网页游戏</a></li><li><a target="_blank" href="{:U('Game/index/index')}">游戏大全</a></li><li><a target="_blank" href="{:U('Forum/index/index')}">交流论坛</a></li><li><a target="_blank" href="{:U('Shop/index/index')}">积分商城</a></li></ul></div></div></div><div class="w-footer">抵制不良游戏，拒绝盗版游戏。 注意自我保护，谨防受骗上当。 适度游戏益脑，沉迷游戏伤身。 合理安排时间，享受健康生活。<p><a href="{:U('Service/Information/about')}" target="_blank">关于我们</a>|<a href="{:U('Service/Information/lianxi')}" target="_blank">联系我们</a>|<a href="{:U('Service/Information/cooperation')}" target="_blank">游戏合作</a>|<a href="{:U('Service/Information/declare')}" target="_blank">版权声明</a>|<a href="{:U('Service/Information/duty')}" target="_blank">使用协议</a></p><span>Copyright</span><span>©2015</span><span>{:strtoupper(DOMAIN())}</span><span>{:C('WEB_SITE_ICP')}</span></div></div>
+
+    <div class="hidden">
+        <div class="hidden">{:C('WEB_SITE_STATISTICS')}</div>
+    </div>
+    <block name="footer_script"></block>
+    <import type='js' file="theme.js.common" />
+    <script type="text/javascript">
+        var MODULE_NAME='{:MODULE_NAME}'.toUpperCase();
+        $('#NAV_'+MODULE_NAME).addClass('cur');
+
+        function getServerListUrlByRh(){
+            return "{:U($gamedata['mark'].'/server')}";
+        }
+    </script>
+    <style>.tb_button {padding:1px;cursor:pointer;border-right: 1px solid #8b8b8b;border-left: 1px solid #FFF;border-bottom: 1px solid #fff;}.tb_button.hover {borer:2px outset #def; background-color: #f8f8f8 !important;}.ws_toolbar {z-index:100000} .ws_toolbar .ws_tb_btn {cursor:pointer;border:1px solid #555;padding:3px}   .tb_highlight{background-color:yellow} .tb_hide {visibility:hidden} .ws_toolbar img {padding:2px;margin:0px}</style></block>
+
+</body>
+</html>

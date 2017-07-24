@@ -1,0 +1,40 @@
+<extend name="./Theme/default/Common/Game/layout_theme_one.html"/>
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<import type='css' file="theme.theme_one.css.index" />
+<style type="text/css">
+
+</style>
+</block>
+
+
+<block name="body">
+ <div class="list_tit">
+            <h2>{$title}</h2>
+            <span><a href="{$gameurl}">首页</a>&gt;&gt;<a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>I('cid')))}">{$title}</a></span>
+        </div>
+
+                <div class="list_con">
+            <ul class="list_ul clearfix">
+                                   
+					
+				<volist name="volist" id="vo">
+				<li>
+				 <span>[{$vo.ctime|date="m-d",###}]</span>
+					<a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a>
+				</li>
+			</volist>
+                            </ul>
+        </div>
+        <div class="pagenav">
+                       <ul> {$page}  </ul>  
+        </div>
+    </div>
+</block>
+
+<block name="footer_script">
+<import type='js' file="theme.theme_one.js.index" />
+<import type='js' file="theme.theme_one.js.slide" />
+
+</block>

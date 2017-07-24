@@ -1,0 +1,107 @@
+<extend name="./Theme/default/Common/Public/layout.html"/>
+
+<block name="title"><title>{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+<block name="style">
+<import type='css' file="theme.css.index" />
+<import type='css' file="theme.css.new_index" />
+<style type="text/css">
+ul.countdown {
+	list-style: none;
+	margin: 75px 0;
+	padding: 0;
+	display: block;
+	text-align: center;
+}
+ul.countdown li {
+	display: inline-block;
+}
+ul.countdown li span {
+	font-size: 80px;
+	color:#117ECE;
+	font-weight: 300;
+	line-height: 80px;
+}
+ul.countdown li.seperator {
+	font-size: 80px;
+	color:#117ECE;
+	line-height: 70px;
+	vertical-align: top;
+}
+ul.countdown li p {
+	color: #a7abb1;
+	font-size: 14px;
+}
+a {
+	color: #76949F;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+.source {
+	width: 405px;
+	margin: 0 auto;
+	background: #4f5861;
+	color: #a7abb1;
+	font-weight: bold;
+	display: block;
+	white-space: pre;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+.btn {
+	background: #f56c4c;
+	margin: 40px auto;
+	padding: 12px;
+	display: block;
+	width: 100px;
+	color: white;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-decoration: none;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+.btn:hover {
+	text-decoration: none;
+	opacity: .7;
+}
+</style>
+</block>
+
+<block name="body">
+
+<div class="tp_con"><!--维护-->
+        <div class="tp_ting"  style="margin-top: 100px;">
+            <div class="tp_tt">
+                <strong>{$game.name}{$server.name}该游戏不在状态或维护中，敬请期待</strong>
+            </div>
+            <div class="tp_btna">
+                <a href="{:D('Game')->getGameUrl($game['id'])}">游戏官网</a>
+                <a href="{:U('Forum/'.$game['mark'].'/index')}">游戏论坛</a>
+            </div>
+        </div>
+</div>
+<div class="tp980">
+        <div class="tp_tit">
+            <h2>试试其他热门页游</h2>
+            <a href="http://www.yiwanshu.com" class="more_a">更多</a>
+        </div>
+        <div class="qitags clearfix">
+            <p>
+				<volist  name=":W('Common/Game/RecommendedGame',Array('t',4,'Gatewayyouxituijian'))"  id="vo" >
+					<a href="<php>echo D('Game')->getGameUrl($vo['id']);</php>"><img src="{$vo.pic.pic_r|get_cover=###}" alt="">{$vo.name}</a>
+				</volist>
+            </p>
+        </div>
+    </div>
+</block>
+
+
+
+<block name="footer_script">
+</block>
+

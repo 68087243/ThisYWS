@@ -1,0 +1,72 @@
+/**.pop-login { width: 550px; height: 488px; margin: -250px 0 0 -275px;}**/
+@charset "utf-8";
+html{ font-size:100%;}
+body { margin:0; color: #666; font:12px/1.5 "microsoft yahei", Arial, sans-serif;}
+dl, dd, h1, h2, h3, h4, h5, h6, p, ul, ol { margin:0;}
+ul, ol { padding-left:0; list-style-type:none;}
+img { border:0;}
+a { color: #333; text-decoration:none; outline: 0 none;}
+a:hover { color: #000; text-decoration:none;}
+a, button { cursor:pointer}
+table { border-collapse:collapse; border-spacing:0}
+input, select, img { vertical-align:middle;}
+a, input, button { padding:0; margin:0; outline:0}
+i,em {font-style: normal;}
+.fl { float: left; display: inline;}
+.fr { float: right; display: inline;}
+.dib { display: inline-block; vertical-align: top; *display: inline; *zoom: 1;}
+.tc { text-align: center;}
+.fz14 { font-size: 14px;}
+.fix {zoom:1;}
+.fix:after,.fix:before{display:block;content:"clear";height:0;clear:both;overflow:hidden;visibility:hidden;}
+.none { display: none;}
+.hidden { width: 0px; height: 0px; overflow: hidden;}
+
+.icon { background: url(../images/csp-index.png?201512211525) no-repeat; _background: url(../images/csp-index8.png?201512211525) no-repeat;}
+
+.pop-close { width: 30px; height: 30px; overflow: hidden; text-align: center; color: #2cb698; font: 30px/24px 'verdana'; position: absolute; top: 0px; right: 0px; z-index: 3;}
+.pop-close:hover { background-position: -133px -309px;}
+
+
+
+.icon-x { width: 24px; height: 25px; background-position: -133px -277px; position: absolute; top: 125px; right: 12px;}
+.icon-checkbox { display: inline-block; width: 20px; height: 20px; font-size: 0; vertical-align: middle; position: relative; top: -1px; overflow: hidden; cursor: pointer; background-position: -300px -233px;}
+	.icon-checkbox:hover { background-position: -278px -233px;}
+	.icon-checkbox-selected, .icon-checkbox-selected:hover { background-position: -256px -233px;}
+	
+.pop-hd { height: 114px;}
+.pop-hd .pop-hd-t { display: block; height: 108px; background: url(../images/pop-hd.png?201512211525) top center no-repeat; _background: url(../images/pop-hd8.png?201512211525) top center no-repeat;}
+.pop-hd .pop-hd-b { display: block; height: 7px; overflow: hidden; border-radius: 5px 5px 0 0; background: #fff url(../images/pop-hd.png?201512211525) center -108px no-repeat; _background: #fff url(../images/pop-hd.png?201512211525) center -108px no-repeat;}
+.pop-bd { height: auto; padding: 10px; border-radius: 0 0 5px 5px; background: #fff;}
+.pop-bd .title { height: 48px; line-height: 48px; font-size: 22px; font-weight: normal; text-align: center; color: #333; border-bottom: 1px solid #e0e0e0;}
+.pop-bd .txt { height: 94px; line-height: 28px; padding: 25px 0; font-size: 14px; color: #666; position: relative;}
+.pop-bd .txt a { color: #03b4f7;}
+.pop-bd .txt a:hover { color: #0b9ad0;}
+.pop-bd .txt .outer-link { position: absolute; bottom: 16px; right: 30px;}
+.pop-bd .txt .inputfix { margin: 6px 0;}
+.pop-bd .txt .w-input-input { width: 210px; height: 22px; line-height: 22px; padding: 6px; border: 1px solid #e0e0e0; border-radius: 5px;}
+.pop-bd .opt { padding: 15px 0 5px 0; border-top: 1px solid #e0e0e0;}
+.pop-bd .opt a { display: inline-block; width: 136px; height: 40px; line-height: 40px; text-align: center; color: #333; font-size: 14px; margin: 0 10px; border-radius: 6px; background: #e4e3e3;}
+.pop-bd .opt a:hover { color: #fff; background: #03b4f7;}
+
+.pop-credit-less .txt { padding-left: 40px; line-height: 32px;}
+/*通用登录*/
+::-webkit-input-placeholder { font-family: 'microsoft yahei';}
+::-moz-placeholder { font-family: 'microsoft yahei';} 
+:-ms-input-placeholder { font-family: 'microsoft yahei';} 
+input:-moz-placeholder { font-family: 'microsoft yahei';}
+
+.pop-item-login .pop-login-box { width: 322px; height: 290px; margin: 0 auto; position: relative;}
+.pop-item-login .pop-login-form { *height: 182px; *overflow: hidden;}
+.pop-item-login .w-form-item { margin: 15px 0; *margin: 12px 0;}
+.pop-item-login .w-input-input { width: 310px; height: 20px; line-height: 20px; border-radius: 5px; border: 1px solid #e0e0e0; padding: 12px 5px;}
+.pop-item-login .w-input-submit { width: 100%; height: 50px; line-height: 50px; border-radius: 5px; color: #fff; text-align: center; vertical-align: middle; margin-bottom: 15px; border: 0 none; cursor: pointer; background: #419cea; font: 16px/50px 'microsoft yahei';}
+.pop-item-login .w-input-submit:hover { background: #ff9600;}
+.m-login-ext a { color: #419cea;}
+.m-login-ext a:hover { color: #ff9600;}
+.m-login-extlogin .hd { margin-bottom: 20px; border-bottom: 1px solid #ddd; text-align: center; }
+.m-login-extlogin .hd span { position: relative; top: 9px; display: inline-block; padding: 0 8px; background: #fff; color: #3d3d3d; }
+.m-login-extlogin .bd { text-align: center; }
+.i-thirdlogin { display: inline-block; width: 35px; height: 35px; margin: 0 12px; opacity: 0.6; background: url(../images/login_icon.jpg?201512211525) no-repeat; vertical-align: middle;}
+.i-thirdlogin:hover { opacity: 1;}
+.i-thirdlogin-qq { background-position: 0 0;}

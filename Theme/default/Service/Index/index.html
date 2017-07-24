@@ -1,0 +1,92 @@
+<extend name="./Theme/default/Common/Public/layout.html"/>
+
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<import type='css' file="theme.css.index" />
+<import type='css' file="theme.css.kf" />
+<import type='css' file="theme.css.style" />
+
+</block>
+
+
+
+<block name="body">
+<div class="kfwrap">
+    <div class="kfbtit"><h2 class="kft5">自助申诉</h2></div>
+    <div class="kfbigwrap">
+        <div class="artificial">
+            <div class="kftit"><h2>人工客服</h2></div>
+            <ul class="artlist">
+                <li>客服热线：<b>{:C('WEB_SITE_MOBILE')}</b>
+                </li><li>客服QQ：<b>{:C('WEB_SITE_QQ')}</b>
+                </li>
+            </ul>
+            <div class="linekf">
+                <a href="http://wpa.qq.com/msgrd?v=3&uin={:C('WEB_SITE_QQ')}&site=qq&menu=yes" target="_blank" class="okf">在线客服</a>
+
+                <p>在线时间：每天9：00~21：00</p>
+            </div>
+        </div>
+
+        <div class="appealist">
+            <a href="{:U('Service/ticket/3')}" class="kf1"><i></i>游戏问题</a>
+            <a href="{:U('Service/ticket/6')}" class="kf2"><i></i>充值问题</a>
+            <a href="{:U('Service/ticket/10')}" class="kf3"><i></i>账号问题</a>
+            <a href="{:U('Service/ticket/1')}" class="kf6"><i></i>装备找回</a>
+            <a href="{:U('Service/ticket/query')}" class="kf5"><i></i>进度查询</a>
+            <a href="{:U('Service/ticket/5')}" class="kf7"><i></i>充值未到账</a>
+            <a href="{:U('User/safe/index')}" class="kf8"><i></i>安全中心</a>
+            <a href="{:U('Service/ticket/password')}" class="kf9"><i></i>忘记密码</a>
+            <a href="{:U('Service/ticket/7')}" class="kf10"><i></i>投诉建议</a>
+            <a class="kf4"><i></i>更多服务 敬请期待</a>
+        </div>
+    </div>
+
+    <div class="kfbigwrap">
+        <div class="upromise">
+            <div class="kfbtit"><h2 class="kft4">用户承诺</h2></div>
+            <div class="allpromise">
+                <ul>
+                    <li>
+                        <a href="{:U('News/Read/9')}" class="pr0"> 《齐鲁玩》用户守则<i></i></a>
+                        <a href="{:U('News/Read/10')}" class="pr1">《齐鲁玩》交易纠纷处理<i></i></a>
+                        <a href="{:U('News/Read/11')}" class="pr2">《齐鲁玩》防沉迷系统问题<i></i></a>
+                        <a href="{:U('News/Read/12')}" class="pr3">《齐鲁玩》充值规则<i></i></a>
+                </ul>
+            </div>
+        </div>
+
+        <div class="kfrequest">
+            <div class="kfbtit"><h2 class="kft3">常见问题</h2></div>
+            <div class="kfreqbox">
+                <div class="kfreqtab">
+                    <ul><li class="cur">全部</li></ul>
+                </div>
+                <div class="kfreqlist">
+                                            <div class="kfrequl ">
+											<ul>
+												<volist name=":W('Common/Document/getListByCid',array(8,4,'CustomerServiceFrequentlyAskedQuestions'))" id="vo" offset="0" length='4'>
+													<li><a href="{:U('News/Read/'.$vo['id'])}">[常见问题] {$vo.title}</a>
+												</volist>
+											</ul>
+											<ul>
+												<volist name=":W('Common/Document/getListByCid',array(8,4,'CustomerServiceFrequentlyAskedQuestions'))" id="vo" offset="4" length='8'>
+													<li><a href="{:U('News/Read/'.$vo['id'])}">[常见问题] {$vo.title}</a>
+												</volist>
+											</ul>	
+												
+                        </div>
+                                        </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</block>
+
+
+<block name="footer_script">
+
+</block>
+

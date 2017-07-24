@@ -1,0 +1,139 @@
+
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title>Mix</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <load href="/Public/bui/assets/css/dpl-min.css" />
+	<load href="/Public/bui/assets/css/bui-min.css" />
+	<load href="/Public/bui/assets/css/page-min.css" />
+	<load href="/Public/bui/assets/css/prettify.css" />
+   <style type="text/css">
+    code {
+      padding: 0px 4px;
+      color: #d14;
+      background-color: #f7f7f9;
+      border: 1px solid #e1e1e8;
+    }
+   </style>
+ </head>
+ <body>
+  
+  <div class="container">
+    <div class="row">
+      <form id="J_Form" class="form-horizontal span24" action="{:U('Mix/Main/operate_agent')}" method="POST" >
+	  
+	  <input type="hidden" name="gid" value="{$Think.get.gid}" />
+		<div class="row">
+			<div class="control-group span8">
+            <label class="control-label"><s>*</s>游戏：</label>
+            <div class="controls">
+              {$game.name}
+            </div>
+          </div>
+		</div>
+        <div class="row">
+          <div class="control-group span8">
+            <label class="control-label"><s>*</s>官网URL：</label>
+            <div class="controls">
+              <input name="home_url" type="text" value="{$mixusergame.home_url}" data-rules="{required:true}" class="input-normal control-text">
+            </div>
+          </div>
+        </div>
+		
+		<div class="row">
+          <div class="control-group span8">
+            <label class="control-label"><s>*</s>充值URL：</label>
+            <div class="controls">
+              <input name="pay_url" type="text" value="{$mixusergame.pay_url}" data-rules="{required:true}" class="input-normal control-text">
+            </div>
+          </div>
+        </div>
+		
+		<div class="row">
+          <div class="control-group span8">
+            <label class="control-label"><s>*</s>论坛URL：</label>
+            <div class="controls">
+              <input name="bbs_url" type="text" value="{$mixusergame.bbs_url}" data-rules="{required:true}" class="input-normal control-text">
+            </div>
+          </div>
+        </div>
+		    
+		
+		<div class="row">
+          <div class="control-group span8">
+            <label class="control-label"><s>*</s>客服URL：</label>
+            <div class="controls">
+              <input name="service_url" type="text" value="{$mixusergame.service_url}" data-rules="{required:true}" class="input-normal control-text">
+            </div>
+          </div>
+        </div>
+		
+		<div class="row">
+          <div class="control-group span8">
+            <label class="control-label"><s>*</s>VIP URL：</label>
+            <div class="controls">
+              <input name="vip_url" type="text" value="{$mixusergame.vip_url}" data-rules="{required:true}" class="input-normal control-text">
+            </div>
+          </div>
+        </div>
+		
+		<div class="row">
+          <div class="control-group span8">
+            <label class="control-label"><s>*</s>礼包URL：</label>
+            <div class="controls">
+              <input name="gift_url" type="text" value="{$mixusergame.gift_url}" data-rules="{required:true}" class="input-normal control-text">
+            </div>
+          </div>
+        </div>
+		
+		<div class="row">
+          <div class="control-group span8">
+            <label class="control-label"><s>*</s>微端URL：</label>
+            <div class="controls">
+              <input name="client_url" type="text" value="{$mixusergame.client_url}" data-rules="{required:true}" class="input-normal control-text">
+            </div>
+          </div>
+        </div>
+		
+        <div class="row form-actions actions-bar">
+            <div class="span13 offset3 ">
+			<empty name="mixusergame">
+ <button type="submit" class="button button-primary">代理</button>
+<else /> 
+ <button type="submit" class="button button-primary">保存</button>
+</empty> 
+              <button type="reset" class="button">重置</button>
+            </div>
+        </div>
+      </form>
+    </div>
+    
+
+  </div>
+  <script type="text/javascript" src="__PUBLIC__/bui/assets/js/jquery-1.8.1.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/bui/assets/js/bui-min.js"></script>
+
+  <script type="text/javascript" src="__PUBLIC__/bui/assets/js/config-min.js"></script>
+  <script type="text/javascript">
+    BUI.use('common/page');
+  </script>
+  <!-- 仅仅为了显示代码使用，不要在项目中引入使用-->
+  <script type="text/javascript" src="__PUBLIC__/bui/assets/js/prettify.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      prettyPrint();
+    });
+  </script> 
+<script type="text/javascript">
+  BUI.use('bui/form',function (Form) {
+    var form = new Form.HForm({
+      srcNode : '#J_Form'
+    });
+
+    form.render();
+  });
+</script>
+
+<body>
+</html> 

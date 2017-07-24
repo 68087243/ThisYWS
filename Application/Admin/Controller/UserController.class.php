@@ -1,0 +1,167 @@
+<?php
+// +----------------------------------------------------------------------
+// | CoreThink [ Simple Efficient Excellent ]
+// +----------------------------------------------------------------------
+// | Copyright (c) 2014 http://www.corethink.cn All rights reserved.
+// +----------------------------------------------------------------------
+// | Author: jry <598821125@qq.com> <http://www.corethink.cn>
+// +----------------------------------------------------------------------
+namespace Admin\Controller;
+use Think\Controller;
+/**
+ * 后台用户控制器
+ * @author jry <598821125@qq.com>
+ */
+class UserController extends AdminController{
+    /**
+     * 用户列表
+     * @author jry <598821125@qq.com>
+     */
+    public function index(){
+        //搜索
+        $keyword = (string)I('keyword');
+        $condition = array('like','%'.$keyword.'%');
+        $map['id|username|email|mobile'] = array($condition, $condition, $condition, $condition,'_multi'=>true);
+
+        //获取所有用户
+        $map['status'] = array('egt', '0'); //禁用和正常状态
+        $data_list = D('User')->page(!empty($_GET["p"])?$_GET["p"]:1, C('ADMIN_PAGE_ROWS'))->where($map)->order('sort desc,id desc')->select();
+        $page = new \Common\Util\Page(D('User')->where($map)->count(), C('ADMIN_PAGE_ROWS'));
+		
+		foreach($data_list as &$val){
+			$val['vip']='VIP'.$val['vip'].'/成长值'.intval($val['upgrade']);
+			$val['score']=$val['score'].'/累计积分'.intval($val['total_score']);
+			$_login=M('AddonSyncLogin')->where(Array('uid'=>$val['id']))->find();
+			if($_login){
+				$val['username']=$val['username'].'/'.$_login['type'];
+			}
+		}
+
+        //使用Builder快速建立列表页面。
+        $builder = new \Common\Builder\ListBuilder();
+        $builder->title('用户列表')  //设置页面标题
+                ->AddNewButton()    //添加新增按钮
+                ->addResumeButton() //添加启用按钮
+                ->addForbidButton() //添加禁用按钮
+                ->addDeleteButton() //添加删除按钮
+                ->setSearch('请输入ID/用户名/邮箱/手机号', U('index'))
+                ->addField('id', 'UID', 'text')
+                ->addField('username', '用户名', 'text')
+                ->addField('email', '邮箱', 'text')
+                ->addField('mobile', '手机号', 'text')
+                ->addField('vip', 'VIP', 'text')
+                ->addField('score', '积分', 'text')
+                ->addField('money', '余额', 'text')
+                ->addField('last_login_time', '最后登录时间时间', 'time')
+                ->addField('status', '状态', 'status')
+                ->addField('right_button', '操作', 'btn')
+                ->dataList($data_list)    //数据列表
+                ->addRightButton('edit')   //添加编辑按钮
+                ->addRightButton('forbid') //添加禁用/启用按钮
+                ->addRightButton('delete') //添加删除按钮
+                ->setPage($page->show())
+                ->display();
+    }
+
+    /**
+     * 新增用户
+     * @author jry <598821125@qq.com>
+     */
+    public function add(){
+        if(IS_POST){
+            $user_object = D('User');
+            $data = $user_object->create();
+            if($data){
+                $id = $user_object->add();
+                if($id){
+                    $this->success('新增成功', U('index'));
+                }else{
+                    $this->error('新增失败');
+                }
+            }else{
+                $this->error($user_object->getError());
+            }
+        }else{
+            //使用FormBuilder快速建立表单页面。
+            $builder = new \Common\Builder\FormBuilder();
+            $builder->title('新增用户')  //设置页面标题
+                    ->setUrl(U('add')) //设置表单提交地址
+                    ->addItem('reg_type', 'hidden', '注册方式', '注册方式')
+                    ->addItem('usertype', 'radio', '用户类型', '用户类型', C('USER_TYPE_LIST'))
+                    ->addItem('group', 'select', '部门', '所属部门', $this->selectListAsTree('UserGroup', null, '默认部门'))
+                    ->addItem('username', 'text', '用户名', '用户名')
+                    ->addItem('email', 'text', '邮箱', '邮箱')
+                    ->addItem('mobile', 'text', '手机号码', '手机号码')
+                    ->addItem('password', 'password', '密码', '密码')
+                    ->addItem('avatar', 'picture', '用户头像', '用户头像')
+                    ->addItem('vip', 'radio', 'VIP等级', 'VIP等级', C('USER_VIP_LEVEL'))
+                    ->setFormData(array('reg_type' => 0))
+                    ->display();
+        }
+    }
+
+    /**
+     * 编辑用户
+     * @author jry <598821125@qq.com>
+     */
+    public function edit($id){
+        //获取用户信息
+        $info = D('User')->find($id);
+        if(IS_POST){
+            $user_object = D('User');
+            //不修改密码时销毁变量
+            if($_POST['password'] == '' || $info['password'] == $_POST['password']){
+                unset($_POST['password']);
+            }else{
+                $_POST['password'] = user_md5($_POST['password']);
+            }
+            //不允许更改超级管理员用户组
+            if($_POST['id'] == 1){
+                unset($_POST['group']);
+            }
+            if($_POST['extend']){
+                $_POST['extend'] = json_encode($_POST['extend']);
+            }
+            if($user_object->save($_POST)){
+                $this->success('更新成功', U('index'));
+            }else{
+                $this->error('更新失败', $user_object->getError());
+            }
+        }else{
+            $info = D('User')->find($id);
+			$vip=C('VIP_LEVEL_LIST');
+			foreach($vip as &$val){
+				$val=$val['title'];
+			}
+			$level=C('LEVEL_LIST');
+			foreach($level as &$val){
+				$val=$val['title'];
+			}
+            //使用FormBuilder快速建立表单页面。
+            $builder = new \Common\Builder\FormBuilder();
+            $builder->title('编辑用户')  //设置页面标题
+                    ->setUrl(U('edit')) //设置表单提交地址
+                    ->addItem('id', 'hidden', 'ID', 'ID')
+                    ->addItem('group', 'select', '部门', '所属部门', $this->selectListAsTree('UserGroup', null, '默认部门'))
+                    ->addItem('username', 'text', '用户名', '用户名')
+                    ->addItem('email', 'text', '邮箱', '邮箱')
+                    ->addItem('mobile', 'text', '手机号码', '手机号码')
+                    ->addItem('password', 'password', '密码', '密码')
+                    ->addItem('avatar', 'picture', '用户头像', '用户头像')
+					->addItem('money', 'text', '平台币', null)
+					->addItem('level', 'radio', '等级', null, $level)
+					->addItem('score', 'text', '积分', null)
+					->addItem('total_score', 'text', '累计积分', '如果更改等级，则此值也需要更改到对应累计积分')
+                    ->addItem('vip', 'radio', 'VIP等级', null, $vip)
+					->addItem('upgrade', 'text', 'VIP成长值', '如果更改VIP等级，则此值也需要更改到对应成长值')
+					->addItem('sex', 'radio', '性别', null, C('USER_SEX_LIST'))
+					->addItem('age', 'text', '年龄', null)
+					->addItem('birthday', 'text', '出生日期', null)
+					->addItem('realname', 'text', '真实姓名', null)
+					->addItem('idcard_no', 'text', '身份证号', null)
+					->addItem('extend', 'text', '地区', null)
+                    ->setFormData($info)
+                    ->display();
+        }
+    }
+}

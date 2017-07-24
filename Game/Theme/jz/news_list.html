@@ -1,0 +1,51 @@
+<extend name="./Game/Theme/jz/layout.html"/>
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<style type="text/css">
+
+</style>
+</block>
+
+
+<block name="body">
+    <div class="box ffl">
+        <div class="inside_hd">
+            <div class="titlebox">
+                <div class="title redline">
+                    <i class="t2"></i>
+                    <h1 class="titlecolor_3">{$title}</h1>
+                </div>
+                <p>
+                    <span>您所在位置：</span>
+                    <a href="{$gameurl}">首页</a>
+                    <span>&gt;</span>
+                    <a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>$__info__['cid']))}">{$title}</a>
+                </p>
+            </div>
+        </div>
+        <div class="nav_tabin">
+            <ul class="tabin">
+                <volist name="volist" id="vo">
+                    <li>
+                        <a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a>
+                        <i>{$vo.ctime|date="m-d",###}</i>
+                    </li>
+                </volist>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+    <div class="pagenav">
+        <ul> {$page}  </ul>
+    </div>
+</block>
+
+<block name="footer_script">
+<static type='js' file="tj.js.index" />
+<static type='js' file="tj.js.slide" />
+
+</block>

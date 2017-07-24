@@ -1,0 +1,138 @@
+<php>session('redirect',$gameurl);</php>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+﻿<title>{$gamedata.name}-独家稀有</title>
+<script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js" type="text/ecmascript"></script>
+<script type="text/javascript">
+try{
+if(remote_ip_info){
+	document.title="【" + remote_ip_info["city"] + "{$gamedata.name}】 - " + remote_ip_info["city"] + "的兄弟们激情顶起！"; 
+}
+}catch(e){}
+</script>
+<meta name="description" content="{$gamedata.name}-独家稀有一款将Q版风格演绎得淋漓尽致,画面梦幻,令人如痴如醉的仙侠页游" />
+<meta name="keywords" content="{$gamedata.name}-独家稀有,公益服,{$gamedata.name}公益服,{$gamedata.name}免费,{$gamedata.name}好玩吗,{$gamedata.name}无限元宝" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<static type="css" file="sf_one.css.pintuer" />
+<static type="css" file="sf_one.css.my" />
+<import type='css' file="theme.css.index" />
+<block name="style"></block>
+{:hook("PageHeader")}
+<script type="text/javascript">
+{:W('Common/Public/script')}
+</script>
+<import type='js' file="jquery.jquery183min" />
+<style>
+html{background:none;}
+.body_2 { background:#000000 url({$gamedata.pic.pic_site_bg|get_cover=###}) center top no-repeat;}
+</style>
+</head>
+<body class="body_2" >
+	<div class="main_bj">
+		<div class="Cx_Nav">
+	<div class="DH_Panel float-left">
+		﻿<li><a class="button bg-main" href="{$gameurl}"><span class="icon-home"></span><br>网站首页</a></li> 
+		<li><a class="button bg-main" href="{:U($gamedata['mark'].'/server')}"  ><span class="icon-gamepad"></span><br>游戏中心</a></li> 
+							<li><a class="button bg-main" href="{:U($gamedata['mark'].'/server')}"><span class="icon-user"></span><br>会员中心</a></li> 
+		  		<li><a class="button bg-main"  href="{:U('Pay/index/'.$gamedata['id'])}"  target="_black"><span class="icon-money"></span><br>在线充值</a></li>  
+	</div>
+	<div class="User_Panel bg-main float-right">		
+		<img src="http://static.t3t2.com//Game/Theme/sf_one/img/logo1.png" class="margin" width="80" height="80" />
+		<div class="margin float-right User_Xx">	
+			<strong class="text-white">亲爱的<present name="__USER__">{$__USER__.username}<else />玩家</present>,欢迎回家! </strong>
+						<present name="__USER__">
+						<strong class="float-right margin-big-right"> 
+						<a class="button button-little bg-sub" href="{:U('User/safe/index')}">修改密码</a>
+					<a class="button button-little bg-dot" href="{:U('Api/User/logout',Array('refrer'=>1))}">退出登录</a>
+							</strong>
+						<else />
+						<strong class="float-right margin-big-right"> 
+						<button class="button button-little bg-yellow" onclick="webComObj.iframeshow(0);">立即登陆</button>
+					<button class="button button-little bg-dot" onclick="webComObj.iframeshow(1);">马上注册</button>
+							</strong>
+							</present>
+			<hr />
+			<div class="media-inline">
+				<div class="media text-center User_Login">
+											<p class="text-white">《{$gamedata.name}-独家稀有》公益服 诚邀你的加入! </p>
+								</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="Main_Content" class="bg border border-main">
+       <block name="body">
+
+       </block>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<block name="link"></block>
+
+<block name="footer">
+<div class="bg-inverse" id="footer">
+		<div class="navbar">
+			<div class="navbar-body nav-navicon" id="navbar-footer">
+				<div class="navbar-text">{$gamedata.name}-独家稀有&nbsp;&nbsp;&nbsp;GM {:C('WEB_SITE_QQ')}</div>
+			</div>
+		</div>
+</div>
+
+<div class="hidden">
+    <div class="hidden">{:C('WEB_SITE_STATISTICS')}</div>
+	<notempty name="gamedata.script_code">
+  {$gamedata.script_code}<br>
+</notempty> 
+</div>
+<script type="text/javascript">
+function enterGame(){
+	var sid=parseInt($("#fu_txt").val());
+	var _sid=parseInt($("#ser_con_1").attr('data-sid'));
+	if(sid>_sid || sid == 0 || isNaN(sid)){
+		alert("区服不存在");
+		return;
+	}
+	$.ajax({
+    type: "get",
+    async: true,
+    url: U("Api/Game/getGameserverUrl","gid={$gamedata.id}&sid="+sid),
+    dataType: "jsonp",
+    jsonp: "callback",
+    success: function(data){
+    	window.location=data.url;
+    }
+});
+
+
+
+}
+
+function getServerListUrlByRh(){
+	return "{:U($gamedata['mark'].'/server')}";
+}
+
+</script>
+<import type='js' file="theme.js.common" />
+<import type='js' file="theme.js.common_theme" />
+<import type='js' file="theme.js.t3t2_popup_plus" />
+
+<block name="footer_script"></block>
+</block>
+
+</body>
+</html>

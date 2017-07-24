@@ -1,0 +1,91 @@
+
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title>CPS</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <link href="__PUBLIC__/bui/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/bui/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/bui/assets/css/page-min.css" rel="stylesheet" type="text/css" />   <!-- 下面的样式，仅是为了显示代码，而不应该在项目中使用-->
+   <link href="__PUBLIC__/bui/assets/css/prettify.css" rel="stylesheet" type="text/css" />
+   <style type="text/css">
+    code {
+      padding: 0px 4px;
+      color: #d14;
+      background-color: #f7f7f9;
+      border: 1px solid #e1e1e8;
+    }
+   </style>
+ </head>
+ <body>
+  
+  <div class="container">
+    <div class="row">
+        <div class="row">
+          <div class="control-group span8">
+            <label class="control-label"><s>*</s>游戏：</label>
+            <div class="controls">
+             <php>$game=D('Game')->where('spread !=""')->select();</php>
+				<select name="gid" id="gid" onchange="var s=$('#sid');$.post('{:U('Api/Game/ajaxGameServerBygid')}',{gid:$('#gid').val()},function(re){s.empty();document.getElementById('sid').options.add(new Option('全服',0));if(re!=''&&re!='[]'){var temp=0;$.each(re,function(index,item){document.getElementById('sid').options.add(new Option(item.name,item.id))})}});">
+				<volist name="game" id="vo">
+					<option value="{$vo.id}">{$vo.name}</option>
+				</volist>
+              </select>
+            </div>
+          </div>
+		  <div class="control-group span8">
+            <label class="control-label"><s>*</s>区服：</label>
+            <div class="controls">
+				<select name="sid" id="sid">
+				<option value="0">最新服</option>
+              </select>
+            </div>
+          </div>
+        </div>
+		
+		<div class="row">
+          <div class="control-group span8">
+            <label class="control-label"><s>*</s>推广人：</label>
+            <div class="controls">
+             <php>$lower=D('SpreadLower')->where(Array('mid'=>session('cpsmid')))->select();</php>
+				<select name="aid" id="aid">
+					<option value="0">主账号</option>
+				<volist name="lower" id="vo">
+					<option value="{$vo.id}">{$vo.name}</option>
+				</volist>
+              </select>
+            </div>
+          </div>
+        </div>
+		
+        <div class="row form-actions actions-bar">
+            <div class="span13 offset3 ">
+              <button type="submit" class="button button-primary" onclick="$.post('{:U('Api/Spread/ajaxPurl')}',{gid:$('#gid').val(),sid:$('#sid').val(),mid:$('#mid').val(),aid:$('#aid').val()},function(re){$('#url').show();$('#url').val(re.url)});">获取</button>
+              <button type="reset" class="button">重置</button>
+            </div>
+        </div>
+		链接 <input id="url" value="" style="width:500px;display:none;">
+    </div>
+    <input type="hidden" id="mid" value="{:session('cpsmid')}" >
+
+  </div>
+  <script type="text/javascript" src="__PUBLIC__/bui/assets/js/jquery-1.8.1.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/bui/assets/js/bui-min.js"></script>
+
+  <script type="text/javascript" src="__PUBLIC__/bui/assets/js/config-min.js"></script>
+  <script type="text/javascript">
+    BUI.use('common/page');
+  </script>
+  <!-- 仅仅为了显示代码使用，不要在项目中引入使用-->
+  <script type="text/javascript" src="__PUBLIC__/bui/assets/js/prettify.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      prettyPrint();
+    });
+  </script> 
+<script type="text/javascript">
+  
+</script>
+
+<body>
+</html> 

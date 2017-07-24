@@ -1,0 +1,137 @@
+<extend name="./Theme/default/Common/Game/layout_theme_two.html"/>
+<block name="title"><title>【{$meta_title}官网】-{:C('WEB_SITE_TITLE')}</title></block>
+
+<block name="style">
+<import type='css' file="theme.theme_two.css.index" />
+<style type="text/css">
+
+</style>
+</block>
+
+
+<block name="body">
+    <div id="temp3">
+        <div class="JQ-content-box">
+            <ul class="JQ-slide-content">
+                <li><a href="#"><img src="http://static.2144.cn/news/uploads/20160113/dh3pk411.jpg" alt="拒绝外挂，从我做起"></a></li><li><a href="#"><img src="http://static.2144.cn/news/uploads/20160113/e37ha45b.jpg" alt="大礼天天送，好礼享不停"></a></li><li><a href="#"><img src="http://static.2144.cn/news/uploads/20160113/toklbjtb.jpg" alt="vip俱乐部，乐享会员特权"></a></li><li><a href="#"><img src="http://static.2144.cn/news/uploads/20160113/t8ff0dd3.jpg" alt="指导员火爆招募，海量元宝等你来"></a></li><li><a href="#"><img src="http://static.2144.cn/news/uploads/20160113/8666efrj.jpg" alt="凭心执剑，剑雨江湖"></a></li>                </ul>
+        </div>
+        <ul class="JQ-slide-nav">
+            <li class="on"><a href="#">拒绝外挂，从我做起</a><li class=""><a href="#">大礼天天送，好礼享不停</a><li class=""><a href="http://web.2144.cn/jyjh/zigw/129549">vip俱乐部，乐享会员特权</a><li class=""><a href="#">指导员火爆招募，海量元宝等你来</a><li class=""><a href="#">凭心执剑，剑雨江湖</a>            </ul>
+    </div>
+    <div class="news_box clearfix">
+        <div class="newslist">
+            <div class="news_nav clearfix">
+                <span class="cur" >新闻</span>
+                <corethink:category_list name="side_category" post_auth='1' num='3' >
+                    <span class="">{$side_category.title|mb_substr=###,2,2,'utf-8'}</span>
+                </corethink:category_list>
+                <a href="{:U($gamedata['mark'].'/news_list')}" class="more_a">更多+</a>
+            </div>
+            <div class="news_con">
+                <ul class="news_ul clearfix" style="display: block;">
+                    <volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],false,5,'PublicTheme_getNewsListByGid_2016_5_false_1'))" id="vo">
+                        <li><span> {$vo.ctime|date="m-d",###}</span><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a></li>
+                    </volist>
+                </ul>
+                <corethink:category_list name="side_category" post_auth='1' num='3' >
+                    <ul class="news_ul clearfix hidden" style="display: none;">
+                        <volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],$side_category['id'],5,'PublicTheme_getNewsListByGid_2016_5_false_2'))" id="vo">
+                            <li><span> {$vo.ctime|date="m-d",###}</span><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a></li>
+                        </volist>
+                    </ul>
+                </corethink:category_list>
+            </div>
+
+        </div>
+        <ul class="data_ul">
+            <li>
+                <dl class="data_dl">
+                    <dt><a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>9))}">新手引导</a></dt>
+                    <volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],9,6,'PublicTheme_getNewsListByGid_2016_5_false_3'))" id="vo">
+                          <dd> <a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a></dd>
+							</volist>                    </dl>
+                <i></i>
+            </li>
+            <li>
+                <dl class="data_dl">
+                    <dt><a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>10))}">游戏介绍</a></dt>
+                      <volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],10,6,'PublicTheme_getNewsListByGid_2016_5_false_3'))" id="vo">
+                          <dd> <a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a></dd>
+							</volist>             </dl>
+                <i  class="ind2"></i>
+            </li>
+            <li>
+                <dl class="data_dl">
+                    <dt><a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>11))}">特色系统</a></dt>
+                     <volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],11,6,'PublicTheme_getNewsListByGid_2016_5_false_3'))" id="vo">
+                          <dd> <a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a></dd>
+							</volist>                      </dl>
+                <i class="ind3"></i>
+            </li>
+        </ul>
+    </div>
+    <div class="data2 clearfix">
+        <div class="rw_box">
+            <div class="rw_tit">
+                <div class="rw_nav">
+                    <span class="cur">细雨</span>
+                    <span>转轮王</span>
+                </div>
+            </div>
+            <div class="rw_con">
+                <div class="rw_wrap">
+                    <div class="img_ind">
+                        <p><span class="ind_span1">技能：辟水剑法</span></p>
+                        <p>属性：特化突刺能力达到极限速度的女剑士</p>
+                        <p class="p1">可用从各个意想不到的角度攻击敌人，而剑者曾静，侠骨柔情。她相信再错误的人生也可以如“辟水剑”般随时转弯重来！</p>
+                    </div>
+
+                </div>
+
+                <div class="rw_wrap2 hidden">
+                    <div class="img_ind">
+                        <p><span class="ind_span2">技能：转轮剑</span></p>
+                        <p>属性：兼顾攻击及防御能力的男战士</p>
+                        <p class="p1">剑上有一小转轮，以内力运剑时，会轰隆作响，他野心统一江湖，亦指天下。更痴迷执着于“罗摩遗体”，纵横千里，天下岂有不服我者焉？ </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dot_list">
+            <div class="dot_tit">
+                <span>游戏攻略</span><a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>5))}" class="more_a">更多+</a>
+            </div>
+            <ul class="dot_ul clearfix">
+                <volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],5,5,'PublicTheme_getNewsListByGid_2016_5_false_3'))" id="vo">
+                            <li><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a></li>
+							</volist>
+			</ul>
+        </div>
+    </div>
+
+    <div class="pic_box">
+        <div class="pic_tit">
+            <span class="#">游戏截图</span>
+        </div>
+        <div class="pic_con clearfix">
+            <a href="/jyjh/zigw/129572">
+                <img src="http://static.2144.cn/news/uploads/20160113/ja9ss2kj.jpg" alt="野外场景3">
+            </a>
+            <a href="/jyjh/zigw/129571">
+                <img src="http://static.2144.cn/news/uploads/20160113/t99mtccs.jpg" alt="野外场景2">
+            </a>
+            <a href="/jyjh/zigw/129570">
+                <img src="http://static.2144.cn/news/uploads/20160113/2re8l7ro.jpg" alt="野外场景1">
+            </a>
+            <a href="/jyjh/zigw/129569">
+                <img src="http://static.2144.cn/news/uploads/20160113/kjckcla8.jpg" alt="世界BOSS">
+            </a>
+        </div>
+    </div>
+</block>
+
+<block name="footer_script">
+<import type='js' file="theme.theme_two.js.index" />
+<import type='js' file="theme.theme_two.js.slide" />
+
+</block>

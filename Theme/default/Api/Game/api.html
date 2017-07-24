@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>内部操作</title>
+<script type="text/javascript" src="http://static.t3t2.com/Public/jquery/jquery183min.js"></script>
+</head><body>
+<form action="" method="POST"> 
+<input type="hidden" name="id" value="{$Think.get.id}">
+操作
+<select name="action">
+<foreach name="action" item="vo" key="k" >
+	<option value="{$k}">{$vo}</option>
+</foreach>
+</select>
+<br/>
+游戏
+<select name="gid" class="form-control" id="gid" onchange="var s = $('#sid');$.post('http://api.t3t2.com/game/ajaxgameserverbygid.html',{gid:$('#gid').val()},function(re){s.empty();s.append($('<option>').text('全服').val('0'));if(re!=''&& re!='[]'){var temp=0;$.each(re,function(index,item){var opt=$('<option>').text(item.name).val(item.id);s.append(opt);})}});" >
+<option value="">请选择：</option>
+<foreach name="game" item="vo" key="k" >
+	<option value="{$k}">{$vo}</option>
+</foreach>
+</select>
+<br/>
+区服
+<select name="sid" class="form-control" id="sid"  >
+<option value="">请选择：</option>
+</select>
+<br/>
+请输入用户名<input type="text" name="username">
+<br/>
+请输入参数<textarea class="form-control textarea" name="param"></textarea>
+<br/>
+<input type="submit" value="提交" />
+</form>
+
+</body></html>

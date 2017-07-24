@@ -1,0 +1,52 @@
+<extend name="Public/layout"/>
+
+<block name="header">
+    <div class="header">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><i class="icon-location-arrow"></i></li>
+                <li><a href="__ROOT__/">首页</a></li>
+                <li><a href="{:U('UserMessage/index')}">消息中心</a></li>
+            </ul>
+         </div>
+    </div>
+</block>
+
+<block name="body">
+    <section class="container main">
+        <div class="row">
+            <div class="col-xs-12 col-md-3">
+                <include file="User/side" /><!-- 包含用户中心侧边导航 -->
+            </div>
+            <div class="col-xs-12 col-md-9">
+                <div class="box">
+                    <ul class="nav-pills nav">
+                        <li class="<php>if($__CURRENT_MESSAGE_TYPE == 0) echo 'active';</php>"><a href="{:U('UserMessage/index', array('type' => 0))}">系统消息</a></li>
+                        <li class="<php>if($__CURRENT_MESSAGE_TYPE == 1) echo 'active';</php>"><a href="{:U('UserMessage/index', array('type' => 1))}">评论消息</a></li>
+                        <li class="<php>if($__CURRENT_MESSAGE_TYPE == 2) echo 'active';</php>"><a href="{:U('UserMessage/index', array('type' => 2))}">私信消息</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="list">
+                            <section class="items">
+                                <volist name="volist" id="vo">
+                                    <div class="item">
+                                        <div class="item-heading">
+                                            <h4>{$vo.title}</h4>
+                                            <notempty name="from_uid">
+                                                <a href="{:U('UserMessage/reply/id/'.$vo['id'])}" class="reply-action">回复</a>
+                                            </notempty>
+                                        </div>
+                                        <div class="item-footer">
+                                            <span class="text-muted">{$vo.ctime|time_format}</span>
+                                        </div>
+                                    </div>
+                                </volist>
+                            </section>
+                            <footer><ul class="pager pager-loose pager-pills">{$page}</ul></footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</block>

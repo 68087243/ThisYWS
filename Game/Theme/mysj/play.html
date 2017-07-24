@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title>魔域世界</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=8">
+	<meta http-equiv="Expires" content="0">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-control" content="no-cache">
+	<meta http-equiv="Cache" content="no-cache">
+    <style type="text/css" media="screen">
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+            text-align: center;
+            background-color: 0x0f0c17;
+        }
+
+        #flashContent {
+            display: none;
+        }
+    </style>
+	<Script language="javascript">
+		function GetRequest() {
+			var url = location.search; //获取url中"?"符后的字串
+			var theRequest = new Object();
+			if (url.indexOf("?") != -1) {
+				var str = url.substr(1);
+				strs = str.split("&");
+				for(var i = 0; i < strs.length; i ++) {
+				theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+				}
+			}
+			return theRequest;
+		}
+	</Script> 
+	<script type="text/javascript">
+	function Is360Game()
+	{
+		var ret = false;  
+		try {
+				external.Is360Game();
+				ret = true;    
+			} 
+			catch(e) 
+			{     
+				ret = false;
+			}   
+			return ret;
+	}
+	</script>
+    <script type="text/javascript" src="//static.t3t2.com/Public/js/swfobject.js"></script>
+    <script type="text/javascript">
+        var swfVersionStr = "10.0.0";
+        <!-- To use express install, set to playerProductInstall.swf, otherwise the empty string. -->
+        var xiSwfUrlStr = "${expressInstallSwf}";
+		var Request = new Object();
+		Request = GetRequest(); 
+        //**用户名登陆*///
+        var userObj = {};
+        userObj.uid = "28";
+        userObj.sid = Request['serverid'];
+        userObj.user= Request['username'];
+
+        //////////////////配置文件修改 使用下面配置即可 页面服务器号为1 用户名可以登陆时随便注册
+        var flashvars = {};
+        flashvars.token = "ce6d31b34624a552b3c722322b9206a1";
+        flashvars.serverIp = Request['host'];//"www.qishi.com";//服务器地址
+        flashvars.port = Request['gateServerPort'];
+        flashvars.resPath='http://static.t3t2.com/res/mysjres2016/';
+
+        flashvars.xmlPath = "";//游戏一些xml配置
+        flashvars.favUrl = "http://192.168.1.181/zhcb/trunk/";
+        flashvars.rolelog = "log.php?passport=ttt";
+        flashvars.txLoginPath = "chat.php?as=1";//
+        flashvars.txChatURL = "chat.php?as=1";//
+        /////////////////////////
+
+
+        flashvars.giftUrl = "{$_info.giftUrl}";
+	flashvars.chargeUrl = "{$_info.pay}";
+        flashvars.inWeb = 1;
+		flashvars.guanWangUrl = ""; //官网url
+        flashvars.lunTanUrl = ""; //论坛url
+        flashvars.fbFenSiTuanUrl = ""; //fb粉丝团url
+
+        flashvars.newBieCardUrl = ""; //新手卡
+        flashvars.payInfoUrl = "";
+        flashvars.giftActUrl = "";
+
+        flashvars.uid = userObj.uid;
+        flashvars.sid = userObj.sid;
+        flashvars.user = userObj.user;
+
+        flashvars.gameWindowPath = 'http://static.t3t2.com/res/mysjres2016/com/view/mainUI/gameWindow/GameWindow.swf';
+        flashvars.antiWallowUrl = "";
+        flashvars.isChargeAndTreasure = false;
+        flashvars.gid = 53;
+        flashvars.getTo = "yw";
+        flashvars.isStat = true;
+        flashvars.version = '1.0.0.6';
+        flashvars.propUrl = "";
+        flashvars.propIcon = "";
+		
+		//360需要的参数
+		flashvars.loginTime = 300000;
+		flashvars.localIPAddress = "192.168.0.31";
+		flashvars.is360Game= Is360Game();
+		
+        //qq信息
+        flashvars.platform="";
+        flashvars.openid = "ttt";
+        flashvars.openkey = "";
+        flashvars.pf = "1";
+        flashvars.pfkey = "192";
+        flashvars.zoneid = 0;
+        flashvars.qqname = "";
+        flashvars.passport = "";
+        flashvars.sex = 1;
+        flashvars.yellowlevel = 1;
+        flashvars.yellowyearlevel = 0;
+        flashvars.rewardlobby = 1;
+        flashvars.favTitle = "新五虎上将双线7区";
+        var params = {};
+        params.quality = "high";
+        params.bgcolor = "0x0f0c17";
+        params.allowscriptaccess = "sameDomain";
+        params.allowfullscreen = "true";
+        params.wmode = "window";
+        params.menu = "false";
+        params.quality = "high";
+        params.bgcolor = "0x0f0c17";
+        params.allowscriptaccess = "sameDomain";
+        params.allowfullscreen = "true";
+		params.wmode = "direct";
+        var attributes = {};
+        attributes.id = "LiuDaoLunHui";
+        attributes.name = "LiuDaoLunHui";
+        attributes.align = "middle";
+        swfobject.embedSWF(
+                 'http://static.t3t2.com/res/mysjres2016/LiuDaoLunHui.swf?'+ flashvars.version, "flashContent",
+                "100%", "100%",
+                swfVersionStr, xiSwfUrlStr,
+                flashvars, params, attributes);
+        <!-- JavaScript enabled so display the flashContent div in case it is not replaced with a swf object. -->
+        swfobject.createCSS("#flashContent", "display:block;text-align:left;");
+    </script>
+    <script type="text/javascript">
+        var title = "http://192.168.1.82";
+        var url = "http://192.168.1.82";
+        var isFirstLogin = false;
+        function setFirstLogin() {
+            isFirstLogin = true;
+        }
+
+        function readAmount() {
+            LiuDaoLunHui.asFun("asdasd");
+        }
+
+        function setNotFirstLogin() {
+            isFirstLogin = false;
+        }
+        
+        document.onkeydown=function(e){
+	   		var isie = (document.all) ? true:false;
+	    	var key;
+	    	var ev;
+	    	if(isie){
+	    		key = window.event.keyCode;
+	    		ev = window.event;
+	    	}else{
+	    		key = e.which;
+	    		ev = e;
+	    	}
+	    	if(key==9){
+		    	if(isie){
+		    		ev.keyCode=0;
+		    		ev.returnValue=false;
+		    	}else{
+		    		ev.which=0;
+		    		ev.preventDefault();
+		    	}
+	    	}
+    	};
+    
+    </script>
+</head>
+
+<body>
+<TABLE id="mainGame" width="100%" height="100%" align=center border="0" cellpadding="0" cellspacing="0">
+    <TR width="100%" height="100%">
+        <TD align=center valign=top width="100%" height="100%">
+            <!-- SWFObject's dynamic embed method replaces this alternative HTML content with Flash content when enough
+                 JavaScript and Flash plug-in support is available. The div is initially hidden so that it doesn't show
+                 when JavaScript is disabled.
+            -->
+            <div id="flashContent">
+                <p>
+                    To view this page ensure that Adobe Flash Player version
+                    10.0.0 or greater is installed.
+                </p>
+            </div>
+            <script language="JavaScript" type="text/javascript">
+                function addFavSite() {
+                    var errormsg = "请按下 Ctrl+D 收藏新五虎上将游戏网页";
+                    var url = "http://xwh.9377.com/";
+                    var title = "新五虎上将";
+                    try {
+                        if (window.sidebar) {
+                            window.sidebar.addPanel(title, url, "");
+                        } else if (document.all) {
+                            window.external.AddFavorite(url, title);
+                        } else {
+                            alert(errormsg)
+                        }
+                    } catch (e) {
+                        alert(errormsg)
+                    }
+                }
+            </script>
+        </TD>
+    </TR>
+</TABLE>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<div class="kflogin">
+    <div class="kfislogin">
+        <img src="__PUBLIC__/theme/images/prompt.png" alt="">
+        <div class="kfind">
+            抱歉！您目前处于未登录状态
+            <p>请登录之后再完成后续操作！</p>
+        </div>
+    </div>
+
+    <div class="kflogtab" id="kflogtab">
+        <ul>
+            <li class="cur">帐号密码
+        </ul>
+    </div>
+
+
+    <div id="kflogcon">
+        <ul class="useraccount">
+        <form target="_self" id="yw0" action="login" method="post">            <li>
+                <label>账号</label>
+                <input class="appetxt" name="username" id="LoginForm_username" type="text" maxlength="16" />                <div class="errors" id="LoginForm_username_em_" style="display:none"></div>            <li>
+                <label>密码</label>
+                <input class="appetxt" name="password" id="LoginForm_password" type="password" maxlength="20" />                <div class="errors" id="LoginForm_password_em_" style="display:none"></div>            <li>
+                <input type="button" value="登录" class="upsubs">
+                <p class="reminder">温馨提醒：若您忘记密码，请先<a href="{:U('Service/ticket/password')}">找回密码</a>，再提交申诉申请</p>
+        </form>        </ul>
+    </div>
+</div>
+<import type='js' file="theme.js.ticketLogin" />

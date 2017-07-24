@@ -1,0 +1,49 @@
+<extend name="./Game/Theme/jz/layout.html"/>
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<style type="text/css">
+
+</style>
+</block>
+
+
+<block name="body">
+    <div class="box ffl">
+        <div class="inside_hd">
+            <div class="titlebox">
+                <div class="title redline">
+                    <i class="t2"></i>
+                    <h1 class="titlecolor_3">{$title}</h1>
+                </div>
+                <p>
+                    <span>您所在位置：</span>
+                    <a href="{$gameurl}">首页</a>
+                    <span>&gt;</span>
+                    <a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>$__info__['cid']))}">{$title}</a>
+                    <span class="red">&gt;正文</span>
+                </p>
+            </div>
+        </div>
+        <div class="detailtitle">
+            <h1>{$__info__.title}</h1>
+            <h2>时间：{$__info__.ctime|time_format}                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发布：{$info.uid|get_user_info="username"}小编</h2>
+        </div>
+        <span class="bbd"></span>
+        <div class="detailpage">
+            {$__info__.content}
+        </div>
+        <span class="bbd"></span>
+        <div class="updownbox">
+            <php>$Previous=D('Document')->getPreviousDocument($__info__);$Next=D('Document')->getNextDocument($__info__);</php>
+            <a href="{$Next.link}" target="_self" class="updown">下一篇：{$Next.title}</a>
+            <a href="{$Previous.link}" class="updown">上一篇：{$Previous.title}</a>
+        </div>
+    </div>
+</block>
+
+<block name="footer_script">
+<static type='js' file="tj.js.index" />
+<static type='js' file="tj.js.slide" />
+
+</block>

@@ -1,0 +1,48 @@
+<extend name="./Game/Theme/dzs/layout.html"/>
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<static type='css' file="dzs.css.index" />
+<static type='css' file="dzs.css.list" />
+<style type="text/css">
+
+</style>
+</block>
+
+
+<block name="body">
+    <div class="head">
+        <h2>一战成神</h2>
+        <span>Angelababy降临 女神守护者虚位以待</span>
+        <embed width="1123" height="100%" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" wmode="transparent" src="http://static.2144.cn/web/theme/module/dzs/images/index.swf" title="2144游戏-大战神">
+    </div>
+    <div class="cont">
+        <div class="w1116">
+            <div class="list_tit">
+                <h2>{$title}<i></i></h2>
+                <span>当前位置：<a href="{:D('Game')->getGameUrl($gamedata['id'])}">首页</a>&gt;&gt;<a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>I('cid')))}">{$title}</a></span>
+            </div>
+
+            <div class="ccon">
+                <div class="list_con">
+                    <ul class="list_ul">
+                        <volist name="volist" id="vo">
+                            <li>
+                                <span>[{$vo.ctime|date="m-d",###}]</span>
+                                <a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a>
+                            </li>
+                        </volist>
+                    </ul>
+
+                    <div class="pagenav">
+                        <ul> {$page}  </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+
+<block name="footer_script">
+
+</block>

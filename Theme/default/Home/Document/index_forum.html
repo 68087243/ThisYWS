@@ -1,0 +1,62 @@
+<extend name="Public/layout"/>
+
+<block name="body">
+    <section class="container main">
+        <div class="row">
+            <div class="col-xs-12 col-sm-9">
+                <div class="list box">
+                    <section class="items">
+                        <corethink:category_list name="vo" pid="$__CURRENT_CATEGORY__" group="$__CURRENT_CATEGORY_GROUP__">
+                            <div class="panel">
+                                <div class="panel-heading">{$vo.title}</div>
+                                <div class="panel-body">
+                                    <volist name="vo._child" id="vo_child">
+                                        <div class="comment col-xs-12 col-sm-6">
+                                            <span href="#" class="avatar">
+                                                <i style="color:<php>echo '#'.sprintf('%02X',rand(0,255)).sprintf('%02X',rand(0,255)).sprintf('%02X',rand(0,255));</php>"
+                                                class="{$vo_child.icon} icon-2x"></i>
+                                            </span>
+                                            <div class="content">
+                                                <span class="author">
+                                                    <a href="#">
+                                                        <strong><a href="{:U('Document/index', array('cid' => $vo_child['id']))}">{$vo_child.title}</a></strong> 
+                                                        <notempty name="vo_child.count_new_document">
+                                                            <span class="label label-dot label-danger"></span> 
+                                                            ({$vo_child.count_new_document})
+                                                        </notempty>
+                                                    </a>
+                                                </span>
+                                                <div class="text">
+                                                    帖数 {$vo_child.count_sum_document} 回复数 {$vo_child.count_sum_comment}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </volist>
+                                </div>
+                            </div>
+                        </corethink:category_list>
+                    </section>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                <nav class="menu menu-corethink" data-toggle="menu">
+                    <!-- 侧边导航 -->
+                    <ul class="nav nav-primary">
+                        <corethink:category_list name="side_category">
+                            <li class="show">
+                                <a href="{:U('Document/index', array('cid' => $side_category['id']))}">{$side_category.title}</a>
+                                <ul class="nav">
+                                    <volist name="side_category._child" id="child_category">
+                                        <li <php>if($child_category['id'] == $__CURRENT_CATEGORY__) echo 'class="active"';</php> >
+                                            <a href="{:U('Document/index', array('cid' => $child_category['id']))}">{$child_category.title}</a>
+                                        </li>
+                                    </volist>
+                                </ul>
+                            </li>
+                        </corethink:category_list>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+</block>

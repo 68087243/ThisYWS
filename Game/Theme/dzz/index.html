@@ -1,0 +1,188 @@
+<extend name="./Theme/default/Common/Game/layout_theme_dzz.html"/>
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<import type='css' file="theme.theme_dzz.css.index" />
+<style type="text/css">
+</style>
+</block>
+
+
+<block name="body">
+<div class="slidebox">
+                            <div class="w619">
+                                    <div class="w-focus" id="w-focus">
+                                        <ul>
+                                                <li><a href="#"><import type='jpg' file="theme.theme_dzz.images.fkmd59qj" /></a></li><li><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>42))}">
+												<import type='jpg' file="theme.theme_dzz.images.5rkjjob8" /></a></li><li><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>41))}"><import type='jpg' file="theme.theme_dzz.images.fk50n7qj" />
+												</a></li><li><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>15))}">
+												<import type='jpg' file="theme.theme_dzz.images.c4eshfop" /></a></li>                                        </ul>
+                                        <div class="w-focusbtn">
+                                                <i class="cur"></i><i ></i><i ></i><i ></i>                                        </div>
+                                    </div>
+
+                            </div>
+
+                    </div>
+
+                    <div class="newsbox">
+                        <div class="w600">
+                            <div class="tab" id="tab">
+                         <span class="cur">新闻公告<i class="border_bottom"></i></span>
+						<corethink:category_list name="side_category" post_auth='1' num='3' >
+						<span class="">{$side_category.title|mb_substr=###,2,2,'utf-8'}<i class="border_bottom"></i></span>
+						</corethink:category_list>
+                                <a href="{:U($gamedata['mark'].'/news_list')}" class="more_ico">更多</a>
+                            </div>
+
+                            <div id="wrap_new">
+                                
+                                <ul class="newlist">
+								<volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],false,6,'PublicTheme_getNewsListByGid_2016_5_false_1'))" id="vo">
+							 <li <in name="i" value="1">class="title"</in>><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}"><in name="i" value="2,3,4,5,6"><i>{$vo.ctime|date="m-d",###}</i></in>{$vo.title}</a></li>
+					</volist>
+								
+                                                            
+
+                                </ul>
+					<corethink:category_list name="side_category" post_auth='1' num='3' >
+							<ul class="newlist hidden"">
+							<volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],$side_category['id'],6,'PublicTheme_getNewsListByGid_2016_5_false_2'))" id="vo">
+							 <li <in name="i" value="1">class="title"</in>><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}"><in name="i" value="2,3,4,5,6"><i>{$vo.ctime|date="m-d",###}</i></in>{$vo.title}</a></li>
+							</volist>
+							</ul>
+					</corethink:category_list>
+                            </div>
+                            
+                        </div>
+
+                        <div class="right_img">
+                            <a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>7))}">精彩活动——踏上冒险之旅</a>
+                            <a href="{:U($gamedata['mark'].'/news_read',Array('id'=>15))}" class="img2">超级会员——星钻豪礼相赠</a>
+                        </div>
+                    </div>
+
+                    <div class="ind">
+                        <div class="tabs" id="tabs">
+                            <span class="cur">魔诃</span>
+                            <span>九幽</span>
+                            <span>洛神</span>
+                            <span >太古</span>
+                        </div>
+                        <ul class="each_ind">
+                            
+                            <li class=""><strong class="hidden">魔诃</strong>
+
+                                <div class="people">
+                                      <object height="100%" width="100%" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" id="abcdef">
+                                        <param value="<import type='swf' file="theme.theme_dzz.images.moke" />" name="movie">
+                                        <param value="high" name="quality">
+                                        <param value="transparent" name="wmode">
+                                        <param value="always" name="allowScriptAccess"> 
+                                        <embed height="100%" width="100%" name="abcdef" wmode="transparent" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" quality="high" src="<import type='swf' file="theme.theme_dzz.images.moke" />">
+                                    </object>
+                                </div>
+                                <p class="ind_txt">
+                                九天邪雷降世，风卷残云似烟。<br>枪挑璀璨星河阵，夜煞无量苍穹门。<br>
+                                上手难度<i></i>
+                                </p>
+                                
+
+                            <li class="ind2 hidden"><strong class="hidden">九幽</strong>
+                                <div class="people">
+                                      <object height="100%" width="100%" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" id="abcdef">
+                                        <param value="<import type='swf' file="theme.theme_dzz.images.jiuyou" />" name="movie">
+                                        <param value="high" name="quality">
+                                        <param value="transparent" name="wmode">
+                                        <param value="always" name="allowScriptAccess"> 
+                                        <embed height="100%" width="100%" name="abcdef" wmode="transparent" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" quality="high" src="<import type='swf' file="theme.theme_dzz.images.jiuyou" />">
+                                    </object>
+                                </div>
+                                <p class="ind_txt"> 
+                                幽冥索命飞帖，一步血溅如花。<br>九幽茫茫风吹雪，一夜萧萧落红梅。<br>
+                                上手难度<i class="s2"></i>
+                                </p>
+                            
+
+                            <li class="ind3 hidden"><strong class="hidden">洛神</strong>
+                                <div class="people">
+                                      <object height="100%" width="100%" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" id="abcdef">
+                                        <param value="<import type='swf' file="theme.theme_dzz.images.luoshen" />" name="movie">
+                                        <param value="high" name="quality">
+                                        <param value="transparent" name="wmode">
+                                        <param value="always" name="allowScriptAccess"> 
+                                        <embed height="100%" width="100%" name="abcdef" wmode="transparent" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" quality="high" src="<import type='swf' file="theme.theme_dzz.images.luoshen" />">
+                                    </object>
+                                </div>
+                                <p class="ind_txt">
+                                娉娉袅袅摇曳，豆蔻才上梢头。<br>飞花乱舞迷人眼，洛河之灵震妖魂。<br>
+                                上手难度<i class="s2"></i>
+                                </p>
+
+                            <li class="ind4 hidden"><strong class="hidden">太古</strong>
+                                <div class="people">
+                                      <object height="100%" width="100%" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" id="abcdef">
+                                        <param value="<import type='swf' file="theme.theme_dzz.images.taigu" />" name="movie">
+                                        <param value="high" name="quality">
+                                        <param value="transparent" name="wmode">
+                                        <param value="always" name="allowScriptAccess"> 
+                                        <embed height="100%" width="100%" name="abcdef" wmode="transparent" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" quality="high" src="<import type='swf' file="theme.theme_dzz.images.taigu" />">
+                                    </object>
+                                </div>
+                                <p class="ind_txt">
+                                手中一泓秋水，胸有剑意初成。<br>心剑破红尘乱象，剑心斩心中妖魔。<br>
+                                上手难度<i></i>
+                                </p>
+
+                            
+
+                        </ul>
+                    </div>
+
+                    <ul class="data">
+                        <li><p class="data_txt"><strong>新手入门</strong><a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>9))}" class="datamore">了解详情&gt;&gt;&gt;</a></p>
+                            <div class="detailed" id="detailed">
+                                <strong>新手入门</strong>
+								<volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],9,6,'PublicTheme_getNewsListByGid_2016_5_false_3'))" id="vo">
+                           <a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a>
+							</volist>
+                            </div>
+                            
+                        <li class="data1"><p class="data_txt"><strong>高手进阶</strong><a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>10))}" class="datamore">了解详情&gt;&gt;&gt;</a></p>
+                            <div class="detailed" id="detailed">
+                                <strong>高手进阶</strong>
+                             	<volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],10,6,'PublicTheme_getNewsListByGid_2016_5_false_3'))" id="vo">
+                           <a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a>
+							</volist>                            </div>
+
+                        <li class="data2"><p class="data_txt"><strong>游戏攻略</strong><a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>5))}" class="datamore">了解详情&gt;&gt;&gt;</a></p>
+                            <div class="detailed" id="detailed">
+                                <strong>游戏攻略</strong>
+                            	<volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],5,6,'PublicTheme_getNewsListByGid_2016_5_false_3'))" id="vo">
+                           <a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a>
+							</volist>                            </div>
+
+                        <li class="data3"><p class="data_txt"><strong>特色玩法</strong><a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>11))}" class="datamore">了解详情&gt;&gt;&gt;</a></p>
+                            <div class="detailed" id="detailed">
+                                <strong>特色玩法</strong>
+                               <volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],11,6,'PublicTheme_getNewsListByGid_2016_5_false_3'))" id="vo">
+                           <a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a>
+							</volist>                              </div>
+                    </ul>
+            </div>
+</block>
+
+<block name="footer_script">
+<script type="text/javascript">
+$('.news_nav>span').bind('hover',function(){
+        if($(this).attr('class') == 'cur'){
+            $('.news_nav>.more_a').attr('href',$(this).attr('data'));
+        }
+ })
+ function clicktabs(i,n,e){var s=$(i),a=$(n),t=e;s.live("mouseover",function(){var i=s.index(this);$(this).addClass(t).siblings().removeClass(t),a.eq(i).show().siblings().hide()})}var focusFun=function(i){var n=$(i),e=n.find("li"),s=n.find("i"),a=e.length-1,t=5e3,c=0,d=0,o=function(){e.eq(c).stop().animate({opacity:"hide","z-index":0},500,function(){$(this).hide()}),e.eq(d).stop().animate({opacity:"show","z-index":1},500,function(){$(this).show()}),s.eq(d).addClass("cur").siblings().removeClass("cur")},l=function(){d=d==a?0:++d,c=d?d-1:a,o()};handl=setInterval(l,t),e.hide().css("z-index",0),e.eq(0).show().css("z-index",1),n.hover(function(){clearInterval(handl)},function(){handl=setInterval(l,t)}),s.click(function(){var i=$(this).index();e.hide().css("z-index",0),c=i?i-1:a,d=i,o()})};focusFun("#w-focus"),clicktabs("#tab>span","#wrap_new>ul","cur"),clicktabs("#tabs>span",".each_ind>li","cur"),$(".data li").hover(function(){$(this).children(".detailed").fadeIn("normal")},function(){$(this).children(".detailed").fadeOut("normal")});
+	</script>
+<import type='js' file="theme.theme_dzz.js.index" />
+<import type='js' file="theme.theme_dzz.js.slide" />
+
+
+</block>

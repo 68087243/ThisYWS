@@ -1,0 +1,72 @@
+<extend name="Public/layout"/>
+
+
+
+<block name="style"> </block>
+
+
+
+<block name="body">		<div class="p-cr">
+					<div class="p-rtit">
+							<h3>充值记录</h3>
+					</div>
+
+				
+					<div class="p-rbigwrap">
+
+									<div class="p-profile">
+																								<div class="p-rechwrap">
+															<table  class="p-rechtable">
+														<empty name="data_list">
+															<div class="p-nonerecharge">您暂时没有充值记录哦~</div>
+														<else /> 
+															<tr>
+																<th class="first">流水号</th>
+																<th>充值时间</th>
+																<th>充值方式</th>
+																<th>充值用户名</th>
+																<th>游戏/服务器/角色名</th>
+																<th>充值金额</th>
+																<th>手续费</th>
+																<th class="last">实际到帐</th>
+															</tr>
+															<volist name="data_list" id="data">
+															<tr>
+																<td class="first">{$data.order}</td>
+																<td>{$data.utime|date="m-d H:i",###}</td>
+																<td>{$data.paytype}</td>
+																<td>{$data.paytoname}</td>
+																<td>{$data.gameinfo}</td>
+																<td>{$data.payamount}元</td>
+																<td><if condition="$data['fee'] eq '' ">0</if>{$data.fee}元</td>
+																<td class="last">{$data.virtualamount}<eq name="data.platform" value="1">{:C('CURRENCY_NAME')}<else/>元宝</eq></td>
+															</tr>
+															</volist>
+														</empty> 
+																				
+																																				
+															</table>
+															<div class="p-tablebs">
+
+																			<div class="pages">
+																			{$page}
+																			</div>
+																			
+
+															</div>
+												</div>
+												
+									</div>
+
+					</div>
+				
+
+	</div>
+</block>
+
+
+
+<block name="footer_script">
+<import type='js' file="theme.user.js.task" />
+</block>
+

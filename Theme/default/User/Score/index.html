@@ -1,0 +1,98 @@
+<extend name="Public/layout"/>
+
+
+
+<block name="style"> </block>
+
+
+
+<block name="body">
+		<div class="p-cr">
+			<div class="p-tit">
+					<h3>积分信息</h3>
+			</div>
+			<div class="p-jfwrap">
+ <php>$score=getlevel($__USER__['total_score']);</php>
+      			<div class="p-slidetop">我的等级：<span>LV{$__USER__.level}</span>我的积分：<span>{$__USER__.score}</span></div>
+                <div class="p-slides"><span class="p-islide" style="width:{$score.bfb}%" title="当前等级：LV{$__USER__.level}&nbsp;&nbsp;;&nbsp;&nbsp;积分：{$__USER__.score}"></span></div>
+                <div class="p-slidel"><span>LV{$score.x} ({$score.e})</span>LV{$score.level} ({$score.s})</div>
+			</div>
+			<div class="p-tit">
+					<h3>积分任务</h3>
+			</div>
+	<php>
+		$_user_qiandao=D('UserSignConfig')->find(1);
+		$taskconfig=M('Task')->select();
+		$task2=D('TaskLog')->isTask($__USER__['id'],13);
+		$task3=D('TaskLog')->isTask($__USER__['id'],14);
+		$gameurl=D('Game')->randGame();
+		$gameurlf=D('Game')->randGame();
+	  </php>
+
+			<div class="p-jfrwbox">
+					<div class="p-taskshow">玩游戏或点评游戏即可获得积分奖励哦，不如挑几款试试</div>
+					<div class="p-task">
+	<empty name="__USER__.sign"><a href="#" id = "sign-task" target="_self"><img src="__PUBLIC__/theme/user/images/qd.jpg" alt="">每日签到 +{$_user_qiandao.reward_score}积分<span>去完成</span></a>
+<else /><a href="#" target="_self"><img src="__PUBLIC__/theme/user/images/qd.jpg" alt=""  >每日签到 +{$_user_qiandao.reward_score}积分<span class="p-ywch">已完成</span></a></empty>
+																	
+			<empty name="task2"><a href="{$gameurl}" target="_blank"><img src="__PUBLIC__/theme/user/images/wxy.jpg" alt="">玩1款游戏 +{$taskconfig.12.config}积分<span>去完成</span></a><else /><a href="{$gameurl}" target="_blank"><img src="__PUBLIC__/theme/user/images/wyx.jpg" alt="">玩1款游戏 +{$taskconfig.12.config}积分<span class="p-ywch task-complete">已完成</span></a></empty>
+	
+	<empty name="task3"><a href="{$gameurlf}" target="_blank"><img src="__PUBLIC__/theme/user/images/dp.jpg" alt="">点评1款游戏 +{$taskconfig.13.config}积分<span>去完成</span></a><else /><a href="{$gameurlf}" target="_blank"><img src="__PUBLIC__/theme/user/images/dp.jpg" alt="">点评1款游戏 +{$taskconfig.13.config}积分<span class="p-ywch task-complete">已完成</span></empty>
+																					
+													</div>
+
+					<div class='p-pnsgame'>
+							<volist name=":W('Common/Game/RandGame',array(8,'IntegralCenterRecommendedGames'))" id="vo">
+								<a href='{$vo.gameurl}'><img alt='{$vo.name}' src='{$vo.pic.pic_icon_max|get_cover}'>{$vo.name}</a>
+							</volist>
+					</div>
+
+			</div>
+
+			<div class="p-tit">
+					<h3>积分规则</h3>
+			</div>
+
+			<div class="p-jfrwbox">
+					
+					<div class="p-taskshow">获取更多积分，就可对应提升游戏社区等级和积分勋章头衔。</div>
+
+					<div class="p-xzimgs">勋章：<img src="__PUBLIC__/theme/user/images/初来乍到_30.png" alt="初来乍到"><img src="__PUBLIC__/theme/user/images/初入游戏_30.png" alt="初入游戏"><img src="__PUBLIC__/theme/user/images/游戏新秀_30.png" alt="游戏新秀"><img src="__PUBLIC__/theme/user/images/游戏少侠_30.png" alt="游戏少侠"><img src="__PUBLIC__/theme/user/images/游戏大侠_30.png" alt="游戏大侠"><img src="__PUBLIC__/theme/user/images/游戏豪侠_30.png" alt="游戏豪侠"><img src="__PUBLIC__/theme/user/images/一派掌门_30.png" alt="一派掌门"><img src="__PUBLIC__/theme/user/images/一代宗师_30.png" alt="一代宗师"><img src="__PUBLIC__/theme/user/images/游戏盟主_30.png" alt="游戏盟主"><img src="__PUBLIC__/theme/user/images/独孤求败_30.png" alt="独孤求败">
+					</div>
+					<div class="p-xzfonts">
+						<table>
+								<tr>
+									<th>积分等级</th>
+									<volist name=":C('LEVEL_LIST')" id="vo" key="k">
+									<th>LV{$k}</th>
+									</volist>
+								</tr>
+								<tr>
+									<td>勋章头衔</td>
+									<volist name=":C('LEVEL_LIST')" id="vo">
+									<td>{$vo.title}</td>
+									</volist>
+								</tr>
+								<tr>
+									<td>积分范围</td>
+									<volist name=":C('LEVEL_LIST')" id="vo">
+									<td>{:numTok($vo['scope'])}</td>
+									</volist>
+								</tr>
+						</table>
+					</div>
+					<div class="p-xzbz">备注：1K=1000</div>
+			</div>
+	</div>
+
+
+	
+</block>
+
+
+
+<block name="footer_script">
+<import type='js' file="theme.user.js.index" />
+<import type='js' file="theme.user.js.task" />
+</block>
+

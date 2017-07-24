@@ -1,0 +1,74 @@
+<extend name="Public/layout"/>
+
+
+
+<block name="style">
+<import type='css' file="theme.user.css.bar" />
+<import type='css' file="theme.user.css.Jcrop" />
+</block>
+
+
+
+<block name="body">
+		<div class="p-cr">
+					<div class="p-rtit">
+							<h3>修改头像</h3>
+							<span class="prspan">
+								<a href="{:U('User/profile/index')}">返回个人资料</a>
+							</span>
+					</div>
+					<div class="p-rbigwrap">
+									<div class="p-profile">
+												<div class="p-offtips">支持JPG、JPEG、GIF、BMP和PNG文件，最大4M。</div>
+												<div class="clearfix">
+
+														<div class="p-avatar">
+															<iframe id="upload_new" name="upload_new" style="display:none" ></iframe>
+															<form id="avatar_form" action="{:U('User/Setavatar/preAvatar')}" target="upload_new" enctype="multipart/form-data" method="post" >
+																	<div class="p-uploadb">
+																			<span>点击上传个性化头像</span>
+																			<input type="file" class="p-upbtn" id = "upload-avatar-file" name = "imgFile" onchange="uploadImage()">
+																	</div>
+															</form>
+														</div>
+				<div class="crop_box" style="width:320px;height:;float:left;display:hidden;">
+					<img id="cropbox" src="" />
+					<input type="hidden" id="w">
+					<input type="hidden" id="h">
+					<input type="hidden" id="x">
+					<input type="hidden" id="y">
+					<button id="re_select">重新选择</button>
+					<img src="__PUBLIC__/theme/user/images/uploading.gif" style="margin-left: 15px;display:none">
+					<div class="pre_avatars">
+					</div>
+				</div>
+														<div class="p-curimg">
+																<img src="{:get_cover($__USER__['avatar'],'avatar')}" alt="">当前头像预览
+																<br/>
+																<span style="display:none">修改成功!</span>
+														</div>
+												</div>
+												<div class="p-usptips">点击图片快速设置头像</div>
+												<div class="p-diyimgs">
+													<p>
+														<for start="1" end="21">
+															<img title="点击设置头像" alt="点击设置头像" imgid="{$i}" src="{:get_cover($i,'avatar')}">
+														</for>
+													</p>		
+												</div>
+												<span class="p-subbtn">确认提交</span>
+									</div>
+
+					</div>
+</div>
+
+</block>
+
+
+
+<block name="footer_script">
+<import type='js' file="theme.user.js.offering" />
+<import type='js' file="theme.user.js.Jcrop" />
+<import type='js' file="theme.user.js.setAvatar" />
+</block>
+

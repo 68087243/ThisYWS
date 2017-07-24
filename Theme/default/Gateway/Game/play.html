@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>{:C('WEB_SITE_TITLE')}{$game.name}</title>
+<script type="text/javascript">
+{:W('Common/Public/script')}
+</script>
+<import type='js' file="jquery.jquery183min" />
+<script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js" type="text/ecmascript"></script>
+<script type="text/javascript">
+try{
+if(remote_ip_info){
+	document.title="【" + remote_ip_info["city"] + "{$game.name}】{$server.name} - " + remote_ip_info["city"] + "的兄弟们激情顶起！"; 
+}
+}catch(e){}
+</script>
+<meta name="keywords" content="{$game.name},{$game.name}官网,{:C('WEB_SITE_TITLE')}{$game.name}官网,{$game.name}电脑版,{$game.name}礼包" />
+<meta name="description" content="{:C('WEB_SITE_TITLE')}{$game.name}与{$game.name}官网合作，为玩家提供最新{$game.name}礼包、{$game.name}ios、{$game.name}加速器、{$game.name}论坛。极致的游戏画面，华丽的技能特效给你带来全新的高、帅、富的游戏体验。" />
+<style type="text/css">
+body, html {width:100%;height:100%;margin:0;padding:0;}
+</style>
+<import type='js' file="jquery.jquery183min" />
+
+</head>
+<body>
+<div id="center" style="width:100%; height:100%; overflow:hidden;">
+<iframe id="mainFrame"  name="mainFrame" scrolling="auto" width="100%" height="100%" frameborder="0" src=""></iframe>
+</div>
+<script language="javascript">
+$("#mainFrame").attr("src",'{:U('Gateway/game/enter',Array('gid'=>$game['id'],'sid'=>$server['id']))}');
+$(document).keydown(function (event) {
+    if (event.keyCode == 16) {
+	 window.frames["mainFrame"].boss_();
+    }
+});
+</script>
+<div style="display:none;">{:C('WEB_SITE_STATISTICS')}</div>
+</body>
+</html>         

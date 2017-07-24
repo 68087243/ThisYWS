@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="edge">
+<meta name="keywords" content="{$meta_keywords}">
+<meta name="description" content="{$meta_description}">
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+{:hook("PageHeader")}
+
+<script type="text/javascript">
+{:W('Common/Public/script')}
+</script>
+<import type='js' file="jquery.jquery183min" />
+	<style type="text/css">
+		.topbox{
+			background: -moz-linear-gradient(top, rgba(255,255,255,0) 80%, #EFEFEF),url({$gamedata.pic.pic_site_bg|get_cover=###}) no-repeat center;
+			background: -webkit-linear-gradient(top, rgba(255,255,255,0) 80%, #EFEFEF),url({$gamedata.pic.pic_site_bg|get_cover=###}) no-repeat center;
+			background: -o-linear-gradient(top, rgba(255,255,255,0) 80%, #EFEFEF),url({$gamedata.pic.pic_site_bg|get_cover=###}) no-repeat center;
+		}
+	</style>
+	<import type='css' file="theme.css.index" />
+<import type='css' file="theme.css.common" />
+<block name="style"></block>
+	<import type='css' file="theme.css.game" />
+	<import type='css' file="theme.css.allstyle" />
+<block name="script"></block>
+</head>
+<body>
+<div class="w-topbar">
+	<div class="w-topbarm">
+		<div class="w-tl">
+			<a href="{:U('Game/index/index')}" target="_blank">游戏首页</a>|<a href="{:U('User/Vip/index')}" target="_blank">VIP中心</a>|<a href="{:U('Shop/index/index')}" target="_blank">积分商城</a>|<a href="{:U('Forum/index/index')}" target="_blank">游戏论坛</a>
+		</div>
+		<div class="w-tr" id="w-baright">
+			<div class="w-favall">
+				<a href="#" target="_self" id="sitefav">加入收藏</a>|<a target="_blank" href="{:U('Home/index/desktop')}">保存到桌面</a>
+			</div>
+			<div class="w-twrap" id="w-thotId">
+				<span class="w-twrapbtn">热门游戏</span>
+				<div class="w-twrapsub">
+					<div class="w-twrapbox">
+						<ul class="w-thotgames">
+						</ul>
+					</div>
+					<div class="w-thotico">
+					</div>
+				</div>
+			</div>
+			<div id="w-tmyplayId" class="w-twrap w-tmypb">
+				<span class="w-twrapbtn">我玩过的</span>
+				<div class="w-twrapsub">
+					<div class="w-twrapbox">
+						<present name="__USER__">
+						<div class="w-myplay">
+						</div>
+						<a href="{:U('User/record/index')}" class="w-mpmore" target="_blank">查看更多</a>
+						<else />
+						<div class="w-pno_tp">
+							<span>请<a href="#" target="_self" id="w-tplog">登录</a>后查看游戏记录</span>
+						</div>
+						</present>
+					</div>
+					<div class="w-thotico">
+					</div>
+				</div>
+			</div>
+			<div class="w-favall" id="w-favall">
+				<notpresent name="__USER__">
+				<a href="#" target="_self" id="w-log">登录</a>|<a href="#" target="_self" id="w-reg">注册</a>|
+				</notpresent>
+			</div>
+			<div id="w-tmyId" class="w-twrap w-tmypb">
+				<present name="__USER__">
+				<span class="w-twrapbtn">{$__USER__.username}</span>
+				<div class="w-twrapsub">
+					<div class="w-twrapbox">
+						<div class="w-nameinfo">
+						</div>
+						<ul class="w-infosub">
+						</ul>
+					</div>
+					<div class="w-thotico">
+					</div>
+				</div>
+				</present>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="w-nav" style="display:none;">
+        <div class="w-navwrap">
+                <h1><a href="{:U('Home/index/index')}" class="w-logo">{:C('WEB_SITE_TITLE')}</a></h1>
+                <div class="w-navcon">
+                        <div class="w-nav_a">
+                                                <a target="_self" id="NAV_HOME" href="{:U('Home/index/index')}">首页</a>    
+                                                <a target="_self" id="NAV_GAME" href="{:U('Game/index/index')}">游戏中心</a>    
+                                                <a target="_blank" id="NAV_USER" href="{:U('User/index/index')}">个人中心</a>    
+                                                <a target="_self" id="NAV_PAY" href="{:U('Pay/index/index')}">充值</a>    
+                                                <a target="_self" id="NAV_NEWS" href="{:U('News/index/index')}">资讯</a>    
+                                                <a target="_self" id="NAV_GIFT" href="{:U('Gift/index/index')}">礼包</a>    
+                                                <a target="_self" id="NAV_SERVICE" href="{:U('Service/index/index')}">客服</a>    
+                                                </div>
+                        <div class="w-navdonw" id="w-navdown">
+                            <span class="w-navtxtp">下载客户端</span>
+                            <div class="w-navdrop">
+                                <a href="#" class="w-n-pc">PC客户端</a>
+                                <a href="#" class="w-n-mb">移动客户端</a>
+                            </div>
+                        </div>
+                </div>
+        </div>
+</div>
+
+
+<div class="topbox">
+
+</div>
+<div class="conbox" style="margin-top: -300px;">
+	<div class="leftbox">
+		<div class="start">
+			<object height="100%" width="100%" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" id="abcdef">
+				<param value="/Public/theme/images/start.swf" name="movie">
+				<param value="high" name="quality">
+				<param value="transparent" name="wmode">
+				<param value="always" name="allowScriptAccess">
+				<embed height="100%" width="100%" name="abcdef" wmode="transparent" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" quality="high" src="/Public/theme/images/start.swf">
+			</object>
+		</div>
+		<div class="twobtn">
+			<a href="{$gamedata.clienturl}"><i></i>微端下载</a>
+			<a href="{:U('Pay/index/'.$gamedata['id'])}"><i class="i02"></i>游戏充值</a>
+		</div>
+		<div class="userbox">
+			<iframe width="300px" height="140px" scrolling="no" framemargin="0" frameborder="0" allowtransparency="true" src="{:U('Api/User/Gamebox',Array('gid'=>$gamedata['id']))}"></iframe>
+		</div>
+		<div class="infolup">
+			<p class="infop1">游戏简介</p>
+			<p class="infop2"><?php echo strip_tags($gamedata['description']); ?></p>
+		</div>
+		<div class="bc">
+			<div class="kf_tt">
+				<h2>贴心客服</h2>
+			</div>
+			<div class="kf_cc">
+				<p class="kf_p">
+					客服热线：{:C('WEB_SITE_MOBILE')}<br>
+					客服QQ： {:C('WEB_SITE_QQ')}<br>
+					QQ群：{$gamedata.qqgroup}<br>
+					服务时间：7×24小时<br>
+					客服：<a href="{:U('Service/Index/index')}">在线客服</a>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="rightbox">
+		<block name="body">这里是内容</block>
+	</div>
+</div>
+
+
+
+<block name="link"></block>
+
+<block name="footer"><div class="w-ftwrap"><div class="w-fnav"><div class="w-fnavbox"><div class="w-fnav-w"><h5 class="w-fnav-z">帐号服务</h5><ul><li><a target="_blank" href="{:U('User/Public/register')}">帐号注册</a></li><li><a target="_blank" href="{:U('User/safe/index')}">修改密码</a></li><li><a target="_blank" href="{:U('User/safe/index',array('t'=>'yxyz'))}">绑定邮箱</a></li><li><a target="_blank" href="{:U('Service/ticket/10')}">找回帐号</a></li></ul></div><div class="w-fnav-w"><h5 class="w-fnav-k">客服中心</h5><ul><li><a target="_blank" href="{:U('Service/Index/Index')}">客服首页</a></li><li><a target="_blank" href="{:U('Forum/index/index')}">论坛交流</a></li><li><a target="_blank" href="{:U('Service/Index/Index')}">常见问题</a></li><li><a target="_blank" href="{:U('Service/Index/Index')}">在线客服</a></li></ul></div><div class="w-fnav-w"><h5 class="w-fnav-r">热门游戏</h5><ul><volist name=":W('Common/Game/RecommendedGame',Array('j',4,'IndexFooterRecomme11'))" id="ig"><li><a target="_blank" href="{$ig.gameurl}">{$ig.name}</a></li></volist></ul></div><div class="w-fnav-w w-fnav-long"><h5 class="w-fnav-c">旗下站点</h5><ul><li><a target="_blank" href="{:U('Home/index/index')}">网页游戏</a></li><li><a target="_blank" href="{:U('Game/index/index')}">游戏大全</a></li><li><a target="_blank" href="{:U('Forum/index/index')}">交流论坛</a></li><li><a target="_blank" href="{:U('Shop/index/index')}">积分商城</a></li></ul></div></div></div><div class="w-footer">抵制不良游戏，拒绝盗版游戏。 注意自我保护，谨防受骗上当。 适度游戏益脑，沉迷游戏伤身。 合理安排时间，享受健康生活。<p><a href="{:U('Service/Information/about')}" target="_blank">关于我们</a>|<a href="{:U('Service/Information/lianxi')}" target="_blank">联系我们</a>|<a href="{:U('Service/Information/cooperation')}" target="_blank">游戏合作</a>|<a href="{:U('Service/Information/declare')}" target="_blank">版权声明</a>|<a href="{:U('Service/Information/duty')}" target="_blank">使用协议</a></p><span>Copyright</span><span>©2015</span><span>{:strtoupper(DOMAIN())}</span><span>{:C('WEB_SITE_ICP')}</span></div></div>
+
+<div class="hidden">
+    <div class="hidden">{:C('WEB_SITE_STATISTICS')}</div>
+</div>
+<block name="footer_script"></block>
+<import type='js' file="theme.js.common" />
+<import type='js' file="theme.js.t3t2_popup_plus" />
+<script type="text/javascript">
+var topboxbg_url = '{$gamedata.pic.pic_site_bg|get_cover=###}';
+var topboxbg_img = new Image();
+topboxbg_img.src = topboxbg_url;
+topboxbg_img.onload = function(){
+	$('.topbox').css('height',topboxbg_img.height + 'px');
+};
+var MODULE_NAME='{:MODULE_NAME}'.toUpperCase();
+$('#NAV_'+MODULE_NAME).addClass('cur');
+
+function getServerListUrlByRh(){
+	return "{:U($gamedata['mark'].'/server')}";
+}
+</script>
+<style>.tb_button {padding:1px;cursor:pointer;border-right: 1px solid #8b8b8b;border-left: 1px solid #FFF;border-bottom: 1px solid #fff;}.tb_button.hover {borer:2px outset #def; background-color: #f8f8f8 !important;}.ws_toolbar {z-index:100000} .ws_toolbar .ws_tb_btn {cursor:pointer;border:1px solid #555;padding:3px}   .tb_highlight{background-color:yellow} .tb_hide {visibility:hidden} .ws_toolbar img {padding:2px;margin:0px}</style></block>
+
+</body>
+</html>

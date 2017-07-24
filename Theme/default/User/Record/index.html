@@ -1,0 +1,50 @@
+<extend name="Public/layout"/>
+
+
+
+<block name="style"> </block>
+
+
+
+<block name="body">
+  <div class="p-cr">
+      <div class="p-tit">
+          <h3>我玩过的游戏</h3>
+          <span class="p-subtit" id="myplaynums"></span>
+      </div>
+      <div class="p-pf" id="myplaybox">
+
+          <div  class="tmycon"><ul></ul></div>
+
+      </div>
+
+      <div id="qfwraps" class="hidden">
+          <div class="p-tit">
+              <h3>我玩过的区服</h3>
+              <span class="p-subfont">（区服信息数据较多，可能有几分钟延迟）</span>
+          </div>
+          <div class="p-pf qfbox">
+              <div id="qfcons"></div>
+              
+          </div>
+      </div>
+
+
+      <div class="p-tit">
+          <h3>我收藏的游戏</h3>
+          <span class="p-subtit" id="myfavnums"></span>
+      </div>
+      <div class="p-pf" id="myfavbox">
+
+          <div class="tmycon"><ul></ul></div>
+      </div>
+  </div>
+</block>
+
+
+
+<block name="footer_script">
+<import type='js' file="theme.user.js.index" />
+<import type='js' file="theme.user.js.task" />
+</block>
+

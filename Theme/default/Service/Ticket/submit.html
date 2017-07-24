@@ -1,0 +1,53 @@
+<extend name="./Theme/default/Common/Public/layout.html"/>
+
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<import type='css' file="theme.css.index" />
+<import type='css' file="theme.css.kf" />
+<import type='css' file="theme.css.style" />
+
+</block>
+
+
+
+<block name="body">
+<div class="crumbs"><a target="_self" href="{:U('Service/index/index')}">客服中心</a><i>&gt;</i><strong>客服中心</strong>
+</div>
+<div class="kfback">
+<include file="left" />
+<div class="kfright">
+<include file="right" />
+<div class="kfmiddle">
+<div id="info">
+	<div class="kfwinners">
+		<i class="winic01"></i>
+		<div class="kfof">
+			<h3>本次自助申诉已成功提交</h3>
+			<p class="kfp1">本次申诉的单号：<b id="sno">{$sno}</b><i>（请牢记）</i></p>
+			<p class="kfp2">
+				担心忘记单号，还可以直接将申诉单号保存到本地
+				<a class="upsubs" href="{:U('Service/Ticket/save',Array('sno'=>$sno))}">保存申诉单号</a>
+			</p>
+		</div>
+	</div>
+	<div class="kfwenxin">
+		温馨提示：<br>1、我们收到申诉会在3个工作日内给予答复，请您关注。<br>
+		2、你也可以点击<a href="{:U('Service/Ticket/query')}">查询进度</a>查询处理进度，若有问题还可直接联系在线客服。
+	</div>
+</div>
+</div>
+</div>
+</div>
+</block>
+
+
+<block name="footer_script">
+<import type='js' file="theme.js.kf" />
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#TICKET_{$tid}').addClass('cur');
+});
+</script>
+</block>
+

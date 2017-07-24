@@ -1,0 +1,129 @@
+<extend name="Public/layout"/>
+
+
+
+<block name="style">
+
+</block>
+
+
+
+<block name="body">
+	<div class="p-cr">
+	<div class="p-rtit">
+			<h3>个人资料</h3>
+			<span class="p-subfont">友情提示：完善个人资料可获得10VIP成长值，当前资料完善度{:D('User')->getPerfect($__USER__)}%。   </span>
+
+			<span class="prspan">
+				<a href="#" class="ahight" target="_blank">什么是{:C('WEB_SITE_TITLE')}VIP?</a>
+			</span>
+	</div>
+
+	<div class="p-rbigwrap">
+		<div class="p-profile">
+			<div class="p-subtits"><h4>基础资料</h4></div>
+			<div class="p-basic">
+				<div class="p-basicphoto">
+					<div class="p-basicphoto"><a href="{:U('User/setAvatar/index')}"><img src="{:get_cover($__USER__['avatar'],'avatar')}" alt=""><i>修改头像</i></a></div>
+				</div>
+				<ul class="p-basiclist">
+					<li>用户名：<em>{$__USER__.username} </em></li>
+					<li>上次登录时间：<em>{$__USER__['last_login_time']|date="Y-m-d H:i:s",###}</em></li>
+					
+					 <notempty name="__USER__.realname">
+					 <li>真实姓名：{:half_replace($__USER__['realname'],1)}</li>
+						<else />
+					<li><a href="{:U('User/safe/index',array('t'=>'sfyz'))}" class="ljbd">立即认证</a>真实姓名：<i>待认证</i></li>
+					 </notempty>
+					 
+					 <notempty name="__USER__.idcard_no">
+					 <li>身份证号：{:half_replace($__USER__['idcard_no'])}</li>
+						<else />
+					<li><a href="{:U('User/safe/index',array('t'=>'sfyz'))}" class="ljbd">立即认证</a>身份证号：<i>待认证</i></li>
+					 </notempty>
+					 
+					 <notempty name="__USER__.email">
+					 <li>密保邮箱：{:half_replace($__USER__['email'])}</li>
+						<else />
+					<li><a href="{:U('User/safe/index',array('t'=>'yxyz'))}" class="ljbd">立即绑定</a>密保邮箱：<i>未绑定</i></li>
+					 </notempty>
+
+					<notempty name="__USER__.mobile">
+					 <li>安全手机：{:half_replace($__USER__['mobile'])}</li>
+						<else />
+					<li><a href="{:U('User/safe/index',array('t'=>'sjbd'))}" class="ljbd">立即绑定</a>安全手机：<i>未绑定</i></li>
+					 </notempty>
+					
+				</ul>
+			</div>
+
+			<div class="p-subtits"><h4>更多资料</h4></div>
+			<form action="" method="POST" name = "ProfileForm" target="_self"   >
+				<ul class="p-information">
+					
+					
+					<li><label>昵&nbsp;&nbsp;&nbsp;称：</label><input style="width:270px;" class="p-txt qq" value="{$__USER__.username}" disabled=""><i class="p-no">用户名/昵称不允许更改</i>
+					</li>
+					<li><label>生&nbsp;&nbsp;&nbsp;日：</label><input style="width:270px;" class="p-txt qq" value="{$__USER__.birthday}" disabled=""><i class="p-no">由身份证号自动提取</i>
+					</li>
+					<li><label>年&nbsp;&nbsp;&nbsp;龄：</label><input style="width:270px;" class="p-txt qq" name="age" value="{$__USER__.age}" disabled="" />
+					</li>
+					
+					<li><label>性&nbsp;&nbsp;&nbsp;别：</label><select class = "gender" name = "sex"  id="sex" style="width:140px;"><option value = "0" selected>请选择</option><option value = "1" >男</option><option value = "-1" >女</option><option value = "0" >保密</option></select></li>
+					
+					
+					
+					
+					<li><label>职&nbsp;&nbsp;&nbsp;业：</label><select  id="occupation" class = "jobs" name ="occupation" style="width:140px;"><option value="0">请选择</option><option value="1" >计算机硬件</option><option value="2" >计算机软件 </option><option value="3" >互联网</option><option value="4" >品管及其它</option><option value="5" >通信技术</option><option value="6" >电子仪器/半导体</option><option value="7" >销售管理</option><option value="8" >销售行政及商务</option><option value="9" >客服及技术支持 </option><option value="10" >财务/审计/税务 </option><option value="11" >证券/金融/投资 </option><option value="12" >银行</option><option value="13" >保险</option><option value="14" >生产/营运</option><option value="15" >质量/安全管理</option><option value="16" >工程/机械/能源</option><option value="17" >汽车</option><option value="18" >技工</option><option value="19" >服装/纺织/皮革</option><option value="20" >采购</option><option value="21" >贸易</option><option value="22" >物流/仓储</option><option value="23" >生物/医疗器械</option><option value="25" >化工</option><option value="27" >医院/医疗/护理</option><option value="28" >广告 </option><option value="29" >公关/媒介</option><option value="30" >市场/营销</option><option value="31" >影视/媒体</option><option value="32" >写作/出版/印刷</option><option value="33" >艺术/设计</option><option value="34" >建筑工程</option><option value="35" >房地产</option><option value="36" >物业管理</option><option value="37" >人力资源</option><option value="38" >高级管理 </option><option value="39" >行政/后勤  </option><option value="40" >咨询/顾问</option><option value="41" >律师/法务</option><option value="42" >科研人员</option><option value="43" >餐饮/娱乐</option><option value="44" >酒店/旅游</option><option value="45" >美容/健身 </option><option value="46" >百货/零售服务</option><option value="47" >交通运输服务</option><option value="48" >公务员</option><option value="49" >翻译</option><option value="50" >在校学生</option><option value="51" >储备干部/实习生</option><option value="52" >兼职 </option><option value="53" >其他 </option></select></li>
+					
+					<li><label>现居地：</label>
+						<div id="province" style="display:inline;">
+							<select name="province"  class="prov"></select>
+							<select class="city" name="city" disabled="disabled"></select>
+							<select class="dist" name="dist" disabled="disabled"></select>
+						</div>
+					</li>
+					<li><label>QQ&nbsp;号：</label>
+					<notempty name="__USER__.qq">
+						<input type="text" style="width:130px;" class="p-txt qq" value="{$__USER__.qq}" disabled="" /><span >已验证</span>
+					<else />
+						<notempty name="Think.session.qqtemp">
+							<input type="text" style="width:130px;" class="p-txt qq" value="{$Think.session.qqtemp}" disabled="" /><span >已验证</span>
+							<else />
+							<span class="p-gay" id="checkqq">立即验证</span><span class="fsize">验证后可使用QQ邮箱找回密码</span>
+						</notempty>
+					</notempty>
+					</li>
+
+					<li><span class="p-subbtn">确认提交</span></li>
+				</ul>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+</block>
+
+
+
+<block name="footer_script">
+<import type='js' file="theme.user.js.offering" />
+<import type='js' file="theme.user.js.profile" />
+<import type='js' file="theme.user.js.cityselect" />
+<script>
+var bindqq={$bindqq};
+var qq='{$Think.session.qqtemp}';
+var province='{$__USER__.extend}';
+if(province !=""){
+var _province=province.split('-');
+$("#province").citySelect({prov:_province[0], city:_province[1], dist:_province[2]});
+}else{
+$("#province").citySelect({prov:"", city:"", dist:""});
+}
+$("#sex").val("{$__USER__.sex}");
+$("#occupation").val("{$__USER__.occupation}");
+</script>
+
+</block>
+

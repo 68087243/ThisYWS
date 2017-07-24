@@ -1,0 +1,65 @@
+<extend name="Public/layout"/>
+
+
+
+<block name="style"> </block>
+
+
+
+<block name="body">		<div class="p-cr">
+					<div class="p-rtit">
+							<h3>礼包领取记录</h3>
+					</div>
+
+				
+					<div class="p-rbigwrap">
+
+									<div class="p-profile">
+										<div class="p-rechwrap">
+															<table  class="p-rechtable">
+														<empty name="data_list">
+															<div class="p-nonerecharge">您暂时没有领取礼包哦~</div>
+														<else /> 
+															<tr>
+																<th class="first">礼包码</th>
+																<th>礼包名</th>
+																<th>游戏</th>
+																<th>领取时间</th>
+															</tr>
+															<volist name="data_list" id="data">
+															<tr>
+																<php>$CardDetail=D('CardDetail')->where(Array('id'=>$data['cid']))->find();</php>
+																<td class="first">{$data.card}</td>
+																<td>{$CardDetail.name}</td>
+																<td><php>echo D('Game')->getFieldBymap('name',Array('id'=>$CardDetail['gid']));</php></td>
+																<td>{$data.utime|date="Y-m-d H:i:s",###}</td>
+															</tr>
+															</volist>
+														</empty> 
+																				
+																																				
+															</table>
+															<div class="p-tablebs">
+
+																			<div class="pages">
+																			{$page}
+																			</div>
+																			
+
+															</div>
+												</div>
+												
+									</div>
+
+					</div>
+				
+
+	</div>
+</block>
+
+
+
+<block name="footer_script">
+<import type='js' file="theme.user.js.task" />
+</block>
+

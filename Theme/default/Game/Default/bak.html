@@ -1,0 +1,161 @@
+<extend name="./Theme/default/Common/Public/layout.html"/>
+
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<import type='css' file="theme.css.game" />
+<import type='css' file="theme.css.others" />
+<import type='css' file="theme.css.style" />
+</block>
+
+
+
+<block name="body">
+<div class="w-wrap">
+        <div class="w-section">
+                <div class="w-tit">
+                        <h2 class="w-tit-tjyx">{$gamedata.name}</h2>
+                        <ul class="w-notice" id="w-notices">
+                            <volist name=":W('Common/Horn/getHorn',array(5,'Smallspeakers'))" id="vo">
+									<li><a href="{$vo.url}">{$vo.name}</a></li>
+							</volist>
+                        </ul>
+						
+                </div>
+				
+                <div class="w-tuigames">
+				  <div class="w-tuifirst">
+				  <php>$gameurl=D('Game')->getGameUrl($gamedata['id']);$serverurl=D('Gameserver')->getNewServerUrlBygid($gamedata['id']);</php>
+					<div class="w-tuifcon"> <a href="{$gameurl}" class="w-tuifcon-a"><img src="{$gamedata.pic.pic_t_max|get_cover=###}" alt="{$gamedata.name}"><notempty name='gamedata.flags.r'><i class="w-jqyxicoh"></i><else /><notempty name='gamedata.flags.x'><i class="w-jqyxicon"></i></notempty></notempty></a>
+					  <div class="w-jqyxb"> <a href="{$serverurl}" class="w-jqyxplay"><i></i>进入新区</a></div>
+					</div>
+					<i class="w-jpyxpngbg"></i> </div>
+				  <div class="w-tuilist">
+
+				  <style>
+			
+				  </style>
+
+				  
+					<div class="d-gmshow_info">
+					<span id="favg" class="favg {:W('Common/Game/isGameCollects',array($__USER__['id'],$gamedata['id']))}" data-gid="{$gamedata.id}" title="收藏"></span>
+					  <h4 class="d-gmshow_tit">{$gamedata.name}</h4>
+					  <p class="d-gmshow_tit2">游戏类型：<php>$gametype=C('GAME_TYPE_LIST');echo $gametype[$gamedata['type']];</php></p>
+					  <div class="d-gmshow_data">
+						{$gamedata.description}
+					  </div>
+					  <div class="d-gmshow_links">
+						<a href="{:U('Forum/'.$gamedata['mark'].'/index')}">游戏论坛</a>
+						<a href="{:U('Gift/'.$gamedata['mark'].'/index')}" class="blue">领取礼包</a>
+						<notempty name="gamedata.clienturl">
+							<a href="{$gamedata.clienturl}" class="blue">微端下载</a>
+						<else />
+							<a href="{:U('Pay/index/'.$gamedata['id'])}" class="blue">游戏充值</a>
+						</notempty>
+					  </div>
+					  <div class="d-gmtui">
+						<h5 class="d-gmtui_tit"><span>推荐服务器</span></h5>
+						<div class="d-gmshow_links">
+						<volist name=":W('Common/Game/Recommendedserver',array($gamedata['id']))" id="vo">
+							<a href="{:U('Gateway/Game/Play',array('gid'=>$vo['game'],'sid'=>$vo['id']))}" class="orange">{$vo.name}</a>
+						</volist>
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+				
+                <div class="w-tit">
+                    <h2 class="w-tit-sort">区服列表</h2>
+                    <div class="w-paixu">
+                        <input type="text" placeholder="快速选服" class="w-pais" id="searchTxt">
+                        <input type="button" class="w-paib" id="searchG">
+                    </div>
+                </div>
+	<div class="d-serverlist">
+	<notempty name="__USER__">
+      <div class="d-gmtui">
+            <h5 class="d-gmtui_tit"><span>最近玩过的服务器</span></h5>
+			<div class="server_zui d-gmshow_links">
+            </div>
+      </div>
+	  </notempty>
+      <div class="d-gmtui">
+        <h5 class="d-gmtui_tit"><span>全部大区</span></h5>
+      </div>
+	  
+	  <div class="server_nav clearfix">
+		  <ul class="d-server_nav">
+		  </ul>
+      </div>
+	  <div class="server_wrap">
+      </div>
+    </div>
+        </div>
+        <div class="w-article">
+
+                <div class="w-tit">
+                        <h2 class="w-tit-newkf">最新开服</h2>
+                        <div class="w-kfitemtab" id="newkfbtns"></div>
+                </div>
+                <div class="w-jjkflist" id="newkfcons">
+				
+                </div>
+
+                <div class="w-tit">
+                        <h2 class="w-tit-xyx">游戏新闻</h2>
+                </div>
+				<div class="d-server_news">
+      <ul>
+		<volist name=":W('Common/Game/GameNews',array($gamedata['id'],9,'GameCenterdetailspageontherightsideninenews'))" id="vo">
+			<li><a href="{:U('News/Read/'.$vo['id'])}"><php>echo D('Document')->getFieldBymap('title',Array('id'=>$vo['id']));</php></a></li>
+		</volist>
+      </ul>
+    </div>
+        </div>
+</div>
+</block>
+
+
+
+<block name="footer_script">
+<import type='js' file="theme.js.game" />
+<import type='js' file="theme.js.index" />
+<import type='js' file="layer.layer" />
+<script type="text/javascript">
+	var gid = {$gamedata.id};
+    var navNode = ".server_nav>.d-server_nav";
+    var serverListNode = ".server_wrap";
+	var latestLimit="{$__USER__.id}";
+    var latestNode = ".server_zui";
+	layer.config({
+		skin:'layer-ext-moon',
+		extend: ['skin/moon/style.css', 'extend/layer.ext.js']
+	});
+	$(document).ready(function(){
+		$("#searchG").click(function(){
+			var obj=$('#searchTxt');
+			if(obj.val()==""){
+				layer.alert('请输入正确的服务器ID', {icon: 2,title: '提示'});
+				return;
+			}
+			var input=parseInt(obj.val());
+			var server=$('#server_'+input);
+			if(server.size()>0){
+				event.preventDefault();
+				event.stopPropagation();
+				window.open(server.attr('href'), '_blank');
+			}else{
+				layer.alert('服务器不存在', {icon: 2,title: '提示'});
+				return;
+			}
+		});
+	});
+	//if($(ID).size()>0){
+   // 存在
+
+//}
+</script>
+<import type='js' file="theme.js.serversList" />
+</block>
+

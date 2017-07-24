@@ -1,0 +1,76 @@
+<extend name="./Theme/default/Common/Public/layout.html"/>
+
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<import type='css' file="theme.css.index" />
+<import type='css' file="theme.css.kf" />
+</block>
+
+
+
+<block name="body">
+<!--div class="w-topban"><a href="http://my.yiwanshu.com/vip" style="background:url(http://static.yiwanshu.com//Public/theme/images/ban.jpg) no-repeat center top;">免费领元宝，免费领礼包！</a>
+</div-->
+
+<div class="kfhelpbox">
+    <div class="w-article">
+		<div class="w-tit">
+			<h2 class="w-tit-newkf">最新开服</h2>
+			<div class="w-kfitemtab" id="newkfbtns"></div>
+		</div>
+		<div class="w-jjkflist" id="newkfcons">
+					
+		</div>
+
+        <div class="w-tit">
+            <h2 class="w-tit-requst">常见问题</h2>
+        </div>
+
+        <div class="w-helpreq">
+            <ul class="kfrank">
+				<volist name=":W('Common/Document/getListByCid',array(5,4,'NewsHelpCenter'))" id="vo">
+					 <li><a href="{:U('News/Read/'.$vo['id'])}">{$vo.title}</a></li>
+				</volist>
+            </ul>
+            <div class="kfcontact">
+                <p>热线：<b>{:C('WEB_SITE_MOBILE')}</b></p>
+                <p>QQ：<b>{:C('WEB_SITE_QQ')}</b></p>
+                <a href="{:U('Service/index/index')}">在线提问</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="w-artof">
+        <div class="w-tit">
+            <h2 class="w-tit-helptit">新闻内容</h2>
+
+            <div class="crumbs-help"><a href="{:U('News/index/index')}">资讯中心</a><i>&gt;</i><strong>帮助中心</strong></div>
+        </div>
+        <div class="helpcontent">
+            <h1 class="helptit">{$__info__.title}</h1>
+
+            <div class="helpsub">
+                <span>作者：{$info.uid|get_user_info="username"}-江水</span>
+                <span>来源：{:domain()}</span>
+                <span>时间：{$__info__.ctime|time_format}</span>
+            </div>
+            <div class="helpfonts">
+				{$__info__.content}
+			</div>
+			<php>$Previous=D('Document')->getPreviousDocument($__info__);$Next=D('Document')->getNextDocument($__info__);</php>
+            <div class="helpnavs">
+                                                <span>
+					<a href="{$Next.link}" target="_self">下一篇：{$Next.title}</a>
+                    							</span>
+                    <a href="{$Previous.link}" class="next" target="_self">上一篇：{$Previous.title}</a>
+                            </div>
+        </div>
+    </div>
+</div>
+</block>
+
+
+<block name="footer_script"><import type='js' file="theme.js.index" /></block>
+

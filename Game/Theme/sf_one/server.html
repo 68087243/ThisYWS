@@ -1,0 +1,114 @@
+<extend name="./Game/Theme/sf_one/layout.html"/>
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<style>
+.server_con li{float:left;}
+</style>
+</block>
+
+
+<block name="body">
+		<div class="margin">
+				<div class="container-layout">
+	<br>
+					<div class="tab" data-toggle="hover">
+			<div class="media-inline">
+				<div class="media text-center User_Login">
+	注意：利用BUG刷任何道具一律封号、封IP处理，游戏发现不明来源道具{$gamedata.unit}一律封号、封IP处理！
+				</div>
+			</div>
+
+						<div class="tab-head">
+							<ul class="tab-nav ">
+<li class="active"><a href="#tab-0">游戏分区</a></li><li class=""><a href="#tab-1">最近玩过</a></li><li class="margin-left"></li>				</ul>
+</div>
+<div class="tab-body">
+	<div class="tab-panel active" id="tab-0">
+		<div id="test" class="container margin-large-top server_wrap">
+				
+		</div>
+
+	</div>
+	
+	<div class="tab-panel" id="tab-1">
+		<div id="test" class="container margin-large-top server_zui">
+<ul class="server_con clearfix">
+</ul>
+		</div>
+
+	</div>
+	
+	
+	<div id="test" style="display:none;" class="container margin-large-top server_nav">
+				
+	</div>
+	
+			<br><br><br>
+			<div align="center">
+
+</div>
+</div>
+						</div>
+					</div>
+			 </div>
+</block>
+
+<block name="footer_script">
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+		$("#searchG").click(function(){
+			var obj=$('#searchTxt');
+			if(obj.val()==""){
+				layer.alert('请输入正确的服务器ID', {icon: 2,title: '提示'});
+				return;
+			}
+			var input=parseInt(obj.val());
+			var server=$('#server_'+input);
+			if(server.size()>0){
+				event.preventDefault();
+				event.stopPropagation();
+				window.open(server.attr('href'), '_blank');
+			}else{
+				layer.alert('服务器不存在', {icon: 2,title: '提示'});
+				return;
+			}
+		});
+});
+	
+	var gid = {$gamedata.id};
+    var navNode = ".server_nav";
+    var serverListNode = ".server_wrap";
+	var latestLimit="1";
+    var latestNode = ".server_zui>.server_con";
+	var latestNode_html=1;
+	var server_class="button bg-main badge-corner margin";
+	var server_kstatus='<span class="badge  bg-dot">replace</span>';
+	function enterNewGame(){
+	var sid=parseInt($("#server_no").val());
+	var _sid=parseInt($("#ser_con_1").attr('data-sid'));
+	if(sid>_sid || sid == 0 || isNaN(sid)){
+		alert("区服不存在");
+		return;
+	}
+	$.ajax({
+    type: "get",
+    async: true,
+    url: U("Api/Game/getGameserverUrl","gid="+gid+"&sid="+sid),
+    dataType: "jsonp",
+    jsonp: "callback",
+    success: function(data){
+		window.location=data.url;
+    }
+});
+
+
+
+}
+
+</script>
+<import type='js' file="theme.js.serversList" />
+
+</block>

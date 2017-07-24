@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title>Mix</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+	<load href="/Public/bui/assets/css/dpl-min.css" />
+	<load href="/Public/bui/assets/css/bui-min.css" />
+	<load href="/Public/bui/assets/css/page-min.css" />
+	<load href="/Public/bui/assets/css/prettify.css" />
+	<load href="/Public/bui/assets/js/jquery-1.8.1.min.js" />
+	<load href="/Public/bui/assets/js/bui.js" />
+	<load href="/Public/bui/assets/js/config.js" />
+	<load href="/Public/mix/css/base.css" />
+	<load href="/Public/mix/css/common.css" />
+	<load href="/Public/mix/css/style.css" />
+	  <script type="text/javascript">
+    BUI.use('common/page');
+  </script>
+
+   <style type="text/css">
+    code {
+      padding: 0px 4px;
+      color: #d14;
+      background-color: #f7f7f9;
+      border: 1px solid #e1e1e8;
+    }
+   </style>
+ </head>
+ <body>
+  
+  <div class="container">
+  <div class="yiwanka-con-right-content">
+<div class="yiwanka-con-right1">
+<p class="p1">账户资金动态</p>
+</div>
+<div class="yiwanka-con-right2">
+<ul>
+<li style="margin-left: 2px"><a href="javascript:void(0)"><span class="span1" style="background-color: #8197a7;"><b id="baseinfo_usertotalbalance" class="b1">{$payinfo.today_recharge}/{$payinfo.today_money}</b><b class="b2">元</b></span><span class="span2" style="color: #8197a7">今日充值/收益</span></a></li>
+<li><a href="javascript:void(0)"><span class="span1" style="background-color: #8197a7;"><b id="baseinfo_userbalance" class="b1">{$payinfo.Lastweek_recharge}/{$payinfo.Lastweek_money}</b><b class="b2">元</b></span><span class="span2" style="color: #8197a7">本周充值/收益</span></a></li>
+<li><a href="javascript:void(0)"><span class="span1" style="background-color: #7ca47a;"><b id="detention" class="b1">{$payinfo.Thismonth_recharge}/{$payinfo.Thismonth_money}</b><b class="b2">元</b></span><span class="span2" style="color: #7ca47a;">本月充值/收益</span></a></li>
+<li><a href="javascript:void(0)"><span class="span1" style="background-color: #a99b71;"><b id="todaysuccedmoney" class="b1">{$payinfo.recharge}/{$payinfo.money}</b><b class="b2">元</b></span><span class="span2" style="color: #a99b71;">总充值/总收益</span></a></li>
+<li><a href="javascript:void(0)"><span class="span1" style="background-color: #b18784;"><b id="freezebalance" class="b1">{$mixinfo.money}</b><b class="b2">元</b></span><span class="span2" style="color: #b18784;">可提现金额</span></a></li>
+</ul>
+</div>
+<div class="yiwanka-con-right3">
+<div class="yiwanka-con-right3-title">账户基本信息</div>
+<div class="yiwanka-con-right3-con">
+<div class="yiwanka-con-right3-con-l">
+<img src="/Public/mix/images/rentou.jpg">
+</div>
+<div class="yiwanka-con-right3-con-r">
+<p class="right3-p1" style="margin-top: 10px;">
+<b>会员编号:</b><span>{$Think.session.mixmid}</span>
+</p>
+<p class="right3-p1">
+<b>登录账号:</b><span>{$Think.session.mixadmin}</span>
+</p>
+<php>$level=C('MIX_LEVEL');$level_=$level[$mixinfo['level']];</php>
+<p class="right3-p1">
+<b>账户等级:</b><span>{$level_}</span>
+</p>
+<p class="right3-p1">
+<b>上次登录时间：</b>{$mixinfo.last_login_time|date='Y-m-d H:i:s',###}
+</p>
+</div>
+</div>
+</div>
+<div class="yiwanka-con-right4">
+<div class="yiwanka-con-right4-r" style="float: left;width: 49%;">
+<div class="title">
+<span class="h3">平台新闻</span>
+<a style="float: right;" class="page-action" href="#" data-id="operate_news">更多&gt;&gt;</a>
+</div>
+<div class="gonggao-ul">
+<ul id="noticeul" class="gonggao-ul1-hidden">
+<volist name="pt_list" id="vo">
+<li><span style="float: left;">·</span><a href="#" data-href="{:U('Mix/Main/operate_view',Array('id'=>$vo['id']))}" title="{$vo.title}" data-id="view_{$vo.id}" class="a1 page-action">{$vo.title}</a><a href="#" data-href="{:U('Mix/Main/operate_view',Array('id'=>$vo['id']))}" title="{$vo.title}" data-id="view__{$vo.id}" class="a2 page-action">{$vo.ctime|date="Y-m-d",###}</a></li>
+</volist>
+</ul>
+<div class="right3-anniu">
+<a  class="page-action"  href="#" data-id="operate_news">查看更多</a>
+</div>
+</div>
+</div>
+<div class="yiwanka-con-right4-r" style="width: 49%;">
+<div class="title">
+<span class="h3">游戏新闻</span>
+<a style="float: right;" class="page-action" href="#" data-id="operate_news">更多&gt;&gt;</a>
+</div>
+<div class="gonggao-ul">
+<ul id="noticeul" class="gonggao-ul1-hidden">
+<volist name="game_list" id="vo">
+<li><span style="float: left;">·</span><a href="#" data-href="{:U('Mix/Main/operate_view',Array('id'=>$vo['id']))}" title="{$vo.title}" data-id="view_{$vo.id}" class="a1 page-action">{$vo.title}</a><a href="#" data-href="{:U('Mix/Main/operate_view',Array('id'=>$vo['id']))}" title="{$vo.title}" data-id="view__{$vo.id}" class="a2 page-action">{$vo.ctime|date="Y-m-d",###}</a></li>
+</volist>
+</ul>
+<div class="right3-anniu">
+<a  class="page-action" href="#" data-id="operate_news">查看更多</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+  </div>
+  
+  <div id="main_html" style="display:none;">
+  {$data.main_html}
+  </div>
+      <script type="text/javascript">
+        BUI.use('bui/overlay',function(Overlay){
+          var dialog = new Overlay.Dialog({
+            title:'公告',
+            width:500,
+            height:300,
+            mask:false,
+            buttons:[],
+            bodyContent:$('#main_html').html()
+          });
+        dialog.show();
+        $('#btnShow').on('click',function () {
+          dialog.show();
+        });
+      });
+    </script>
+  <body>
+</html>  

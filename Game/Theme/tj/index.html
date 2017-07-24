@@ -1,0 +1,141 @@
+<extend name="./Game/Theme/tj/layout.html"/>
+<block name="title"><title>{$meta_title}-{:C('WEB_SITE_TITLE')}{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<static type="css" file="tj.css.index" />
+<style type="text/css">
+
+</style>
+</block>
+
+
+<block name="body">
+    <div id="temp3">
+        <div class="JQ-content-box">
+            <ul class="JQ-slide-content">
+                <li><a href="#"><img src="http://static.2144.cn/news/uploads/20160121/p8s756k6.jpg"></a></li><li><a href="#"><img src="http://static.2144.cn/news/uploads/20160121/fba213s8.jpg"></a></li><li><a href="#"><img src="http://static.2144.cn/news/uploads/20160121/afcmskpa.jpg"></a></li><li><a href="#"><img src="http://static.2144.cn/news/uploads/20160121/01s3e0ch.jpg"></a></li><li><a href="#"><img src="http://static.2144.cn/news/uploads/20160121/l7srrfsa.jpg"></a></li>                </ul>
+        </div>
+        <ul class="JQ-slide-nav">
+            <li class="on"><a href="#"></a><li class=""><a href="#"></a><li class=""><a href="#"></a><li class=""><a href="#"></a><li class=""><a href="#"></a>            </ul>
+    </div>
+    <div class="news_box clearfix">
+        <div class="newslist">
+            <div class="news_nav clearfix">
+                <span class="cur">新闻</span>
+                <corethink:category_list name="side_category" post_auth='1' num='3' >
+                    <i></i>
+                    <span class="">{$side_category.title|mb_substr=###,2,2,'utf-8'}</span>
+                </corethink:category_list>
+                <a href="{:U($gamedata['mark'].'/news_list')}" class="more_a">更多</a>
+            </div>
+            <div class="news_con">
+                <ul class="news_ul clearfix" style="display: block;">
+                    <volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],false,5,'PublicTheme_getNewsListByGid_2016_5_false_1'))" id="vo">
+                        <li><span> [{$vo.ctime|date="m-d",###}]</span><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a></li>
+                    </volist>
+                </ul>
+                <corethink:category_list name="side_category" post_auth='1' num='3' >
+                    <ul class="news_ul clearfix hidden" style="display: none;">
+                        <volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],$side_category['id'],5,'PublicTheme_getNewsListByGid_2016_5_false_2'))" id="vo">
+                            <li><span> [{$vo.ctime|date="m-d",###}]</span><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a></li>
+                        </volist>
+                    </ul>
+                </corethink:category_list>
+                <ul class="news_ul clearfix hidden">
+                </ul>
+            </div>
+
+        </div>
+        <ul class="data_ul">
+            <li>
+                <dl class="data_dl">
+	
+                    <dt><a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>9))}">新手引导</a></dt>
+                    <dd><volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],9,5,'PublicTheme_getNewsListByGid_2016_5_false_3'))" id="vo">
+                           <a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a>
+							</volist></dd>                    </dl>
+                <i></i>
+            </li>
+            <li>
+                <dl class="data_dl">
+                    <dt><a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>10))}">高手进阶</a></dt>
+                    <dd><volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],10,5,'PublicTheme_getNewsListByGid_2016_5_false_3'))" id="vo">
+                           <a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a>
+							</volist></dd>                    </dl>
+                <i  class="ind2"></i>
+            </li>
+            <li>
+                <dl class="data_dl">
+                    <dt><a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>11))}">特色系统</a></dt>
+                    <dd><volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],11,5,'PublicTheme_getNewsListByGid_2016_5_false_3'))" id="vo">
+                           <a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a>
+							</volist></dd>                    </dl>
+                <i class="ind3"></i>
+            </li>
+        </ul>
+
+    </div>
+    <div class="data2 clearfix">
+        <div class="rw_box">
+            <div class="rw_tit">
+                <div class="rw_nav">
+                    <span class="cur">草栗子<b></b></span>
+                    <i></i>
+                    <span>封瑶儿<b></b></span>
+                    <i></i>
+                    <span>铁魔<b></b></span>
+                    <i></i>
+                    <span>白衣絮<b></b></span>
+                </div>
+            </div>
+            <div class="rw_con">
+                <div class="rw_wrap">
+                    <div class="img_ind">
+                        <p>绝技- 九转天龙功：梁国皇室不传秘技，草栗子因祸得福，无意中习得此功法，真龙出世，震慑山川，霸气啸乾坤，大范围攻击视野范围内的敌人。</p>
+                    </div>
+                </div>
+
+                <div class="rw_wrap2 hidden">
+                    <div class="img_ind">
+                        <p>绝技-铁门十三式：铁刀门开山祖师留下不传秘书，十三式绵连不绝威力巨大，大范围攻击视野范围内的敌人。</p>
+                    </div>
+                </div>
+                <div class="rw_wrap3 hidden">
+                    <div class="img_ind">
+                        <p>绝技-魔龙刀锋：魔龙宝刀，凌厉出鞘，万军丛中，一骑当千，大范围攻击视野范围内的敌人。</p>
+                    </div>
+                </div>
+                <div class="rw_wrap4 hidden">
+                    <div class="img_ind">
+                        <p>绝技-伏魔剑：梁国被灭后逃离之时被高人收留，见太子妃本性善良，授予伏魔剑，伏魔剑正气浩然，配合寒冰剑气威力无匹，大范围攻击视野范围内的敌人。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dot_list">
+            <div class="dot_tit">
+                <span>游戏攻略</span>
+                <a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>5))}" class="more_a">更多</a>
+            </div>
+            <ul class="dot_ul clearfix">
+			<volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],5,5,'PublicTheme_getNewsListByGid_2016_5_false_3'))" id="vo">
+                           <li><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a></li>
+							</volist>           </ul>
+        </div>
+    </div>
+
+    <div class="pic_box">
+        <div class="pic_tit">
+            <span class="">游戏截图</span>
+        </div>
+
+        <div class="pic_con clearfix">
+            <a href="/tj/zigw/129446"><img src="http://static.2144.cn/news/uploads/20160111/1q88nnq6.jpg" alt="游戏截图四"></a><a href="/tj/zigw/129347"><img src="http://static.2144.cn/news/uploads/20160111/ks90h01l.jpg" alt="游戏截图三"></a><a href="/tj/zigw/129346"><img src="http://static.2144.cn/news/uploads/20160111/kesj4ms0.jpg" alt="游戏截图二"></a><a href="/tj/zigw/129345"><img src="http://static.2144.cn/news/uploads/20160111/n3m3j351.jpg" alt="游戏截图一"></a>            </div>
+    </div>
+</block>
+
+<block name="footer_script">
+<static type="js" file="tj.js.index" />
+<static type='js' file="tj.js.slide" />
+
+</block>

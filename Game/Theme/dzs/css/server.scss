@@ -1,0 +1,529 @@
+.server_con a,.ser-con a {
+  display:block
+}
+.p-namebox {
+  overflow:hidden;
+  zoom:1
+}
+.svbox h3,.slogo,.nav_a a,.userbox h3 {
+  text-indent:-999em
+}
+.ser-con a {
+  zoom:1
+}
+.ser-con a:after {
+  content:'\20';
+  display:block;
+  height:0;
+  clear:both
+}
+.server_tit h4,.fu_box span,.fu_btn,.server_nav li,.server_con li,.server_con a span,.slogo,.nav_a a,.user_ul,.user_ul li,.int,.int2,.user_txt a,.subtn,.myser,.toubox,.tou-a {
+  float:left
+}
+.nav_a,.tuichu,.binds,.us_tt a,.ser-con span,.ser-con em {
+  float:right
+}
+.stopbox,.sconbox {
+  margin:0 auto
+}
+.svbox h3,.slogo,.nav_a a,.userbox h3,.fu_box,.fu_btn,.server_con li,.navbox,.toubox,.p-name,.p-vip {
+  overflow:hidden
+}
+.fu_txt,.fu_btn,.server_nav li {
+  text-align:center
+}
+.server_nav li,.server_con a span,.subtn {
+  cursor:pointer
+}
+.ser-con a:hover {
+  text-decoration:none
+}
+.server_tit h4,.fu_box span,.int,.int2,.user_txt a {
+  font-size:14px
+}
+.user_txt a {
+  color:#fff
+}
+a {
+  -webkit-transition:color .2s linear;
+  -moz-transition:color .2s linear;
+  -ms-transition:color .2s linear;
+  -o-transition:color .2s linear;
+  transition:color .2s linear
+}
+html {
+  -webkit-font-smoothing:antialiased
+}
+body,h1,h2,h3,h4,h5,h6,p,dl,dt,dd,ul,ol,li,form,button,input,textarea,th,td {
+  margin:0;
+  padding:0
+}
+body,button,input,select,textarea {
+  font:12px \5FAE\8F6F\96C5\9ED1,arial,\5b8b\4f53
+}
+h1,h2,h3,h4,h5,h6 {
+  font-size:100%
+}
+address,cite,dfn,em,var,i {
+  font-style:normal
+}
+code,kbd,pre,samp {
+  font-family:courier new,courier,monospace,arial,\5b8b\4f53
+}
+form {
+  display:inline
+}
+small {
+  font-size:12px
+}
+ul,ol {
+  list-style:none
+}
+a {
+  text-decoration:none;
+  color:#bebebe
+}
+a:hover {
+  text-decoration:underline;
+  color:#ba9568
+}
+sup {
+  vertical-align:text-top
+}
+sub {
+  vertical-align:text-bottom
+}
+img {
+  vertical-align:top;
+  border:0;
+  -ms-interpolation-mode:bicubic
+}
+button,input,select,textarea {
+  font-size:100%
+}
+table {
+  border-collapse:collapse;
+  border-spacing:0
+}
+input,button,select,textarea {
+  outline:none
+}
+textarea {
+  resize:none
+}
+.clearfix {
+  *zoom:1
+}
+.clearfix:after {
+  content:'\20';
+  display:block;
+  height:0;
+  clear:both
+}
+.hidden {
+  display:none
+}
+body {
+  background:url(../images/sv_bg.jpg) #030303 no-repeat center top
+}
+.stopbox {
+  width:960px;
+  height:255px;
+  background:url(../images/sv_01.jpg) no-repeat
+}
+.sconbox {
+  width:960px;
+  height:780px;
+  background:url(../images/sv_02.jpg) no-repeat
+}
+.svbox {
+  padding:0 40px 0 345px
+}
+.svbox h3 {
+  height:41px
+}
+.list_ser {
+  padding:20px 28px 9px
+}
+.server_tit {
+  height:21px;
+  margin-top:16px
+}
+.server_tit h4 {
+  height:14px;
+  border-left:4px solid #D57B49;
+  padding-left:9px;
+  line-height:14px;
+  color:#f1c274;
+  font-weight:normal;
+  margin-top:3px
+}
+.fu_box {
+  float:right;
+  height:28px;
+  color:#c99470;
+  padding-right:10px
+}
+.fu_txt {
+  width:46px;
+  height:18px;
+  margin:0 3px 0;
+  padding:0 3px;
+  vertical-align:middle;
+  border:none;
+  color:#5F6152;
+  background:#D3D3D3
+}
+.fu_btn,.server_con a,.nav_a a:hover,.int,.int2,.subtn {
+  background:url(../images/sv_btn.jpg) no-repeat
+}
+.fu_btn {
+  width:63px;
+  height:21px;
+  line-height:21px;
+  color:#a00404;
+  margin:0 0 0 10px;
+  background-position:0 -120px
+}
+.fu_btn:hover {
+  text-decoration:none;
+  color:#a00404;
+  background-position:-100px -120px
+}
+.server_nav {
+  padding:10px 0 0 8px
+}
+.server_nav li {
+  width:88px;
+  height:23px;
+  line-height:22px;
+  margin:10px 10px 0 0;
+  font-size:14px;
+  background:#450e02;
+  a {
+    color: #ae3532;
+  }
+}
+.server_nav li.cur {
+  background:#f99040;
+  a {
+    color:#fff
+  }
+}
+.server_wrap {
+  height:350px;
+  overflow:auto;
+  margin-top:24px;
+  width:565px
+}
+.server_con li {
+  width:176px;
+  height:42px;
+  padding:4px 6px 4px 0
+}
+.server_con a {
+  width:176px;
+  height:42px;
+  font-size:13px;
+  color:#f1c274;
+  line-height:42px
+}
+.server_con a:hover {
+  text-decoration:none;
+  color:#f1c274;
+  background-position:0 -60px
+}
+.server_con a span {
+  width:106px;
+  margin:0 0 0 25px
+}
+.server_zui {
+  padding-top:12px
+}
+.navbox {
+  height:92px
+}
+.slogo {
+  width:152px;
+  height:90px;
+  margin-top:15px
+}
+.nav_a {
+  width:643px;
+  height:69px;
+  margin-top:12px
+}
+.nav_a a {
+  height:69px
+}
+.nav_a a.n1 {
+  width:160px
+}
+.nav_a a.n2 {
+  width:157px
+}
+.nav_a a.n3 {
+  width:157px
+}
+.nav_a a.n4 {
+  width:159px
+}
+.nav_a a.n1:hover {
+  background-position:0 -160px
+}
+.nav_a a.n2:hover {
+  background-position:0 -240px
+}
+.nav_a a.n3:hover {
+  background-position:0 -320px
+}
+.nav_a a.n4:hover {
+  background-position:0 -400px
+}
+.userbox {
+  padding-left:345px
+}
+.userbox h3 {
+  height:39px
+}
+.user {
+  height:106px
+}
+.user_ul {
+  width:402px;
+  padding-top:20px
+}
+.user_ul li {
+  width:100%
+}
+.int,.int2 {
+  width:174px;
+  height:30px;
+  line-height:18px;
+  padding:6px 8px;
+  border:0 none;
+  margin-right:10px;
+  background-position:0 -480px;
+  color:#868686
+}
+.int2 {
+  background-position:0 -530px
+}
+.int_cur {
+  background:#D3D3D3
+}
+.user_txt {
+  margin-top:14px
+}
+.user_txt a {
+  margin-right:38px
+}
+.qq_a {
+  padding-left:19px;
+  height:18px;
+  background:url(../images/qq_bg.png) no-repeat
+}
+.subtn {
+  width:139px;
+  height:68px;
+  background-position:0 -580px;
+  border:none;
+  margin-top:20px
+}
+.subtn:hover {
+  background-position:0 -660px
+}
+.myser {
+  width:270px;
+  padding-top:10px
+}
+.toubox {
+  height:76px;
+  width:275px;
+  padding:10px 14px 0 0;
+  margin-top:12px;
+  border-right:1px dotted #9E4C29
+}
+.tou-a,.tou-a img {
+  width:60px;
+  height:60px
+}
+.p-namebox {
+  padding-left:10px
+}
+.p-name {
+  height:35px;
+  line-height:30px
+}
+.tuichu,.binds {
+  margin-left:15px;
+  color:#ff7800
+}
+.tuichu:hover,.binds:hover {
+  color:#fffbc2
+}
+.u-name,.lvalinks {
+  color:#ffcd55
+}
+.p-vip {
+  height:16px
+}
+.lv_ico {
+  float:left;
+  width:28px;
+  height:11px;
+  margin:3px 10px 0 0;
+  background-image:url(../images/lvico.png);
+  overflow:hidden;
+  background-repeat:no-repeat
+}
+.lv_2 {
+  background-position:0 -15px
+}
+.lv_3 {
+  background-position:0 -31px
+}
+.lv_4 {
+  background-position:0 -47px
+}
+.lv_5 {
+  background-position:0 -62px
+}
+.lv_6 {
+  background-position:0 -78px
+}
+.lv_7 {
+  background-position:0 -95px
+}
+.lv_8 {
+  background-position:0 -111px
+}
+.lv_9 {
+  background-position:0 -127px
+}
+.lv_10 {
+  background-position:0 -143px
+}
+.level_ico {
+  float:left;
+  width:16px;
+  height:16px;
+  background-image:url(../images/vip_level.png);
+  background-repeat:no-repeat;
+  overflow:hidden;
+  margin-right:10px
+}
+.lv0 {
+  background-position:0 -640px
+}
+.lv1 {
+  background-position:0 0
+}
+.lv2 {
+  background-position:0 -80px
+}
+.lv3 {
+  background-position:0 -160px
+}
+.lv4 {
+  background-position:0 -240px
+}
+.lv5 {
+  background-position:0 -320px
+}
+.lv6 {
+  background-position:0 -400px
+}
+.lv7 {
+  background-position:0 -480px
+}
+.lv8 {
+  background-position:0 -560px
+}
+.lv_g1 {
+  background-position:0 -720px
+}
+.lv_g2 {
+  background-position:0 -800px
+}
+.lv_g3 {
+  background-position:0 -880px
+}
+.lv_g4 {
+  background-position:0 -960px
+}
+.lv_g5 {
+  background-position:0 -1040px
+}
+.lv_g6 {
+  background-position:0 -1120px
+}
+.lv_g7 {
+  background-position:0 -1200px
+}
+.lv_g8 {
+  background-position:0 -1280px
+}
+.us_tt {
+  color:#fff3df;
+  height:28px;
+  line-height:28px;
+  padding-left:20px
+}
+.us_tt a {
+  color:#ff7800
+}
+.us_tt a:hover {
+  color:#fffbc2
+}
+.ser-con {
+  padding:4px 0 0 20px
+}
+.ser-con a {
+  margin-bottom:9px;
+  color:#ff7800
+}
+.ser-con a:hover {
+  color:#fffbc2
+}
+.ser-con img {
+  width:16px;
+  height:16px;
+  vertical-align:top;
+  margin-right:12px
+}
+.ser-con span,.ser-con em {
+  margin-left:15px
+}
+.ser-con i {
+  font-family:\5b8b\4f53;
+  margin-left:2px
+}
+
+$f_z: 14px;
+$white: #fff;
+.user_login {
+  text-align: center;
+}
+.nam_box {
+  font-size: $f_z;
+  color: $white;
+  margin-top: 20px;
+  a {
+    color: $white;
+  }
+}
+.user_btn {
+  font-size: $f_z;
+  color: $white;
+  a {
+    color: $white;
+  }
+}
+.user_fu {
+  font-size: $f_z;
+  color: $white;
+  a {
+    color: $white;
+  }
+}

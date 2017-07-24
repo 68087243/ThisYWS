@@ -1,0 +1,82 @@
+<extend name="./Theme/default/Common/Public/layout.html"/>
+
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<import type='css' file="theme.css.index" />
+<import type='css' file="theme.css.kf" />
+<import type='css' file="theme.css.style" />
+
+</block>
+
+
+
+<block name="body">
+<div class="crumbs"><a target="_self" href="{:U('Service/index/index')}">客服中心</a><i>&gt;</i><strong>进度查询</strong>
+</div>
+<div class="kfback">
+<include file="left" />
+<div class="kfright">
+<include file="right" />
+<div class="kfmiddle">
+
+            <div class="kflogin">
+                <div class="kftit"><h2>进度查询</h2></div>
+				<form target="_self" enctype="multipart/form-data"  action="{:U('Service/ticket/query')}" method="post"> 
+                <div class="kfNumber">
+                    <ul>
+                        <li><input placeholder="请输入申诉编号" class="appetxt" id="sno" name="sno"><input type="submit" class="upsubs" value="提交查询"></li>
+                        <li class="kft">输入申诉编号，查询您申诉业务的最新进展。</li>
+                    </ul>
+                </div>
+				</form>
+
+
+
+<div id="yw0" class="grid-view">
+<table class="table-body">
+<thead>
+<tr>
+<th id="yw0_c1">申诉单号</th><th id="yw0_c2">申诉类型</th><th id="yw0_c3">提交日期</th><th id="yw0_c4">处理状态</th><th id="yw0_c5">详情</th><th id="yw0_c6">评分</th></tr>
+</thead>
+<tbody>
+<volist name="datalist" id="vo">
+<tr class="odd">
+<td>{$vo.sno}</td><td><php>echo D('IssueConfig')->getFieldBymap('name',Array('id'=>$vo['type']));</php></td><td><span class="ffs">{$vo.ctime|time_format}</td><td>{$vo.adminstatus}</td><td><a href="{:U('Service/ticket/details',Array('sno'=>$vo['sno']))}" class="ared" target="_blank">详情</a></td><td width="125px"><div class="endcodesbox">
+<empty name="vo.grade">
+<div class="endcodes"><i></i></div>
+<else />
+<div class="endcodes"><i style="width:{$vo['grade']*20}%"></i></div>
+</empty>
+<switch name="vo.grade">
+    <case value="1"><p>1分&nbsp;失望</p></case>
+    <case value="2"><p>2分&nbsp;不满</p></case>
+	<case value="3"><p>3分&nbsp;一般</p></case>
+	<case value="4"><p>4分&nbsp;满意</p></case>
+	<case value="5"><p>5分&nbsp;惊喜</p></case>
+    <default /><switch name="vo.adminstatus">
+				<case value="申诉成功"><p>已审核请评分</p></case>
+				<case value="申诉未通过"><p>已审核请评分</p></case>
+				<case value="申诉中"><p>等申诉完毕再来评分吧</p></case>
+				</switch>
+</switch>
+</div></td>
+</tr>
+</volist>
+</tbody>
+</table>
+<div class="keys" style="display:none" title="/ticket/query"><span>6462</span></div>
+</div>
+            </div>
+
+
+</div>
+</div>
+</div>
+</block>
+
+
+<block name="footer_script">
+<import type='js' file="theme.js.kf" />
+</block>
+

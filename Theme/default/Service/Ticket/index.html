@@ -1,0 +1,179 @@
+<extend name="./Theme/default/Common/Public/layout.html"/>
+
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<import type='css' file="theme.css.index" />
+<import type='css' file="theme.css.kf" />
+<import type='css' file="theme.css.style" />
+
+</block>
+
+
+
+<block name="body">
+<div class="crumbs"><a target="_self" href="{:U('Service/index/index')}">客服中心</a><i>&gt;</i><strong>客服中心</strong>
+</div>
+<div class="kfback">
+	
+	
+	
+	<include file="left" />
+	
+	
+
+	<div class="kfright">
+		<include file="right" />
+		
+<div class="kfmiddle">
+<if condition="($islogin eq 1) AND (empty($__USER__)) ">
+	<include file="login" />
+<else />
+
+		
+
+
+		
+<div id="content">
+    <div class="kftit"><h2>{$meta_title}</h2></div>
+<form target="_self" enctype="multipart/form-data" id="ticketform" action="{:U('Service/ticket/submit')}" method="post"> 
+<foreach name="form_field" item="vo" key="k" >   
+   <div class="kfstit"><h3>{$k}</h3></div>
+       <table class="tableForm">
+        <tbody>
+		<foreach name="vo" item="val" key="key" >   
+        <tr>
+            <th>{$key}</th>
+            <td>
+				<switch name="val.type">
+					<case value="text">
+						<input class="appetxt" name="TicketForm[{$val.name}]" id="TicketForm_{$val.name}" type="text" <notempty name="val.required">required="1"</notempty> />
+                    </case>
+					
+					<case value="select">
+						<select class="selectcss" name="TicketForm[{$val.name}]" id="TicketFindForm_{$val.name}" <notempty name="val.required">required="1"</notempty> >
+						<volist name=":callbackByeval($val['callback'])"  key="selectk" id="selectv">
+							<option value="{$selectk}">{$selectv}</option>
+						</volist>
+						</select>
+					</case>
+					
+					<case value="time">
+						<input class="appetxt" name="TicketForm[{$val.name}]" id="TicketForm_{$val.name}" type="text" <notempty name="val.required">required="1"</notempty> />
+						<script type="text/javascript">$(document).ready(function(){jQuery('#TicketForm_{$val.name}').datepicker(jQuery.extend({showMonthAfterYear:false},jQuery.datepicker.regional['zh-CN'],{'dateFormat':'yy-mm-dd'}));});</script>
+					</case>
+					
+					<case value="textarea">
+						<textarea class="areas" name="TicketForm[{$val.name}]" id="TicketForm_{$val.name}" <notempty name="val.required">required="1"</notempty> ></textarea>
+					</case>
+				
+				
+				</switch>
+				<notempty name="val.required"><span class="musts">*</span></notempty>
+            </td>
+        </tr>
+		</foreach>
+        </tbody>
+    </table>
+</foreach>
+
+<div class="kfstit"><h3>申诉联系方式</h3></div>
+<table class="tableForm">
+	<tbody>
+		<tr>
+          	<th>邮箱地址</th>
+          	<td>
+				<input class="appetxt" name="email" id="email" type="text" required="1"  /><span class="musts">*</span>
+            </td>
+        </tr>
+        <tr>
+          	<th>手机号码</th>
+          	<td>
+				<input class="appetxt" name="mobile" id="mobile" type="text" required="1" /><span class="musts">*</span>
+            </td>
+        </tr>
+        <tr>
+          <th>QQ</th>
+          <td>
+				<input class="appetxt" name="qq" id="qq" type="text" />
+		  </td>
+        </tr>
+	</tbody>
+</table>
+<div class="kfstit"><h3>补充资料</h3>（您可以根据实际情况补充资料，用于提高申诉成功的机会）</div>
+<table class="tableForm">
+	<tbody>
+        <tr>
+          	<th valign="top">备注说明</th>
+          	<td>
+				<textarea class="areas" name="note" id="note"></textarea>
+			</td>
+        </tr>
+        <tr>
+          	<th></th>
+          	<td>
+				<input  name="type"  type="hidden" value="{$tid}"  />
+            	<input type="button" class="upsubs" value="确认提交">
+          	</td>
+        </tr>
+    </tbody>
+</table>
+</form>
+</div>
+</if>
+</div>
+</div>
+</div>
+</block>
+
+
+<block name="footer_script">
+<import type='js' file="theme.js.kf" />
+<import type='css' file="jquery.jquery-ui" />
+<import type='js' file="jquery.jquery-ui-min" />
+<import type='js' file="jquery.jquery-ui-i18n-min" />
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#TICKET_{$tid}').addClass('cur');
+	$(".upsubs").click(function(){
+		var is_submit=0;
+		$("#ticketform input,select,textarea").map(function() {
+			if($(this).attr('required') == "required" && $(this).val() == ""  ){
+				if( $(this).parent().parent().find('.errors').text() == ""){
+					$(this).parent().append('<div class="errors">'+ $(this).parent().parent().find('th').text() +' 不可为空白.</div>');
+					is_submit=1;
+				}
+			}else{
+				$(this).parent().parent().find('.errors').remove();
+			}
+		});
+		
+		if(is_submit == 0){
+			if(!IsEmail($('#email').val())){
+				$('#email').parent().append('<div class="errors">'+ $('#email').parent().parent().find('th').text() +' 错误.</div>');
+				return;
+			}else{
+				$('#email').parent().parent().find('.errors').remove();
+			}
+			
+			if(!IsMobile($('#mobile').val())){
+				$('#mobile').parent().append('<div class="errors">'+ $('#mobile').parent().parent().find('th').text() +' 错误.</div>');
+				return;
+			}else{
+				$('#mobile').parent().parent().find('.errors').remove();
+			}
+			$("#ticketform").submit();
+		}
+	});
+});
+function IsEmail(email){
+	var regx= /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+	return(regx.test(email));
+}
+function IsMobile(mobile){
+	var regx = /^0?1[3|4|5|7|8][0-9]\d{8}$/;
+	return(regx.test(mobile));
+}
+</script>
+</block>
+

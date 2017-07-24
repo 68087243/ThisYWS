@@ -1,0 +1,3 @@
+<cross-domain-policy>
+<allow-access-from domain="www.yiwanshu.com"/>
+</cross-domain-policy>

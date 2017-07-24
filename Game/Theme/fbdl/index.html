@@ -1,0 +1,250 @@
+<extend name="./Theme/default/Common/Game/layout_theme_one.html"/>
+<block name="title"><title>{$meta_title}-{:C('WEB_SITE_TITLE')}{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<import type='css' file="theme.theme_one.css.index" />
+<style type="text/css">
+.rw_con{}
+.rw_wrap{position:relative;height:279px;color:#AD7B5C;}
+.rw_nav{position:absolute;width:56px;height:80px;top:8px;left:220px;}
+.rw_nav span{display:block;height:26px;margin-bottom:4px;line-height:26px;text-align:center;font-size:14px;color:#fff;background:#374a61;cursor:pointer;}
+.rw_nav span.cur{font-weight:bold;background:#2D3E52;}
+.rw_tu1{height:207px;padding-top:76px;background:url(/Game/Theme/fbdl/images/role1.jpg) no-repeat;}
+.rw_tu2{height:207px;padding-top:76px;background:url(/Game/Theme/fbdl/images/role2.jpg) no-repeat;}
+.rw_tu3{height:207px;padding-top:76px;background:url(/Game/Theme/fbdl/images/role3.jpg) no-repeat;}
+.rw_tu4{height:207px;padding-top:76px;background:url(/Game/Theme/fbdl/images/role4.jpg) no-repeat;}
+.rw_tu5{height:207px;padding-top:76px;background:url(/Game/Theme/fbdl/images/role5.jpg) no-repeat;}
+.rw_tu6{height:207px;padding-top:76px;background:url(/Game/Theme/fbdl/images/role6.jpg) no-repeat;}
+.rw_txt{line-height:2.0;color:#172033;padding:20px 0 0 32px;width:280px;}
+.rw_txt span{color:#e85948;font-size:16px;}
+.pic_tt{height:55px;background:#11242d;}
+.pic_tt h2{padding-left:23px;color:#fff;font-size:16px;line-height:55px;}
+.pic_box{position:relative;height:445px;background:url(/Game/Theme/fbdl/images/order_bg.jpg) no-repeat;}
+.pic_box a{position:absolute;text-align:center;width:80px;height:30px;display:inline-block;}
+.pic_box a:hover{text-decoration:none;}
+.pic_box a span{display:block;color:#fff9dd;font-size:12px;line-height:12px;}
+.pic_box a:hover span{color:#EEA177;}
+.pic_box a.text1{top: 54px;left: 201px;}
+.pic_box a.text2{top: 79px;left: 158px;}
+.pic_box a.text3{top: 104px;left: 199px;}
+.pic_box a.text4{top: 132px;left: 157px;}
+.pic_box a.text5{top: 157px;left: 203px;}
+.pic_box a.text6{top: 182px;left: 248px;}
+.pic_box a.text7{top: 158px;left: 294px;}
+.pic_box a.text8{top: 133px;left: 342px;}
+
+.pic_box a.text9{top: 105px;left: 387px;}
+.pic_box a.text10{top: 80px;left: 431px;}
+.pic_box a.text11{top: 104px;left: 478px;}
+.pic_box a.text12{top: 129px;left: 523px;}
+.pic_box a.text13{top: 104px;left: 569px;}
+.pic_box a.text14{top: 129px;left: 614px;}
+.pic_box a.text15{top: 151px;left: 662px;}
+.pic_box a.text16{top: 177px;left: 706px;}
+
+.pic_box a.text17{top: 202px;left: 664px;}
+.pic_box a.text18{top: 226px;left: 615px;}
+.pic_box a.text19{top: 250px;left: 570px;}
+.pic_box a.text20{top: 276px;left: 526px;}
+.pic_box a.text21{top: 251px;left: 477px;}
+.pic_box a.text22{top: 225px;left: 433px;}
+.pic_box a.text23{top: 251px;left: 387px;}
+.pic_box a.text24{top: 276px;left: 339px;}
+
+.pic_box a.text25{top: 301px;left: 384px;}
+.pic_box a.text26{top: 325px;left: 430px;}
+.pic_box a.text27{top: 350px;left: 477px;}
+.pic_box a.text28{top: 372px;left: 522px;}
+.pic_box a.text29{top: 396px;left: 569px;}
+.pic_box a.text30{top: 372px;left: 614px;}
+
+.pic_box a.text31{top: 347px;left: 660px;}
+.pic_box a.text32{top: 322px;left: 706px;}
+.pic_box a.text33{top: 300px;left: 750px;}
+.pic_box a.start{top: 43px;left: 154px;}
+.pic_box a.end{top: 285px;left: 796px;}
+</style>
+</block>
+
+
+<block name="body"><div id="temp3">
+                <div class="JQ-content-box">
+                    <ul class="JQ-slide-content">
+                    <li><a title="vip俱乐部 乐享至尊会员特权" href="#"><img src="http://static.2144.cn/news/uploads/20151215/dq27tcmo.jpg"></a></li>
+					<li><a title="指导员火爆招募 海量元宝周周发" href="#"><img src="http://static.2144.cn/news/uploads/20151215/p6q3jsn6.jpg"></a></li>
+					<li><a title="大礼天天送  豪礼享不停" href="#"><img src="http://static.2144.cn/news/uploads/20151215/m5rhslmj.jpg"></a></li>                    </ul>
+                    <ul class="JQ-slide-nav">
+                        <li class=""></li>
+                        <li class=""></li>
+                        <li class="on"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="news_box">
+                <div class="newslist">
+                    <div class="news_nav">
+                        <span class="">最新</span>
+						<corethink:category_list name="side_category" post_auth='1' num='4' >
+							<span class="">{$side_category.title|mb_substr=###,2,2,'utf-8'}</span>
+						</corethink:category_list>
+                        <a href="{:U($gamedata['mark'].'/news_list')}" class="nav_m">MORE+</a>
+                    </div>
+                    <div class="news_con">
+					<ul class="news_ul clearfix" style="display: block;">
+					<volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],false,5,'PublicTheme_getNewsListByGid_2016_5_false_1'))" id="vo">
+                            <li><span> {$vo.ctime|date="m-d",###}</span><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a></li>
+					</volist>
+					</ul>
+					
+					
+					<corethink:category_list name="side_category" post_auth='1' num='4' >
+							<ul class="news_ul clearfix hidden" style="display: none;">
+							<volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],$side_category['id'],5,'PublicTheme_getNewsListByGid_2016_5_false_2'))" id="vo">
+                            <li><span> {$vo.ctime|date="m-d",###}</span><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a></li>
+							</volist>
+							</ul>
+					</corethink:category_list>
+                    </div>
+
+                </div>
+                <a href="{:U($gamedata['mark'].'/news_read',Array('id'=>5))}" class="vip_img">VIP特权</a>
+
+            </div>
+            <div class="img_list">
+                <a href="{:U($gamedata['mark'].'/news_read',Array('id'=>4))}">
+                    <strong>玩家守则</strong>
+                    <span>了解更多活动</span>
+                    <i>GO</i>
+                </a>
+                <a href="{:U($gamedata['mark'].'/news_read',Array('id'=>6))}" class="i_a2">
+                    <strong>王权争霸</strong>
+                    <span>了解更多特权</span>
+                    <i>GO</i>
+                </a>
+                <a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>7))}" class="i_a3">
+                    <strong>精彩活动</strong>
+                    <span>了解更多活动</span>
+                    <i>GO</i>
+                </a>
+            </div>
+            <div class="data2">
+                <div class="rw_box">
+                    <div class="rw_tit" id="rw_tit">
+                        <a class="cur">
+                            <img src="http://static.2144.cn/web/theme/module/fbdl/images/rw1.jpg" alt="">
+                            <span>剑士</span>
+                            <em></em>
+                        </a>
+                        <a class="">
+                            <img src="http://static.2144.cn/web/theme/module/fbdl/images/rw2.jpg" alt="">
+                            <span>魔导</span>
+                            <em></em>
+                        </a>
+                        <a class="">
+                            <img src="http://static.2144.cn/web/theme/module/fbdl/images/rw3.jpg" alt="">
+                            <span>游侠</span>
+                            <em></em>
+                        </a>
+                    </div>
+                    <div class="rw_con" id="rw_con">
+                        <div class="rw_wrap" style="display: block;">
+                            <div class="rw_nav">
+                                <span class="cur">男</span>
+                                <span>女</span>
+                            </div>
+                            <div class="tu_box">
+                                <div class="rw_tu1">
+                                    <p class="rw_txt">
+                                        剑是武器中的王者，剑士是人族最勇猛的英雄。<br>他们擅于在近战中展示娴熟而霸气的武技，<br>用魁梧的身躯和勇猛的气魄冲锋在一切战斗的前线。<br>
+                                        定位：近战 物理<br><br>
+                                        推荐指数：<span>★★★★★</span>
+                                    </p>
+                                </div>
+                                <div class="rw_tu2 hidden" style="display: none;">
+                                    <p class="rw_txt">
+                                        剑是武器中的王者，剑士是人族最勇猛的英雄。<br>他们擅于在近战中展示娴熟而霸气的武技，<br>用魁梧的身躯和勇猛的气魄冲锋在一切战斗的前线。<br>
+                                        定位：近战 物理<br><br>
+                                        推荐指数：<span>★★★★★</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rw_wrap hidden" style="display: none;">
+                            <div class="rw_nav">
+                                <span class="cur">男</span>
+                                <span>女</span>
+                            </div>
+                            <div class="tu_box">
+                                <div class="rw_tu3">
+                                    <p class="rw_txt">
+                                        毁灭的吟唱开始之际，绚丽的魔法在他们手中化为猛兽吞噬一切黑暗。魔导熟练掌控天地间的冰与火，让魔法演变为手中利器，能控敌制敌，强大的伤害输出让他们成为远程的操控者。<br>
+                                        定位：远程 法术<br><br>
+                                        推荐指数：<span>★★★★★</span>
+                                    </p>
+                                </div>
+                                <div class="rw_tu4 hidden">
+                                    <p class="rw_txt">
+                                        毁灭的吟唱开始之际，绚丽的魔法在他们手中化为猛兽吞噬一切黑暗。魔导熟练掌控天地间的冰与火，让魔法演变为手中利器，能控敌制敌，强大的伤害输出让他们成为远程的操控者。<br>
+                                        定位：远程 法术<br><br>
+                                        推荐指数：<span>★★★★★</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rw_wrap hidden" style="display: none;">
+                            <div class="rw_nav">
+                                <span class="cur">男</span>
+                                <span>女</span>
+                            </div>
+                            <div class="tu_box">
+                                <div class="rw_tu5">
+                                    <p class="rw_txt">
+                                        丛林的守护者，背着弓箭游走四方，带着自然的馈赠在大陆中维护正义。游侠擅于使用弓箭，是远程的狙击手，拥有召唤丛林生物和元素的能力，攻击手段千变万化。<br>
+                                        定位：远程 物理<br><br>
+                                        推荐指数：<span>★★★★★</span>
+                                    </p>
+                                </div>
+                                <div class="rw_tu6 hidden">
+                                    <p class="rw_txt">
+                                        丛林的守护者，背着弓箭游走四方，带着自然的馈赠在大陆中维护正义。游侠擅于使用弓箭，是远程的狙击手，拥有召唤丛林生物和元素的能力，攻击手段千变万化。<br>
+                                        定位：远程 物理<br><br>
+                                        推荐指数：<span>★★★★★</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="dot_list">
+                    <div class="dot_tt">
+                        <h2>游戏攻略</h2>
+                        <a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>5))}" class="dot_m">MORE+</a>
+                    </div>
+                    <ul class="dot_ul clearfix">
+							<volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],5,5,'PublicTheme_getNewsListByGid_2016_5_false_3'))" id="vo">
+                            <li><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a></li>
+							</volist>
+                    </ul>
+                    <a href="{:U('Forum/'.$gamedata['mark'].'/index')}" class="fb_btn"><span>我要发表攻略</span></a>
+                </div>
+            </div>
+            <div class="pic_tt">
+                <h2>游戏系统开启</h2>
+            </div>
+            <div class="pic_box">
+                <a class="start" href="{$gameurl}"><span class="font1">起点</span><span class="font2"></span></a>
+                <a class="text1" href="#"><span class="font1"></span><span class="font2">12级<br />坐骑介绍</span></a><a class="text2" href="#"><span class="font1"></span><span class="font2">20级<br />精灵介绍</span></a><a class="text3" href="#"><span class="font1"></span><span class="font2">26级<br />锻造系统</span></a><a class="text4" href="#"><span class="font1"></span><span class="font2">28级<br />宠物介绍</span></a><a class="text5" href="#"><span class="font1"></span><span class="font2">32级<br />试炼副本</span></a><a class="text6" href="#"><span class="font1"></span><span class="font2">34级<br />英雄远征</span></a><a class="text7" href="#"><span class="font1"></span><span class="font2">35级<br />精英副本</span></a><a class="text8" href="#"><span class="font1"></span><span class="font2">36级<br />女神守卫</span></a><a class="text9" href="#"><span class="font1"></span><span class="font2">38级<br />公会系统</span></a><a class="text10" href="#"><span class="font1"></span><span class="font2">40级<br />圣翼介绍</span></a><a class="text11" href="#"><span class="font1"></span><span class="font2">40级<br />精英BOSS</span></a><a class="text12" href="#"><span class="font1"></span><span class="font2">40级<br />智斗答题</span></a><a class="text13" href="#"><span class="font1"></span><span class="font2">42级<br />冥想系统</span></a><a class="text14" href="#"><span class="font1"></span><span class="font2">42级<br />护送晶矿</span></a><a class="text15" href="#"><span class="font1"></span><span class="font2">45级<br />藏宝图挖宝</span></a><a class="text16" href="#"><span class="font1"></span><span class="font2">45级<br />夺宝奇兵</span></a><a class="text17" href="#"><span class="font1"></span><span class="font2">45级<br />奇袭六魔</span></a><a class="text18" href="#"><span class="font1"></span><span class="font2">45级<br />诸神竞技场</span></a><a class="text19" href="#"><span class="font1"></span><span class="font2">45级<br />王权争霸</span></a><a class="text20" href="#"><span class="font1"></span><span class="font2">45级<br />神魔战场</span></a><a class="text21" href="#"><span class="font1"></span><span class="font2">45级<br />阳光沙滩</span></a><a class="text22" href="#"><span class="font1"></span><span class="font2">45级<br />天降横财</span></a><a class="text23" href="#"><span class="font1"></span><span class="font2">50级<br />世界BOSS</span></a><a class="text24" href="#"><span class="font1"></span><span class="font2">50级<br />采矿任务</span></a><a class="text25" href="#"><span class="font1"></span><span class="font2">51级<br />猎魔任务</span></a><a class="text26" href="#"><span class="font1"></span><span class="font2">56级<br />组队爬塔</span></a><a class="text27" href="#"><span class="font1"></span><span class="font2">56级<br />神装介绍</span></a><a class="text28" href="#"><span class="font1"></span><span class="font2">58级<br />神兵介绍</span></a><a class="text29" href="#"><span class="font1"></span><span class="font2">60级<br />宝石强化</span></a><a class="text30" href="#"><span class="font1"></span><span class="font2">60级<br />精英守卫</span></a><a class="text31" href="#"><span class="font1"></span><span class="font2">60级<br />战魂介绍</span></a><a class="text32" href="#"><span class="font1"></span><span class="font2">63级<br />神器介绍</span></a><a class="text33" href="#"><span class="font1"></span><span class="font2">65级<br />战旗介绍</span></a>                <a class="end" href="{$gameurl}"><span class="font1">终点</span><span class="font2"></span></a>
+
+            </div>
+
+
+        </div>
+
+</block>
+
+<block name="footer_script">
+<import type='js' file="theme.theme_one.js.index" />
+<import type='js' file="theme.theme_one.js.slide" />
+
+</block>

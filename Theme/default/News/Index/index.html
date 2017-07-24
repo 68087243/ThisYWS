@@ -1,0 +1,108 @@
+<extend name="./Theme/default/Common/Public/layout.html"/>
+
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<import type='css' file="theme.css.index" />
+<import type='css' file="theme.css.kf" />
+<import type='css' file="theme.css.style" />
+
+</block>
+
+
+
+<block name="body">
+<php>$bgad=M('Bgad')->select();</php>
+<div class="w-topban"><a href="{$bgad.4.url}" style="background:url({$bgad.4.pic|get_cover=###}) no-repeat center top;background-size:100% 100%;">免费领元宝，免费领礼包！</a>
+</div>
+
+<div class="kfhelpbox">
+    <div class="w-article">
+		<div class="w-tit">
+			<h2 class="w-tit-newkf">最新开服</h2>
+			<div class="w-kfitemtab" id="newkfbtns"></div>
+		</div>
+		<div class="w-jjkflist" id="newkfcons">
+					
+		</div>
+
+        <div class="w-tit">
+            <h2 class="w-tit-requst">常见问题</h2>
+        </div>
+
+        <div class="w-helpreq">
+            <ul class="kfrank">
+				<volist name=":W('Common/Document/getListByCid',array(5,4,'NewsHelpCenter'))" id="vo">
+					 <li><a href="{:U('News/Read/'.$vo['id'])}">{$vo.title}</a></li>
+				</volist>
+            </ul>
+
+            <div class="kfcontact">
+                <p>热线：<b>{:C('WEB_SITE_MOBILE')}</b></p>
+
+                <p>QQ：<b>{:C('WEB_SITE_QQ')}</b></p>
+                <a href="{:U('Service/index/index')}">在线提问</a>
+            </div>
+        </div>
+    </div>
+
+
+	
+    <div class="w-artof">
+        <div class="w-tit">
+            <h2 class="w-tit-helptit">新闻列表</h2>
+
+            <div class="crumbs-help"><a href="{:U('News/Index/Index')}" target="_self" >资讯中心</a><i>&gt;</i><strong>新闻列表</strong></div>
+        </div>
+        
+        <div class="d-news">
+          
+            
+          
+<h4>
+<a href="{:U('News/index/index')}"  target="_self"  id="NEWS_NAV_0" >最新</a>
+<corethink:category_list name="side_category" post_auth='0' >
+<a href="{:U('News/index/'.$side_category['id'])}" target="_self" id="NEWS_NAV_{$side_category.id}" >{$side_category.title}</a>
+</corethink:category_list>
+</h4>
+		  
+		  
+		  
+          <div class="d-news_list">
+            <ul class="newsList">
+			<volist name="volist" id="vo">
+				 <li><em>[<php>echo D('Category')->getFieldBymap('title',Array('id'=>$vo['cid']));</php>]</em><a href="{:U('News/Read/'.$vo['id'])}">{$vo.title}</a><span>{$vo.ctime|date="Y-m-d",###}</span></li>
+			</volist>
+            </ul>
+            <form action="#">
+			
+			 <div class="pagnation" id="pagnation">
+                {$page}
+              </div>
+            </form>
+          </div>
+        </div>
+  </div>
+</div>
+</block>
+
+
+<block name="footer_script">
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+	$('#NEWS_NAV_{$cid}').addClass('cur');
+	$('#pagnation>.active>a').addClass('pageOn');
+　　var pagnation=$('#pagnation').html();
+	pagnation = pagnation.replace('<li class="active current">',"");
+	var re=new RegExp("<li>","g");
+	pagnation = pagnation.replace(re,"");
+	re=new RegExp("</li>","g");
+	pagnation = pagnation.replace(re,"");
+	$('#pagnation').html(pagnation);
+}); 
+	
+</script>
+<import type='js' file="theme.js.index" />
+</block>
+

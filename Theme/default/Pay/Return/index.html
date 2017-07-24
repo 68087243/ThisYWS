@@ -1,0 +1,71 @@
+<extend name="./Theme/default/Common/Public/layout.html"/>
+
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<import type='css' file="theme.css.index" />
+<import type='css' file="theme.css.pay" />
+</block>
+
+
+
+<block name="body">
+<div class="p_seccess">
+		<div class="p_infobox">
+						<div class="p_info_t p_t2">
+			<h3 class="pf_h3">您的订单已提交！到账时间可能会有延迟。</h3>
+			<p class="pf_p"><span>建议您5分钟后刷新游戏查收，可查看<a href="{:U('User/recharge/index')}">我的充值记录</a>，若有疑问请联系</span><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={:C('WEB_SITE_QQ')}&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:{:C('WEB_SITE_QQ')}:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></p>
+			</div>
+						<ul class="p_info_ul clearfix">
+				<li><span>充值方式：</span>{$paydata.type_name}</li>
+				<switch name="paydata.platform">
+					<case value="0"><li><span>充值游戏：</span>{$paydata.game_name}&nbsp;&nbsp;{$paydata.server_name}</li></case>
+				</switch>
+				
+				<li><span>订单编号：</span><strong>{$paydata.order}</strong></li>
+				<li><span>充值帐号：</span>{$paydata.paytoname}</li>
+				<li><span>充值金额：</span>{$paydata.payamount}&nbsp;元人民币</li>
+				
+				<switch name="paydata.platform">
+					<case value="0"><li><span>收到{$paydata.unit}：</span><strong class="p_info_coin">{$paydata.virtualamount}&nbsp;{$paydata.unit}</strong></case>
+					<case value="1"><li><span>收到{:C('CURRENCY_NAME')}：</span><strong class="p_info_coin">{$paydata.virtualamount}&nbsp;{:C('CURRENCY_NAME')}</strong></case>
+				</switch>
+				
+				
+				
+				
+				
+				<!--<a href="#" class="vip_link">&gt;&gt;&nbsp;充值就送VIP成长值</a>--></li>
+			</ul>
+			<div class="p_info_a">
+				<a href="{:U('Pay/index/index')}">继续充值</a>
+				<a href="{:U('Home/index/index')}">返回平台</a>
+			</div>
+
+
+			
+
+		</div>
+		<div class="p_btmtips">
+								<div class="p_tips1">
+				<strong>温馨提示</strong>
+				<p class="p_tips_p">充值赠送VIP成长值<a href="{:U('User/Vip/index')}">[查看我的特权]</a></p>
+				<p class="p_tips_p">90%的充值玩家绑定了手机，正在享受安全手机特权<a href="{:U('User/safe/index')}">[马上绑定]</a></p>
+				</div>
+			<div class="p_tips2">
+				<strong>充值问题</strong>
+				<ul class="p_tips_ul">
+					<li><a href="{:U('News/Read/12')}">传奇类游戏提取元宝教程</a></li>
+					<li><a href="{:U('News/Read/12')}">网页游戏充值常见问题</a></li>
+					<li><a href="{:U('News/Read/12')}">怎么给别人的账号充值？</a></li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+</block>
+
+
+<block name="footer_script">
+</block>
+

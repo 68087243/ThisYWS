@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=7">
+<meta name="keywords" content="最新网页游戏,网页游戏大全,{:C('WEB_SITE_TITLE')}网页游戏平台" />
+<meta name="description" content="{:C('WEB_SITE_TITLE')}网页游戏汇集了最新网页游戏、网页游戏资讯、网页游戏大全、网页游戏排行榜，更多精彩攻略、游戏截图、玩家交流尽在{:C('WEB_SITE_TITLE')}网页游戏平台。" />
+<import type='css' file="theme.css.common" />
+<title>{:C('WEB_SITE_TITLE')}{$game.name}</title>
+<script type="text/javascript">
+{:W('Common/Public/script')}
+</script>
+<import type='js' file="jquery.jquery183min" />
+<import type='css' file="theme.css.header20141205" />
+<base target="_blank">
+<div class="f-header">
+    <div class="f-hl">
+        <div class="f-log"><a href="{:U('Home/Index/index')}">{:C('WEB_SITE_TITLE')}</a></div>
+        <div class="f-tit">{$game.name}-<span>{$server.name}</span></div>
+        <div class="f-users">帐号：<strong><notempty name="__USER__">{$__USER__.username}<else />Guest</notempty></strong></div>
+    </div>
+    <ul class="f-lists" id="sorllswrap">
+			<php>$empty='<li><a href="#" target="_self">暂无新闻</a></li>';</php>
+			<volist name=":W('Common/Game/GameNews',array($game['id'],3,'GatewayGamesNews'))" id="vo" empty="$empty">
+				<li><a href="{:U('News/Read/'.$vo['id'])}"><php>echo D('Document')->getFieldBymap('title',Array('id'=>$vo['id']));</php></a></li>
+			</volist>
+    </ul>
+
+    <div class="f-hr">
+        <div class="f-hnavs" id="f-hnavId">
+            <a href="{:U('Game/index/index')}" class="hotlink">热门游戏</a>
+            <div class="f-shownav">
+                <div class="f-upjian"></div>
+                <div class="f-subboxs">
+                    <div class="f-subwrap">
+                        <ul>
+						<volist name=":W('Common/Game/RecommendedGame',array('r',15,'GatewayGamesReimen'))" id="vo">
+							<li><a href="{$vo.gameurl}">{$vo.name}<notempty name='vo.flags.r'><i class="f-hot"></i><else /><notempty name='vo.flags.x'><i class="f-new"></i><else /><i></i></notempty></notempty></a>
+						</volist>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <span class="f-navs"><a href="javascript:boss_();" style="width: 83px;height: 25px;background: url(/Public/theme/images/boss_btn.jpg) no-repeat;text-indent: -9999px;" title="记得关声音(*^__^*)" target="_self" >老板来了</a><a href="<php>echo D('Game')->getGameUrl($game['id']);</php>">官网</a><a href="{:U('Pay/index/'.$game['id'])}" class="a1">充值</a><notempty name="game.qqgroup"><a href="{:U('Api/Tool/qun',Array('num'=>$game['qqgroup']))}" target="_blank" style="color:#249908" >一键加群</a></notempty><a href="{:U('Service/index/index')}">客服</a><a href="{:U('Gift/'.$game['mark'].'/index')}" id="a3">新手卡</a><a href="javascript:void(0)" target="_self" id="a4">收藏</a><a href="{:U('Home/index/desktop')}" id="a5">放到桌面</a><notempty name="_extend_home_api"><foreach name="_extend_home_api" item="vo" ><a href="{:D('Game')->getGameUrl($game['id'],$key)}?gid={$game.id}&sid={$server.id}" style="color:#5CFF0B;"target="_blank" >{$vo}</a></foreach></notempty></span>
+    </div>
+</div>
+<div id="header_b" style="display:none;">
+   <a href="javascript:boss_();" style="display:none;width: 74px;height: 28px;background: url(/Public/theme/images/back.jpg) no-repeat;margin-top: 2px;text-indent: -9999px;" target="_self">返回</a>
+</div>
+
+<iframe  id="frame-body" src="{:U('Gateway/game/bridge',Array('gid'=>$game['id'],'sid'=>$server['id']))}"  frameborder="0" scrolling="auto" noresize="noresize" style="width:100%;background:#000;position:absolute;left:0;top:30px;z-index:1;"></iframe>
+<iframe  id="frame-baidu" src="{:U('Gateway/game/baidu',Array('gid'=>$game['id'],'sid'=>$server['id']))}"  frameborder="0" scrolling="auto" noresize="noresize" style="display:none;width:100%;height: auto;background:#000;position:absolute;left:0;top:30px;z-index:1;"></iframe>
+<script type="text/javascript">
+;(function(obj){
+	var win = window,
+		doc = document,
+		contents = doc.getElementById('frame-body');
+
+	obj = {
+				EventUtil : {
+			        	addHandler: function(elem,type,handler){
+			                if (elem.addEventListener) {
+			                        elem.addEventListener(type, handler, false);
+			                }else if(elem.attachEvent){
+			                        elem.attachEvent('on'+type,handler);
+			                }else{
+			                        elem["on"+type] = handler;
+			                }
+			            },
+			            removeHandler: function(elem,type,handler){
+			                if (elem.removeEventListener) {
+			                        elem.removeEventListener(type, handler, false);
+			                }else if(elem.attachEvent){
+			                        elem.detachEvent('on'+type,handler);
+			                }else{
+			                        elem["on"+type] = handler;
+			                }
+			            },
+			            getEvent: function(event){
+			                    return event ? event : window.event;
+			            },
+			            getTarget: function(event){
+			                    return event.target || event.srcElement;
+			            },
+			            preventDefault: function(event){
+			                if(event.preventDefault){
+			                        event.preventDefault();
+			                }else{
+			                        event.returnValue = false;
+			                }
+			            },
+			            stopPropagation: function(event){
+			                if(event.stopPropagation){
+			                        event.stopPropagation();
+			                }else{
+			                        event.cancelBubble = true;
+			                }
+			            }
+			    },
+			    Quad : function(start,alter,curTime,dur){
+                        return start+Math.pow(curTime/dur,2)*alter;
+                },
+			    animate : function(obj,start,alter,dur,fx,callback){
+                        var curTime = 0,
+                            interval = setInterval(function(){
+                                    if(curTime >= dur){
+                                            clearInterval(interval);
+                                            if(typeof callback == 'function'){
+                                                    callback();
+                                                    return;
+                                            }
+                                    }
+                                    for(var i in start){
+                                            obj.style[i] = fx(start[i],alter[i],curTime,dur) + "px";
+                                    }
+                                    curTime += 50;
+                            },100);
+                },
+			    slideTop : function(){
+		                var swrap = doc.getElementById('sorllswrap'),
+		                    sli = swrap.getElementsByTagName('li')[0],
+		                    h = sli.offsetHeight;
+		                 obj.animate(sli,{'marginTop':0},{'marginTop':-h},500,obj.Quad,function(){
+		                    sli.style.marginTop = 0;
+		                    swrap.appendChild(sli);
+		                 });
+		        },
+		        getIframHeight : function(){
+		        		contents.style.height = (doc.body.offsetHeight - 30) + 'px';
+		        		if(doc.body.offsetWidth < 1060){
+		        				doc.getElementById('a3').style.display = 'none';
+		        				doc.getElementById('a4').style.display = 'none';
+		        				doc.getElementById('a5').style.display = 'none';
+		        		}else{
+		        				doc.getElementById('a3').style.display = 'inline-block';
+		        				doc.getElementById('a4').style.display = 'inline-block';
+		        				doc.getElementById('a5').style.display = 'inline-block';
+		        		}
+		        },
+		        setSrc : function(){
+						var $GET = (function(){
+								var str = win.location.search,
+									temp = {},
+									i = 0;
+								if(!str){
+									return temp;
+								}
+								str = str.indexOf("?") == 0 ? str.replace(/\?/i,'') : str;
+								str = str.split("&");
+								for(;i < str.length;i++){
+									str[i] = str[i].split("=");
+									temp[str[i][0]] = str[i][1];
+								}
+								return temp;
+						})();
+		        },
+			    inIt : function(){
+					    		var t = setInterval(obj.slideTop,5000),
+					    		hnav = doc.getElementById('f-hnavId');
+					    		obj.setSrc();
+					    		obj.getIframHeight();
+					    		obj.EventUtil.addHandler(win,'resize',function(){
+					    				obj.getIframHeight();
+					    		});
+					    		obj.EventUtil.addHandler(hnav,'mouseover',function(){
+					    				hnav.className = 'f-hnavs f-hnavs-cur';
+					    				var doc = document,
+					    					iframes = doc.getElementById('noneiframe'),
+					    					createiframe = null;
+					    				if(!iframes){
+												createiframe = document.createElement('iframe');
+												createiframe.src =  'about:blank';
+												createiframe.frameBorder = '0';
+												createiframe.scrolling = 'no';
+												createiframe.id = 'noneiframe';
+												hnav.appendChild(createiframe);
+					    				}
+					    		});
+								
+								
+					    		obj.EventUtil.addHandler(hnav,'mouseout',function(){
+					    				hnav.className = 'f-hnavs';
+					    				hnav.removeChild(document.getElementById('noneiframe'));
+					    		});
+					    		obj.EventUtil.addHandler(doc.getElementById('sorllswrap'),'mouseover',function(){
+					    				clearInterval(t);
+					    		});
+					    		obj.EventUtil.addHandler(doc.getElementById('sorllswrap'),'mouseout',function(){
+					    				t = setInterval(obj.slideTop,5000);
+					    		});
+			    }
+	}
+	obj.inIt();
+})(window.playGP || {});
+
+function addfav(){
+        var hand=document.getElementById("a4");
+            if(!hand) return;
+        hand.onclick=function(){
+            var ua = navigator.userAgent.toLowerCase(),
+                url ='{:U('Home/index/index')}',
+                sitename ='{:C('WEB_SITE_TITLE')} - {:domain()}',
+                vctrl = (navigator.userAgent.toLowerCase()).indexOf('mac') != -1 ? 'Command/Cmd' : 'CTRL';
+            if(ua.indexOf("msie 8")>-1){
+                    external.AddToFavoritesBar(url,sitename,"");//IE8
+            }else{
+                try{
+                    window.external.addFavorite(url,sitename);
+                }catch(e){
+                  try{
+                  window.sidebar.addPanel(sitename,url,"");//firefox
+                  }catch(e){
+                    alert('\u60A8\u53EF\u4EE5\u5C1D\u8BD5\u901A\u8FC7\u5FEB\u6377\u952E' + vctrl + ' + D \u52A0\u5165\u5230\u6536\u85CF\u5939!');
+                  }
+                }
+            }
+        }
+ }
+function addLoadEvent(func){
+    var oldonload=window.onload;
+    if(typeof window.onload!='function'){
+      window.onload=func;
+    }else{
+      window.onload=function(){
+       oldonload();
+       func();
+      }
+    }
+}
+addLoadEvent(addfav);
+var is_baidu=0;
+$("#frame-baidu").load(function(){
+var mainheight = $("body").height()+30;
+$(this).height(mainheight);
+});
+ $(document).keydown(function (event) {
+    if (event.keyCode == 16) {
+     boss_();
+    }
+});
+function boss_(){
+if(is_baidu==0){
+	$("#header_b a").css("display","block");
+	is_baidu=1;
+	parent.document.title="百度一下，你就知道";
+}else{
+	$("#header_b a").css("display","none");
+	is_baidu=0;
+	parent.document.title="{$game.name}-{$server.name}激情游戏中";
+}
+
+	$("#header_b").toggle();
+	$(".f-header").toggle();
+	$("#frame-baidu").toggle();
+	$("#frame-body").toggle();
+}
+</script>
+
+    
+<script type="text/javascript">
+$(function(){
+	//username
+	$("#LoginForm_username").focus(function(){
+		$(this).css("background-position","0 -80px");
+		var txt_value=this.value;
+		if(txt_value==this.defaultValue){this.value='';}
+	}).blur(function(){
+		$(this).css("background-position","0 0");
+		var txt_value=this.value;
+		if(txt_value==''){this.value=this.defaultValue}
+	});
+	//password
+	$("#passtips").click(function(){
+		$(this).hide();
+		$("#LoginForm_password").focus();
+	})
+	$("#LoginForm_password").focus(function(){
+		$("#passtips").hide();
+	}).blur(function(){
+		$("#passtips").show();
+		if($(this).val()!="") $("#passtips").hide();
+	})
+	$("#LoginForm_password").focus(function(){
+		$(this).css("background-position","0 -120px");
+	}).blur(function(){
+		$(this).css("background-position","0 -40px");
+	})
+	
+	//photo slide
+	$("#ph_nav>span").mouseover(function(){
+		var index=$("#ph_nav>span").index(this);
+		$(this).addClass('cur').siblings().removeClass('cur');
+		 if( !$("#ph_box p").is(":animated") ){ 
+			$("#ph_box>p").animate({left: -(942*index)},50);
+		 }
+	});
+	$("#LoginForm_password").blur();
+	$("#LoginForm_username").blur();
+});
+
+//laba
+$(function(){
+	var _wrap=$('.laba');
+	var _interval=2000;
+	var _moving;
+	_wrap.hover(function(){
+	 clearInterval(_moving);
+	},function(){
+	 _moving=setInterval(function(){
+		 var _field=_wrap.find('li:first');
+		 var _h=_field.height();
+		 _field.animate({marginTop:-_h+'px'},600,function(){
+			 _field.css('marginTop',0).appendTo(_wrap);
+		 })
+	 },_interval)
+	}).trigger('mouseleave');
+});
+
+//user played more
+var interPlayed={
+	minh:72,
+	init:function(){
+		$(".btn_list").each(function(){
+			var h=$(this).height();
+			if(h>interPlayed.minh){
+				$(this).after('<i class="more_s">全部</i>');
+			}
+		});
+		$(".more_s").toggle(function(){
+			$(this).parent().removeClass('max_h').end().html("收起");
+		},function(){
+			$(this).parent().addClass('max_h').end().html("全部");
+		});
+
+	}
+}
+interPlayed.init();
+</script>
+<div style="display:none;">{:C('WEB_SITE_STATISTICS')}</div>

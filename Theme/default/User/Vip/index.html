@@ -1,0 +1,250 @@
+<extend name="Public/layout"/>
+
+
+
+<block name="style"> </block>
+
+
+
+<block name="body">
+		<div class="p-cr">
+			<div class="p-tit">
+					<h3>我的成长值</h3>
+			</div>
+			<div class="p-jfwrap" style="height:auto;">
+ <php>$score=getlevel($__USER__['upgrade'],true);</php>
+      			<div class="p-slidetop">我的等级：<span style="font: 24px/1.5 \5FAE\8F6F\96C5\9ED1,arial,sans-serif;">{$score.title}</span>我的成长值：<span>{$__USER__.upgrade}</span></div>
+                <div class="p-slides"><span class="p-islide" style="width:{$score.bfb}%" title="当前等级：LV{$__USER__.level}&nbsp;&nbsp;;&nbsp;&nbsp;积分：{$__USER__.upgrade}"></span></div>
+                <div class="p-slidel"><span>LV{$score.x} ({$score.e})</span>LV{$score.level} ({$score.s})</div>
+
+			</div>
+			<div class="p-tit">
+					<h3>VIP任务</h3>
+			</div>
+
+			
+			<div class="p-jfrwbox">
+			
+			
+			<div class="rw660">
+				<ul class="renwu01 clearfix">
+					<li>
+						<div class="rw_t01">
+							<strong>日常任务</strong>
+							<h3 class="rw_t">平台充值</h3>
+							<empty name="__USER__.pay">
+							<a href="{:U('Pay/Index/Index')}" class="go_a">去完成</a>
+							<else />
+							<span class="go_span2">已完成</span>
+							</empty>
+						</div>
+						<div class="rw_con">
+							<img src="__PUBLIC__/theme/user/images/pic7.jpg" alt="">
+							<span>每充值1元即可获得1点成长值</span>
+						</div>
+					</li>
+					<li>
+						<div class="rw_t01">
+							<strong>活动任务</strong>
+							<h3 class="rw_t">精彩活动</h3>							<a href="javascript:void(0);" target="_self" class="go_a">敬请期待</a>							
+														<!--<span class="go_span">领 取</span>
+							<span class="go_span2">已领取</span>-->
+						</div>
+						<div class="rw_con">
+							<img src="__PUBLIC__/theme/user/images/s64dpp64.jpg" alt="精彩活动">
+							<span>VIP专属活动奖励成长值</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+				<php>$tasklist=D('TaskLog')->getTask($__USER__['id']);</php>
+					<div class="rw660">
+				<ul class="renwu02 clearfix">
+				
+					<li>
+						<div class="rw_t02">
+							<h3 class="rw_t">首充奖励</h3>
+							<notempty name="sc_task"> <notempty name="tasklist.1"> <span class="go_span2">已领取</span><else /><span class="go_span" id="task_1">领 取</span></notempty>
+<else /><a href="{:U('Pay/Index/Index')}" class="go_a">去完成</a></notempty>
+						</div>
+						<div class="rw_con2">
+							<code class="rw_01"></code>
+							<span>首次在{:C('WEB_SITE_TITLE')}游戏充值即可</span>
+						</div>
+					</li>
+					
+					<li>
+						<div class="rw_t02">
+							<h3 class="rw_t">注册</h3>
+							<notempty name="tasklist.2"> <span class="go_span2">已领取</span><else /><span class="go_span" id="task_2">领 取</span></notempty>
+						</div>
+						<div class="rw_con2">
+							<code class="rw_02"></code>
+							<span>完成注册，即可获得</span>
+						</div>
+					</li>
+					
+					<li>
+						<div class="rw_t02">
+							<h3 class="rw_t">绑定邮箱</h3>
+							<notempty name="__USER__.email"> <notempty name="tasklist.3"> <span class="go_span2">已领取</span><else /><span class="go_span" id="task_3">领 取</span></notempty>
+<else /><a href="{:U('User/Safe/Index',array('t'=>'yxyz'))}" class="go_a">去完成</a></notempty>
+						</div>
+						<div class="rw_con2">
+							<code class="rw_03"></code>
+							<span>登录用户中心绑定密保邮箱即可</span>
+						</div>
+					</li>
+					
+					<li>
+						<div class="rw_t02">
+							<h3 class="rw_t">绑定手机号码</h3>
+							<notempty name="__USER__.mobile"> <notempty name="tasklist.4"> <span class="go_span2">已领取</span><else /><span class="go_span" id="task_4">领 取</span></notempty><else /><a href="{:U('User/Safe/Index',array('t'=>'sjbd'))}" class="go_a">去完成</a></notempty>
+						</div>
+						<div class="rw_con2">
+							<code class="rw_04"></code>
+							<span>登录用户中心绑定手机即可</span>
+						</div>
+					</li>
+					
+					<li>
+						<div class="rw_t02">
+							<h3 class="rw_t">验证QQ帐号</h3>
+							<notempty name="__USER__.qq"> <notempty name="tasklist.5"> <span class="go_span2">已领取</span><else /><span class="go_span" id="task_5">领 取</span></notempty>
+<else /><a href="{:U('User/profile/Index')}" class="go_a">去完成</a></notempty>
+						</div>
+						<div class="rw_con2">
+							<code class="rw_05"></code>
+							<span>登录用户中心验证QQ即可</span>
+						</div>
+					</li>
+					
+					<li>
+						<div class="rw_t02">
+							<h3 class="rw_t">完善个人信息</h3>
+							<php>$__getPerfect=D('User')->getPerfect($__USER__);</php>
+							<if condition="$__getPerfect EQ '100'"><notempty name="tasklist.6"><span class="go_span2">已领取</span><else /><span class="go_span" id="task_6">领 取</span></notempty><else /><a href="{:U('User/profile/Index')}" class="go_a">去完成</a></if>
+						</div>
+						<div class="rw_con2">
+							<code class="rw_06"></code>
+							<span>登录用户中心完善个人信息即可</span>
+						</div>
+					</li>
+					
+					<li>
+						<div class="rw_t02">
+							<h3 class="rw_t">升级到VIP1</h3>
+							<if condition="$__USER__['vip'] EGT '1'"><notempty name="tasklist.7"><span class="go_span2">已领取</span><else /><span class="go_span" id="task_7">领 取</span></notempty><else /><span class="go_span2">未完成</span></if>
+						</div>
+						<div class="rw_con2">
+							<code class="rw_07"></code>
+							<span>等级达到VIP1即可</span>
+						</div>
+					</li>
+					
+					<li>
+						<div class="rw_t02">
+							<h3 class="rw_t">升级到VIP2</h3>
+							<if condition="$__USER__['vip'] EGT '2'"><notempty name="tasklist.8"><span class="go_span2">已领取</span><else /><span class="go_span" id="task_8">领 取</span></notempty><else /><span class="go_span2">未完成</span></if>
+						</div>
+						<div class="rw_con2">
+							<code class="rw_08"></code>
+							<span>等级达到VIP2即可</span>
+						</div>
+					</li>
+					
+					<li>
+						<div class="rw_t02">
+							<h3 class="rw_t">升级到VIP3</h3>
+							<if condition="$__USER__['vip'] EGT '3'"><notempty name="tasklist.9"><span class="go_span2">已领取</span><else /><span class="go_span" id="task_9">领 取</span></notempty><else /><span class="go_span2">未完成</span></if>
+						</div>
+						<div class="rw_con2">
+							<code class="rw_09"></code>
+							<span>等级达到VIP3即可</span>
+						</div>
+					</li>
+					
+					<li>
+						<div class="rw_t02">
+							<h3 class="rw_t">升级到VIP4</h3>
+							<if condition="$__USER__['vip'] EGT '4'"><notempty name="tasklist.10"><span class="go_span2">已领取</span><else /><span class="go_span" id="task_10">领 取</span></notempty><else /><span class="go_span2">未完成</span></if>
+						</div>
+						<div class="rw_con2">
+							<code class="rw_10"></code>
+							<span>等级达到VIP4即可</span>
+						</div>
+					</li>
+					
+					<li>
+						<div class="rw_t02">
+							<h3 class="rw_t">升级到VIP5</h3>
+							<if condition="$__USER__['vip'] EGT '5'"><notempty name="tasklist.11"><span class="go_span2">已领取</span><else /><span class="go_span" id="task_11">领 取</span></notempty><else /><span class="go_span2">未完成</span></if>
+						</div>
+						<div class="rw_con2">
+							<code class="rw_11"></code>
+							<span>等级达到VIP5即可</span>
+						</div>
+					</li>
+					
+					<li>
+						<div class="rw_t02">
+							<h3 class="rw_t">升级到VIP6</h3>
+							<if condition="$__USER__['vip'] EGT '6'"><notempty name="tasklist.12"><span class="go_span2">已领取</span><else /><span class="go_span" id="task_12">领 取</span></notempty><else /><span class="go_span2">未完成</span></if>
+						</div>
+						<div class="rw_con2">
+							<code class="rw_12"></code>
+							<span>等级达到VIP6即可</span>
+						</div>
+					</li>
+									</ul>
+			</div>
+					
+					
+
+		
+
+			</div>
+
+			<div class="p-tit">
+					<h3>成长值规则</h3>
+			</div>
+			<div class="p-jfrwbox">
+					
+					<div class="p-taskshow">获取更多成长值，就可对应提升游戏社区特权和服务。</div>
+
+
+					<div class="p-xzfonts">
+						<table>
+								<tr>
+									<th>VIP等级</th>
+									<volist name=":C('VIP_LEVEL_LIST')" id="vo">
+									<th>{$vo.title}</th>
+									</volist>
+								</tr>
+								<tr>
+									<td>成长值范围</td>
+									<volist name=":C('VIP_LEVEL_LIST')" id="vo">
+									<td>{:numTok($vo['scope'])}</td>
+									</volist>
+								</tr>
+						</table>
+					</div>
+					<div class="p-xzbz">备注：1K=1000</div>
+			</div>
+			
+	
+			
+			
+	</div>
+
+
+	
+</block>
+
+
+
+<block name="footer_script">
+<import type='js' file="theme.user.js.viptask" />
+<import type='js' file="theme.user.js.task" />
+</block>
+

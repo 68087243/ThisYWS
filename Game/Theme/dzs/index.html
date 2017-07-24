@@ -1,0 +1,210 @@
+<extend name="./Game/Theme/dzs/layout.html"/>
+<block name="title"><title>【{$meta_title}】-{:C('WEB_SITE_TITLE')}</title></block>
+
+<block name="style">
+<static type="css" file="dzs.css.index" />
+<style type="text/css">
+
+</style>
+</block>
+
+
+<block name="body">
+    <div class="head">
+        <h2>一战成神</h2>
+        <span>Angelababy降临 女神守护者虚位以待</span>
+        <embed width="1123" height="100%" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" wmode="transparent" src="http://static.2144.cn/web/theme/module/dzs/images/index.swf" title="{:C('WEB_SITE_TITLE')}游戏-大战神">
+    </div>
+    <div class="cont">
+        <div class="flbox">
+            <div class="w328">
+                <div class="txtnav" id="txtnav">
+                    <span class="cur" data="/dzs/zigw/list/id/3066">新闻<b class="triangle"></b></span>
+                    <corethink:category_list name="side_category" post_auth='1' num='2' >
+                        <span class="">{$side_category.title|mb_substr=###,2,2,'utf-8'}<b class="triangle"></b></span>
+                    </corethink:category_list>
+                    <a href="{:U($gamedata['mark'].'/news_list')}" class="more_ico">更多+</a>
+                </div>
+                <div class="txtcon" id="txtcon">
+                    <ul class="news_ul clearfix">
+                        <volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],false,5,'PublicTheme_getNewsListByGid_2016_5_false_1'))" id="vo">
+                            <li><span> [{$vo.ctime|date="m-d",###}]</span><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a></li>
+                        </volist>
+                    </ul>
+                    <corethink:category_list name="side_category" post_auth='1' num='4' >
+                        <ul class="news_ul clearfix hidden">
+                            <volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],$side_category['id'],5,'PublicTheme_getNewsListByGid_2016_5_false_2'))" id="vo">
+                                <li><span> [{$vo.ctime|date="m-d",###}]</span><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a></li>
+                            </volist>
+                        </ul>
+                    </corethink:category_list>
+                </div>
+            </div>
+        </div>
+        <div class="flbox w514">
+            <div class="w-focus" id="w-focus">
+                <ul>
+                    <li style="display: list-item; z-index: 1;">
+                        <a title="大战神官网轮播图一" href="http://web.2144.cn/dzs/zigw/server/sid/1">
+                            <img src="http://static.2144.cn/news/uploads/20150824/p3tr1mkf.jpg">
+                        </a>
+                    </li>
+                    <li style="display: none; z-index: 0;">
+                        <a title="大战神官网轮播图二" href="http://bbs.web2144.cn/forum.php?mod=viewthread&amp;tid=1232689&amp;extra=page%3D1">
+                            <img src="http://static.2144.cn/news/uploads/20150824/9f125njt.jpg">
+                        </a>
+                    </li>
+                    <li style="display: none; z-index: 0;">
+                        <a title="大战神官网轮播图三" href="http://web.2144.cn/dzs/zigw/121950">
+                            <img src="http://static.2144.cn/news/uploads/20150824/2j1rb8ap.jpg">
+                        </a>
+                    </li>
+                    <li style="display: none; z-index: 0;">
+                        <a title="大战神官网轮播图四" href="http://web.2144.cn/dzs/zigw/121949">
+                            <img src="http://static.2144.cn/news/uploads/20150824/pnbbnf18.jpg">
+                        </a>
+                    </li>
+                </ul>
+                <div class="w-focusbtn">
+                    <i class="cur"></i>
+                    <i class=""></i>
+                    <i class=""></i>
+                    <i class=""></i>
+                </div>
+            </div>
+        </div>
+        <div class="flbox w256">
+            <a class="rota1" href="http://static.yiwanshu.com">微端下载<span>仅需1秒极速下载</span></a>
+            <a class="rota2" href="http://gift.yiwanshu.com">新手礼包<span>新手必备</span></a>
+            <a class="rota3" href="/dzs/zigw/121949">VIP特权<span>好礼享不停</span></a>
+        </div>
+        <div class="flbox">
+            <div class="w328">
+                <div class="serverbox">
+                    <div class="ser_tt">
+                        <h2>服务器列表<span>Server list</span></h2>
+                        <a href="{:U($gamedata['mark'].'/server')}" class="more_ico">更多</a>
+                    </div>
+                    <div class="ser_box">
+                        <div class="ser_con" id="ser_con">
+                            <volist name=":W('Common/Game/getNewServerBygid',Array($gamedata['id'],4,'PublicTheme_num4_getNewServerBygid_2016'))" id="ig">
+                                <a id="ser_con_{$i}" data-sid="{$ig.sid}" href="{$ig.gameurl}"><i></i>{$ig.name}</a>
+                            </volist>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flbox">
+            <div class="img2">
+                <a class="im1" href="/dzs/zigw/list/id/3073">
+                    <strong>武器合成系统介绍</strong>
+                    <em>炫酷武器随心造</em>
+                    <span>立即前往&nbsp;&nbsp;<i>&gt;</i></span>
+                </a>
+                <a class="im2" href="/dzs/zigw/121949">
+                    <strong>超级会员</strong>
+                    <em>星钻豪礼相赠</em>
+                    <span>立即前往&nbsp;&nbsp;<i>&gt;</i></span>
+                </a>
+            </div>
+        </div>
+        <div class="flbox">
+            <div class="img4">
+                <a class="im41" href="/dzs/zigw/list/id/3074">
+                    <strong>游戏介绍</strong>
+                    <em>Game Info</em>
+                    <span>查看</span>
+                </a>
+                <a class="im42" href="/dzs/zigw/list/id/3075">
+                    <strong>新手引导</strong>
+                    <em>New Manual</em>
+                    <span>查看</span>
+                </a>
+                <a class="im43" href="/dzs/zigw/list/id/3076">
+                    <strong>游戏系统</strong>
+                    <em>Game System</em>
+                    <span>查看</span>
+                </a>
+                <a class="im44" href="/dzs/zigw/list/id/3077">
+                    <strong>高手进阶</strong>
+                    <em>Master advaneced</em>
+                    <span>查看</span>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="flbox">
+            <div class="renbox">
+                <div class="ren_nav" id="ren_nav">
+                    <span class="cur">媚娘<b class="line"></b></span>
+                    <span>苍云<b class="line"></b></span>
+                    <span>邪刃<b class="line"></b></span>
+                    <span>青萝<b class="line"></b></span>
+                </div>
+                <div id="ren_con">
+                    <div class="rc1">
+                        <div class="r_img">
+                            <img src="http://static.2144.cn/web/theme/module/dzs/images/ren1.jpg" alt="媚娘">
+                        </div>
+                        <div class="r_txt">
+                            <h3>媚娘</h3>
+                            <p class="ren_p"><strong>媚眼轻抛一刹那，情花飞尽百花杀</strong>“四天人”中的媚娘，玩家所扮演的主角之一。她原是离恨天上太虚幻境司主。因仙魔之争旷日持久，仙魔二界元气大伤，又逢人界乱世征伐，魔王封印异动。她主动向上皇天帝请命，下凡组建四天人，挫败魔界的阴谋。在此过程中，她化名媚娘，先后结识苍云、邪刃、青萝等伙伴，她暗中推动，最终使心仪的苍云成为四天人之首。</p>
+                            <p class="weapon"><strong>职业特色</strong>御姐体型，与苍云有暧昧的关系，与邪刃是开得起玩笑的朋友，与青萝是伙伴加姐妹。有多面性格，即有温柔贴心的一面，也有女王冷酷的一面。</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="r_img">
+                            <img src="http://static.2144.cn/web/theme/module/dzs/images/ren2.jpg" alt="苍云">
+                        </div>
+                        <div class="r_txt">
+                            <h3>苍云</h3>
+                            <p class="ren_p"><strong>苍龙抱云吐天地，猛虎狂啸破太极。</strong>“四天人”中的苍云，玩家所扮演的主角之一，他是历经血战洗礼的沧桑刀客。自董卓篡逆以来，四方豪杰并起，天下大乱，乱世英雄无不磨刀利剑，苍云亦在此刻高举大义之旗，凭借自身无以匹敌的武艺，义无反顾踏上乱世征途。</p>
+                            <p class="weapon"><strong>职业特色</strong>稍有大叔范儿，成熟的刀客，识大体，为四天人之首，常常是一个队伍中的队长，他并不专断独权，但可惜有时候不善于与人沟通。与媚娘有暧昧的关系，与邪刃常起争执但每逢战斗又能和好如初，也常容忍调皮捣蛋的青萝。</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="r_img">
+                            <img src="http://static.2144.cn/web/theme/module/dzs/images/ren3.jpg" alt="邪刃">
+                        </div>
+                        <div class="r_txt">
+                            <h3>邪刃</h3>
+                            <p class="ren_p"><strong>武逆苍穹天机变，刀挑乱世邪云掀。</strong>“四天人”中的邪刃，玩家所扮演的主角之一。据传，邪刃原本是乱世孤儿，后被一自称陆压的道人所收养。邪刃师成下山后，对于乱世中的战争、阴谋、贪欲，早已司空见惯。而今，他要以血光杀戮证道自身之奥义。</p>
+                            <p class="weapon"><strong>职业特色</strong>略带妖邪的高挑英俊男，善使折枪（一种两头可折可合的长枪形武器），常常与苍云有不同的意见，总爱与媚娘说些机敏的玩笑，不知何时，突然开始对青萝有特别的照顾。</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="r_img">
+                            <img src="http://static.2144.cn/web/theme/module/dzs/images/ren4.jpg" alt="青萝">
+                        </div>
+                        <div class="r_txt">
+                            <h3>青萝</h3>
+                            <p class="ren_p"><strong>媚眼轻抛一刹那，情花飞尽百花杀</strong>“四天人”中的青萝，玩家所扮演的主角之一。她来历不明，即使是四天人的发起者媚娘也对她知晓不多，就连青萝这个名字，也是在第一次见面时，邪刃凭感觉临时给她起的。然而有一点大家都看在眼里，那就是青萝在战斗中时不时会爆发出一股神秘的力量，有如苍龙吐天地，亦比玄凤鸣苍穹，不过她自己并没有察觉到。</p>
+                            <p class="weapon"><strong>职业特色</strong>乙女体型（游戏中偏萝莉），与苍云有如同兄妹一般的关系，与邪刃有说不清道不明的关系，与媚娘是伙伴加姐妹，爱调皮捣蛋，是个小机灵鬼，虽偶有不太自信，但受到了大家的鼓励得以成长。爱闯祸，闯完祸后，其他三人完全没理由的自愿帮忙善后。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flbox w256 imgbox">
+            <a href="/dzs/zigw/list/id/3080">游戏截图</a>
+            <a class="ig2" href="/dzs/zigw/list/id/3079">原画壁纸</a>
+        </div>
+
+
+        <div class="flbox clearfix">
+            <a class="rob1" href="/dzs/zigw/list/id/3073">暗黑英雄升级<span>升级快速攻略</span></a>
+            <a class="rob2" href="/dzs/zigw/list/id/3073">神翼系统<span>变形神翼，随心披靡</span></a>
+            <a class="rob3" href="/dzs/zigw/list/id/3073">神兵系统<span>神兵仙器，随心驾驭</span></a>
+            <a class="rob4" href="http://bbs.yiwanshu.com">游戏问题收集<span>有问题随时报备</span></a>
+        </div>
+    </div>
+
+</block>
+
+<block name="footer_script">
+<static type="js" file="dzs.js.index" />
+<static type='js' file="dzs.js.common" />
+
+</block>

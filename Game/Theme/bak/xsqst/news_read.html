@@ -1,0 +1,30 @@
+<extend name="./Theme/default/Common/Game/layout_theme_yxi5.html"/>
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<style type="text/css">
+
+</style>
+</block>
+
+
+<block name="body">
+<div class="right2">
+			<div class="newslist">
+            	<div class="title"><span class="tit">{$gamedata.name}新闻详情</span><span class="cur_pos">当前位置：<a href="{$gameurl}">{$gamedata.name}</a><span>&gt;</span><a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>$__info__['cid']))}">{$title}</a><span>&gt;</span>正文阅读</span></div>
+                <div class="con news-detail">
+				<h1>{$__info__.title}</h1>
+					<div class="n-con">
+					{$__info__.content}
+					</div>
+           </div>
+        </div>  
+        </div> 
+        <div class="clear"></div>
+</block>
+
+<block name="footer_script">
+<import type='js' file="theme.theme_two.js.index" />
+<import type='js' file="theme.theme_two.js.slide" />
+
+</block>

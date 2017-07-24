@@ -1,0 +1,51 @@
+/*top*/
+
+.box1{position:relative;width:1186px;height:160px;margin:0 auto;}
+.box2{position:relative;width:1186px;height:422px;margin:0 auto;}
+.swf_box{z-index:2;position:absolute;left:1px;top:-57px;width:1184px;height:442px;}
+.box3{width:1186px;margin:0 auto;}
+
+.right_box{float:right;width:880px;background:url(../images/list_t.jpg) #fff no-repeat;}
+.mh1100{min-height:1468px;}
+.list_tit{height:104px;padding-left:46px;overflow:hidden;}
+.list_tit h2,.list_tit h1,.list_tit strong{height:50px;line-height:50px;margin-top:10px;font-size:30px;font-family:\5FAE\8F6F\96C5\9ED1;color:#acc0d2;}
+.list_tit span{display:block;margin:6px 0 0 0;color:#587a9a;font-family:\5B8B\4F53;text-indent:-4px;}
+.list_tit a{color:#587a9a;margin:0 5px}
+.list_con{padding:20px 60px 0}
+.list_ul li{float:left;width:100%;height:40px;line-height:40px;border-bottom:1px dotted #d5d5d5;color:#587a9a;overflow:hidden}
+.list_ul span{float:right;margin-right:8px;}
+.list_ul a{color:#587a9a;font-size:14px;}
+.list_ul a:hover{color:#587a9a;}
+/*page*/
+.pagenav{font-size:0;width:100%;height:24px;line-height:24px;padding:22px 0;text-align:center;overflow:hidden}
+.pagenav a{padding:3px 8px;color:#fff;font:12px/22px \5FAE\8F6F\96C5\9ED1}
+.pagenav a:hover{text-decoration:none;}
+.pagenav .page_cur,.pagenav .current{color:#fff;background:#f88101;}
+.pagenav li{margin: 0 5px;display: inline-block;line-height:0;background: #27334d;}
+.list_con h1{height:46px;line-height:46px;font-size:22px;color:#587997;font-weight:normal;text-align:center;overflow:hidden}
+.art_author{height:20px;padding-bottom:16px;border-bottom:2px solid #d1d1d1;color:#959595;text-align:center;overflow:hidden}
+.con_input{padding:20px 0;color:#333;line-height:2.0;overflow:hidden}
+.con_input img{margin:4px 0;max-width:616px}
+.art_pn{padding:8px 0 14px;margin-top:20px;color:#587997;border-top:1px solid #d1d1d1}
+.art_pn a{color:#587997;}
+.art_pn span{display:block;height:21px;line-height:21px}
+
+.list_ser{padding:20px 60px}
+.server_tit{height:54px;border-bottom:2px solid #d1d1d1;}
+.server_tit h3{float:left;height:54px;line-height:54px;font-size:18px;color:#587997;font-family:\5FAE\8F6F\96C5\9ED1;font-weight:normal}
+.server_tit .fu_box{float:right;color:#587997;}
+.server_nav{padding:10px 0 0 8px;}
+.server_nav span,.btn_btn{float:left;width:100px;height:36px;line-height:36px;text-align:center;background:#ebebeb;margin:10px 10px 0 0;font-size:16px;border-radius:3px;color:#587997;cursor:pointer;}
+.server_nav span.cur,.btn_btn{background:#587997;color:#fff;}
+.server_wrap{height:890px;overflow:auto;margin-top:24px}
+.server_con{padding:0 0 10px 0}
+.server_con li{float:left;width:171px;height:43px;padding:8px 12px 8px 0;}
+.server_con a{display:block;width:171px;height:43px;background:url(../images/ser_btn.jpg) no-repeat;font-size:14px;color:#fff;line-height:43px}
+
+.server_con a:hover{text-decoration:none;color:#fff;background-position:0 -60px}
+.server_con a span{float:left;cursor:pointer;width:90px;margin:0 0 0 26px}
+.server_zui{padding-top:12px;}
+
+.dot_ul{padding:0 22px;}
+.dot_ul li{float:left;width:100%;height:28px;line-height:28px;overflow:hidden}
+.dot_ul a{margin-left:6px;color:#d9d9ea;}

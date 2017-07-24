@@ -1,0 +1,268 @@
+<extend name="./Theme/default/Common/Public/layout.html"/>
+
+<block name="title"><title>发表帖子｜{:C('WEB_SITE_TITLE')}{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<import type='css' file="theme.css.index" />
+<import type='css' file="theme.css.bbs" />
+</block>
+
+
+
+<block name="body">
+<!--Content Navigation Strat -->
+<div class="card_banner card_banner_link">
+      <img src="<empty name="game_info.pic.pic_bbs_bg">__PUBLIC__/theme/images/bbsbg1.jpg<else/>{$game_info.pic.pic_bbs_bg|get_cover=###}</empty>" >
+</div>
+<div class="card_top_theme">
+	<div class="card_top_right">
+    	<div class="sign_box_bright">
+        	<a href="{:U('Forum/'.$game_info['mark'].'/post')}" title="发帖" class="sign_btn_bright">
+            	<span class="sign_today_date">发表新鲜事</span>
+                <span class="sign_month_lack_days">分享<span class="j_sign_month_lack_days">每一</span>天</span>
+        	</a>
+        </div>
+    </div>
+	<div class="card_top">
+    	<div class="card_head">
+           <a href="#">
+               <img class="card_head_img" src="{$game_info.pic.pic_r|get_cover=###}">
+           </a>
+    	</div>
+    	<div class="card_title">
+        	<a class="card_title_fname" title="" href="{:U('Forum/'.$game_info['mark'].'/index')}">{$game_info.name}</a>
+            <div class="card_num">
+            	<span class="">
+                  <span class="card_numLabel">贴子：</span>
+                  <span class="card_infoNum">{$count}</span>
+                </span>
+            </div>
+        </div>
+        <p class="card_slogan">{$game_info.summary}</p>
+    </div>
+</div>
+<!--Content Navigation End -->
+
+
+<!--content Start -->
+<div class="content">
+	<!--content_left Start -->
+	<div class="content_left">
+	
+   <!--Form Start -->
+        <form id="form" action="#" method="post" target="_self" class="Posting_content-form">
+            <!-- 表单项 -->
+
+            <table class="bd">
+                <tbody>
+                    <tr>
+                        <th><i class="must">*</i>标题</th>
+                        <td class="cols-in"><input class="text" type="text" name="title" datatype="*1-50" nullmsg="标题不能为空" errormsg="长度太长" /></td>
+                        <td><span class="Validform_checktip"></span></td>
+                    </tr>
+                    <tr>
+                        <th><i class="must">*</i>分类</th>
+                        <td>
+                            <select id="cate" name="cate_id" datatype="*" nullmsg="分类不能为空">
+                                <option value="">选择分类</option>
+                                <volist name="forumtype" id="vx">
+								<empty name="vx.isadmin">
+									<notempty name="__USER__.group">
+										<option value="{$vx.id}">{$vx.name}</option>
+									</notempty>
+								<else/>
+									<option value="{$vx.id}">{$vx.name}</option>
+								</empty>
+								</volist>
+                            </select>
+                        </td>
+                        <td><span class="Validform_checktip"></span></td>
+                    </tr>
+                    <tr>
+                        <th><i class="must">*</i>内容</th>
+                        <td colspan="2">
+                        <div class="think-editor">
+    <div class="tool">
+        <a class="fullscreen fr" href="javascript:;">全屏</a>
+        <a class="bold" href="javascript:;" title="加粗">加粗</a>
+		<a class="italic" href="javascript:;" title="倾斜">倾斜</a>
+        <a class="link" href="javascript:;" title="链接">链接</a>
+        <a class="emotion" href="javascript:;" title="表情">表情</a>
+        <a class="upload" href="javascript:;" title="图片">图片</a>
+    </div>
+    <div class="enter">
+        <textarea name="content" datatype="*" nullmsg="描述/内容不能为空" class="Validform_error" id="saytext"></textarea>
+    </div>
+</div>
+                           <span class="Validform_checktip"></span>     
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <td colspan="2">
+                            <input class="submit" type="submit" value="发表" />
+                            <span id="error_msg_show"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- /表单项 -->
+        </form>
+        <!--Form End -->
+	</div>
+    <!--content_left End -->
+    
+    <!--content_right Start -->
+    <div class="content_right">
+    	<div class="box key">
+            <div class="hd">发布话题</div>
+            <ul class="bd">
+                <li>请完整输入话题的标题和内容，并选择恰当的分类；</li>
+                <li>标签是可选项，多个标签使用空格分隔</li>
+            </ul>
+        </div>
+        <div class="box key">
+            <div class="hd">快捷键小贴士</div>
+            <div class="bd">
+                <div class="remind">选中文字后使用键盘快捷键</div>
+                <div>Ctrl+B：字体加粗</div>
+				<div>Ctrl+I：字体倾斜</div>
+                <div>Alt+U：添加超链接</div>
+            </div>
+        </div>
+    </div>
+    <!--content_right End -->
+</div>
+<!--content End -->
+</block>
+
+
+
+<block name="footer_script">
+<import type='js' file="theme.js.index" />
+<import type='js' file="jquery.jqueryqqFace" />
+<import type='js' file="jquery.jqueryshortcuts" />
+<import type='js' file="jquery.Validform" />
+<script type="text/javascript">
+$(function(){
+        $('.think-editor .bold').click(function(){
+            $(this).closest('.think-editor').find('textarea').insertContent('[b]'+ $(this).closest('.think-editor').find('textarea').selectionRange() +'[/b]'); 
+        });
+        $('.think-editor .italic').click(function(){
+            $(this).closest('.think-editor').find('textarea').insertContent('[i]'+ $(this).closest('.think-editor').find('textarea').selectionRange() +'[/i]'); 
+        });
+        $('.think-editor .underline').click(function(){
+            $(this).closest('.think-editor').find('textarea').insertContent('[u]'+ $(this).closest('.think-editor').find('textarea').selectionRange() +'[/u]'); 
+        });
+        $('.think-editor .link').click(function(){
+            $(this).closest('.think-editor').find('textarea').insertContent('[url]'+ $(this).closest('.think-editor').find('textarea').selectionRange() +'[/url]'); 
+        });
+        $('.think-editor .upload').click(function(){
+            $(this).closest('.think-editor').find('textarea').insertContent('[img]'+ $(this).closest('.think-editor').find('textarea').selectionRange() +'[/img]'); 
+        });
+        $('.think-editor .fullscreen').click(function(){
+            var self = $(this).closest('.think-editor');
+            if(self.data('fullscreen')){ //取消全屏
+                self.removeAttr("style").find('textarea').removeAttr("style");
+                $('body').css("overflow", "auto");
+                self.data("fullscreen", 0);
+            } else {
+                $('body').css("overflow", "hidden");
+                self.css({
+                    "position": "fixed",
+                    "left"    : 0,
+                    "top"     : 0,
+                    "background-color":"#FFF",
+                    "width"   : $(window).width()-2,
+                    "height"  : $(window).height()-2,
+                    "z-index" : 999999
+                });
+                self.find('textarea').height($(window).height()-36);
+                self.data("fullscreen", 1);
+            }
+        });
+
+        $(window).resize(function(){
+            var self = $('.think-editor');
+            if(self.data('fullscreen')){
+                self.css({
+                    "position": "fixed",
+                    "left"    : 0,
+                    "top"     : 0,
+                    "background-color":"#FFF",
+                    "width"   : $(window).width()-2,
+                    "height"  : $(window).height()-2,
+                    "z-index" : 999999
+                });
+                self.find('textarea').height($(window).height()-36);
+            }
+        });
+
+     
+		$('.emotion').qqFace({
+			id : 'facebox', 
+			assign:'saytext', 
+			path:'/Public/theme/arclist/'	//表情存放的路径
+		});
+        $('textarea').shortcuts();
+		
+		$('#form').Validform({
+    postonce: true,
+    tiptype: function(msg, o, cssctl) {
+        if (!o.obj.is("form")) { //验证表单元素时o.obj为该表单元素，全部验证通过提交表单时o.obj为该表单对象;
+            var objtip = o.obj.siblings(".Validform_checktip");
+            objtip = $(objtip).get(0) == undefined ? o.obj.parent().next().find('.Validform_checktip') : objtip;
+            objtip = $(objtip).get(0) == undefined ? o.obj.parents('td').find('.Validform_checktip') : objtip;
+            objtip = $(objtip).get(0) == undefined ? o.obj.parents('td').next().find('.Validform_checktip') : objtip;
+            if ($(o.obj).attr('datatype') != 'verify') {
+                cssctl(objtip, o.type);
+                objtip.text(msg);
+            } else {
+                if ($(o.obj).val().length != 5) {
+                    cssctl(objtip, o.type);
+                    objtip.text(msg);
+                } else {
+                    objtip.removeClass('Validform_wrong').text('');
+                }
+            }
+        }
+    },
+    datatype: {
+        'mix': function(gets, obj, curform, regxp) {
+            var lens = $(obj).attr('data-length');
+            var str = $(obj).val();
+            var realLength = 0,
+            len = str.length,
+            charCode = -1;
+            for (var i = 0; i < len; i++) {
+                charCode = str.charCodeAt(i);
+                if (charCode >= 0 && charCode <= 128) realLength += 1;
+                else realLength += 2;
+            }
+
+            if (realLength == 0) {
+                return false;
+            }
+            if (realLength > lens) {
+                return false;
+            }
+            return true;
+        },
+        'verify': function(gets, obj, curform, regxp) {
+            var str = $(obj).val();
+            if (str.length < 5) {
+                return false;
+            } else {
+                return;
+            }
+        }
+    }
+});
+
+    });
+	
+
+</script>
+</block>
+

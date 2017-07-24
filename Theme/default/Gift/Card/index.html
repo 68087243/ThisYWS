@@ -1,0 +1,184 @@
+<extend name="./Theme/default/Common/Public/layout.html"/>
+
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<import type='css' file="theme.css.game" />
+<import type='css' file="theme.css.others" />
+<import type='css' file="theme.css.style" />
+</block>
+
+
+
+<block name="body">
+
+
+<div class="w-gift_bg" ></div>
+<div class="w-wrap">
+        <div class="w-section">
+                <div class="w-tit">
+                        <h2 class="w-tit-lbsort">{$giftgame.name}礼包列表</h2>
+                </div>
+                <div class="w-con-sort">
+				    <div class="giftList" id="giftList">
+					<present name="api_giftlist">
+						<dl class="clearfix">
+											<dt><img src="__PUBLIC__/theme/images/giftList.png" width="87" height="108" /></dt>
+											<dd class="d1">
+												<div class="giftInfo">
+													<select name="api_type" id="api_type">
+														<volist name="api_giftlist" id="vo">
+															<option value="{$vo.type}">{$vo.name}</option>
+														</volist>
+													</select>
+												 </div>
+												<p>
+													<span>区服：</span>
+													<var>
+													<select name="api_sid" id="api_sid">
+														<volist name="server" id="vo">
+															<option value="{$vo.id}">{$vo.name}</option>
+														</volist>
+													</select>
+													</var>
+													<div id="gift_api_content">
+													<volist name="api_giftlist" id="vo">
+														<p id="gift_api_{$vo.type}" <neq name="i" value="1">style="display:none"</neq>>{$vo.describe}</p>
+													</volist>
+													</div>
+												</p>
+											</dd>
+											<dd class="d2">
+												<a class="bnt doDrawCode"   data-type="api" href="javascript:void(0);"  >我要领取></a>
+											</dd>
+						</dl>
+					<else/>
+					<?php $empty="<center><h1 style='font-size: 30px;color: #B88484;'>(*^__^*) 啊哦，抱歉。本游戏暂未添加礼包!</h1></center>";?>
+					</present>
+					
+					<volist name="giftlist" id="vo" empty="$empty">
+									<dl class="clearfix">
+										<dt><img src="__PUBLIC__/theme/images/giftList.png" width="87" height="108" /></dt>
+										<dd class="d1">
+											<div class="giftInfo">
+												<strong>{$vo.name}</strong>
+											 </div>
+											<p>
+												<span>适用区服：</span>
+												<var><empty name="vo.sid">全部<else /><php>echo D('Gameserver')->getFieldBymap('name',Array('id'=>$vo['sid']));</php></empty></var>
+											</p>
+											<p>{$vo.description}</p>
+										</dd>
+										<dd class="d2">
+											<a class="bnt doDrawCode" data-id="{$vo.id}" auto_id="<php>echo D('Card')->where(Array('status'=>array('neq', '0'),'cid'=>$vo['id']))->count();</php>" href="javascript:void(0);"  id="a_{$vo.id}" >我要领取></a>
+											<p>剩余<span><php>echo D('Card')->where(Array('status'=>array('eq', 1),'cid'=>$vo['id']))->count();</php></span>个</p>
+										</dd>
+										</dl>
+						</volist>
+                    </div>
+                </div>
+
+        </div>
+        <div class="w-article">
+                <div class="w-tit">
+                        <h2 class="w-tit-hv">推荐礼包</h2>
+                </div>
+                <div class="w-con-hv">
+					<volist name=":W('Common/Card/GetGift',array(4,'t','ReitsutsumicenterRecommendationReitsutsumi'))" id="vo">
+						<div class="w-con-hvl">
+							<a href="{$vo.gameurl}" class="w-hv-a"><img src="{$vo.pic.pic_r|get_cover}" alt="{$vo.name}礼包"></a>
+							<p title="{$vo.description}">{$vo.description}</p>
+							<div class="w-jqyxb">
+									<a href="{$vo.gameurl}" class="w-jqyxplay">立即领取</a>
+									<a href="{$vo.gameurl}">{$vo.name}礼包</a>
+							</div>
+						</div>
+					</volist>
+                </div>
+
+
+        </div>
+</div>
+</block>
+
+
+
+<block name="footer_script">
+<import type='js' file="layer.layer" />
+<script>
+layer.config({
+	skin:'layer-ext-moon',
+	extend: ['skin/moon/style.css', 'extend/layer.ext.js']
+});
+var uid="{$__USER__.id}";
+$(document).ready(function(){
+
+  $("#api_type").change(function(){
+	$("#gift_api_content p").toggle(false);
+	$("#gift_api_"+$(this).val()).show();
+  })
+
+
+
+
+
+  $(".doDrawCode").click(function(){
+	if(uid==""){
+		return webComObj.iframeshow(0),webComObj.backShow();
+	}
+	if($(this).attr("data-type")){
+		var api_type=$("#api_type").val();
+		var api_sid=$("#api_sid").val();
+		var api_gid='{$giftgame.id}';
+		var giftname=$("#api_type").text();
+		var data={type:api_type,sid:api_sid,gid:api_gid};
+	}else{
+		var count_gift=$(this).attr("auto_id");
+		if(count_gift == 0){
+			layer.alert('抱歉，礼包已发放完毕', {icon: 2,title: '提示'});
+			return;
+		}
+		var cid=$(this).attr("data-id");
+		var giftname=$(this).parent().parent().find('.d1>.giftInfo>strong').text();
+		var data={cid:cid};
+	}
+	
+	
+	
+	$.ajax({
+        type: "GET",
+        url: U('Api/Card/Receivegifts','callback=?'),
+        data: data,
+        dataType: "jsonp",
+        success: function(data){
+
+			switch(data.msg){
+				case 1:
+					var Result="恭喜您成功领取";
+				break;
+				case 2:
+					layer.alert(data.error, {icon: 2,title: '提示'});;
+				return;
+				default:
+					var Result="您已经领取过了";
+				break;
+			}
+			
+			var html='<div style="text-align: center;"><h1 style="color: #009900;font-size: 18px;line-height: 50px;">'+Result+'<span style="color: #eb4d13;font-size: 18px;">'+giftname+'</span></h1><p><span style="color: #626262;line-height: 22px;font-size: 15px;font-weight: bold;">礼包码为:</span><span style="font-weight: normal;font-style: normal;font-size: 15px;line-height: 40px;">'+data.card+' </span></p> <p style="line-height: 22px;color: #626262;font-size: 15px;font-weight: bold;">我们已将该礼包码保存到您的礼包记录，如有遗忘，您可以到个人中心的礼包记录页面查看，祝您游戏愉快！</p></div>';
+			layer.open({
+				type: 1,
+				title: giftname+'领取结果',
+				shadeClose: true,
+				shade: 0.8,
+				area: ['400px', '200px'],
+				maxmin: true,
+				content: html
+			});
+        }
+     });
+  });
+});
+
+</script>
+</block>
+

@@ -1,0 +1,54 @@
+<extend name="./Theme/default/Common/Public/layout.html"/>
+
+<block name="title"><title>论坛首页｜{:C('WEB_SITE_TITLE')}{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<import type='css' file="theme.css.index" />
+<import type='css' file="theme.css.kf" />
+<import type='css' file="theme.css.style" />
+
+</block>
+
+
+
+<block name="body">
+<div class="kfwrap">
+    <div class="kfbtit"><h2 class="kft2">游戏论坛</h2></div>
+    <div class="kfgames">
+        <div class="kfglist">
+		<volist name="game" id="vo">
+			<a href="{:U('Forum/'.$vo['mark'].'/index')}"><img src="<empty name="vo.pic.pic_bbs">__PUBLIC__/theme/images/ho820osl.png<else/>{$vo.pic.pic_bbs|get_cover=###}</empty>" alt="{$vo.name}">
+                        <h3>{$vo.name}</h3>
+                        <i>点此进入</i>
+                    </a>
+		</volist>
+                         
+                                    </div>
+    </div>
+
+ 
+</div>
+<div class="kfwrap">
+    <div class="kfbtit"><h2 class="kft2">游戏论坛</h2></div>
+    <div class="kfgames">
+        <div class="kfglist">
+        <volist name="game" id="vo">
+            <a href="{:U('Forum/'.$vo['mark'].'/index')}"><img src="__PUBLIC__/theme/images/ho820osl.png" alt="{$vo.name}">
+                        <h3>{$vo.name}</h3>
+                        <i>点此进入</i>
+                    </a>
+        </volist>
+                         
+                                    </div>
+    </div>
+
+ 
+</div>
+
+</block>
+
+
+<block name="footer_script">
+
+</block>
+

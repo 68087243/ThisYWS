@@ -1,0 +1,81 @@
+<extend name="./Theme/default/Common/Game/layout_theme_yxi5.html"/>
+<block name="title"><title>【{$meta_title}】--{:C('WEB_SITE_TITLE')}</title></block>
+
+<block name="style">
+</block>
+
+
+<block name="body">
+<div class="middle">
+        	<div class="news">
+            	<div class="hd">
+            		<ul>
+              <li class="on"><a href="#">新闻</a></li>
+              <li class=""><a href="#">攻略</a></li>
+            </ul>
+         		</div>
+      			<div class="bd items">
+            		<ul style="display: block;">
+  <volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],false,8,'PublicTheme_getNewsListByGid_2016_5_false_1'))" id="vo">
+  <li><span class="tit"><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}" target="_blank" title="{$vo.title}">{$vo.title}</a></span><span class="date">{$vo.ctime|date="m-d",###}</span></li>
+					</volist>						                        
+						 
+                        <div class="more"><a href="{:U($gamedata['mark'].'/news_list')}" target="_blank">查看更多+</a></div>
+           			</ul>
+                    <ul style="display: none;">
+ <volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],5,5,'PublicTheme_getNewsListByGid_2016_5_false_3'))" id="vo">
+  <li><span class="tit"><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}" target="_blank" title="{$vo.title}">{$vo.title}</a></span><span class="date">{$vo.ctime|date="m-d",###}</span></li>
+							</volist>
+  <div class="more"><a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>5))}" target="_blank">查看更多+</a></div>
+           			</ul>
+            	</div>
+            </div>
+            <div class="server">
+            	<div class="title"><span class="tit">服务器推荐</span><import type='png' file="theme.theme_yxi5.images.serverlist" /><span class="more"><a href="{:U($gamedata['mark'].'/server')}" target="_blank">更多+</a></span></div>
+                <div class="con">
+                    <ul>
+<volist name=":W('Common/Game/getNewServerBygid',Array($gamedata['id'],8,'PublicTheme_num4_getNewServerBygid_2016'))" id="ig">
+				<li><a target="_blank" href="{$ig.gameurl}" title="{$ig.name}"><i></i>{$ig.name}<in name="i" value="1,2,3,4"><span class="hot">火爆开启</span></in></a></li>
+		</volist>
+				                 
+                    </ul>
+                </div>
+            </div>
+        </div>
+<div class="right">
+        	<div class="focus">
+            	<div class="hd">
+            		<ul>
+                  
+		
+						<li class="on"></li>
+				   
+              
+             
+            </ul>
+         		</div>
+      			<div class="bd">
+            		<div class="tempWrap" style="overflow:hidden; position:relative; width:360px"><ul style="width: 360px; left: 0px; position: relative; overflow: hidden; padding: 0px; margin: 0px;">
+                    <li style="float: left; width: 360px;"><a href=""><img src="{$gamedata.pic.pic_t_max|get_cover=###}" width="360" height="315"></a></li>
+           			</ul></div>
+            	</div>
+            </div>
+            <div class="quick">
+            	<div class="title"><span class="tit">快捷入口</span><import type='png' file="theme.theme_yxi5.images.quick" /></div>
+                <div class="con">
+                   <div class="q_btns">
+					<a href="{:U('Gift/'.$gamedata['mark'].'/index')}" class="q_gift" style="width:348px;">领取礼包</a>
+                    <!--<a class="q_weiduan">微端下载</a>-->
+                    <a href="{:U('Pay/index/'.$gamedata['id'])}" rel="nofollow" target="_blank" class="q_chongzhi">游戏充值</a>
+                   </div>
+                </div>
+            </div>
+        </div>
+</block>
+
+<block name="footer_script">
+<script type="text/javascript">
+jQuery(".news").slide();
+jQuery(".focus").slide({mainCell:".bd ul",effect:"left",delayTime:"500",autoPlay:true});
+</script>
+</block>

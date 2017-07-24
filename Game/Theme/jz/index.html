@@ -1,0 +1,215 @@
+<extend name="./Game/Theme/jz/layout.html"/>
+
+<block name="title"><title>{$meta_title}-{:C('WEB_SITE_TITLE')}{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="script">
+
+</block>
+
+<block name="style">
+
+</block>
+
+
+
+<block name="body">
+
+	<div class="serves">
+		<div class="recmend">
+			<p class="p3">推荐服务器</p>
+			<span id="favg" class="favg {:W('Common/Game/isGameCollects',array($__USER__['id'],$gamedata['id']))}" data-gid="{$gamedata.id}" title="收藏"></span>
+			<div class="servesenter">
+				<a href="{:U($gamedata['mark'].'/server')}"  class="enter">更多服务器</a>
+			</div>
+		</div>
+		<div class="recmendserv">
+			<ul class="J_hot_server">
+			<volist name=":W('Common/Game/getNewServerBygid',Array($gamedata['id'],3,'PublicTheme_num4_getNewServerBygid_2016'))" id="ig">
+			<li><a href="{$ig.gameurl}" target="_blank"><em class="fb">火爆</em>{$ig.name}</a></li>
+			</volist></ul>
+		</div>
+		<div class="choice"></div>
+
+		<div class="infom" style="height:auto;">
+			<p style="background:#008F0A; color:#000000;margin-bottom:5px;padding:6px;font-size:15px; font-weight:bold;height: 50px;">
+《剑踪》<volist name=":W('Common/Game/getNewServerBygid',Array($gamedata['id'],1,'PublicTheme_num4_getNewServerBygid_2016'))" id="ig">{$ig.name}</volist> 本服长期稳定开放，特色版本，自制装备武器<br>
+完整微端客户端下载【397MB】（首次安装必须需下载这个）<a href="{$gamedata.clienturl}" style="font-size:12px;" class="w-jqyxplay"><i></i>客户端</a><br>
+</p>
+
+<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#666666">
+  <tbody><tr>
+    <td width="15%" height="20" align="center" bgcolor="#FFFFCC" class="font_03"><strong>新区名称</strong></td>
+    <td width="25%" align="center" bgcolor="#FFFFCC" class="font_03">开区时间</td>
+    <td width="15%" align="center" bgcolor="#FFFFCC" class="font_03">状态</td>
+    <td width="17%" align="center" bgcolor="#FFFFCC" class="font_03"><strong>百度云盘下载</strong></td>
+    <td width="11%" align="center" bgcolor="#FFFFCC" class="font_03"><strong>游戏充值</strong></td>
+  </tr>
+ <volist name=":W('Common/Game/getServerBygid',Array($gamedata['id'],5,'PublicTheme_num5_getServerBygid_2016'))" id="ig">
+
+  <tr>
+    <td height="41" align="center" bgcolor="#FFFFFF" class="STYLE8"><font size="2" class="STYLE16">《{$ig.name}》<img src="data:image/gif;base64,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" alt="1" width="22" height="11"></font></td>
+    <td align="center" bgcolor="#FFFFFF" class="STYLE21"><p>{$ig.ktime|date="m月d日 H点",###} 准时开服 </p>
+      <p></p></td>
+    <td align="center" bgcolor="#FFFFFF" class="STYLE21"><p><if condition="time() GT $ig['ktime']">稳定开放中<else />筹备中...</if></p>
+    </td><td align="center" bgcolor="#FFFFFF" class="font_01 STYLE2 STYLE4"><strong class="STYLE7"><a href="{$gamedata.clienturl}" target="_blank" class="STYLE16">点此下载客户端</a></strong></td>
+    <td align="center" bgcolor="#FFFFFF" class="STYLE8"><a href="{:U('Pay/index/'.$gamedata['id'])}" target="_blank">充值</a><span class="STYLE11"><img src="data:image/gif;base64,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" alt="1" width="22" height="11"></span></td>
+  </tr> 
+</volist>
+</tbody></table>
+<p align="center" style="background:#FFFF00;margin-bottom:10px;padding:7px;"><span class="STYLE7"><span class="STYLE17">独家新版剑踪，注册送200万元宝、VIP10、首充、商城免费,修复宠物宕机BUG<br><a class="bt_but c_1_g mr10 tips"><u></u><span style="color:red;">客服QQ：{:C('WEB_SITE_QQ')}  </span></a><a class="bt_but c_1_g mr10 tips"><u></u><span style="color:#228B22;">【玩家Q群】{$gamedata.qqgroup}(加群送1000万元宝)</span></a></span></span></p>
+<p align="center" class="STYLE7" style="background:#66CD00;margin-bottom:10px;padding:7px;">【充值比例】1RMB=50万元宝[网上在线充值返送100%]<br>
+</p>
+<p align="center" class="STYLE7" style="background:#7CFC00;margin-bottom:10px;padding:7px;">新增24件武器、16件时装,特色修改。新增宠物属性强化5000次,并减少所消费的材料,装备狂暴，让你爽不停！！！！</p>
+<p align="center" class="STYLE7" style="background:#4EEE94;margin-bottom:10px;padding:7px;">
+       ◎请广大玩家们花1分钟读完说明<br>
+       ◎ 剑宗注意：不同区角色必须不同，如有雷同请删除不要的角色，否则后建相同角色名不存在，建议选择系统随机名字<br>
+       ◎新友友须知，网站首页注册帐号，在点此下载客户端，需要百度云选择QQ登录帐号下载，过程速度慢请挂机耐心等待，下载失败或其他原因联系客服协助<br>
+       ◎ 下载好客户端打不开，网站下载解压器尝试，剑宗登录器放在电脑桌面做快捷方式打开，要删掉或者放回原处<br>
+       ◎ 第一次玩遇到360拦截报毒等情况，需添加信任，常玩的玩家懂这情况，没事的<br>
+       ◎ 不懂玩没时间玩就先随便玩玩，研究明白在认真玩，主要该注意的处理好就行，玩的流畅最重要<br>
+       ◎ 接任务做会卡不流畅，下载存盘导致的，删除干净剑宗，解压客户端默认确定只存D盘不含其他文件夹内，每次玩游戏都只能盘内剑宗打开，否则卡的只是自己<br>
+       ◎ 做任务不卡还很流畅，但是经常掉线的情况<br>
+       ◎ 就是强化装备或吃金币时掉线出错，买多点材料，而金币则买一次数量就点一次使用。<br>
+       ◎ 游戏内藏宝阁装备怎么换不了，藏宝阁功能是坏的，点击没反应<br>
+       ◎ 人物做完任务学习技能之后重置一次就别在重置了，继续重置默认为技能没学习，就得重新注册账号建角色，无解<br>
+       ◎ 游戏内元宝想要在哪个区玩之后才提取，只要每个区里没有角色名字相同就好<br>
+       ◎ 如遇无法打开，请联系客服协助帮助处理，若没回复信息，请留言消息等待回复<br>
+       ◎ 不要在世界BOOS地图下线（否则会卡BOOS箱子里一直掉线，解决办法上小号把设置调整为低配置，在换大号进。）<br>
+       ◎ 记注最重要一点：宠物只能留一只，进游戏不要强化坐骑和宠物，跟着任务走<br>
+       ◎ 灵兽有2只的马上把灵兽放生或融合到1只，否则下线重上就报错卡号！ <br>
+       ◎ 器魂或绝世神兵开启、需主线任务做到61级主线后、重新上线开启！ <br>
+       ◎ 如进游戏报错提示框的就是卡号闪退了、进入网页会员中心自助解卡修复登陆报错！ <br>
+       ◎ 2015年全新版本！全新装备套装！<br>
+       ◎ [新手功略]⊙注册送200万元宝、VIP10、首充、商城免费 <br>
+       ◎ [新手功略]⊙世界BOOS杀死必爆【初级到至尊套装】一件！<br>
+       ◎ [新手功略]⊙世界BOOS宝箱空格键拾取得1-5万元宝！<br>
+       ◎ [新手功略]⊙罪恶坑活动BOOS杀死必爆【初级到至尊套装】一件！<br>
+       ◎ [新手功略]⊙罪恶坑活动BOOS宝箱空格键拾取得3-6万元宝！<br>
+       ◎ [更新说明]⊙商城物品免费购买、灵兽强化5000次!<br>
+       ◎ [更新说明]⊙世界BOOS、30分钟刷新1次!<br>
+       ◎ [更新说明]⊙特惠礼包添加装备套装,时装,宠物,坐骑,材料,达成条件即可领取！<br>
+       ◎ [更新说明]⊙帮派建筑不需要资源，直接秒升10级!<br>
+       ◎ [更新说明]⊙【版图争夺战】天天开启!<br>
+       ◎ [更新说明]⊙剑宗商城添加十级宝石，升天丸-秒升80级!<br>
+       ◎ [更新说明]⊙宝石-涅槃之血，宠物-夜影，宠物-火神兽，宠物-冰神兽，宠物-小龙女，属性添加十倍!<br>
+       ◎ [更新说明]⊙游戏中大部份高奖历活动与副本的开启都与玩家任务完成度及时间相关。 并非BUG.<br>
+</p>
+<p align="center" class="STYLE7" style="background:#BCEE68;margin-bottom:10px;padding:7px;">强者秘籍：<br>
+装备强+100、10级宝石镶。破甲。攻击强度或全属性、器魂满洗练、 角色技能学满级、灵兽附体+100、灵兽提升、坐骑提升、都搞完了你就很牛B的了<br>
+器魂或绝世神兵开启、需主线任务做到61级主线后、重新上线开启！<br>
+</p>
+ <p style="color:#FF0000;margin-bottom:1px;padding:1px;font-size:15px;font-weight:bold;"> ※ 游戏运行注意事项 ※</p>
+ <p style="color:#008F0A;margin-bottom:1px;padding:1px;font-size:15px;font-weight:bold;"> 1.登录不进游戏，请自行网站解卡。</p>
+ <p style="color:#008F0A;margin-bottom:1px;padding:1px;font-size:15px;font-weight:bold;"> 2.加入宠物前，请一次性将兽栏栏位买满。</p>
+ <p style="color:#008F0A;margin-bottom:1px;padding:1px;font-size:15px;font-weight:bold;"> 3.做完一定任务后才能开启挖元宝副本。</p>
+ <p style="color:#008F0A;margin-bottom:1px;padding:1px;font-size:15px;font-weight:bold;"> 4.游戏中大部份高奖历活动与副本的开启都与玩家任务完成度及时间相关。
+	并非BUG.</p>
+ <p style="color:#008F0A;margin-bottom:1px;padding:1px;font-size:15px;font-weight:bold;"> 玩家升到每个等级都在相关活动有领取奖历,请玩家注意查看各个活动并领取奖历</p>
+
+		</div>
+
+		<div class="infor">
+			<ul>
+				<li>
+					<a href="{:U('Service/Index/index')}">
+						<i class="nav1 navli"></i>
+						<p class="navword">在线客服</p>
+					</a>
+				</li>
+				<li>
+					<a href="{:U('Pay/index/'.$gamedata['id'])}">
+						<i class="nav2 navli"></i>
+						<p class="navword">在线充值</p>
+					</a>
+				</li>
+				<li>
+					<a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>6))}">
+						<i class="nav3 navli"></i>
+						<p class="navword">游戏公告</p>
+					</a>
+				</li>
+				<li>
+					<a href="{:U($gamedata['mark'].'/server')}">
+						<i class="nav4 navli"></i>
+						<p class="navword">开服排期</p>
+					</a>
+				</li>
+				<li>
+					<a href="{:U('Forum/'.$gamedata['mark'].'/index')}">
+						<i class="nav5 navli"></i>
+						<p class="navword">论坛交流</p>
+					</a>
+				</li>
+				<li>
+					<a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>5))}">
+						<i class="nav5 navli"></i>
+						<p class="navword">游戏攻略</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="inforbanr">
+			<ul>
+				<li>
+					<div class="btncolor1 btncolor" target="_blank" style="background:url(http://static.t3t2.com/Public/theme/images/14534353623735.jpg) no-repeat;">
+						<a class="ibtn ibtn1" target="_blank" href="{:U($gamedata['mark'].'/news_list',Array('cid'=>7))}">查看详情</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div style="width: 830px;margin: 0 auto;">	<div id="SOHUCS" sid="{$gamedata.id}"></div>
+{:hook("ChangyanCode")}</div>
+
+</block>
+
+
+
+<block name="footer_script">
+<div class="hidden">
+	<notempty name="gamedata.script_code">
+  {$gamedata.script_code}<br>
+</notempty> 
+</div>
+<import type='js' file="theme.js.game" />
+<import type='js' file="theme.js.index" />
+<import type='js' file="layer.layer" />
+<script type="text/javascript">
+	var gid = {$gamedata.id};
+    var navNode = ".server_nav>.d-server_nav";
+    var serverListNode = ".server_wrap";
+	var latestLimit="{$__USER__.id}";
+    var latestNode = ".server_zui";
+	layer.config({
+		skin:'layer-ext-moon',
+		extend: ['skin/moon/style.css', 'extend/layer.ext.js']
+	});
+	$(document).ready(function(){
+	
+		$("#searchG").click(function(){
+			var obj=$('#searchTxt');
+			if(obj.val()==""){
+				layer.alert('请输入正确的服务器ID', {icon: 2,title: '提示'});
+				return;
+			}
+			var input=parseInt(obj.val());
+			var server=$('#server_'+input);
+			if(server.size()>0){
+				event.preventDefault();
+				event.stopPropagation();
+				window.open(server.attr('href'), '_blank');
+			}else{
+				layer.alert('服务器不存在', {icon: 2,title: '提示'});
+				return;
+			}
+		});
+	});
+	//if($(ID).size()>0){
+   // 存在
+
+//}
+</script>
+<import type='js' file="theme.js.dbgw" />
+</block>

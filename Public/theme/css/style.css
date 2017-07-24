@@ -1,0 +1,237 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* 
+http://wan.360.cn/game/lt2?src=zyx-jdhot-lt2
+http://1.31wan.cn/hall/serverlist/gid/22.html
+http://www.9377.com/game_center.php
+http://www.game2.cn/server/code/ts/
+http://www.juxia.com/platform/
+*/
+.w-tuilist{
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+.d-gmshow_info{
+	color: #666;
+}
+.d-gmshow_tit{
+	font-size: 30px;
+	color: #03b4f5;
+}
+.d-gmshow_tit2{
+	color: #999;
+	height: 26px;
+	line-height: 26px;
+	padding-bottom: 13px;
+}
+.d-gmshow_data{
+	line-height: 22px;
+	height: 99px;
+	overflow: hidden;
+}
+.d-gmshow_links{
+	padding: 12px 0 26px;
+	height: 31px;
+}
+.d-gmshow_links a{
+	float: left;
+	width: 116px;
+	margin-right: 15px;
+	height: 31px;
+	color: #fff;
+	text-align: center;
+	background-color: #03b4f5;
+	border-radius: 4px;
+	font-size: 16px;
+	line-height: 31px;
+}
+.d-gmshow_links a:hover{color: #fff;background: #0C89B6;text-decoration: none;}
+
+a.orange{background-color:#fe6c00;}
+a.orange:hover{
+	color: #fff;
+	background: #fe4e00;
+	text-decoration: none;
+}
+
+/*推荐区服*/
+.d-gmtui{}
+.d-gmtui h5{
+	font-size: 16px;
+	font-weight: normal;
+	padding: 10px 0;
+}
+.d-gmtui h5 span{
+	border-left: 3px solid #3cd0e5;
+	border-radius: 2px;
+	padding-left: 8px;
+}
+/*游戏列表*/
+.d-serverlist{
+	float: left;
+	overflow: hidden;
+	position: relative;
+	width: 900px;
+	margin-top: 7px;
+	padding-top: 20px;
+	padding-bottom: 100px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+.d-serverlist .d-server_nav{}
+.d-serverlist .d-server_nav li{
+	margin-bottom: 10px;
+
+}
+.d-serverlist .d-server_nav li a{
+	width: 208px;
+	color: #ad3900;
+	background: #fff;
+	border: 1px solid #fff4dd;
+}
+.d-serverlist .d-server_nav li a:hover{
+	color: #fff4dd;
+	background-color:#fe6c00;
+	text-decoration:none;
+}
+.d-serverlist .d-server_nav li.cur a{
+	color: #fff4dd;
+	background-color:#fe6c00;
+}
+
+.d-serverlist .d-server_all{}
+.d-serverlist ul li{
+	display: inline-block;
+	/*float: left;*/
+	font-size: 12px;
+	height: 41px;
+	margin: 0 10px 0 0;
+	width: 210px;
+	vertical-align: top;
+	letter-spacing: normal;
+	word-spacing: normal;
+}
+.btn_btn{
+	background: #3cd0e5;
+	color: #fff;
+	display: inline-block;
+	font-size: 16px;
+	font-weight: bold;
+	height: 34px;
+	line-height: 34px;
+	text-align: center;
+	vertical-align: middle;
+	width: 210px;
+	white-space: nowrap;
+	overflow: hidden;
+	border-radius: 3px;
+}
+a.btn_btn:hover{
+	color: #fff;
+	background: #04abd5;
+	text-decoration: none;
+}
+/*游戏新闻*/
+.d-server_news{
+	border: 1px solid #cbcbcb;
+	height: 294px;
+	padding: 0 20px;
+	background: #fff;
+}
+.d-server_news ul{
+	margin-top: 10px;
+}
+.d-server_news ul li{
+	height: 30px;
+	line-height: 30px;
+	background: url(../images/ico.png) no-repeat 0 -401px;
+	overflow: hidden;
+	
+}
+.d-server_news ul li a{
+	margin-left: 10px;
+}
+
+/*新闻列表页*/
+
+.d-date{
+	height: 100px;
+	padding-top: 6px;
+	margin-top: 18px;
+	margin-bottom: 18px;
+	background: url(../images/diaryBg.gif) no-repeat;
+}
+.d-date .time{width: 140px;float: left;}
+.d-date .time p{height:22px;line-height:22px;font-size:14px; text-align:center;}
+#year{color:#6e6e6e;}
+#day{height:50px;line-height:50px;font-size:45px; font-weight:bold;color:#3ca000;}
+#weekday{color:#000;}
+.d-date .time ul{width: 588px;float: right;}
+.d-date .time ul li{width: 179px;height: 93px;margin-right: 17px;float: left;}
+.d-news{
+	border:1px solid #cbcbcb;
+	min-height:792px;
+	_height:792px;
+	padding:0 30px;
+	background: #fff;
+}
+.d-news h4{
+	height: 39px;
+	padding-top: 20px;
+	padding-bottom: 7px;
+	margin-bottom: 10px;
+	background: url(../images/line3.gif) no-repeat 0 bottom;
+}
+.d-news h4 a{
+	width: 77px;
+	height: 39px;
+	line-height: 33px;
+	text-align: center;
+	font-family: "Microsoft YaHei","\5b8b\4f53", Arial, sans-serif;
+	font-size: 14px;
+	color: #353535;
+	background: url(../images/line2.gif) no-repeat right 0;
+	float: left;
+}
+.d-news h4 a:hover,h4 a.cur{
+	color: #fff;
+	background: url(../images/btn.jpg) no-repeat 0 -114px;
+}
+.d-news_list{width: 738px;}
+.newsList{width:738px;_height:532px;margin-bottom:5px;}
+.newsList li{width:708px;height:18px;line-height:18px;padding:10px 15px 10px;background:url(../images/dotted.gif) repeat-x 0 bottom; vertical-align:top;}
+.newsList li a{color:#494949;float:left;}
+.newsList li a:hover{color:#f60;}
+.newsList li em{width:60px;height:18px;padding-left:15px;margin-right:20px;color:#494949;background:url(../images/ico.gif) no-repeat 0 -308px;float:left;}
+.newsList li span{color:#000;float:right;}
+.newsList li.lOn{}
+.newsList li.lOn a,.newsList li.lOn em,.newsList li.lOn span{color:#f60;}
+
+/*----- 新闻列表翻页  -------*/
+.pagnation{width:730px;height:25px;margin:0 auto 8px;padding:30px 0 5px;text-align:center;}
+.pagnation a{width:30px;height:25px;line-height:25px;margin:0 3px;display:inline-block;color:#666;background:url(../images/btn.jpg) no-repeat 0 -459px;}
+.pagnation a:hover{color:#666;text-decoration:none;background:url(../images/btn.jpg) no-repeat 0 -392px;}
+.pagnation a.pageOn,.pagnation a.pageOn:hover{color:#fff;background:url(../images/btn.jpg) no-repeat 0 -425px;}
+.pagnation a.prev,.pagnation a.next{width:60px;vertical-align:top;background:url(../images/btn.jpg) no-repeat -50px -459px;}
+.pagnation a.prev:hover,.pagnation a.next:hover{background:url(../images/btn.jpg) no-repeat -50px -392px;}
+
+/*----- 礼包列表  --------*/
+.giftList{width:738px;}
+.giftList dl{width:697px;min-height:110px;_height:110px;padding:28px 20px 10px;background:url(../images/dotted.gif) repeat-x 0 bottom;}
+.giftList dt{width:87px;height:120px;float:left;}
+.giftList dd{float:left;}
+.giftList dd.d1{width:450px;margin:0 20px 0 30px;padding-top:5px;}
+.giftInfo{height:20px;line-height:20px;margin-bottom:5px;}
+.giftInfo strong{width:300px;height:20px;font-size:14px;float:left;}
+.giftInfo a{height:20px;color:#f25500;float:left;}
+.giftInfo a:hover{color:#3CF;}
+.giftInfo span{width:15px;height:20px;color:#f25500;background:url(../images/spanLine2.gif) no-repeat center center; text-indent:-999em;float:left;}
+.giftList dd.d1 p{color:#808080;line-height:20px;}
+.giftList dd.d1 p span,.giftList dd.d1 p var{color:#185780;}
+.giftList dd.d2{width:104px;padding-top:25px;float:right;}
+.giftList dd.d2 a{width:103px;height:32px;margin-bottom:5px;display:block; background:url(../images/cs.jpg) no-repeat 0 -356px; text-indent:-999em;overflow:hidden;}
+.giftList dd.d2 a:hover{background:url(../images/cs.jpg) no-repeat -104px -356px;}
+.giftList dd.d2 a.aunusable,.giftList dd.d2 a.aunusable:hover{width:103px;height:32px;margin-bottom:5px;display:block; background:url(../images/cs.jpg) no-repeat 0 -447px; text-indent:-999em;overflow:hidden;cursor:default;}
+.giftList dd.d2 p{width:103px;height:20px;line-height:20px; text-align:center;color:#446d00;}

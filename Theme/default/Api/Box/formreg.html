@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="edge">
+    <meta name="keywords" content="最新网页游戏,网页游戏大全,T3T2网页游戏平台" />
+<meta name="description" content="T3T2网页游戏汇集了最新网页游戏、网页游戏资讯、网页游戏大全、网页游戏排行榜，更多精彩攻略、游戏截图、玩家交流尽在T3T2网页游戏平台。" />
+<import type='js' file="jquery.jquery183min" />
+<import type='js' file="jquery.jqueryyiiactiveform" />
+<title>盒子注册</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+	<import type='css' file="theme.box.common" />
+    <style>html,body{overflow-x:hidden;overflow-y:hidden;margin:0;padding:0;}</style>
+    <base target='_blank'>
+</head>
+<body>
+
+<div class="regbox">
+    <form target="_self" id="register-form" action="{:U('Api/box/formreg')}" method="post">    <ul class="reg_ul">
+
+        <li>
+            <span class="txt_l">用户名：</span>
+            <input class="ipt_m" name="BoxRegisterForm[username]" id="BoxRegisterForm_username" type="text" maxlength="15" />            <span class="ok_tps">4-15位字符（仅限数字，英文）</span>
+            <span class="er_tps"><div class="input_error" id="BoxRegisterForm_username_em_" style="display:none"></div></span>
+
+        </li>
+        <li>
+            <span class="txt_l">密码：</span>
+            <input class="ipt_m" name="BoxRegisterForm[password]" id="BoxRegisterForm_password" type="password" maxlength="20" />            <span class="ok_tps">6-20个字符</span>
+            <span class="er_tps"><div class="input_error" id="BoxRegisterForm_password_em_" style="display:none"></div></span>
+        </li>
+        <li>
+            <span class="txt_l">重复密码：</span>
+            <input class="ipt_m" name="BoxRegisterForm[repassword]" id="BoxRegisterForm_repassword" type="password" />            <span class="ok_tps">6-20位字符</span>
+            <span class="er_tps"><div class="input_error" id="BoxRegisterForm_repassword_em_" style="display:none"></div></span>
+        </li>
+        <li>
+            <span class="txt_l">姓名：</span>
+            <input class="ipt_m" name="BoxRegisterForm[realName]" id="BoxRegisterForm_realName" type="text" maxlength="5" />            <span class="ok_tps">中文，如：李四</span>
+            <span class="er_tps"><div class="input_error" id="BoxRegisterForm_realName_em_" style="display:none"></div></span>
+        </li>
+        <li>
+            <span class="txt_l">身份证号：</span>
+            <input class="ipt_m" name="BoxRegisterForm[cardId]" id="BoxRegisterForm_cardId" type="text" maxlength="18" />            <span class="ok_tps">18位，如：440106198101010155</span>
+            <span class="er_tps"><div class="input_error" id="BoxRegisterForm_cardId_em_" style="display:none"></div></span>
+        </li>
+        <input type="text" id="BoxRegisterForm_email" name="BoxRegisterForm[email]" class="login_txt" style="display:none" value='dump@2144.cn'>
+
+    </ul>
+    <div class="ck_box">
+        <input id="ytBoxRegisterForm_agree" type="hidden" value="0" name="BoxRegisterForm[agree]" /><input class="hidden" checked="checked" name="BoxRegisterForm[agree]" id="BoxRegisterForm_agree" value="1" type="checkbox" />        <span class="ck_ico" id="ck_ico">我已阅读并同意</span>
+        <a href="{:U('Service/Information/yhxy')}" target="_blank">《{:C('WEB_SITE_TITLE')}用户协议》</a>
+        <span class="er_tps">
+                            <div class="input_error" id="BoxRegisterForm_agree_em_" style="display:none"></div>                    </span>
+    </div>
+        <input class="reg_btn hidden" id="regSubmit" type="submit" name="yt0" value="注册" />    <a href="javascript:void(0)" targe="_self" class="reg_btn" id="register">立即注册</a>
+    </form></div>
+
+<script>
+    $(function(){
+        $('#ck_ico').click(function(){
+            var hscur = $(this).hasClass('ck_cur');
+            if(hscur){
+                $('#BoxRegisterForm_agree').attr('checked', true).val(1);
+                $('#ytBoxRegisterForm_agree').val(1);
+                $(this).removeClass('ck_cur');
+            }else{
+                $('#BoxRegisterForm_agree').attr('checked', false).val(0);
+                $('#ytBoxRegisterForm_agree').val(0);
+                $(this).addClass('ck_cur');
+            }
+        });
+
+        $('.ipt_m').keyup(function(){
+
+            var val = $(this).val().replace(/\s/g,'');
+
+            $(this).val(val);
+
+        });
+
+        $('#register').click(function(e){
+            $('#regSubmit').trigger('click');
+            return false;
+        });
+    });
+</script>
+	<import type='js' file="theme.box.is" />
+</body>
+</html>

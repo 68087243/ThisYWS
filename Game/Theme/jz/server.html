@@ -1,0 +1,111 @@
+<extend name="./Game/Theme/jz/layout.html"/>
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<style type="text/css">
+
+</style>
+</block>
+
+
+<block name="body">
+
+    <div class="box ffl">
+        <div class="inside_hd">
+            <div class="titlebox">
+                <div class="title redline">
+                    <i class="t2"></i>
+                    <h1 class="titlecolor_3">服务器列表</h1>
+                </div>
+                <p>
+                    <span>您所在位置：</span>
+                    <a href="{$gameurl}">首页</a>
+                    <span>&gt;</span>
+                    <a href="{:U($gamedata['mark'].'/server')}">服务器列表</a>
+                </p>
+            </div>
+        </div>
+        <div class="serves">
+            <div class="recmend">
+                <p class="p3">最近玩过的服务器</p>
+                <div class="servesenter">
+                    <p class="p4">快速选服</p>
+                    <input type="text" class="quick" id="searchTxt" value="">
+                    <a href="javascript:void(0);" id="searchG" class="enter">进入游戏</a>
+                </div>
+            </div>
+            <div class="recmendserv server_zui">
+                <ul class="J_hot_server server_con clearfix">
+                </ul>
+            </div>
+            <div class="choicess"><p class="p3">服务器列表</p></div>
+            <div class="servwrap">
+                <!-- 服务器tab { -->
+                <ul class="server_nav">
+                </ul>
+                <!-- } 服务器tab -->
+            </div>
+            <div class="servchoose server_wrap">
+
+            </div>
+        </div>
+
+    </div>
+</block>
+
+<block name="footer_script">
+<import type='js' file="layer.layer" />
+
+<script type="text/javascript">
+	var gid = {$gamedata.id};
+    var navNode = ".server_nav";
+    var serverListNode = ".server_wrap";
+	var latestLimit="1";
+    var latestNode = ".server_zui>.server_con";
+	var latestNode_html=1;
+	
+	function enterNewGame(){
+	var sid=parseInt($("#server_no").val());
+	var _sid=parseInt($("#ser_con_1").attr('data-sid'));
+	if(sid>_sid || sid == 0 || isNaN(sid)){
+		alert("区服不存在");
+		return;
+	}
+	$.ajax({
+    type: "get",
+    async: true,
+    url: U("Api/Game/getGameserverUrl","gid=2&sid="+sid),
+    dataType: "jsonp",
+    jsonp: "callback",
+    success: function(data){
+    	window.open(data.url,"_blank");
+    }
+});
+
+
+
+}
+$(document).ready(function(){
+		$("#searchG").click(function(){
+			var obj=$('#searchTxt');
+			if(obj.val()==""){
+				layer.alert('请输入正确的服务器ID', {icon: 2,title: '提示'});
+				return;
+			}
+			var input=parseInt(obj.val());
+			var server=$('#server_'+input);
+			if(server.size()>0){
+				event.preventDefault();
+				event.stopPropagation();
+				window.location=server.attr('href');
+			}else{
+				layer.alert('服务器不存在', {icon: 2,title: '提示'});
+				return;
+			}
+		});
+	});
+
+</script>
+<import type='js' file="theme.js.serversList" />
+
+</block>

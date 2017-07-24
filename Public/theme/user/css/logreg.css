@@ -1,0 +1,77 @@
+/*css reset*/
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td,span{margin:0;padding:0}
+body,button,input,select,textarea{font:12px arial,\5b8b\4f53}
+h1,h2,h3,h4,h5,h6{font-size:100%}
+address,cite,dfn,em,var{font-style:normal}
+code,kbd,pre,samp{font-family:courier new,courier,monospace}
+form{display:inline}
+small{font-size:12px}
+ul,ol{list-style:none}
+a{text-decoration:none;color:#333}
+a:hover{text-decoration:underline;color:#CB3131}
+sup{vertical-align:text-top}
+sub{vertical-align:text-bottom}
+legend{color:#000}
+fieldset,img{border:0;-ms-interpolation-mode:bicubic}
+img{vertical-align:top}
+button,input,select,textarea{outline:none;font-size:100%}
+table{border-collapse:collapse;border-spacing:0}
+textarea{resize:none}
+/*common*/
+.clearfix{*zoom:1}
+.clearfix:after{content:'\20';display:block;height:0;clear:both}
+.hidden{display:none}
+.lr_inupt,.l_button,.login_txt,.r_button{background:url(../images/lr_btn.jpg) no-repeat}
+/*content*/
+html{background:url(../images/lr_html.jpg) #E3F7FF repeat-x}
+.login{background:url(../images/l_body.jpg) no-repeat center top}
+.register{background:url(../images/r_body.jpg) no-repeat center top}
+.log_hd{width:960px;height:63px;padding-top:35px;margin:0 auto}
+.lr_logo,.lr_logo a,.lr_logo i{width:206px;height:54px}
+.lr_logo{margin:0 0 0 3px;position:relative}
+.lr_logo a,.lr_logo i{position:absolute;left:0;top:0;display:block}
+.lr_logo a{z-index:2;text-indent:-999em;overflow:hidden}
+.lr_logo i{background:url(../images/lr_logo.png) no-repeat;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src="images/lr_logo.png");_background:none}
+.log_bd{width:960px;margin:0 auto;padding-bottom:40px}
+.logbox,.regbox{color:#666;border:1px solid #B7E0F0;box-shadow:0 3px 10px #AFCCD8;background:#fff}
+.logbox{float:right;width:270px;height:414px;padding:35px 60px 0 40px;position:relative}
+.logbox h2,.reg_tit h2{height:24px;line-height:24px;font-size:20px;color:#999;font-family:\5FAE\8F6F\96C5\9ED1;overflow:hidden}
+
+.log_tips{background:url(../images/login_tips.png) no-repeat;color:#D8624E;width:222px;height:30px;text-indent:28px;line-height:24px;position:absolute;left:88px;top:58px}
+.log_tips i{float:right;width:20px;height:20px;margin:2px 2px 0 0;display:inline;cursor:pointer}
+
+.log_ul{padding-top:26px}
+.log_ul li{float:left;width:100%;margin-bottom:20px}
+.log_ul span{float:left;width:48px;font-size:14px;height:30px;line-height:30px}
+.lr_inupt{float:left;width:214px;height:18px;padding:6px 4px;border:none;font-size:14px}
+.label_css{float:left;margin-left:48px;display:inline}
+.label_css input{vertical-align:-3px;_vertical-align:-1px;margin-right:3px;*margin-right:0}
+.forget_a{float:right;color:#249908;_margin-top:4px}
+.forget_a:hover,.lr_qq:hover{color:#249908}
+.l_button,.r_button{width:222px;height:42px;border:none;cursor:pointer}
+.l_button{background-position:0 -40px;margin-left:48px}
+.l_button:hover{background-position:0 -90px}
+.lr_qq{float:left;padding:0 0 0 18px;height:18px;line-height:18px;color:#249908;background:url(../images/lr_qq.png) no-repeat 0 1px;margin-left:48px;display:inline}
+.reg_p{width:222px;margin:20px 0 0 48px;padding-top:8px;border-top:1px solid #EAEAEA}
+.reg_p a,.reg_p a:hover,.reg_tit p a,.reg_tit p a:hover,.w4 a,.w4 a:hover{font-family:\5B8B\4F53;color:#249908}
+
+/*reg*/
+.regbox{width:798px;height:453px;margin:0 auto}
+.reg_tit{height:60px;overflow:hidden}
+.reg_tit h2{float:left;margin:34px 0 0 60px;display:inline}
+.reg_tit p{float:right;height:22px;line-height:22px;margin:15px 20px 0 0}
+.regis_info{color:#AEAEAE;margin:18px}
+.regis_info li{overflow:hidden;margin-top:10px}
+.regis_info li span{line-height:30px}
+.w1{color:#666;width:130px;text-align:right;font-size:14px;display:inline-block}
+.w2{display:inline-block;width:222px;margin:0 9px}
+.login_txt{width:214px;height:18px;padding:6px 4px;border:none;font-size:14px}
+.w4{display:inline-block;padding-left:139px;width:230px;}
+.labelcss{color:#666}
+.labelcss input{vertical-align:middle;margin-right:5px}
+.r_button{background-position:0 -140px;margin-left:139px}
+.r_button:hover{background-position:0 -190px}
+.w5{color:#f00}
+.w5 i{display:inline-block;background:url(../images/ico.png) no-repeat;width:16px;height:16px;vertical-align:middle}
+.w5 .ok{background-position:0 -41px}
+

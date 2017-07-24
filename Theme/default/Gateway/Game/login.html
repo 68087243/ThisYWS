@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="edge">
+<title>login</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<import type='css' file="theme.css.gflogin" />
+<base target='_blank'>
+<style>body{background:#000 no-repeat center top}</style>
+</head>
+<body style="background-image: url('{$game.pic.pic_site_bg|get_cover=###}');">
+	<div class="w960">
+		<div class="topbox">
+			<h1><a href="<php>echo D('Game')->getGameUrl($game['id']);</php>" title="{:C('WEB_SITE_TITLE')}{$game.name}">{:C('WEB_SITE_TITLE')}{$game.name}</a></h1>
+		</div>
+		<div class="userbox">
+			<div class="user_t"></div>
+			<div class="user_c">
+				<div class="user_btn">
+					<a href="<php>echo D('Game')->getGameUrl($game['id']);</php>" class="u_btn1">官网首页</a>
+					<a href="{:U('Home/Index/index')}" class="u_btn2">{:C('WEB_SITE_TITLE')}平台</a>
+					<a href="{:U('Gift/'.$game['mark'].'/index')}" class="u_btn3">新手卡领取</a>
+					<a href="{:U('News/index/index')}" class="u_btn4">最新游戏活动</a>
+				</div>
+				<div class="user_txt">
+					<div class="user_nav">
+						<span class="cur">快速登录</span>
+						<span>注册帐号</span>
+					</div>
+					<div class="user_con">
+						<!--登录-->
+						<div class="user_table">
+							<form id="loginform" name="loginform" action="{:U('Api/User/ajaxLogin')}"  method="post" >
+							<table class="table1">
+								<tr>
+									<th>用户名</th>
+									<td>
+										<input id="login-username" name="username" onblur="checkuser_login(this)" type="text" class="txt_css" value="">
+									</td>
+								</tr>
+								<tr>
+									<th></th>
+									<td><p class="tips_p">用户名长度为4-15个字符</p></td>
+								</tr>
+								<tr>
+									<th>密码</th>
+									<td>
+										<input id="login-password" name="password" onblur="checkpwd_login(this)" type="password" class="txt_css">
+									</td>
+								</tr>
+								<tr>
+									<th></th>
+									<td><p class="tips_p">密码长度为6-20个字符</p></td>
+								</tr>
+								<tr>
+									<th></th>
+									<td><label class="rem_label"><input type="checkbox" value="" checked="">记住用户名</label><a href="{:U('Service/ticket/password')}" class="forget_a">忘记密码？</a></td>
+								</tr>
+								<tr>
+									<th></th>
+									<td><input type="button" value="" class="sub_css" onclick="submitLoginInfo()"></td>
+								</tr>
+								<tr>
+									<th></th>
+									<td><a href="<php>echo addons_url('SyncLogin://Login/login', array('type'=>'qq'));</php>" class="qq_btn">用QQ号登录</a></td>
+								</tr>
+							</table>
+							<input id="ytLoginForm_remember" type="hidden" value="1" name="LoginForm[remember]" />
+							</form>
+						</div>
+						<!--注册-->
+						<div class="user_table hidden">
+							<form id="form1" name="form1" action="{:U('Api/User/ajaxRegister')}"  method="post" >
+							<table class="table1">
+								<tr>
+									<th>用户名</th>
+									<td>
+										<input id="register-username" name="username"  type="text" class="txt_css" value="" onblur="checkuser(this)">
+									</td>
+								</tr>
+								<tr>
+									<th></th>
+									<td><p class="tips_p">用户名长度为4-15个字符</p></td>
+								</tr>
+								<tr>
+									<th>密码</th>
+									<td>
+										<input id="txtPassWord" name="password"  type="password" class="txt_css" onblur="UserPassName(this)">
+									</td>
+								</tr>
+								<tr>
+									<th></th>
+									<td><p class="tips_p">密码长度为6-20个字符</p></td>
+								</tr>
+								<tr>
+									<th>重复密码</th>
+									<td>
+										<input type="password" name="repassword" onblur="UserRPass(this)" maxlength=20 id="txtRPassWord" class="txt_css"/>
+									</td>
+								</tr>
+								<tr>
+									<th></th>
+									<td><p class="tips_p" style="display:none;" >密码长度为6-20个字符</p></td>
+								</tr>
+							
+							
+								<tr>
+									<th></th>
+									<td>
+									<input type="checkbox" id="acceptterms" name="acceptterms"><label for="accept-terms">我已阅读并同意 <a href="{:U('Service/Information/yhxy')}">用户协议</a>
+									</td>
+								</tr>
+	
+							
+								<tr>
+									<th></th>
+									<td><input type="button" value="" class="sub_css" onclick="submitInfo()"></td>
+								</tr>
+								<tr>
+									<th></th>
+									<td><a href="<php>echo addons_url('SyncLogin://Login/login', array('type'=>'qq'));</php>" class="qq_btn">用QQ号登录</a></td>
+								</tr>
+								<input id="ytRegisterForm_redirecturl" type="hidden" value="{:U('Gateway/game/play',Array('gid'=>$game['id'],'sid'=>$server['id']))}" name="redirecturl" />
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="user_b"></div>
+		</div>
+	</div>
+	<import type='js' file="jquery.jquery183min" />
+<script type="text/javascript">
+
+{:W('Common/Public/script')}
+	
+function showLoginError($input,errorMsg)
+{
+   $input.next('span.tips1').html("<span class='sp1'>"+errorMsg+"</span>");
+}
+function showError($input,errorMsg)
+{
+   $input.next('p.tips2').html("<span class='sp1'>"+errorMsg+"</span>");
+}
+
+function showSuccess($input,successMsg)
+{
+    $input.next('p.tips2').html("<span class='sp2'>"+successMsg+"</span>");
+}
+
+function checkuser(self)
+{
+  $input=$(self);
+  var usernamecheck = $input.val();
+  if(!usernamecheck){
+    showError($input,'用户名不能为空');
+    return false;
+  }
+  var patrn=/^[a-zA-Z0-9]{1}([a-zA-Z0-9]|[_]){3,14}$/;
+  if(!patrn.test(usernamecheck)){
+    showError($input,'用户名长度为4-15字符');
+    return false;
+  }
+  if(usernamecheck.length < 4){
+    showError($input,'用户名长度为4-15字符');
+    return false;
+  }
+  var url = U('Api/User/checkdata');
+  var tmp = true;
+  var data ='str='+usernamecheck+'&type=username';
+  $.ajax({
+      url:url,
+      dataType:"jsonp",
+      data:data,
+      jsonp:"callback",
+      async:false,
+      timeout:5000,
+      success:function(obj){
+        if(obj.msg=='success'){
+          showSuccess($input,'用户名可用');
+          tmp = true;
+        }
+        else{
+          showError($input,obj.msg);
+          tmp = false;
+        }
+      }
+   })
+    return tmp;
+}
+
+function submitInfo()
+{
+  var reuser= $('#register-username');
+    var repwd = $('#txtPassWord');
+    var reprwd = $('#txtRPassWord');
+    var result = checkuser(reuser) && UserPassName(repwd) && UserRPass(reprwd);
+  if(result)
+  {
+     var newWindow=window.open('','_top');
+      $.post(U('Api/User/ajaxRegister'),$('#form1').serialize(),function(data){
+          if(data.msg=='success')
+          {
+             if(typeof(logonSuccess)!='undefined'){
+                logonSuccess($('#register-username').val() ,$('#txtPassWord').val());
+                return;
+             }
+             $('body').append(data.script);
+             var redirectUrl=$('#ytRegisterForm_redirecturl').val();
+             newWindow.location=redirectUrl;
+          }else{
+			alert(data.msg);
+		  }
+      },'jsonp');
+  }
+  return false;
+}
+
+function UserPassName(self)
+{
+    $input=$(self);
+    var reg = /(.)\1\1/;
+    var pwd =$.trim($input.val());
+    if(!pwd){
+        showError($input,'密码不能为空');
+        return false;
+    }
+    if(pwd.length<6 || pwd.length>20)
+    {
+        showError($input,'请控制您的密码在6-20之内');
+        return false;
+    }
+    showSuccess($input,'密码填写正确');
+    return true;
+}
+
+function UserRPass(self)
+{
+  $input=$(self);
+  var password = $("#txtPassWord").val();
+  var password2 = $("#txtRPassWord").val();
+  $input.parent().parent().next().children('td').children('p').show();
+  if(!password2){
+    showError($input,'请再次输入您的密码');
+    return false;
+  }
+  if(password!=password2)
+  {
+    showError($input,'两次输入的密码请保持一致！');
+    return false;
+  }
+	$input.parent().parent().next().children('td').children('p').hide();
+   // showSuccess($input,'两次填写的密码一致！');
+    return true;
+}
+
+function submitLoginInfo()
+{
+    var loguser = $('#login-username');
+    var logpwd = $('#login-password');
+    var result = checkuser_login(loguser) && checkpwd_login(logpwd);
+    if(result)
+    {
+      $.post(U('Api/User/ajaxLogin'),$('#loginform').serialize(),function(data){
+          if(data.msg=='success')
+          {
+             if(typeof(logonSuccess)!='undefined'){
+                logonSuccess($('#login-username').val() ,$('#login-password').val());
+                return;
+             }
+             $('body').append(data.script);
+             document.location.reload();
+          }
+          else
+          {
+            var msg = data.errors;
+             if(msg == null || msg == undefined || msg=='' || msg.password || msg.username)
+              msg = '用户名或密码错误';
+            showLoginError($('#login-username'),msg);
+          }
+      },'jsonp');
+  }
+  return false;
+}
+
+//检查登录用户 
+function checkuser_login(self){
+  $input=$(self);
+  var username_login = $.trim($input.val());
+  if(!username_login){
+    showLoginError($input,'请输入用户名');
+    return false;
+  }
+  if(username_login.length < 4 || username_login.length > 15){
+    showLoginError($input,'用户名不存在');
+    return false;
+  }
+  showLoginError($input,'');
+  return true;
+}
+
+function checkpwd_login(self){
+  $input=$(self);
+  var pwd_login = $.trim($input.val());
+  if(!pwd_login){
+    showLoginError($input,'请输入密码');
+    return false;
+  }
+  if(pwd_login.length < 6){
+    showLoginError($input,'密码错误');
+    return false;
+  }
+  showLoginError($input,'');
+  return true;
+}
+
+$('#login-holder').click(function(){
+               $('#register-div').hide();
+               $('#login-div').show();
+       });
+       $('#new_userbtn').click(function(){
+               $('#register-div').show();
+               $('#login-div').hide();
+});
+	
+	
+	
+		function showLoginError($input,errorMsg)
+        {
+             $input.parent().parent().next().children('td').children('p').html(errorMsg);
+        }
+        function showError($input,errorMsg)
+        {
+        	$input.parent().parent().next().children('td').children('p').html(errorMsg);
+        }
+        function showSuccess($input,successMsg)
+		{
+			$input.parent().parent().next().children('td').children('p').html(successMsg);
+		}
+		$(function(){
+			function clicktabs(tit_id,box_id,cur){
+				var g_tags=$(tit_id),
+					g_conts=$(box_id),
+					g_current=cur;
+				g_tags.click(function(){
+					var g_index=g_tags.index(this);
+					$(this).addClass(g_current).siblings().removeClass(g_current);
+					g_conts.eq(g_index).show().siblings().hide();
+				})
+			}
+			clicktabs(".user_nav>span",".user_con>div","cur");
+		});
+	</script>
+	<div style="display:none;">{:C('WEB_SITE_STATISTICS')}</div>
+</body>
+</html>

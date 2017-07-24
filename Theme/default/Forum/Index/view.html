@@ -1,0 +1,470 @@
+<extend name="./Theme/default/Common/Public/layout.html"/>
+
+<block name="title"><title>{$data.title}论坛｜{:C('WEB_SITE_TITLE')}{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<import type='css' file="theme.css.index" />
+<import type='css' file="theme.css.bbs" />
+</block>
+
+
+
+<block name="body">
+<php>
+$louzhuinfo=$userinfo;
+$louceng=1;
+$post=$data;
+</php>
+<!--Content Navigation Strat -->
+<div class="card_banner card_banner_link">
+      <img src="<empty name="game_info.pic.pic_bbs_bg">__PUBLIC__/theme/images/bbsbg1.jpg<else/>{$game_info.pic.pic_bbs_bg|get_cover=###}</empty>">
+</div>
+<div class="card_top_theme">
+	<div class="card_top_right">
+    	<div class="sign_box_bright">
+        	<a href="{:U('Forum/'.$game_info['mark'].'/post')}" title="发帖" class="sign_btn_bright">
+            	<span class="sign_today_date">发表新鲜事</span>
+                <span class="sign_month_lack_days">分享<span class="j_sign_month_lack_days">每一</span>天</span>
+        	</a>
+        </div>
+    </div>
+	<div class="card_top">
+    	<div class="card_head">
+           <a href="#">
+               <img class="card_head_img" src="{$game_info.pic.pic_r|get_cover=###}">
+           </a>
+    	</div>
+    	<div class="card_title">
+        	<a class="card_title_fname" title="" href="{:U('Forum/'.$game_info['mark'].'/index')}">{$game_info.name}</a>
+            <div class="card_num">
+            	<span class="">
+                  <span class="card_numLabel">贴子：</span>
+                  <span class="card_infoNum">{$count}</span>
+                </span>
+            </div>
+        </div>
+        <p class="card_slogan">{$game_info.summary}</p>
+    </div>
+	<!-- 面包屑 Start-->
+    <div class="nav_wrap">
+       <ul class="nav_list j_nav_list">
+		<li id="typeNav0" class="focus"><a href="{:U('Forum/'.$game_info['mark'].'/index')}" target="_self">看帖</a></li>
+		<volist name="forumtype" id="vx">
+			<li id="typeNav{$vx.id}" ><a href="{:U('Forum/'.$game_info['mark'].'/index',Array('type'=>$vx['id']))}" target="_self">{$vx.name}</a></li>
+		</volist>
+        </ul>
+        <form class="search_internal_wrap pull_right j_search_internal_forum">
+            <input class="search_internal_input j_search_internal_input" value="" placeholder="吧内搜索" type="text" />
+            <button class="search_internal_btn" type="submit">
+                <i></i>
+            </button>
+        </form>
+    </div>
+    <!-- 面包屑 End-->
+</div>
+<!--Content Navigation End -->
+
+<!--content Start -->
+<div class="content">
+	<!--content_left Start -->
+	<div class="content_left_content">
+	<div class="core_title_wrap_bright">
+	<h3 class="core_title_txt" title="{$data.title}">{$data.title}</h3>
+</div>
+    	<div class="l_post_bright">
+        	<div class="d_author">
+			<div class="louzhubiaoshi_wrap">
+                    <div class="louzhubiaoshi  " author="{$userinfo.username}">
+                        <a href="#"></a>
+                        </div>
+                </div>
+            	<ul class="p_author">
+                	<li class="icon">
+                    	<div class="icon_relative">
+                        	<a target="_blank" class="p_author_face " href="#">
+                        		<img username="{$userinfo.username}" src="{:get_cover($userinfo['avatar'],'avatar')}">
+                        	</a>
+                    	</div>
+                	</li>
+                    <li class="d_nameplate"></li>
+                    <li class="d_name">
+                    	<a title="{$userinfo.username}" class="p_author_name" href="#" target="_blank">{$userinfo.username}</a>
+						
+                    </li>
+                    <li class="d_icons">
+                    	<span class="d_pb_icons icon_wrap_theme1">
+						<empty name="userinfo.group">
+<a href="{:U('User/score/index')}" title="等级：LV{$userinfo.level}&nbsp;&nbsp;;&nbsp;&nbsp;积分：{$userinfo.score}" class="lv_{$userinfo.level}" target="_blank">LV{$userinfo.level}</a>
+<else/>
+<span class="fly-stick">管理员</span>
+</empty>
+                        	
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="d_post_content_main">
+            	<div class="p_content">
+                	<div class="d_post_content">
+                    	{$data.content}
+                	</div>
+                </div>
+                <div class="core_reply">
+				<div class="bdsharebuttonbox" style="margin: 0 auto;text-align: center; width: 120px;"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+                	<div class="core_reply_tail">
+                    	<div class="p_reply">
+                        	<a href="#comment" class="lzl_link_unfold p_reply" target="_self">回复</a>
+                        </div>
+                        <div class="post-tail-wrap">
+                        	<span class="tail-info">1楼</span>
+                            <span class="tail-info">{:date('Y-m-d H:i',$data['ctime'])}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<volist name="reply" id="data">
+		<php>$userinfo=M('User')->find($data['uid']);</php>
+		<div class="l_post_bright">
+        	<div class="d_author">
+			<div class="louzhubiaoshi_wrap"><div class="<php>if($userinfo['id']==$louzhuinfo['id']){echo 'louzhubiaoshi';}</php>" author="{$userinfo.username}"><a href="#"></a></div></div>
+            	<ul class="p_author">
+                	<li class="icon">
+                    	<div class="icon_relative">
+                        	<a target="_blank" class="p_author_face " href="#">
+                        		<img username="{$userinfo.username}" src="{:get_cover($userinfo['avatar'],'avatar')}">
+                        	</a>
+                    	</div>
+                	</li>
+                    <li class="d_nameplate"></li>
+                    <li class="d_name">
+                    	<a title="{$userinfo.username}" class="p_author_name" href="#" target="_blank">{$userinfo.username}</a>
+						
+                    </li>
+                    <li class="d_icons">
+                    	<span class="d_pb_icons icon_wrap_theme1">
+						<empty name="userinfo.group">
+<a href="{:U('User/score/index')}" title="等级：LV{$userinfo.level}&nbsp;&nbsp;;&nbsp;&nbsp;积分：{$userinfo.score}" class="lv_{$userinfo.level}" target="_blank">LV{$userinfo.level}</a>
+<else/>
+<span class="fly-stick">管理员</span>
+</empty>
+                        	
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="d_post_content_main">
+            	<div class="p_content">
+                	<div class="d_post_content">
+                    	{$data.content}
+                	</div>
+                </div>
+				<php>
+					$Inner=M('ForumReplyInner')->where(Array('rid'=>$data['id']))->select();
+				</php>
+                <div class="core_reply">
+                	<div class="core_reply_tail">
+                    	<div class="p_reply">
+                        	<a   pid="{++$louceng}" target="_self" href="javascript:<empty name="Inner">CreateBQ({$louceng})</empty>;" onclick="isreplylist(this);" class="lzl_link_unfold p_reply"><notempty name="Inner">收起回复<else/>回复</notempty></a>
+                        </div>
+                        <div class="post-tail-wrap">
+                        	<span class="tail-info">{$louceng}楼</span>
+                            <span class="tail-info">{:date('Y-m-d H:i',$data['ctime'])}</span>
+                        </div>
+                    </div>
+					
+					<div class="contents_lzl" <empty name="Inner">style="display: none;"</empty>>
+                        <div class="core_reply_border_top"></div>
+                        <div class="core_reply_content">
+							<notempty name="Inner">
+                            <ul id="contents_lzl">
+							<volist name="Inner" id="vi">
+								<php>$Inneruserinfo=M('User')->find($vi['uid']);</php>
+								<li>
+									<a href="#" class="lzl_p_p"><img src="{:get_cover($Inneruserinfo['avatar'],'avatar')}" /></a>
+									<div class="lzl_cnt">
+										<a class="at j_user_card " target="_blank" href="#" username="{$Inneruserinfo.username}">{$Inneruserinfo.username}</a>
+										:&nbsp;
+										<span class="lzl_content_main">{$vi.content}</span>
+										<div class="lzl_content_reply">
+											<span class="lzl_time">{:date('Y-m-d H:i',$vi['ctime'])}</span><a href="javascript:;" onclick="CreateLzl({$louceng},this,{$Inneruserinfo.id});" class="lzl_s_r">回复</a>
+										</div>
+									</div>
+								</li>
+							</volist>                            
+							<li>
+                                <a class="btn-sub btn-small pull-right" href="javascript:CreateForm({$louceng});" target="_self">我也说一句</a>
+                            </li>
+                            </ul>
+							</notempty>
+<div class="comment_mini" id="comment_mini_{$louceng}" <notempty name="Inner">style="display:none;"</notempty>>
+	<div class="com_form">
+		<textarea class="input_mini" id="saytext_{$louceng}" name="saytext_{$louceng}"></textarea>
+		<input type="hidden" name="rid" value="{$data.id}">
+		<input type="hidden" id="uid_{$louceng}" name="uid" value="">
+		<p><span class="emotionsb emotion_{$louceng}">表情</span><input type="button" class="sub_btn replylzl" value="发表"></p>
+	</div>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		</volist>
+      
+<div class="comment" id="comment">
+	<div class="com_form">
+	<div class="think-editor">
+    <div class="tool">
+        <a class="fullscreen fr" href="javascript:;">全屏</a>
+        <a class="bold" href="javascript:;" title="加粗">加粗</a>
+		<a class="italic" href="javascript:;" title="倾斜">倾斜</a>
+        <a class="link" href="javascript:;" title="链接">链接</a>
+        <a class="emotion" href="javascript:;" title="表情">表情</a>
+        <a class="upload" href="javascript:;" title="图片">图片</a>
+    </div>
+    <div class="enter">
+        <textarea name="content" datatype="*" nullmsg="描述/内容不能为空" id="saytext"></textarea>
+    </div>
+</div>
+
+		<p><input type="button" class="sub_btn replyrh" value="发表"></p>
+	</div>
+</div>
+    </div>
+	
+    <!--content_left End -->
+
+    <!--content_right Start -->
+    <div class="content_right">
+		<div class="w-article">
+		<div class="w-tit">
+                        <h2 class="w-tit-jjkf">即将开服</h2>
+                        <div class="w-kfitemtab" id="jjkfbtns"></div>
+        </div>
+		<div class="w-jjkflist" id="jjkfcons">
+         </div>
+		<div class="w-tit">
+                        <h2 class="w-tit-newkf">最新开服</h2>
+                        <div class="w-kfitemtab" id="newkfbtns"></div>
+        </div>
+		<div class="w-jjkflist" id="newkfcons">
+		</div>
+	</div>
+    </div>
+    <!--content_right End -->
+</div>
+<!--content End -->
+<div id="lriframe"></div> 
+</block>
+
+
+
+<block name="footer_script">
+<import type='js' file="jquery.jqueryqqFace" />
+<import type='js' file="layer.layer" />
+<import type='js' file="jquery.jqueryshortcuts" />
+<script type="text/javascript">
+var defname="{$__USER__.username}";
+$(document).ready(function () {
+       $('.l_post_bright>.d_post_content_main>.p_content>.d_post_content').each(function (i, el) {
+             $(el).html(replace_em($(el).text()));
+        });
+		$('.lzl_content_main').each(function (i, el) {
+             $(el).html(replace_em($(el).text()));
+        });
+});
+								
+								
+								
+function iframeshow(register){
+  $('html').addClass('logohidden');
+  if($.browser.msie && $.browser.version==6){
+    $("#lriframe").css({top:$(document).scrollTop()+($(window).height()-$("#flowersid").height())/2});
+  }
+  $("#lriframe").html('<iframe id="frame_login" name="frame_login" src="'+U('Api/User/loginframe','t='+Math.random())+'" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>');
+  if(register){
+    $("#lriframe iframe").attr('src',$("#lriframe iframe").attr('src')+'?1&reg='+Math.random());
+  }
+  back_show();
+}
+
+function back_show(){
+  /*弹出提示*/
+	if(!$("#backgray").length){
+  		$("body").append('<div id="backgray"></div>');
+	}
+  var doc=document.documentElement,
+  docbody=document.body,
+  addbalc=$("#backgray");
+  addbalc.show();
+  if($.browser.msie && $.browser.version==6){
+    addbalc.css({position:'absolute',width:doc.scrollWidth,height:doc.scrollHeight});
+  }else{
+    addbalc.css({position:'fixed',width:docbody.clientWidth,height:docbody.clientHeight});
+  }
+   $('html').addClass('adhidden');
+}
+
+function isreplylist(obj){
+if($(obj).parent().parent().parent().find('.contents_lzl').is(':hidden')){
+		$(obj).text('收起回复');
+	}else{
+		$(obj).text('回复');
+ }
+$(obj).parent().parent().parent().find('.contents_lzl').slideToggle();
+}
+function CreateBQ(id){
+		$('.emotion_'+id).qqFace({
+			id : 'facebox_'+id, 
+			assign:'saytext_'+id, 
+			path:'/Public/theme/arclist/'	//表情存放的路径
+		});
+}
+
+function CreateForm(id){
+var obj=$("#comment_mini_"+id);
+if(obj.is(':hidden')){
+	CreateBQ(id);
+}
+	obj.slideToggle();
+}
+
+function CreateLzl(id,obja,uid){
+var obj=$("#saytext_"+id);
+if($("#comment_mini_"+id).is(':hidden')){
+	$("#comment_mini_"+id).slideToggle();
+}
+
+$("#uid_"+id).val(uid);
+CreateBQ(id);
+obj.text('回复 '+$(obja).parent().parent().find('.at').text()+'：');
+}
+
+$(function(){
+	$('.think-editor .bold').click(function(){
+            $(this).closest('.think-editor').find('textarea').insertContent('[b]'+ $(this).closest('.think-editor').find('textarea').selectionRange() +'[/b]'); 
+        });
+        $('.think-editor .italic').click(function(){
+            $(this).closest('.think-editor').find('textarea').insertContent('[i]'+ $(this).closest('.think-editor').find('textarea').selectionRange() +'[/i]'); 
+        });
+        $('.think-editor .underline').click(function(){
+            $(this).closest('.think-editor').find('textarea').insertContent('[u]'+ $(this).closest('.think-editor').find('textarea').selectionRange() +'[/u]'); 
+        });
+        $('.think-editor .link').click(function(){
+            $(this).closest('.think-editor').find('textarea').insertContent('[url]'+ $(this).closest('.think-editor').find('textarea').selectionRange() +'[/url]'); 
+        });
+        $('.think-editor .upload').click(function(){
+            $(this).closest('.think-editor').find('textarea').insertContent('[img]'+ $(this).closest('.think-editor').find('textarea').selectionRange() +'[/img]'); 
+        });
+        $('.think-editor .fullscreen').click(function(){
+            var self = $(this).closest('.think-editor');
+            if(self.data('fullscreen')){ //取消全屏
+                self.removeAttr("style").find('textarea').removeAttr("style");
+                $('body').css("overflow", "auto");
+                self.data("fullscreen", 0);
+            } else {
+                $('body').css("overflow", "hidden");
+                self.css({
+                    "position": "fixed",
+                    "left"    : 0,
+                    "top"     : 0,
+                    "background-color":"#FFF",
+                    "width"   : $(window).width()-2,
+                    "height"  : $(window).height()-2,
+                    "z-index" : 999999
+                });
+                self.find('textarea').height($(window).height()-36);
+                self.data("fullscreen", 1);
+            }
+        });
+
+        $(window).resize(function(){
+            var self = $('.think-editor');
+            if(self.data('fullscreen')){
+                self.css({
+                    "position": "fixed",
+                    "left"    : 0,
+                    "top"     : 0,
+                    "background-color":"#FFF",
+                    "width"   : $(window).width()-2,
+                    "height"  : $(window).height()-2,
+                    "z-index" : 999999
+                });
+                self.find('textarea').height($(window).height()-36);
+            }
+        });
+
+     
+		$('.emotion').qqFace({
+			id : 'facebox', 
+			assign:'saytext', 
+			path:'/Public/theme/arclist/'	//表情存放的路径
+		});
+        $('textarea').shortcuts();
+	$(".replyrh").click(function(){
+	if(!defname){
+		iframeshow(0);
+		return;
+	}
+	var text=$("#saytext").val();
+	if(text.length < 5){
+		layer.alert('不要灌水!!', {icon: 2,title: '提示'});
+		return;
+	}
+		$.post("{:U('Forum/'.$game_info['mark'].'/addreply')}",{pid:'{$post.id}',content:text},function(result){
+				if(result.status==0){
+					alert(result.msg);
+				}else{
+					window.location.reload();
+				}
+		});
+	});
+	
+	$(".replylzl").click(function(){
+	if(!defname){
+		iframeshow(0);
+		return;
+	}
+	var text=$(this).parent().parent().find('textarea').val();
+	var rid=$(this).parent().parent().find("input[name='rid']").val();
+	var uid=$(this).parent().parent().find("input[name='uid']").val();
+	if(text.length < 5){
+		layer.alert('不要灌水!!', {icon: 2,title: '提示'});
+		return;
+	}
+
+		$.post("{:U('Forum/'.$game_info['mark'].'/addreplyinner')}",{rid:rid,content:text,uid:uid},function(result){
+				if(result.status==0){
+					alert(result.msg);
+				}else{
+					window.location.reload();
+				}
+		});
+	});
+});
+//查看结果
+function replace_em(str){
+	str = str.replace(/\</g,'&lt;');
+	str = str.replace(/\>/g,'&gt;');
+	str = str.replace(/\n/g,'<br/>');
+	str = str.replace(/\[b\](.*)\[\/b\]/g,'<b>$1</b>');
+	str = str.replace(/\[h1\](.*)\[\/h1\]/g,'<h1>$1</h1>');
+	str = str.replace(/\[h2\](.*)\[\/h2\]/g,'<h2>$1</h2>');
+	str = str.replace(/\[h3\](.*)\[\/h3\]/g,'<h3>$1</h3>');
+	str = str.replace(/\[h4\](.*)\[\/h4\]/g,'<h4>$1</h4>');
+	str = str.replace(/\[h5\](.*)\[\/h5\]/g,'<h5>$1</h5>');
+	str = str.replace(/\[h6\](.*)\[\/h6\]/g,'<h6>$1</h6>');
+	str = str.replace(/\[i\](.*)\[\/i\]/g,'<i style="font-style: italic;">$1</i>');
+	str = str.replace(/\[url\](.*)\[\/url\]/g,'<a href="$1" targer="_blank"  rel="nofollow">$1</a>');
+	str = str.replace(/\[img\](.*)\[\/img\]/g,'<img src="$1" targer="_blank"  rel="nofollow" />');
+	str = str.replace(/\[em_([0-9]*)\]/g,'<img src="/Public/theme/arclist/$1.gif" border="0" />');
+	return str;
+}
+</script>
+<import type='js' file="theme.js.index" />
+
+</block>
+

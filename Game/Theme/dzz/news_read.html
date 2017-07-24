@@ -1,0 +1,45 @@
+<extend name="./Theme/default/Common/Game/layout_theme_dzz.html"/>
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<import type='css' file="theme.theme_dzz.css.list" />
+<style type="text/css">
+.rightbox {
+    float: right;
+    width: 900px;
+    background: #fff;
+	min-height: 1416px;
+}
+</style>
+</block>
+
+
+<block name="body">
+ <div class="list_tit">
+            <span><a href="{$gameurl}">首页</a>&gt;&gt;<a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>$__info__['cid']))}">{$title}</a></span>
+        </div>
+
+                <div class="list_con">
+            <h1>{$__info__.title}</h1>
+
+            <p class="art_author">时间：{$__info__.ctime|time_format}                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发布：{$info.uid|get_user_info="username"}小编</p>
+
+            <div class="con_input">
+			{$__info__.content}
+			 </div>
+            <div class="art_pn clearfix">
+			<php>$Previous=D('Document')->getPreviousDocument($__info__);$Next=D('Document')->getNextDocument($__info__);</php>
+                                                    <span class="none"><a href="{$Next.link}" target="_self">下一篇：{$Next.title}</a>
+                                            </span>
+
+                                        <span><a href="{$Previous.link}" class="next">上一篇：{$Previous.title}</a>
+                                            </span>
+            </div>
+			</div>
+</block>
+
+<block name="footer_script">
+<import type='js' file="theme.theme_one.js.index" />
+<import type='js' file="theme.theme_one.js.slide" />
+
+</block>

@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title>{:C('WEB_SITE_TITLE')}混服合作联盟</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <link href="__PUBLIC__/bui/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+  <link href="__PUBLIC__/bui/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+   <link href="__PUBLIC__/bui/assets/css/main-min.css" rel="stylesheet" type="text/css" />
+ </head>
+ <body>
+
+  <div class="header">
+    
+      <div class="dl-title">
+          <span class="lp-title-port">Mix</span><span class="dl-title-text">管理后台</span>
+      </div>
+
+    <div class="dl-log">欢迎您，<span class="dl-log-user">{$Think.session.mixadmin}</span><a href="{:U('Mix/Main/out')}" title="退出系统" class="dl-log-quit">[退出]</a>
+    </div>
+  </div>
+   <div class="content">
+    <div class="dl-main-nav">
+      <div class="dl-inform"><div class="dl-inform-title">贴心小秘书<s class="dl-inform-icon dl-up"></s></div></div>
+      <ul id="J_Nav"  class="nav-list ks-clear">
+        <li class="nav-item dl-selected"><div class="nav-item-inner nav-home">首页</div></li>
+       
+      </ul>
+    </div>
+    <ul id="J_NavContent" class="dl-tab-conten">
+
+    </ul>
+   </div>
+  <script type="text/javascript" src="__PUBLIC__/bui/assets/js/jquery-1.8.1.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/bui/assets/js/bui.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/bui/assets/js/config.js"></script>
+
+  <script>
+    BUI.use('common/main',function(){
+      var config = [{
+          id:'operate', 
+          homePage : 'operate_index',
+          menu:[{
+              text:'运营管理',
+              items:[
+                {id:'operate_index',text:'首页',href:'{:U('Mix/Main/operate_index')}',closeable : false},
+                {id:'operate_game',text:'游戏管理',href:'{:U('Mix/Main/operate_game')}'},
+                {id:'operate_kfpq',text:'开服排期',href:'{:U('Mix/Main/operate_kfpq')}'},
+				{id:'operate_api',text:'接口管理',href:'{:U('Mix/Main/operate_api')}'},
+				{id:'operate_role',text:'会员管理',href:'{:U('Mix/Main/operate_role')}'},
+				{id:'operate_pay',text:'充值记录',href:'{:U('Mix/Main/operate_pay')}'}
+              ]
+            },{
+              text:'其他管理',
+              items:[
+                {id:'operate_news',text:'新闻公告',href:'{:U('Mix/Main/operate_news')}'},
+                {id:'operate_ask',text:'工单提交',href:'{:U('Mix/Main/operate_ask')}'},
+                {id:'operate_lncharge',text:'扶持申请',href:'{:U('Mix/Main/operate_lncharge')}'},
+				{id:'operate_settlement',text:'结算审核',href:'{:U('Mix/Main/operate_settlement')}'},
+              ]
+            },{
+              text:'数据统计',
+              items:[
+                {id:'x7',text:'今日充值/收益',href:'{:U('Mix/Main/operate_index')}'},
+                {id:'x8',text:'本周充值/收益',href:'{:U('Mix/Main/operate_game')}'},
+                {id:'x9',text:'本月充值/收益',href:'{:U('Spread/Main/mainpay')}'},
+				{id:'x10',text:'总充值/收益',href:'{:U('Spread/Main/mainreg')}'},
+              ]
+            }]
+          }];
+      new PageUtil.MainPage({
+        modulesConfig : config
+      });
+    });
+  </script>
+ </body>
+</html>

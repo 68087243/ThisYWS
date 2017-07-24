@@ -1,0 +1,205 @@
+<extend name="./Theme/default/Shop/Index/layout.html"/>
+
+<block name="title"><title>购物车｜游戏积分商城｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+<block name="style">
+<import type='css' file="theme.css.shop" />
+
+
+</block>
+
+
+
+<block name="body">
+    <div class="page-hd">
+        <!-- 页面位置 -->
+        <div class="local"> <a href="http://mall.9377.com">积分商城</a> &gt; <a href="javascript:history.go(-1);">我的购物车</a> </div>
+        <!-- 购物位置 -->
+        <div class="shop-local fix">
+            <div class="loc loc1 active">
+                <em class="num">1</em>
+                <p>我的购物车</p>
+                <i class="line"></i>
+            </div>
+            <div class="loc loc2">
+                <em class="num">2</em>
+                <p>确认收货信息</p>
+                <i class="line"></i>
+            </div>
+            <div class="loc loc3">
+                <em class="num">3</em>
+                <p>完成交易</p>
+            </div>
+        </div>
+    </div>
+    <!-- 购物车 -->
+    <div class="mod page-bd order-bd">
+        <form name="myform" id="cart-order-form" action="http://mall.9377.com/api/api.php" method="post" autocomplete="off">
+            <div class="m-cart-order" data-pro="order">
+                <!-- 购物清单 -->
+                <div class="w-table" id="w-table-mall">
+                    <div class="w-table-head fix">
+                        <div class="col col-check"><i class="icon icon-checkbox w-checkbox checkall icon-checkbox-selected">√</i>全选</div>
+                        <div class="col col-img">&nbsp;</div>
+                        <div class="col col-name">商品名称</div>
+                        <div class="col col-price">单价</div>
+                        <div class="col col-num">数量</div>
+                        <div class="col col-total">总价</div>
+                        <div class="col col-opt">操作</div>
+                    </div>
+
+                    <div class="w-table-body">
+                        <div class="item-box">
+                            <div class="item-table">
+                                <div class="item-row">
+                                    <div class="col col-check"><i class="icon icon-checkbox w-checkbox icon-checkbox-selected">√</i></div>
+                                    <div class="col col-img"><a href="http://mall.9377.com/detail.php?id=637" target="_blank">
+                                        <img src="http://cdnsource.9377.com/uploads/2016-02/01/8c7caf5a64136ec0.jpg" alt="孙小圣音响" width="100" height="100"></a></div>
+                                    <div class="col col-name">
+                                        <h3 class="name"><a href="http://mall.9377.com/yyg/detail.php?id=637" target="_blank">孙小圣音响</a></h3>
+                                        <p class="desc">猴年 创意标准版</p>
+                                    </div>
+                                    <div class="col col-price">
+                                        <span credit="475000">47.5万</span> 积分
+                                    </div>
+                                    <div class="col col-num">
+                                        <div class="g-count-number">
+                                            <div class="g-number">
+                                                <input class="g-number-input" value="1" maxval="2" name="goods[637]">
+                                                <a class="number-btn number-btn-plus" data-pro="plus" href="javascript:;">+</a>
+                                                <a class="number-btn number-btn-minus" data-pro="minus" href="javascript:;">-</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col col-total">
+												<span data-pro="subtotal2" val="475000">
+													47.5万
+												</span>积分
+                                    </div>
+                                    <div class="col col-opt"><a href="javascript:;" sid="637" title="删除" class="car-del-btn">x</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 统计区域 -->
+                <div class="w-table-balance fix">
+                    <div class="section-left fl">
+                        <div class="col col-check"><a href="http://mall.9377.com/list.php?cat=1" class="back-shopping">继续购物</a></div>
+                    </div>
+                    <div class="section-right fr">
+                        <div class="col col-selected">已选商品 <em class="txt-org" id="select-num">1</em> 件</div>
+                        <div class="col col-sums">合计：
+									<span>
+                                        <em>47.5万</em>积分
+                                    </span>
+                        </div>
+                        <input type="hidden" name="step" value="update_car" />
+                        <input type="hidden" name="ac" value="submit_order">
+                        <div class="col col-submit"><a href="javascript:;" class="order-submit" id="submit-checkout">去结算</a></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- 订单页面公用推荐商品 -->
+    <div class="mod">
+        <div class="rmd-title"><span>买购物车中商品的人还买了</span></div>
+        <ul class="rmd-list mod-list fix">
+            <div class="__data__" data_id="__data__[43639]" page="" postfix="order" style="display: none; "><div></div><span>购物车推荐商品_v2</span></div>				<li class="mod-item row-first">
+            <div class="thumb">
+                <a href="http://mall.9377.com/detail.php?id=637">
+                    <div class="__data__" data_id="__data__[45337]" page="" postfix="order" style="display: none; "><div></div><span>购物车推荐商品_637图片_150_150</span></div>					<img alt="160160.jpg" src="http://cdnsource.9377.com/uploads/2016-02/02/2be5fbfef2c22eec.jpg" style="width: 160px; height: 160px;">
+                </a>
+            </div>
+            <div class="info">
+                <div class="title">孙小圣音响</div>
+                <p class="price">¥ <i class="txt-lred">47.5万</i> 积分</p>
+                <p class="used">已兑换 <i class="txt-lred">31</i> 件</p>
+                <div class="opt">
+                    <div class="g-count-number">
+                        <div class="g-number">
+                            <input class="g-number-input" value="1" maxval="2" name="goods[637]">
+                            <a class="number-btn number-btn-plus" data-pro="plus" href="javascript:;">+</a>
+                            <a class="number-btn number-btn-minus" data-pro="minus" href="javascript:;">-</a>
+                        </div>
+                    </div>
+                    <a href="javascript:;" gid="637" class="buy">加入购物车</a>
+                </div>
+            </div>
+        </li>
+            <li class="mod-item">
+                <div class="thumb">
+                    <a href="http://mall.9377.com/detail.php?id=592">
+                        <div class="__data__" data_id="__data__[45340]" page="" postfix="order" style="display: none; "><div></div><span>购物车推荐商品_592图片_150_150</span></div>					<img alt="160x160.jpg" src="http://cdnsource.9377.com/uploads/2016-02/02/9894881600b3e6e1.jpg" style="width: 160px; height: 160px;">
+                    </a>
+                </div>
+                <div class="info">
+                    <div class="title">奇奇猴小公仔</div>
+                    <p class="price">¥ <i class="txt-lred">11万</i> 积分</p>
+                    <p class="used">已兑换 <i class="txt-lred">104</i> 件</p>
+                    <div class="opt">
+                        <div class="g-count-number">
+                            <div class="g-number">
+                                <input class="g-number-input" value="1" maxval="5" name="goods[592]">
+                                <a class="number-btn number-btn-plus" data-pro="plus" href="javascript:;">+</a>
+                                <a class="number-btn number-btn-minus" data-pro="minus" href="javascript:;">-</a>
+                            </div>
+                        </div>
+                        <a href="javascript:;" gid="592" class="buy">加入购物车</a>
+                    </div>
+                </div>
+            </li>
+            <li class="mod-item">
+                <div class="thumb">
+                    <a href="http://mall.9377.com/detail.php?id=613">
+                        <div class="__data__" data_id="__data__[45343]" page="" postfix="order" style="display: none; "><div></div><span>购物车推荐商品_613图片_150_150</span></div>					<img alt="盛世传奇160x160.jpg" src="http://cdnsource.9377.com/uploads/2016-02/02/7b7ae8891f8c6fc0.jpg" style="width: 160px; height: 160px;">
+                    </a>
+                </div>
+                <div class="info">
+                    <div class="title">传奇盛世商城豪华礼包</div>
+                    <p class="price">¥ <i class="txt-lred">5000</i> 积分</p>
+                    <p class="used">已兑换 <i class="txt-lred">1129</i> 件</p>
+                    <div class="opt">
+                        <div class="g-count-number">
+                            <div class="g-number">
+                                <input class="g-number-input" value="1" maxval="365" name="goods[613]">
+                                <a class="number-btn number-btn-plus" data-pro="plus" href="javascript:;">+</a>
+                                <a class="number-btn number-btn-minus" data-pro="minus" href="javascript:;">-</a>
+                            </div>
+                        </div>
+                        <a href="javascript:;" gid="613" class="buy">加入购物车</a>
+                    </div>
+                </div>
+            </li>
+            <li class="mod-item">
+                <div class="thumb">
+                    <a href="http://mall.9377.com/detail.php?id=622">
+                        <div class="__data__" data_id="__data__[45346]" page="" postfix="order" style="display: none; "><div></div><span>购物车推荐商品_622图片_150_150</span></div>					<img alt="奇迹160x160.jpg" src="http://cdnsource.9377.com/uploads/2016-02/02/4108c55f6614fe14.jpg" style="width: 160px; height: 160px;">
+                    </a>
+                </div>
+                <div class="info">
+                    <div class="title">奇迹来了商城豪华礼包</div>
+                    <p class="price">¥ <i class="txt-lred">9377</i> 积分</p>
+                    <p class="used">已兑换 <i class="txt-lred">150</i> 件</p>
+                    <div class="opt">
+                        <div class="g-count-number">
+                            <div class="g-number">
+                                <input class="g-number-input" value="1" maxval="350" name="goods[622]">
+                                <a class="number-btn number-btn-plus" data-pro="plus" href="javascript:;">+</a>
+                                <a class="number-btn number-btn-minus" data-pro="minus" href="javascript:;">-</a>
+                            </div>
+                        </div>
+                        <a href="javascript:;" gid="622" class="buy">加入购物车</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</block>
+
+
+<block name="footer_script">
+    <import type='js' file="theme.js.shop" /><!-- 积分商城全局JS -->
+</block>
+

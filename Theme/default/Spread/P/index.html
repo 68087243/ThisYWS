@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<import type='js' file="jquery.jquery183min" />
+<title>{$game.name}火爆上线! {:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title>
+<script type="text/javascript">
+{:W('Common/Public/script')}
+</script>
+<style type="text/css">
+* {margin:0;padding:0;}
+body,html {margin:0;padding:0;background:#000;width:100%;height:100%;}
+.main {margin:0 auto;}
+#swf1,#swf2{display:block;margin:0 auto;}
+#background {display:none;width:100%;height:100%;position:absolute;top:0;left:0;background:#000;opacity:0.4;filter:alpha(opacity=40);}
+#reg_login {display:none;width:423px;height:371px;background:#000 url(__PUBLIC__/theme/images/background.png) no-repeat;position:absolute;left:50%;top:300px;margin-left:-200px;margin-top:-200px;}
+#regist_wrap {display:block;}
+#login_wrap {display:none;}
+.menu {width:423px;height:100px;}
+.menu_regist {position:absolute;top:65px;width:101px;height:29px;background:url(__PUBLIC__/theme/images/bg_button.jpg) no-repeat;text-align:center;line-height:29px;font-size:14px;font-weight:bold;color:#ffffb8;cursor:pointer;overflow:hidden;}
+.menu_login {position:absolute;top:65px;width:101px;height:29px;background:url(__PUBLIC__/theme/images/bg_button.jpg) no-repeat;text-align:center;line-height:29px;font-size:14px;font-weight:bold;color:#FF0000;cursor:pointer;overflow:hidden;}
+.menu_regist:hover {background-position:0 -29px;}
+.menu_login:hover {background-position:0 -29px;}
+.menu_regist {left:88px;}
+.menu_login {left:233px;}
+.menu_login {}
+.name{width:177px; height:20px;font-weight:bold;padding:4px 0 0 5px; border:#c1c1c1 0px solid; font-size:14px; background:url(__PUBLIC__/theme/images/tc_xx.png) 0px -50px repeat-x;}
+.content {position:relative;width:423px;height:271px;color:#fff;font-size:16px;}
+.content .tip {font-size:12px;margin-left:63px;height:25px;line-height:25px;}
+.content .true {color:#DEDEAA;}
+.content .false{color:#f00;}
+.content{width:274px;margin:0 auto;}
+.content input {}
+
+.regist_submit,.login_submit {width:155px; height:43px; background:url(__PUBLIC__/theme/images/tc_xx.png) 0px 0px no-repeat; overflow:hidden; text-align:center; border:none; font-size:20px; font-family: "Microsoft Yahei", "黑体", sans-serif !important; display:block; cursor:pointer; color:#fff;margin-left: 63px;}
+.regist_submit:hover,.login_submit:hover{background:url(__PUBLIC__/theme/images/tc_xx.png) -200px 0px no-repeat; font-weight:bold;}
+
+.hot{ font-family:"黑体"; font-size:18px; color:#FF0000;}
+.regist_wrap,.login_wrap {margin:35px auto 0 auto;overflow:hidden;}
+.login_buttons {width: 287px;}
+.login_submit {margin-right:18px;}
+#tip5 {margin-bottom:18px;}
+.jianyi{position: absolute; display: none; top: -45px; left: 60px; font-size:12px;}
+.tshi{width:160px; height:52px; background:url(__PUBLIC__/theme/images/tc_xx.png) -200px -100px; padding:5px 10px 0px 10px; line-height:16px;color:#000;}
+.tshi span{color:#ef3307;}
+.qq_btn{background:url(__PUBLIC__/theme/images/l_user_input.jpg) no-repeat}
+.qq_btn{display:block;width:120px;height:24px;margin-top:10px;background-position:0 -310px;text-indent:-999em;overflow:hidden;cursor:pointer;    margin-left: 83px;}
+</style>
+<script type="text/javascript">
+function QueryString(item){
+var sValue=location.search.match(new RegExp("[\?\&]"+item+"=([^\&]*)(\&?)","i"))
+return sValue?sValue[1]:sValue
+}
+</script>
+</head>
+<body>
+<!--  onresize="refreshMainSize()" onload="refreshMainSize()" -->
+<div class="main" id="mainSwf">
+	<object id="swf1" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="{$xy.0}" height="{$xy.1}">
+		<param name="movie" value="{$game.spread_swf}" />
+		<param name="quality" value="high" />
+		<param name="wmode" value="transparent" />
+		<embed id="swf2" wmode="transparent" src="{$game.spread_swf}" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="{$xy.0}" height="{$xy.1}"></embed>
+	</object>
+</div>
+<div class="wrap" id="background"></div>
+<div class="wrap" id="reg_login">
+	<div class="menu">
+		<div class="menu_regist" onclick="document.getElementById('regist_wrap').style.display='block';document.getElementById('login_wrap').style.display='none';">新用户注册</div>
+		<div class="menu_login"  onclick="document.getElementById('login_wrap').style.display='block';document.getElementById('regist_wrap').style.display='none';">老用户登录</div>
+	</div>
+	<div class="content">
+		<div class="regist_wrap" id="regist_wrap">
+		<div id=tips class=jianyi><div class="tshi">建议用<span>qq+qq号码</span>注册，好记不重复，例如：<span>qq10000</span></div></div>
+<input type="hidden" name="gid" value="{$ids.1}" />
+<input type="hidden" name="sid" value="{$ids.2}" />
+<input type="hidden" name="aid" value="{$ids.3}" />
+<input type="hidden" name="mid" value="<php>echo $ids[0];</php>" />
+
+				<label><span>用户名：</span><input class="name" type="text" onmousemove=showtips(true) onmouseout=showtips(false) onblur="getHits(this.value,'n_info');"  id="username" name="username"/></label>
+				<div id="u_msg" class="tip"></div>
+				<label><span>密　码：</span><input class="name" type="password" name="password" id="password"/></label>
+				<div id="p_msg" class="tip"></div>
+              <input type="submit" value="开始游戏" class="regist_submit" id="reg_form" />
+
+		<a href="<php>echo addons_url('SyncLogin://Login/login', array('type'=>'qq'));</php>" class="qq_btn">用QQ号登录</a>
+		
+		</div>
+		<div class="login_wrap" id="login_wrap">
+		
+				<label><span>用户名：</span><input class="name" type="text" name="lusername" id="lusername" value=""/></label>
+				<div id="ll_msg" class="tip"></div>
+				<label><span>密　码：</span><input class="name" type="password" name="lpassword" id="lpassword"  value=""/></label>
+				<div id="lm_msg" class="tip"></div>
+
+				<input type="submit" class="login_submit" id="btn-login" value="玩家登录" />
+				
+				<a href="<php>echo addons_url('SyncLogin://Login/login', array('type'=>'qq'));</php>" class="qq_btn">用QQ号登录</a>
+
+		
+		</div>
+	</div>
+</div>
+<div style="display:none;">
+{:C('WEB_SITE_STATISTICS')}
+</div>
+<script type="text/javascript" language="javascript">
+$(document).keydown(function(event) {
+	if (event.keyCode == 13) {
+		register();
+	}
+});
+
+$("input[name='username']").blur(function(){checkUserId()});
+$("input[name='password']").blur(function(){checkPassword()});
+$("#reg_form").click(function(){register()});
+function checkUserId(){ 
+    var username = $("input[name='username']").val();
+    if (username == ""){
+        $("#u_msg").html("<font color=red>填写6-30位字符，英文、数字组合！</font>");
+        return false;
+    }else if(username.length<6){
+        $("#u_msg").html("<font color=red>用户名长度不足6位！</font>");
+        return false;
+    }else if(username.length>30){
+        $("#u_msg").html("<font color=red>用户名长度超过30位！</font>");
+        return false;
+    }else{
+        var patrn=/^[a-zA-Z]{1}([a-zA-Z0-9]|[._]){5,30}$/;
+        if(!patrn.exec(username)){
+            $("#u_msg").html("<font color=red>用户名只能以字母开头、可带数字！</font>");
+            return false;
+        }
+    }
+    var data = 'str='+$("input[name='username']").val()+'&type=username';
+    $.ajaxSetup({async:false});
+        $("#u_msg").html('<font color=red>验证查询中，请稍候...</font>');
+	$.ajax({
+        type: "GET",
+        url: U('Api/User/checkdata','callback=?'),
+		data:data,
+        dataType: "jsonp",
+        success: function(e) {
+			if(e.msg == 'success'){
+				$("#u_msg").html("<font color=red>可以使用</font>");
+				return true;
+			}else{
+				$("#u_msg").html("<font color=red>"+e.msg+"</font>");
+				return false;
+			}
+        },
+        error: function() {}
+    })
+}
+function checkPassword(){
+    var password = $("input[name='password']").val();
+    if (password == ""){
+        $("#p_msg").html("<font color=red>6-20个字符内，推荐使用英文加数字！</font>");
+        return false;
+    }else if(password.length<6){
+        $("#p_msg").html("<font color=red>密码长度不足6位！</font>");
+        return false;
+    }else if(password.length>20){
+        $("#p_msg").html("<font color=red>密码长度超过20位！</font>");
+        return false;
+    }else{
+        $("#p_msg").html("<font color=red>密码可用！</font>");
+    }
+}
+
+function register(){
+
+	if(checkUserId() == false){
+		$("input[name='username']").focus();
+		return false;
+	}
+	if(checkPassword() == false){
+		$("input[name='password']").focus();
+		return false;
+	}
+
+	var data = {};
+	data.username = $("input[name='username']").val();
+	data.password = $("input[name='password']").val();
+	data.gid = $("input[name='gid']").val();
+	data.sid = $("input[name='sid']").val();
+	data.mid = $("input[name='mid']").val();
+	data.aid = $("input[name='aid']").val();
+	data.acceptterms=1;
+		$.ajaxSetup({async:false});
+	$.ajax({
+        type: "GET",
+        url: U('Api/User/ajaxRegister','callback=?'),
+		data:data,
+        dataType: "jsonp",
+        success: function(e) {
+			if(e.msg == 'success'){
+				gourl();
+			}else{
+				alert(e.msg);
+			}
+        },
+        error: function() {}
+    })
+	return false;
+}
+
+function gourl(){
+	window.location="{$url}";
+}
+//jianyi
+function showtips(on){
+    on = on || false;
+    if(on){
+	document.getElementById('tips').style.display="block";
+    }else{
+	document.getElementById('tips').style.display="none";
+    }
+}
+$('#btn-login').click(function(){
+
+	var logUser = $('#lusername'), logPsw = $('#lpassword'), remember = $('#liskeepalive');
+	   
+	if (logUser.val() == '') 
+	{
+        $("#ll_msg").html("<font color=red>用户名不能为空！</font>");
+        $("#lm_msg").html("");
+		return false;
+    }
+
+	if (logPsw.val() == '')
+	{
+        $("#lm_msg").html("<font color=red>密码不能为空！</font>");
+		 $("#ll_msg").html("");
+		return false;
+    }
+
+	$.getJSON(U('Api/User/ajaxLogin',"username="+logUser.val()+"&password="+logPsw.val()+"&callback=?"),function(data) {
+		if(data.msg == "success"){
+			gourl();
+		}else{
+		$("#lm_msg").html("<font color=red>密码错误！</font>");
+		$("#ll_msg").html("");
+		return false;
+		}
+	})
+	return false;
+})
+
+var DOC = document;
+var timeoutID, c = 0,
+flashObj = DOC.getElementById('swf1'),
+flashEmbed = DOC.getElementById('swf2');
+function over() {
+	c |= 1;
+};
+function out() {
+	c = 0;
+};
+function down() {
+	c |= 2;
+};
+function up() {
+	c |= 4;
+	if (c === 7) {
+		click();
+		c |= 8;
+		if (!timeoutID) {
+			timeoutID = setTimeout(function() {
+				c ^= 0; //异或，a ^ b， ab不同则返回1
+				timeoutID = undefined;
+			},
+			100);
+		}
+	}
+};
+function click() {
+	DOC.getElementById("background").style.display="block";
+	DOC.getElementById("reg_login").style.display="block";
+};
+if (flashObj) {
+	flashObj.onmouseover = over;
+	flashObj.onmouseout = out;
+	flashObj.onmousedown = down;
+	flashObj.onmouseup = up;
+};
+if (flashEmbed) {
+	flashEmbed.onmouseover = over;
+	flashEmbed.onmouseout = out;
+	flashEmbed.onmousedown = down;
+	flashEmbed.onmouseup = up;
+}
+
+$.extend({
+  getUrlVars: function(){
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
+    return vars;
+  },
+
+  getUrlVar: function(name){
+    return $.getUrlVars()[name];
+  }
+});
+
+$(document).ready(function(){
+  var sid = $.getUrlVar('sid');
+  $("#canal_id").attr("value",sid);
+});
+</script>
+
+</body>
+</html>

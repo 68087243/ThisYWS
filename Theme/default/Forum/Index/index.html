@@ -1,0 +1,135 @@
+<extend name="./Theme/default/Common/Public/layout.html"/>
+
+<block name="title"><title>{$game_info.name}论坛｜{:C('WEB_SITE_TITLE')}{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<import type='css' file="theme.css.index" />
+<import type='css' file="theme.css.bbs" />
+</block>
+
+
+
+<block name="body">
+<!--Content Navigation Strat -->
+<div class="card_banner card_banner_link">
+      <img src="<empty name="game_info.pic.pic_bbs_bg">__PUBLIC__/theme/images/bbsbg1.jpg<else/>{$game_info.pic.pic_bbs_bg|get_cover=###}</empty>">
+</div>
+<div class="card_top_theme">
+	<div class="card_top_right">
+    	<div class="sign_box_bright">
+        	<a href="{:U('Forum/'.$game_info['mark'].'/post')}" title="发帖" class="sign_btn_bright">
+            	<span class="sign_today_date">发表新鲜事</span>
+                <span class="sign_month_lack_days">分享<span class="j_sign_month_lack_days">每一</span>天</span>
+        	</a>
+        </div>
+    </div>
+	<div class="card_top">
+    	<div class="card_head">
+           <a href="#">
+               <img class="card_head_img" src="{$game_info.pic.pic_r|get_cover=###}">
+           </a>
+    	</div>
+    	<div class="card_title">
+        	<a class="card_title_fname" title="" href="{:U('Forum/'.$game_info['mark'].'/index')}">{$game_info.name}</a>
+            <div class="card_num">
+            	<span class="">
+                  <span class="card_numLabel">贴子：</span>
+                  <span class="card_infoNum">{$count}</span>
+                </span>
+            </div>
+        </div>
+        <p class="card_slogan">{$game_info.summary}</p>
+    </div>
+	<!-- 面包屑 Start-->
+    <div class="nav_wrap">
+        <ul class="nav_list j_nav_list">
+		<li id="typeNav0"><a href="{:U('Forum/'.$game_info['mark'].'/index')}" target="_self">最新</a></li>
+		<volist name="forumtype" id="vx">
+			<li id="typeNav{$vx.id}" ><a href="{:U('Forum/'.$game_info['mark'].'/index',Array('type'=>$vx['id']))}" target="_self">{$vx.name}</a></li>
+		</volist>
+        </ul>
+        <form class="search_internal_wrap pull_right j_search_internal_forum">
+            <input class="search_internal_input j_search_internal_input" value="" placeholder="吧内搜索" type="text" />
+            <button class="search_internal_btn" type="submit">
+                <i></i>
+            </button>
+        </form>
+    </div>
+    <!-- 面包屑 End-->
+	<script type="text/javascript">$('#typeNav{:intval(I('type'))}').addClass('focus');</script>
+</div>
+<!--Content Navigation End -->
+
+
+<!--content Start -->
+<div class="content">
+	<!--content_left Start -->
+	<div class="content_left">
+    	<ul class="thread_list">
+			<volist name="data_list" id="data">
+        	<li>
+            	<div class="t_con">
+                	<div class="con_left">
+                    	<span class="threadlist_rep_num" title="回复">{$data.reply_count}</span>
+                    </div>
+                    <div class="con_right">
+                    	<div class="threadlist_lz clearfix">
+                			<div class="threadlist_title pull-left">
+                            	<a href="{:U('Forum/'.$game_info['mark'].'/view',Array('id'=>$data['id']))}" title="{$data.title}" target="_blank">{$data.title}</a>
+                			</div>
+                            <div class="threadlist_author pull-right">
+                            	<span class="tb_icon_author " title="主题作者: {$data.username}">
+                                	<i class="icon_author"></i>
+                                    <a class="" href="#" target="_blank">{$data.username}</a>
+                            	</span>
+                            </div>
+                    	</div>
+                        <div class="threadlist_detail clearfix">
+                        	<div class="threadlist_text pull-left">
+                                <div class="threadlist_abs">{:mb_substr($data['content'],0,35)}</div>
+                        	</div>
+                            <div class="threadlist_author pull-right">
+                            	<span title="最后回复人: {$data.reply_username}">
+                                	<i class="icon_replyer"></i>
+                                    <a class="frs-author-name j_user_card " href="#" target="_blank">{$data.reply_username}</a>
+                            	</span>
+                                <span class="pull-right" title="最后回复时间">{$data.reply_time}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+			</volist>
+        </ul>
+			<div class="black2">{$page}</div>
+    </div>
+    <!--content_left End -->
+    
+    <!--content_right Start -->
+    <div class="content_right">
+    	<div class="w-article">
+		<div class="w-tit">
+                        <h2 class="w-tit-jjkf">即将开服</h2>
+                        <div class="w-kfitemtab" id="jjkfbtns"></div>
+        </div>
+		<div class="w-jjkflist" id="jjkfcons">
+         </div>
+		<div class="w-tit">
+                        <h2 class="w-tit-newkf">最新开服</h2>
+                        <div class="w-kfitemtab" id="newkfbtns"></div>
+        </div>
+		<div class="w-jjkflist" id="newkfcons">
+		</div>
+	</div>
+    </div>
+    <!--content_right End -->
+</div>
+<!--content End -->
+</block>
+
+
+
+<block name="footer_script">
+<import type='js' file="theme.js.index" />
+</block>
+

@@ -1,0 +1,163 @@
+<extend name="Public/layout"/>
+
+<block name="body">
+    <div class="toolbar">
+		<form action="" method="GET" id="task-form" >
+			<div class="form-group">
+				<label class="item-label">URL(*号为替换符)</label>
+				<div class="controls">
+					<input type="text" class="form-control text" name="url" value="">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="item-label">采集规则</label>
+				<div class="controls">
+					<select name="rule">
+						<volist name="rule" id="vo">
+							<option value="{$vo.id}">{$vo.name}</option>
+						</volist>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="item-label">归属栏目</label>
+				<div class="controls">
+					<select name="lid">
+						<volist name="category" id="vo">
+							<option value="{$vo.id}">{$vo.title}</option>
+						</volist>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="item-label">归属游戏</label>
+				<div class="controls">
+					<select name="game">
+						<volist name="game" id="vo">
+							<option value="{$vo.id}">{$vo.name}</option>
+						</volist>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="item-label">保存远程图片到本地(极度消耗服务器资源)</label>
+				<div class="controls">
+					<select name="saveimg">
+							<option value="0">否</option>
+							<option value="1">是</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="item-label">是否启用伪原创</label>
+				<div class="controls">
+					<select name="wyc">
+							<option value="1">是</option>
+							<option value="0">否</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="item-label">开始ID</label>
+				<div class="controls">
+					<input type="text" class="form-control text" id="start_from" name="start" value="">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="item-label">结束ID</label>
+				<div class="controls">
+					<input type="text" class="form-control text" id="end_from" name="end" value="">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="item-label">线程数</label>
+				<div class="controls">
+					<input type="text" class="form-control text" name="maxthread" value="100">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="item-label">最大尝试数</label>
+				<div class="controls">
+					<input type="text" class="form-control text" name="maxtry" value="3">
+				</div>
+			</div>
+		</form>
+        <a id="start" class="btn" href="javascript:;" autocomplete="off">立即采集</a>
+		<a id="clear" class="btn" href="javascript:;" autocomplete="off">清空回显</a>
+    </div>
+	<br/>
+
+<textarea id="text" style="width:100%;height:500px;">
+结果回显
+</textarea>
+    <!-- /数据列表 -->
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        $(function(){
+            var $form = $("#task-form"), $task = $("#start"),$clear = $("#clear"),$text=$("#text"),start,end;
+//$(that).removeClass('disabled').prop('disabled',false);
+            $task.click(function(){
+				start=$("#start_from").val();
+				end=$("#end_from").val();
+				if(start =="" ||  end==""){
+					alert("参数不完整");
+					return;
+				}
+				
+				if(parseInt(start)>parseInt(end)){
+					alert("您填反了吧?");
+					return;
+				}
+				$task.addClass("disabled");
+				ajax_get(start);
+            });
+			$clear.click(function(){
+				$text.html("");
+				//$text.text("结果回显");
+			});
+			function ajax_get(id){
+				$.ajax({ 
+					url: "{:U('task')}?cid="+id+"&"+$form.serialize(),
+					timeout : 100000, 
+					success: function(data){
+						var textarea = $text.append("序号："+ id +" URL："+data.url+" 采集完成 共采集"+data.count+"篇文章 耗时"+data.time+"\n");
+						textarea.scrollTop(textarea[0].scrollHeight - textarea.height());
+						if(id==end){
+							textarea = $text.append("采集完成 \n");
+							textarea.scrollTop(textarea[0].scrollHeight - textarea.height());
+							$task.removeClass("disabled");
+						}else{
+							var num=parseInt(id)+1;
+							ajax_get(num);
+						}
+					},
+					error: function() {
+						var textarea = $text.append("序号："+ id +" 采集失败 \n");
+						textarea.scrollTop(textarea[0].scrollHeight - textarea.height());
+						if(id==end){
+							textarea = $text.append("采集完成 \n");
+							textarea.scrollTop(textarea[0].scrollHeight - textarea.height());
+							$task.removeClass("disabled");
+						}else{
+							var num=parseInt(id)+1;
+							ajax_get(num);
+						}
+					}
+				});
+			
+			}
+
+        });
+    </script>
+</block>

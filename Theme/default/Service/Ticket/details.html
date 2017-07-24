@@ -1,0 +1,113 @@
+<extend name="./Theme/default/Common/Public/layout.html"/>
+
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<import type='css' file="theme.css.index" />
+<import type='css' file="theme.css.kf" />
+<import type='css' file="theme.css.style" />
+
+</block>
+
+
+
+<block name="body">
+<div class="crumbs"><a target="_self" href="{:U('Service/index/index')}">客服中心</a><i>&gt;</i><strong>进度查询</strong>
+</div>
+<div class="kfback">
+<include file="left" />
+<div class="kfright">
+			<div class="kflogin">
+				<div class="kftit"><h2>订单详情</h2></div>
+				<if condition="$issue.adminstatus eq '申诉中'">
+					<div class="requdetails">
+						<div class="detatitleft">
+							<h2>申诉单号：{$issue.sno}</h2>
+							<p>您的申诉正在处理中，请稍后查询！ </p>
+					</div>
+					</div>
+				<else /> 
+					<div class="requdetails">
+						<div class="detatitleft">
+							<h2>申诉单号：{$issue.sno}</h2>
+													<p>您的申诉已经受理完毕，赶紧评价下吧！ </p>
+						</div>
+						<div class="revinpdr">
+							<span class="level" v="{$issue.grade}"><i></i><i></i><i></i><i></i><i></i></span>
+							<div id="levebox"></div>
+						</div>
+						<a href="{:U('Service/index/index')}" class="requreturn">申诉疑问</a>
+					</div>
+				</if>
+				
+
+			<div class="kfstit"><h3>申诉内容</h3></div>
+			<table class="requtable">
+				<tr>
+					<td><i>问题类型：</i>{$issueconfig.name}</td>
+					<td><i>申诉状态：</i>{$issue.adminstatus}</td>
+				</tr>
+				<tr>
+					<td><i>提交时间：</i>{$issue.ctime|time_format}</td>
+					<td><i>申诉方式：</i>网页提交</td>
+				</tr>
+				<tr>
+					<td colspan="2"><i>处理回复：</i>{$issue.adminreply}</td>
+				</tr>
+			</table>
+
+
+<foreach name="issue_field" item="vo" key="k" >   
+   <div class="kfstit"><h3>{$k}</h3></div>
+   <table class="requtable">
+   <php>$end=round(count($vo)/2);</php>
+   <for start="0" end="$end">
+	<tr>
+		<volist  name="vo" id="val" key="key" offset="0" length='2'>
+			<td><i>{$key}：</i>
+			<eq name="val.type" value="select"><php>echo D('Game')->getFieldBymap('name',Array('id'=>$form_field[$val['name']]));</php><else/>{$form_field[$val['name']]}</eq>
+			</td>
+			<php>unset($vo[$key]);</php>
+		</volist>
+    </tr>
+   </for>
+</table>
+</foreach>
+
+
+<div class="kfstit"><h3>联系方式</h3></div>
+			<table class="requtable">
+				<tr>
+					<td><i>邮箱：</i>{:half_replace($issue['email'])}</td>
+					<td><i>手机号码：</i>{:half_replace($issue['mobile'])}</td>
+				</tr>
+				<tr>
+					<td colspan="2"><i>QQ：</i>{:half_replace($issue['qq'])}</td>
+				</tr>
+			</table>
+
+			<div class="kfstit"><h3>补充资料</h3></div>
+			<table class="requtable">
+				<tr>
+					<td><i>备注：</i>{$issue.note}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+</block>
+
+
+<block name="footer_script">
+<import type='js' file="theme.js.kf" />
+<script type="text/javascript">
+$(document).ready(function(){
+	<empty name="issue.grade">
+	$(function(){var c=$(".level"),levebox=$("#levebox"),iele=c.find('i'),defineValue=+c.attr('v'),cur='cur',degree=['','1分&nbsp;失望','2分&nbsp;不满','3分&nbsp;一般','4分&nbsp;满意','5分&nbsp;惊喜'],tempele=null,getCores=function(){if(defineValue){tempele=iele.eq(defineValue-1);iele.removeClass(cur);tempele.addClass(cur);tempele.prevAll().addClass(cur);levebox.html('<span class="revgrade">'+degree[defineValue]+'</span>')}else{iele.removeClass(cur);levebox.html('')}};iele.bind('mouseover',function(){var a=$(this).index(),pmark=$(this).parent();iele.removeClass(cur);$(this).addClass(cur);$(this).prevAll().addClass(cur);levebox.html('<span class="revgrade">'+degree[a+1]+'</span>')});iele.bind('mouseout',function(){getCores()});iele.bind('click',function(){var b=$(this).index(),pmark=$(this).parent();++b;$.ajax({type:"get",async:false,url:U('Service/ticket/details','sno={$issue.sno}&grade='+b),dataType:"json",success:function(a){if(a.status!=0){alert(a.msg)}else{iele.unbind().css("cursor","auto");pmark.attr('v',b)}}})})});
+	<else />
+	$(function(){var level=$(".level"),levebox=$("#levebox"),iele=level.find('i'),defineValue=+level.attr('v'),cur='cur',degree=['','1分&nbsp;失望','2分&nbsp;不满','3分&nbsp;一般','4分&nbsp;满意','5分&nbsp;惊喜'],tempele=null,getCores=function(){if(defineValue){tempele=iele.eq(defineValue-1);iele.removeClass(cur);tempele.addClass(cur);tempele.prevAll().addClass(cur);levebox.html('<span class="revgrade">'+degree[defineValue]+'</span>')}else{iele.removeClass(cur);levebox.html('')}};iele.unbind('mouseout');iele.unbind('mouseover')});
+	</empty>
+});
+</script>
+</block>
+

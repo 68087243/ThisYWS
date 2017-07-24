@@ -1,0 +1,183 @@
+
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+    <static type='css' file="dzs.css.index" />
+    <static type='css' file="dzs.css.server" />
+<style type="text/css">
+
+</style>
+    <script type="text/javascript">
+        {:W('Common/Public/script')}
+    </script>
+    <import type='js' file="jquery.jquery183min" />
+</block>
+
+
+<div class="stopbox">
+    <div class="navbox">
+        <a href="#" class="slogo" title="T3T2大战神">T3T2大战神</a>
+        <div class="nav_a">
+            <a href="{$gameurl}" class="n1">官网首页</a>
+            <a href="{:U('Forum/'.$gamedata['mark'].'/index')}" class="n2">游戏论坛</a>
+            <a href="{:U('Pay/index/'.$gamedata['id'])}" class="n3">用户充值</a>
+            <a href="#" class="n4" id="sitefav">收藏本页</a>
+        </div>
+    </div>
+    <div class="userbox">
+        <present name="__USER__">
+            <div class="user user_login">
+                <h3>用户信息</h3>
+                <div class="nam_box">
+                    <a href="{:U('Api/User/logout','refrer=1')}" class="tui_a" target="_self">退出登录</a>
+                    欢迎您：<a href="{:U('User/Index/Index')}">{$__USER__.username}</a>
+                </div>
+                <div class="user_btn">
+                    <a href="{:U('User/profile/index')}">修改资料</a>
+                    <a href="{:U('User/Safe/index')}">设置密保</a>
+                    <a href="{:U('User/Safe/index')}">手机绑定</a>
+                </div>
+                <div class="user_fu">
+                    最近玩过：
+                </div>
+            </div>
+            <script type="text/javascript">
+                $.ajax({
+                    type: "get",
+                    async: true,
+                    url: U("Api/User/Userplay","gid={:I('gid')}"),
+                    dataType: "jsonp",
+                    jsonp: "callback",
+                    success: function(data){
+                        for(var i in data)
+                        {
+                            if("undefined" == typeof(type) || type == 0) {
+                                var latest ='<a href="'+data[i]['url']+'">['+data[i]['s_name']+']</a>';
+                                $(".user_fu").append(latest);
+                            }
+                        }
+                    }
+                });
+
+                $.ajax({
+                    type: "get",
+                    async: true,
+                    url: U('Api/User/Userapi'),
+                    dataType: "jsonp",
+                    jsonp: "callback",
+                    success: function(e){
+                        var a=e.level,n=e.hy,s=e.value,t=e.packs,l=e.games,r=e.xlevel;0==a&&(n=1);
+                        var o="";
+                        o=0==n?"lv_g"+a:"lv"+a,$(".level_ico").addClass(o),$(".lv_ico").addClass("lv_"+r);
+                        $(".tou-a>img").attr("src",e.avatar);
+                    }
+                });
+
+            </script>
+        <else/>
+            <h3>用户登录</h3>
+            <div class="user">
+                <div>
+                    <form id="loginform" name="loginform" action="{:U('Api/User/ajaxLogin')}" method="post">
+                        <ul class="user_ul">
+                            <li id="int">
+                                <input type="text" class="int" id="login-username" name="username" onblur="" onclick="if(this.value=='请输入帐号'){this.value=''}" onblur="checkuser_login(this)">
+                                <input type="password" class="int2" id="login-password" name="password" onblur="checkpwd_login(this)" onclick="if(this.value=='******'){this.value=''}">
+                            </li>
+                            <li class="user_txt">
+                                <a href="{:U('User/Public/register')}">注册帐号</a>
+                                <a href="<php>echo addons_url('SyncLogin://Login/login', array('type'=>'qq'));</php>" class="qq_a">QQ登录</a>
+                                <a href="{:U('Service/ticket/password')}">忘记密码?</a>
+                            </li>
+                        </ul>
+                    </form>
+                    <input type="button" class="subtn" onclick="submitLoginInfo()">
+                </div>
+            </div>
+        </present>
+    </div>
+    <import type='js' file="theme.api.weblogin" />
+    </present>
+    <script>
+        $(document).ready(function() {
+            $(window).load(function(){
+                $('#page-loader').fadeOut(500);
+            });
+        });
+    </script>
+</div>
+<div class="sconbox">
+    <div class="svbox">
+        <h3>服务器列表</h3>
+        <div class="server_tit">
+            <h4>最近玩过的</h4>
+        </div>
+        <div class="server_zui" id="server_zui">
+            <ul class="server_con clearfix">
+
+            </ul>
+        </div>
+        <div class="server_tit">
+            <h4>推荐服务器</h4>
+        </div>
+        <div class="server_zui" id="tui">
+            <ul class="server_con clearfix">
+            </ul>
+        </div>
+        <div class="server_tit">
+            <h4>选择服务器</h4>
+            <div class="fu_box">
+                <span>快速进入<input type="text" value="" class="fu_txt" id="fu_txt">服</span>
+                <a href="#" class="fu_btn" target="_self" onclick="enterGame();return false;">进入游戏</a>
+            </div>
+        </div>
+        <div class="server_nav clearfix" id="server_nav">
+
+        </div>
+        <div class="server_wrap" id="server_wrap">
+
+        </div>
+    </div>
+
+</div>
+
+
+<block name="footer_script">
+<script type="text/javascript">
+	var gid = {$gamedata.id};
+    var navNode = ".server_nav";
+    var serverListNode = ".server_wrap";
+	var latestLimit="1";
+    var latestNode = ".server_zui>.server_con";
+	var latestNode_html=1;
+	
+	function enterNewGame(){
+        var sid=parseInt($("#server_no").val());
+        var _sid=parseInt($("#ser_con_1").attr('data-sid'));
+        if(sid>_sid || sid == 0 || isNaN(sid)){
+            alert("区服不存在");
+            return;
+        }
+        $.ajax({
+            type: "get",
+            async: true,
+            url: U("Api/Game/getGameserverUrl","gid=2&sid="+sid),
+            dataType: "jsonp",
+            jsonp: "callback",
+            success: function(data){
+                window.open(data.url,"_blank");
+            }
+        });
+    };
+
+    $("#int input").focus(function(){
+        $(this).addClass("int_cur");
+    }).blur(function(){
+        if($(this).val() == ""){
+            $(this).removeClass("int_cur");
+        }
+    });
+
+</script>
+<import type='js' file="theme.js.serversList" />
+</block>

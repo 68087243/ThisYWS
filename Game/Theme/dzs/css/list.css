@@ -1,0 +1,159 @@
+.art_pn span {
+    display:block
+}
+.ccon,.list_ul {
+    zoom:1
+}
+.ccon:after,.list_ul:after {
+    content:'\20';
+    display:block;
+    height:0;
+    clear:both
+}
+.cctit h2,.list_tit h2,.list_ul li {
+    float:left
+}
+.w1116,.cctit span,.list_tit span,.list_ul span {
+    float:right
+}
+.ccon,.pagenav,.list_con h1,.art_author {
+    overflow:hidden
+}
+.pagenav,.list_con h1,.art_author {
+    text-align:center
+}
+.cctit h2,.list_tit h2 {
+    font-weight:normal
+}
+.cctit i,.list_tit i,.list_ul a,.list_ul span {
+    font-size:14px
+}
+.cctit h2,.list_tit h2 {
+    font-size:20px
+}
+.cctit h2,.list_tit h2 {
+    color:#fff
+}
+.w1116 {
+    width:1118px;
+    padding-bottom:95px
+}
+.cctit,.list_tit {
+    height:37px;
+    padding-top:8px;
+    padding-left:22px;
+    border:1px solid #3a4255;
+    background:url(../images/cctitbg.jpg) no-repeat center top
+}
+.cctit i,.list_tit i {
+    margin-left:8px;
+    color:#c7d1e9;
+    font-style:normal
+}
+.cctit span,.list_tit span {
+    margin:6px 18px 0 0;
+    color:#c7d1e9;
+    font-size:14px
+}
+.cctit a,.list_tit a {
+    margin:0 5px;
+    color:#c7d1e9
+}
+.ccon {
+    height:846px;
+    border:1px solid #c9caca;
+    border-top:0 none;
+    background:#fff url(../images/cconbg.jpg) no-repeat center bottom
+}
+.cimgs {
+    height:759px;
+    padding-top:22px;
+    font-size:0;
+    overflow-y:auto
+}
+.cimgs img {
+    width:330px;
+    height:220px;
+    margin:0 0 33px 33px
+}
+.list_con {
+    height:845px;
+    padding:20px 38px 20px
+}
+.list_ul li {
+    width:100%;
+    height:35px;
+    line-height:35px;
+    overflow:hidden;
+    border-bottom:1px dashed #3C3B41
+}
+.list_ul a,.list_ul span {
+    color:#444
+}
+.pagenav {
+    font-size:0;
+    width:100%;
+    height:24px;
+    line-height:24px;
+    padding:14px 0 22px
+}
+.pagenav a {
+    padding:1px 6px;
+    margin:0 3px;
+    color:#747474;
+    background:#1A181E;
+    border:1px solid #1A181E;
+    font:12px/22px \5FAE\8F6F\96C5\9ED1
+}
+.pagenav a:hover {
+    text-decoration:none
+}
+.pagenav .page_cur {
+    color:#fff;
+    border:1px solid #BA9568;
+    background:#BA9568
+}
+.list_con h1 {
+    height:56px;
+    line-height:56px;
+    font-size:24px;
+    color:#2b2a2a;
+    font-weight:normal
+}
+.art_author {
+    height:20px;
+    padding-bottom:12px;
+    border-bottom:1px dashed #39383e;
+    color:#888
+}
+.con_input {
+    height:552px;
+    margin:20px 0;
+    color:#444;
+    line-height:2.0;
+    overflow-y:auto
+}
+.con_input img {
+    margin:4px 0;
+    max-width:760px
+}
+.art_pn {
+    padding:35px 0 14px;
+    margin-top:20px;
+    color:#888;
+    border-top:1px solid #39383e
+}
+.art_pn a {
+    font-size:14px;
+    height:30px;
+    line-height:30px;
+    padding:0 12px;
+    color:#888
+}
+.art_pn a:hover {
+    color:#888;
+    text-decoration:underline
+}
+.art_pn .none a {
+    color:#888
+}

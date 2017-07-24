@@ -1,0 +1,220 @@
+<!-- <extend name="./Theme/default/Common/Public/layout.html"/>
+
+<block name="title"><title>{:C('WEB_SITE_TITLE')}{:C('WEB_SITE_SLOGAN')}</title></block> -->
+
+<block name="style">
+<import type='css' file="theme.css.index" />
+</block>
+
+
+
+<block name="body">
+<div class="w-focus" id="w-focusimg">
+	<ul>
+		<php>$Slidelist=D('Slide')->Slidelist(4);</php>
+		<volist name="Slidelist" id="vo">
+		<li style="background-image:url(<empty name="vo.pic">{$vo.url}<else />{$vo.pic|get_cover=###}</empty>)">
+		<a title="{$vo.name}" href="{$vo.onclick_url}"></a>
+		</volist>
+	</ul>
+	<div class="w-focusbtn">
+		<i class="cur"></i>
+		<i></i>
+		<i></i>
+		<i></i>
+	</div>
+</div>
+<div class="w-block">
+        <div class="w-log" id="pop-wrap">
+                <iframe width="266px" height="288px" scrolling="no" framemargin="0" frameborder="0" allowtransparency="true" src="{:U('Api/User/loginbox')}"></iframe>
+        </div>
+</div>
+<div class="w-wrap">
+	<div class="w-section">
+		<div class="w-tit">
+			<h2 class="w-tit-tjyx">推荐游戏</h2>
+			<ul class="w-notice" id="w-notices">
+				<volist name=":W('Common/Horn/getHorn',array(5,'Smallspeakers'))" id="vo" >
+					<li><a href="{$vo.url}">{$vo.name}</a></li>
+				</volist>
+			</ul>
+		</div>
+		<div class="w-tjyxwrap" id="w-tjyxbox">
+			<div class="w-slides">
+				<ul>
+					<volist name="Game.tjyx" id="vo" >
+					<li>
+					<div class="w-slidecon">
+						<a href="<php>echo D('Game')->getGameUrl($vo['id']);</php>" class="w-slideimg"><img src="<empty name="vo.pic.pic_t">__PUBLIC__/theme/empty/empty250.png<else />{$vo.pic.pic_t|get_cover=###}</empty>"></a>
+						<div class="w-slidebcon">
+							<a class="w-jqyxplay" href="{:D('Gameserver')->getNewServerUrlBygid($vo['id'])}"><i></i>进入新区</a>
+							<h3><a href="<php>echo D('Game')->getGameUrl($vo['id']);</php>">{$vo.name}</a></h3>
+							<p><empty name="vo.summary"><php>$_rand=rand(0,1);</php><empty name="_rand">{$vo.name} 霸业再现<else />{$vo.name} 经典再现</empty><else />{$vo.summary}</empty></p>
+						</div>
+						<notempty name='vo.flags.r'><i class="w-jqyxicoh"></i><else /><notempty name='vo.flags.x'><i class="w-jqyxicon"></i></notempty></notempty>
+					</div>
+					<div class="w-slidebg">
+					</div>
+					</li>
+					</volist>
+				</ul>
+			</div>
+			<a target="_self" class="w-leftbtn" href="#"></a><a target="_self" class="w-rightbtn" href="#"></a>
+		</div>
+		<div class="w-tit mtop15">
+			<h2 class="w-tit-jpyx">精品游戏</h2>
+			<a href="{:U('Game/index/index')}" class="w-rmore">更多</a>
+		</div>
+		<ul class="w-jpyxitem">
+			<volist name="Game.jpyx" id="vo">
+			<li>
+			<div class="w-jpyxbg">
+				<a href="<php>echo D('Game')->getGameUrl($vo['id']);</php>" class="w-imglink">
+				<img a="<empty name="vo.pic.pic_j">__PUBLIC__/theme/empty/empty250.png<else />{$vo.pic.pic_j|get_cover=###}</empty>" alt="{$vo.name}">
+				<notempty name='vo.flags.r'><i class="w-jqyxicoh"></i><else /><notempty name='vo.flags.x'><i class="w-jqyxicon"></i></notempty></notempty>
+				</a>
+				<div class="w-jqyxb">
+					<a href="<php>echo D('Game')->getGameUrl($vo['id']);</php>" class="w-jqyxplay"><i></i>开始游戏</a>
+					<a href="<php>echo D('Game')->getGameUrl($vo['id']);</php>">{$vo.name}</a>
+				</div>
+			</div>
+			<i class="w-jpyxpngbg"></i>
+			</li>
+			</volist>
+		</ul>
+	</div>
+	<div class="w-article">
+		<div class="w-tit">
+                        <h2 class="w-tit-jjkf">即将开服</h2>
+                        <div class="w-kfitemtab" id="jjkfbtns"></div>
+        </div>
+		<div class="w-jjkflist" id="jjkfcons">
+         </div>
+		<div class="w-tit">
+                        <h2 class="w-tit-newkf">最新开服</h2>
+                        <div class="w-kfitemtab" id="newkfbtns"></div>
+        </div>
+		<div class="w-jjkflist" id="newkfcons">
+		</div>
+	</div>
+</div>
+
+
+<div class="w-indexm">
+        <div class="w-section"><div class="w-tit"><h2 class="w-tit-rmyx">热门游戏</h2><a href="{:U('Game/index/index')}" class="w-rmore">更多</a></div><ul class="w-rmyx"><volist name="Game.rmyx" id="vo"><li><a href="<php>echo D('Game')->getGameUrl($vo['id']);</php>" class="w-rmyxg"><img a="<empty name="vo.pic.pic_r">__PUBLIC__/theme/empty/empty123.png<else />{$vo.pic.pic_r|get_cover=###}</empty>" alt="{$vo.name}"><em>{$vo.name}</em></a>
+                                <div class="w-rmyxbtns"><a href="<php>echo D('Game')->getGameUrl($vo['id']);</php>" class="w-rmyxplay"><span>开始游戏</span><i></i></a><p><a href="{:U('Gift/'.$vo['mark'].'/index')}">新手卡</a><a href="{:U('Forum/'.$vo['mark'].'/index')}">游戏论坛</a></p></div></li></volist></ul>
+        </div>
+
+        <div class="w-article">
+                <div class="w-tit">
+                        <h3 class="w-tit-bzzx" id="w-bzzxtab">
+                            <span class="cur">新闻公告</span>
+                            <span>常见问题</span>
+                        </h3>
+                        <a href="{:U('News/index/index')}" class="w-rmore">更多</a>
+                </div>
+                <div class="w-artcons">
+                        <div class="w-bzzx">
+                                <div class="w-bzzxitem" id="w-bzzxcon">
+									<p>
+										<volist name=":W('Common/Document/getListByCid',array(6,false,'HomePlatformNews'))" id="vo">
+											<a href="{:U('News/Read/'.$vo['id'])}"><span><i>{$i}</i></span>{$vo.title}</a>
+										</volist>
+                                    </p>
+                                    <p class="hidden">
+										<volist name=":W('Common/Document/getListByCid',array(6,4,'HomeHelpCenter'))" id="vo">
+												<a href="{:U('News/Read/'.$vo['id'])}"><span><i>{$i}</i></span>{$vo.title}</a>
+										</volist>
+									</p>
+                                </div>
+                               <div class="w-kflianxi">
+                                        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={:C('WEB_SITE_QQ')}&site=qq&menu=yes" class="w-kfonline">联系在线客服</a>
+                                        <div class="w-kr">
+                                                <b class="w-kqq">{:C('WEB_SITE_QQ')}</b>
+                                                <b class="w-kiphoe">{:C('WEB_SITE_MOBILE')}</b>
+                                                <p>周一到周日 9:00至21:00</p>
+                                        </div>
+                                </div>
+                        </div>
+
+                       <ul class="w-rbanans">
+                       			<php>$bgad=M('Bgad')->select();</php>
+                                <li><a href="{$bgad.2.url}"><img src="{$bgad.2.pic|get_cover=###}" style="width:300px;height:95px;"></a>
+                        </li>
+                </div>
+        </div>
+</div>
+
+<div class="w-tit w-gtit"><h2 class="w-tit-selectyx">游戏列表</h2><a href="{:U('Game/index/index')}"class="w-rmore">更多</a><div class="w-selgames">按首字母：<span id="selecthand"><i class="cur">不限</i><php>$GAME_INITIALS_LIST=C('GAME_INITIALS_LIST');</php><volist name="GAME_INITIALS_LIST" id="vo"><i>{$vo}</i></volist></span></div></div>
+<ul class="w-allgames" id="allGames">
+<php>$GAME_TYPE_LIST=C('GAME_TYPE_LIST');</php>
+<volist name="GAME_TYPE_LIST" id="vo" key="k">
+
+<li><h3>{$vo}</h3><div class="gcons"><p><volist name="Game.all" id="vog"><in name="vog.type" value="$k"><a href="<php>echo D('Game')->getGameUrl($vog['id']);</php>" v="{:strtolower(pinyin($vog['name'],true))}"><img alt="{$vog.name}"a="<empty name="vog.pic.pic_icon">__PUBLIC__/theme/empty/emptyicon.png<else />{$vog.pic.pic_icon|get_cover=###}</empty>">{$vog.name}</a></in></volist></p></div></li>
+
+</volist>
+							
+</ul>
+
+<script type="text/JavaScript">
+//解决allGame错位
+$("#allGames>li>.gcons>p").each(function(i,n){
+    if(n.innerHTML =="" || n.innerHTML==null ){
+	  n.innerHTML="&nbsp;";
+	}
+})
+</script>
+<div class="w-tit w-gtit">
+        <h2 class="w-tit-wjfc">合作联盟</h2>
+        <a href="http://wpa.qq.com/msgrd?v=3&uin={:C('WEB_SITE_QQ')}&site=qq&menu=yes" class="w-rmore">互换</a>
+        <a class="w-myup" href="http://wpa.qq.com/msgrd?v=3&uin={:C('WEB_SITE_QQ')}&site=qq&menu=yes">排名不分先后</a>
+</div>
+
+	<div class="w-wjfc" id="w-wjfcbox">
+        <div class="w-wjfcwrap">
+            <ul>
+            				
+            				<volist name="style" id="vo">
+                                <li>
+								<a href="{$vo.url}"><img alt=" 1区 无痕" a="{$vo.pic|get_cover=###}"><span>{$vo.name} </span></a>
+                                </li>
+                            </volist>
+
+                              </ul>
+        </div>
+<a target="_self" class="w-leftbtn" href="#"></a><a target="_self" class="w-rightbtn" href="#"></a></div>
+
+<!-- 右下角弹窗广告  -->
+<style>
+*{ margin:0; padding:0; list-style:none; text-align:left;}
+a{font-size:12px; color:#666; text-decoration:none;}
+
+.lanrenzhijia{ width:260px; height:160px;   position:fixed; right:-300px; bottom:10px;}
+.lanrenzhijia .close{ width:30px; height:22px; line-height:22px;display:block; float:right;}
+</style>
+<script src="js/jquery.min.js"></script>
+<script>
+$(function (){
+$('.lanrenzhijia').animate({right:'10px'},1000);
+$('.lanrenzhijia .close').click(function(){
+   $('.lanrenzhijia').hide();
+});
+});
+</script>  
+
+<div class="lanrenzhijia"><a href="{$bgad.5.url}"><img src="{$bgad.5.pic|get_cover=###}" wdith="260px" height="160px" /></a><a href="javascript:" style="position: absolute;top:-0px;right:0px;" class="close">关闭</a></div>
+<!-- 右下角弹窗广告end  -->
+
+<!-- 分享  -->
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+</block>
+<!-- 分享end  -->
+<block name="link"><div class="w-friends"><p><strong>友情链接：</strong>{:W('Common/Public/link')}</p></div>
+<php>$bgad=M('Bgad')->select();</php>
+<a href="{$bgad.0.url}" class="bgad_l"><img src="{$bgad.0.pic|get_cover=###}" alt="{$bgad.0.name}"></a><a href="{$bgad.1.url}" class="bgad_r"><img src="{$bgad.1.pic|get_cover=###}" alt="{$bgad.1.name}"></a>  
+
+</block>
+
+<block name="footer_script"><import type='js' file="theme.js.index" /></block>

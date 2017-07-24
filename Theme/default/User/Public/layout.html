@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="edge">
+<meta name="keywords" content="{$meta_keywords}">
+<meta name="description" content="{$meta_description}">
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}{:C('WEB_SITE_SLOGAN')}</title></block>
+<script type="text/javascript">{:W('Common/Public/script')}</script>
+<import type='css' file="theme.user.css.common" />
+<import type='css' file="theme.user.css.personal" />
+<import type='js' file="jquery.jquery183min" />
+<block name="style"></block>
+<block name="script"></block>
+<base target="_blank">
+</head>
+<body>
+<div class="p-top">
+	<div class="w980">
+		<div class="p-tl">
+			<a href="{:U('Home/index/index')}" target="_blank">首页</a>|<a href="{:U('Game/index/index')}" target="_blank">游戏中心</a>|<a href="{:U('Shop/index/index')}" target="_blank">积分商城</a>
+		</div>
+		<div class="p-tr">
+			<a href="{:U('User/vip/index')}" target="_blank">VIP专区</a>|<a href="{:U('Pay/index/index')}" target="_blank">游戏充值</a>|<<a href="{:U('Service/index/index')}" target="_blank">客服中心 </a>|<a href="{:U('Forum/index/index')}" target="_blank">玩家论坛</a>|<present name="__USER__"><span class="p-trname">{$__USER__.username}</span><a href="{:U('Api/User/logout',Array('refrer'=>1))}" target="_self">[&nbsp;退出&nbsp;]</a><else /><span onclick="tan();" class="p-tologin">登录</span></present>
+
+			
+		</div>
+	</div>
+</div>
+<div class="p-header">
+	<div class="w980">
+			<h1 class="p-sitename"><a href="/">{:C('WEB_SITE_TITLE')}游戏个人中心</a></h1>
+			<div class="p-rbananer">
+							<a href="{:U('Gift/index/index')}" target="_blank"><img src="__PUBLIC__/theme/ad/nlacmpum.jpg" alt="banner"></a>
+			</div>
+	</div>
+</div>
+
+<div class="p-content">
+	<php>
+	$score=getlevel($__USER__['total_score']);
+	$vip=getlevel($__USER__['upgrade'],true);
+	</php>
+	<div class="p-cl">
+			<div class="p-ltop">
+					<div class="p-userinfo">
+							<div class="p-userimg"><a href="{:U('User/setAvatar/index')}"><img src="{:get_cover($__USER__['avatar'],'avatar')}" alt="{$__USER__.username}"><i>修改头像</i></a></div>
+														<div class="p-userof">
+								<div class="p-username"><a href="{:U('User/profile/index')}">{$__USER__.username}</a></div>
+																<a href="{:U('User/score/index')}" title="当前等级：LV{$__USER__.level}&nbsp;&nbsp;;&nbsp;&nbsp;积分：{$__USER__.score}" class="lv_{$__USER__.level}" target="_blank">LV{$score.level}</a>
+																<a href="{:U('User/vip/index')}" class="level_ico lv{$__USER__.vip}" title="{$vip.title}" target="_blank">{$vip.title}</a>
+																<notempty name="Think.config.TOGGLE_CURRENCY">{:C('CURRENCY_NAME')}：<span>{$__USER__.money}</notempty></span>
+															</div>
+					</div>
+					<div class="p-check">
+					<empty name="__USER__.sign"><div class="p-checkb" ><em>{:date('m.d')}</em><span>每日签到</span></div><else /><div class="p-checka"><em>{:date('m.d')}</em><span>已签到</span></div></empty>
+					</div>
+
+
+					<ul class="p-lnav">
+						<li>
+								<a href="/" class="nav0" id="CONTROLLER_INDEX" target="_self"><i class="p-nico"></i>我的首页<i class="p-rj"></i></a>
+								<a href="{:U('User/record/index')}" class="nav1" id="CONTROLLER_RECORD" target="_self"><i class="p-nico"></i>游戏记录<notempty name="__USER__.gameplay"><i class="p-nums">{$__USER__.gameplay}</i></notempty><i class="p-rj"></i></a>
+								<a href="{:U('User/recharge/index')}" class="nav2" id="CONTROLLER_RECHARGE" target="_self"><i class="p-nico"></i>充值记录<i class="p-rj"></i></a>
+								<a href="{:U('User/vip/index')}" class="nav3" id="CONTROLLER_VIP" target="_self"><i class="p-nico"></i>我的VIP<i class="p-new"></i><i class="p-rj"></i></a>
+								<a href="{:U('User/score/index')}" class="nav5" id="CONTROLLER_SCORE" target="_self"><i class="p-nico"></i>积分等级<i class="p-rj"></i></a>
+					</ul>
+					<ul class="p-lnav">
+						<li>
+								<a href="{:U('User/profile/index')}" class="nav6" id="CONTROLLER_PROFILE" target="_self"><i class="p-nico"></i>个人资料<i class="p-rj"></i></a>
+								<a href="{:U('User/safe/index')}" class="nav7" id="CONTROLLER_SAFE" target="_self"><i class="p-nico"></i>帐号安全<i class="p-rj"></i></a>
+						</li>
+					</ul>
+			</div>
+
+			<div class="p-tit">
+				<h3>快捷入口</h3>
+			</div>
+			<div class="p-kjwrap">
+				<a target="_blank" href="{:U('Service/index/index')}" class="p-kj0">客服中心</a>
+				<a target="_blank" href="{:U('Shop/index/index')}" class="p-kj1">积分游戏</a>
+				<a target="_blank" href="{:U('Forum/index/index')}" class="p-kj2">火爆论坛</a>
+				<a target="_blank" href="{:U('Pay/index/index')}" class="p-kj3">游戏充值</a>
+			</div>
+	</div>
+
+
+<block name="body">这里是内容</block>
+
+
+
+<block name="footer">
+</div>
+
+<div class="p-footer">
+	<p>
+		<a href="{:U('Service/Information/about')}">关于我们</a>|<a href="{:U('Service/Information/lianxi')}">联系我们</a>|<a href="{:U('Service/Information/cooperation')}">游戏合作</a>|<a href="{:U('Service/Information/declare')}">版权声明</a>|<a href="{:U('Service/Information/duty')}">使用协议</a>
+	</p>
+	Copyright&nbsp;&nbsp;&nbsp;©2015 {:strtoupper(DOMAIN())}&nbsp;&nbsp;&nbsp;{:C('WEB_SITE_ICP')}&nbsp;&nbsp;&nbsp;
+</div>
+
+<div class="hidden">
+    <div class="hidden">{:C('WEB_SITE_STATISTICS')}</div>
+</div>
+<script type="text/JavaScript">
+var CONTROLLER_NAME="{:CONTROLLER_NAME}".toLocaleUpperCase();
+var CONTROLLER_OBJ=$("#CONTROLLER_"+CONTROLLER_NAME);
+var CONTROLLER_CLASS=CONTROLLER_OBJ.attr('class');
+var _CLASS=CONTROLLER_CLASS+"_cur";
+CONTROLLER_OBJ.addClass(_CLASS);
+</script>
+<import type='js' file="theme.user.js.common" />
+<block name="footer_script"></block>
+</block>
+</body>
+</html>

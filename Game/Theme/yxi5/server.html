@@ -1,0 +1,78 @@
+<extend name="./Theme/default/Common/Game/layout_theme_yxi5.html"/>
+<block name="title"><title>{$meta_title}-{:C('WEB_SITE_TITLE')}</title></block>
+
+<block name="style">
+
+</block>
+
+
+<block name="body">
+<div class="right2">
+			<div class="newslist">
+            	<div class="title"><span class="tit">{$gamedata.name}服务器列表</span><span class="cur_pos">当前位置：<a href="{$gameurl}">{$gamedata.name}</a><span>&gt;</span>区服列表</span></div>
+                <div class="con serveritems">
+		<div class="list_ser">
+            <div class="server_tit">
+                <h3>最近玩过的服务器</h3>
+            </div>
+            <div class="server_zui">
+                <ul class="server_con clearfix">
+                </ul>
+            </div>
+
+            <div class="server_tit">
+                <h3>全部服务器</h3>
+                <div class="fu_box">
+                    <span>快速进入<input type="text" value="" class="fu_txt" id="server_no">服</span>
+                    <a href="#" class="fu_btn" onclick="enterNewGame();return false;">进入游戏</a>
+                </div>
+            </div>
+
+            <div class="server_nav clearfix">
+            </div>
+
+            <div class="server_wrap">
+            </div>
+        </div>
+		
+           </div>
+        </div>  
+        </div> 
+        <div class="clear"></div>
+</block>
+
+<block name="footer_script">
+<script type="text/javascript">
+	var gid = {$gamedata.id};
+    var navNode = ".server_nav";
+    var serverListNode = ".server_wrap";
+	var latestLimit="1";
+    var latestNode = ".server_zui>.server_con";
+	var latestNode_html=1;
+	
+	function enterNewGame(){
+	var sid=parseInt($("#server_no").val());
+	var _sid=parseInt($("#ser_con_1").attr('data-sid'));
+	if(sid>_sid || sid == 0 || isNaN(sid)){
+		alert("区服不存在");
+		return;
+	}
+	$.ajax({
+    type: "get",
+    async: true,
+    url: U("Api/Game/getGameserverUrl","gid="+gid+"&sid="+sid),
+    dataType: "jsonp",
+    jsonp: "callback",
+    success: function(data){
+		window.location=data.url;
+    }
+});
+
+
+
+}
+
+</script>
+<import type='js' file="theme.js.serversList" />
+
+</block>

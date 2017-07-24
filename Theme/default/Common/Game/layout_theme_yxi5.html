@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="edge">
+<meta name="keywords" content="{$meta_keywords}">
+<meta name="description" content="{$meta_description}">
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}{:C('WEB_SITE_SLOGAN')}</title></block>
+{:hook("PageHeader")}
+<script type="text/javascript">
+{:W('Common/Public/script')}
+</script>
+<import type='css' file="theme.css.common_theme" />
+<import type='js' file="jquery.jquery183min" />
+<import type='js' file="jquery.jquerySuperSlide" />
+<import type='css' file="theme.theme_yxi5.css.game" />
+
+<block name="style"></block>
+<block name="script"></block>
+<base target="_blank">
+</head>
+<body>
+<div class="headerbox">
+	<div class="hd960">
+		<h1 class="hd_logo">
+			<a href="{:U('Home/Index/Index')}">{:C('WEB_SITE_TITLE')}</a>
+		</h1>
+		<div class="tips188">本游戏仅适合18岁以上玩家</div>
+	<div class="hd_ico">
+	<volist name=":W('Common/Game/RecommendedGame',Array('z',4,'PublicTheme_num4_2016'))" id="ig">
+		<a href="{$ig.gameurl}"><img src="{$ig.pic.pic_icon|get_cover=###}" alt="{$ig.name}">{$ig.name}</a>
+	</volist>
+	</div>
+	<div class="hd_right">
+		<div class="hd_a">
+			<a href="{:U('Pay/Index/'.$gamedata['id'])}" style="color:#f60">充值</a>|<a href="{:U('Service/Index/index')}">客服</a>|<a href="#">家长监护</a><a href="#this" id="all_a" target="_self">全部网页游戏</a></div>
+			<div class="hd_pop" id="hd_pop" style="display: none;">
+				<i class="hd_jiao"></i>
+					<ul class="pop_ul">
+						<volist name=":W('Common/Game/RandGame',Array(32,'PublicTheme_num32_2016'))" id="ig">
+						<?php  $_flags=flags($ig['flags']);?>
+						<li><a href="{$ig.gameurl}" <present name="_flags.r">style="color:#f60"</present>>{$ig.name}</a></li>
+						</volist>
+					</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="main">
+<div class="banner" style="background:url({$gamedata.pic.pic_site_bg|get_cover=###}) no-repeat center top;"></div>
+
+
+<div class="conwrap area">
+    	<div class="left">
+        	<div class="login">
+            	<a href="{:U($gamedata['mark'].'/server')}" class="game_star">开始游戏</a>
+                        <iframe width="305px" height="133px" scrolling="no" framemargin="0" frameborder="0" allowtransparency="true" src="{:U('Api/User/Gamebox',Array('bcolor'=>333,'gid'=>$gamedata['id']))}"></iframe>
+            </div>
+            <div class="kefu">
+            	<div class="title"><span class="tit">客服中心</span><import type='png' file="theme.theme_yxi5.images.help" /></div>
+                <div class="con">
+                	<div class="pic"><import type='png' file="theme.theme_yxi5.images.kefu" /></div>
+                    <ul class="info">
+                    	<li>客服电话：{:C('WEB_SITE_MOBILE')}</li>
+                        <li>客服时间：9:00-22:00</li>
+                        <li>游戏咨询：<a href="http://wpa.qq.com/msgrd?v=3&uin={:C('WEB_SITE_QQ')}&site=qq&menu=yes" target="_blank" class="cOrange">在线客服</a></li>
+                        <li>充值咨询：<a href="http://wpa.qq.com/msgrd?v=3&uin={:C('WEB_SITE_QQ')}&site=qq&menu=yes" target="_blank" class="cOrange">在线客服</a></li>
+                    </ul>
+					<div style="width:290px;text-overflow: -o-ellipsis-lastline;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;-webkit-box-orient: vertical;">{$gamedata.description|strip_tags=###}</div>
+                </div>
+            </div>
+        </div>   
+		
+		<block name="body">
+		   
+		   </block>
+		   </div>
+		   <div class="link">
+    	<div class="title">友情链接</div>
+        <ul>
+       
+                </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+ <block name="link"></block>
+<block name="footer">
+<div class="p-footer">
+	<p>
+		<a href="{:U('Service/Information/about')}">关于我们</a>|<a href="{:U('Service/Information/lianxi')}">联系我们</a>|<a href="{:U('Service/Information/cooperation')}">游戏合作</a>|<a href="{:U('Service/Information/declare')}">版权声明</a>|<a href="{:U('Service/Information/duty')}">使用协议</a>
+	</p>
+	Copyright&nbsp;&nbsp;&nbsp;©2015 {:strtoupper(DOMAIN())}&nbsp;&nbsp;&nbsp;{:C('WEB_SITE_ICP')}&nbsp;&nbsp;&nbsp;
+</div>
+
+<div class="hidden">
+    <div class="hidden">{:C('WEB_SITE_STATISTICS')}</div>
+</div>
+<script type="text/javascript">
+function enterGame(){
+	var sid=parseInt($("#fu_txt").val());
+	var _sid=parseInt($("#ser_con_1").attr('data-sid'));
+	if(sid>_sid || sid == 0 || isNaN(sid)){
+		alert("区服不存在");
+		return;
+	}
+	$.ajax({
+    type: "get",
+    async: true,
+    url: U("Api/Game/getGameserverUrl","gid={$gamedata.id}&sid="+sid),
+    dataType: "jsonp",
+    jsonp: "callback",
+    success: function(data){
+		window.location=data.url;
+    }
+});
+
+
+
+}
+
+function getServerListUrlByRh(){
+	return "{:U($gamedata['mark'].'/server')}";
+}
+
+</script>
+<import type='js' file="theme.js.common_theme" />
+<block name="footer_script"></block>
+</block>
+
+</body>
+</html>

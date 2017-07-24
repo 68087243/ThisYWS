@@ -1,0 +1,127 @@
+<extend name="./Theme/default/Shop/Index/layout.html"/>
+
+<block name="title"><title>产品详情｜游戏积分商城｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+<block name="style">
+<import type='css' file="theme.css.shop" />
+
+
+</block>
+
+
+
+<block name="body">
+    <div class="page-hd">
+        <!-- 页面位置 -->
+        <div class="local"> <a href="index">首页</a> &gt; <a href="http://mall.9377.com/list.php?cat=1">实物兑换</a> &gt; <span>孙小圣音响</span> </div>
+    </div>
+    <!-- 商品 -->
+    <div class="mod page-bd">
+        <div class="goods-hd fix">
+            <!-- 商品介绍 -->
+            <div class="goods-detail fl">
+                <div class="goods-gallery-wrap fl">
+                    <div class="gallery-full" id="gallery-full">
+                        <ul>
+                            <li><img src="http://cdnsource.9377.com/uploads/2016-02/01/ec6822cf9cb2b59d.jpg" width="342" height="380"></li>
+                            <li style="display:none;"><img src="http://cdnsource.9377.com/uploads/2016-02/01/e013a7a5b692ca08.jpg" width="342" height="380"></li>
+                            <li style="display:none;"><img src="http://cdnsource.9377.com/uploads/2016-02/01/31a7e4f42584bff7.jpg" width="342" height="380"></li>
+                            <li style="display:none;"><img src="http://cdnsource.9377.com/uploads/2016-02/01/87ce388a16bc86ac.jpg" width="342" height="380"></li>
+                            <li style="display:none;"><img src="http://cdnsource.9377.com/uploads/2016-02/01/e7f185ad212c317c.jpg" width="342" height="380"></li>
+                        </ul>
+                    </div>
+                    <div class="gallery-thumb" id="gallery-thumb">
+                        <ul class="fix">
+                            <li class="act active"><img src="http://cdnsource.9377.com/uploads/2016-02/01/ec6822cf9cb2b59d.jpg.thumb.jpg" width="52" height="52"></li>
+                            <li><img src="http://cdnsource.9377.com/uploads/2016-02/01/e013a7a5b692ca08.jpg.thumb.jpg" width="52" height="52"></li>
+                            <li><img src="http://cdnsource.9377.com/uploads/2016-02/01/31a7e4f42584bff7.jpg.thumb.jpg" width="52" height="52"></li>
+                            <li><img src="http://cdnsource.9377.com/uploads/2016-02/01/87ce388a16bc86ac.jpg.thumb.jpg" width="52" height="52"></li>
+                            <li><img src="http://cdnsource.9377.com/uploads/2016-02/01/e7f185ad212c317c.jpg.thumb.jpg" width="52" height="52"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="goods-info fl">
+                    <h2 class="name">孙小圣音响</h2>
+                    <div class="price">
+                        <i class="icon icon-money"></i>
+                        售价：
+                        <span> 47.5万  积分 </span>
+                    </div>
+                    <form name="myform" id="cart_submit" action="http://mall.9377.com/order.php" method="post">
+                        <div class="numbuy">
+                            兑换数量：
+                            <div class="g-count-number">
+                                <div class="g-number">
+                                    <input class="g-number-input" value="1" maxval="2" name="goods[637]">
+                                    <a class="number-btn number-btn-plus" data-pro="plus" href="javascript:;">+</a>
+                                    <a class="number-btn number-btn-minus" data-pro="minus" href="javascript:;">-</a>
+                                </div>
+                            </div>
+                            剩余 <em>2</em> 件 / 已兑换 <em>31</em> 件
+                        </div>
+                        <div class="shipment">
+                            <i class="icon icon-shipment"></i>
+                            大陆地区免费包邮
+                        </div>
+                        <a href="javascript:;" class="exchange-btn">立即兑换</a>
+                    </form>
+                </div>
+            </div>
+            <!-- 热门推荐 -->
+            <div class="hot-rmd fl">
+                <h3 class="hot-rmd-tit">热门推荐</h3>
+                <div class="__data__" data_id="__data__[41827]" page="" postfix="detail" style="display: none; "><div></div><span>热门推荐_v2</span></div>												<div class="hot-item">
+                <a href="http://mall.9377.com/yyg/detail.php?id=628" target="_blank" class="thumb">
+                    <div class="__data__" data_id="__data__[44737]" page="" postfix="detail" style="display: none; "><div></div><span>热门推荐_v2_628图片_198_160</span></div>							<img alt="198160.jpg" src="http://cdnsource.9377.com/uploads/2016-01/22/17c5a1d7371775c4.jpg" style="width: 198px; height: 160px;">
+                </a>
+                <p class="name"><a href="http://mall.9377.com/yyg/detail.php?id=628" target="_blank">美的电磁炉WK2102T</a></p>
+                <p class="price">62.5万积分</p>
+            </div>
+                <div class="hot-item">
+                    <a href="http://mall.9377.com/yyg/detail.php?id=598" target="_blank" class="thumb">
+                        <div class="__data__" data_id="__data__[41836]" page="" postfix="detail" style="display: none; "><div></div><span>热门推荐_v2_598图片_198_160</span></div>							<img alt="" src="http://cdnsource.9377.com/uploads//2015/12-16/a22e20d7b23d28d7.jpg">
+                    </a>
+                    <p class="name"><a href="http://mall.9377.com/yyg/detail.php?id=598" target="_blank">雷霆皇图魅影鼠标垫组合</a></p>
+                    <p class="price">9.9万积分</p>
+                </div>
+            </div>
+        </div>
+        <!-- 商品详情 -->
+        <div class="goods-bd">
+            <div class="headline"><h2>商品详情</h2></div>
+            <div class="goods-detailbox">
+                <p align="center" style="text-align: center;">
+                    <img alt="1.jpg" src="http://cdnsource.9377.com/uploads/2016-02/01/1745da5ecce1d3d2.jpg" style="width: 790px; height: 772px;"></p>
+                <p align="center" style="text-align: center;">
+                    <img alt="2.jpg" src="http://cdnsource.9377.com/uploads/2016-02/01/05fbe775d4ab64d1.jpg" style="width: 790px; height: 916px;"></p>
+                <p align="center" style="text-align: center;">
+                    <img alt="3.jpg" src="http://cdnsource.9377.com/uploads/2016-02/01/e46969af15636ee3.jpg" style="width: 790px; height: 748px;"></p>
+                <p align="center" style="text-align: center;">
+                    <img alt="4.jpg" src="http://cdnsource.9377.com/uploads/2016-02/01/35d9649429315eef.jpg" style="width: 790px; height: 536px;"></p>
+                <p align="center" style="text-align: center;">
+                    <img alt="5.jpg" src="http://cdnsource.9377.com/uploads/2016-02/01/776526a3d1cf7fdf.jpg" style="width: 790px; height: 552px;"></p>
+                <p align="center" style="text-align: center;">
+                    <img alt="6.jpg" src="http://cdnsource.9377.com/uploads/2016-02/01/d5d664f06ae78155.jpg" style="width: 790px; height: 715px;"></p>
+                <p align="center" style="text-align: center;">
+                    <img alt="7.jpg" src="http://cdnsource.9377.com/uploads/2016-02/01/a0780c33bbba4f87.jpg" style="width: 790px; height: 954px;"></p>
+                <p align="center" style="text-align: center;">
+                    <img alt="8.jpg" src="http://cdnsource.9377.com/uploads/2016-02/01/84435424f7b5de57.jpg" style="width: 790px; height: 482px;"></p>
+                <p align="center" style="text-align: center;">
+                    <img alt="9.jpg" src="http://cdnsource.9377.com/uploads/2016-02/01/6577a48664c6278c.jpg" style="width: 790px; height: 642px;"></p>
+                <p align="center" style="text-align: center;">
+                    <img alt="10.jpg" src="http://cdnsource.9377.com/uploads/2016-02/01/2d4c59b81f9be81e.jpg" style="width: 790px; height: 719px;"></p>
+                <p align="center" style="text-align: center;">
+                    <img alt="11.jpg" src="http://cdnsource.9377.com/uploads/2016-02/01/6c604600916eb06e.jpg" style="width: 790px; height: 631px;"></p>
+                <p align="center" style="text-align: center;">
+                    <img alt="12.jpg" src="http://cdnsource.9377.com/uploads/2016-02/01/750dd38cb008c3a2.jpg" style="width: 790px; height: 639px;"></p>
+
+            </div>
+        </div>
+    </div>
+
+</block>
+
+
+<block name="footer_script">
+    <import type='js' file="theme.js.shop" /><!-- 积分商城全局JS -->
+</block>
+

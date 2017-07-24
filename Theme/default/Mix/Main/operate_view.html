@@ -1,0 +1,62 @@
+<php>$int=intval(I('id'));$news_info=M('MixNews')->find($int);</php>
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title>Mix</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <link href="__PUBLIC__/bui/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/bui/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/bui/assets/css/page-min.css" rel="stylesheet" type="text/css" />   <!-- 下面的样式，仅是为了显示代码，而不应该在项目中使用-->
+   <link href="__PUBLIC__/bui/assets/css/prettify.css" rel="stylesheet" type="text/css" />
+   <style type="text/css">
+    code {
+      padding: 0px 4px;
+      color: #d14;
+      background-color: #f7f7f9;
+      border: 1px solid #e1e1e8;
+    }
+	.b_contain {
+    background-color: #f3fbff;
+    border: 1px solid #a8dbe6;
+    padding: 30px 30px;
+    font-family: "微软雅黑";
+}
+.b_contain .hd {
+    margin-bottom: 20px;
+    padding: 0 30px;
+}
+.b_contain .hd h2 {
+    height: 80px;
+    line-height: 80px;
+    font-size: 30px;
+    color: #333d49;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.b_contain .hd .tt {
+    line-height: 25px;
+    text-align: left;
+    font-size: 14px;
+}
+.b_contain .bd {
+    padding: 15px 30px;
+    text-align: center;
+}
+   </style>
+ </head>
+ <body>
+  
+  <div class="container">
+    <div class="b_contain">
+<div class="hd">
+<h2>{$news_info.title}</h2>
+<div class="tt" style="text-align:center"><b>发表于：</b><i>{$news_info.ctime|date='Y-m-d H:i:s',###}</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b>小编：</b>管理员</div>
+</div>
+<div class="bd">
+{$news_info.content}
+</div>
+</div>
+  </div>
+<body>
+</html>  

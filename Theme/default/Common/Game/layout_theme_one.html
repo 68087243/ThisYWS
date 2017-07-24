@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="edge">
+<meta name="keywords" content="{$meta_keywords}">
+<meta name="description" content="{$meta_description}">
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}{:C('WEB_SITE_SLOGAN')}</title></block>
+{:hook("PageHeader")}
+<script type="text/javascript">
+{:W('Common/Public/script')}
+</script>
+<import type='css' file="theme.css.common_theme" />
+<import type='css' file="theme.theme_one.css.common" />
+<import type='css' file="theme.theme_one.css.list" />
+<import type='js' file="jquery.jquery183min" />
+<style type="text/css">
+html{background:url({$gamedata.pic.pic_site_bg|get_cover=###}) #c7e9ff no-repeat center 37px}
+</style>
+<block name="style"></block>
+<block name="script"></block>
+<base target="_blank">
+</head>
+<body>
+<div class="headerbox">
+	<div class="hd960">
+		<h1 class="hd_logo">
+			<a href="{:U('Home/Index/Index')}">{:C('WEB_SITE_TITLE')}</a>
+		</h1>
+		<div class="tips188">本游戏仅适合18岁以上玩家</div>
+	<div class="hd_ico">
+	<volist name=":W('Common/Game/RecommendedGame',Array('z',4,'PublicTheme_num4_2016'))" id="ig">
+		<a href="{$ig.gameurl}"><img src="{$ig.pic.pic_icon|get_cover=###}" alt="{$ig.name}">{$ig.name}</a>
+	</volist>
+	</div>
+	<div class="hd_right">
+		<div class="hd_a">
+			<a href="{:U('Pay/Index/'.$gamedata['id'])}" style="color:#f60">充值</a>|<a href="{:U('Service/Index/index')}">客服</a>|<a href="#">家长监护</a><a href="#this" id="all_a" target="_self">全部网页游戏</a></div>
+			<div class="hd_pop" id="hd_pop" style="display: none;">
+				<i class="hd_jiao"></i>
+					<ul class="pop_ul">
+						<volist name=":W('Common/Game/RandGame',Array(32,'PublicTheme_num32_2016'))" id="ig">
+						<?php  $_flags=flags($ig['flags']);?>
+						<li><a href="{$ig.gameurl}" <present name="_flags.r">style="color:#f60"</present>>{$ig.name}</a></li>
+						</volist>
+					</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+<div class="box1">
+        <h1 class="logo"><a href="{$gameurl}" title="风暴大陆">{:C('WEB_SITE_TITLE')}风暴大陆</a></h1>
+        <div class="top_nav">
+            <a href="{$gameurl}" class="n1">官网首页<span>HOME</span></a>
+            <a href="{:U($gamedata['mark'].'/news_list')}" class="n2">新闻公告<span>NEWS</span></a>
+            <a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>5))}" class="n3">游戏资料<span>GUIDE</span></a>
+            <a href="{:U('Service/Index/index')}" class="n4">客服中心<span>SERVER</span></a>
+            <a href="{:U('Pay/index/'.$gamedata['id'])}" class="n5">充值中心<span>RECHARGE</span></a>
+            <a href="{:U('Forum/'.$gamedata['mark'].'/index')}" class="n6">玩家论坛<span>BBS</span></a>
+        </div>
+</div>
+<div class="box2">
+        <h2 class="hidden">{$gamedata.summary}</h2>
+    </div>
+<div class="box3 clearfix">
+        <div class="left_box">
+    <div class="play_btn">
+            <i></i>
+                <object height="119px" width="305px" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" id="abcdef">
+                    <param value="/Public/theme/theme_one/play.swf" name="movie">
+                    <param value="high" name="quality">
+                    <param value="transparent" name="wmode">
+                    <param value="always" name="allowScriptAccess"> 
+                    <embed height="119px" width="305px" name="abcdef" allowscriptaccess="always" wmode="transparent" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" quality="high" src="/Public/theme/theme_one/play.swf">
+                </object>
+    </div>
+    <div class="user_box">
+        <iframe width="305px" height="133px" scrolling="no" framemargin="0" frameborder="0" allowtransparency="true" src="{:U('Api/User/Gamebox',Array('gid'=>$gamedata['id']))}"></iframe>
+    </div>
+    <div class="sv_box">
+            <div class="sv_tt">
+            <h2>服务器列表</h2>
+            <a href="{:U($gamedata['mark'].'/server')}" class="more_a">更多&gt;</a>
+        </div>
+        <div class="ser_tit">
+            <div class="fu_box">
+                <span>快速进入<input type="text" value="" class="fu_txt" id="fu_txt">服</span>
+                <a href="#" class="fu_btn" target="_self" onclick="enterGame();return f
+				alse;">进入游戏</a>
+            </div>
+        </div>
+        <div class="ser_con" id="ser_con">
+
+		<volist name=":W('Common/Game/getNewServerBygid',Array($gamedata['id'],4,'PublicTheme_num4_getNewServerBygid_2016'))" id="ig">
+				<a id="ser_con_{$i}" data-sid="{$ig.sid}" href="{$ig.gameurl}">{$ig.name}<in name="i" value="1,2"><span>NEW!</span></in></a>
+		</volist>
+		</div>
+        </div>
+    <div class="two_btn">
+        <a href="{$gamedata.clienturl}">登录器下载</a>
+        <a href="{:U('Gift/'.$gamedata['mark'].'/index')}" class="two_2">新手礼包</a>
+    </div>
+    <div class="intro_box">
+        <div class="intro_t"><h2>游戏背景</h2></div>
+        <a href="#" class="intro_img"><img src="{$gamedata.pic.pic_t|get_cover=###}" alt=""></a>
+        <p class="intro_txt">{$gamedata.description}</p>
+    </div>
+    <div class="bizhi">
+        <a href="#" class="bz_a">
+            <span><em></em><i>壁纸原画</i></span><img src="{$gamedata.pic.pic_r|get_cover=###}">
+        </a>
+    </div>
+    <div class="kf_tit">
+        <h2>客服中心</h2>
+    </div>
+    <div class="kf_box">
+        <p class="kf_txt">
+            ○ 客服热线：{:C('WEB_SITE_MOBILE')}<br>
+            ○ 客服QQ：{:C('WEB_SITE_QQ')}<br>
+            ○ 服务时间：7×24小时<br>
+            ○ 在线客服：<a href="{:U('Service/Index/index')}">在线客服</a>
+        </p>
+    </div>
+</div>
+   
+		<div class="right_box">
+           <block name="body">
+		   
+		   </block>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<block name="link"></block>
+
+<block name="footer">
+<div class="p-footer">
+	<p>
+		<a href="{:U('Service/Information/about')}">关于我们</a>|<a href="{:U('Service/Information/lianxi')}">联系我们</a>|<a href="{:U('Service/Information/cooperation')}">游戏合作</a>|<a href="{:U('Service/Information/declare')}">版权声明</a>|<a href="{:U('Service/Information/duty')}">使用协议</a>
+	</p>
+	Copyright&nbsp;&nbsp;&nbsp;©2015 {:strtoupper(DOMAIN())}&nbsp;&nbsp;&nbsp;{:C('WEB_SITE_ICP')}&nbsp;&nbsp;&nbsp;
+</div>
+
+<div class="hidden">
+    <div class="hidden">{:C('WEB_SITE_STATISTICS')}</div>
+</div>
+<script type="text/javascript">
+function enterGame(){
+	var sid=parseInt($("#fu_txt").val());
+	var _sid=parseInt($("#ser_con_1").attr('data-sid'));
+	if(sid>_sid || sid == 0 || isNaN(sid)){
+		alert("区服不存在");
+		return;
+	}
+	$.ajax({
+    type: "get",
+    async: true,
+    url: U("Api/Game/getGameserverUrl","gid={$gamedata.id}&sid="+sid),
+    dataType: "jsonp",
+    jsonp: "callback",
+    success: function(data){
+		window.location=data.url;
+    }
+});
+
+
+
+}
+
+function getServerListUrlByRh(){
+	return "{:U($gamedata['mark'].'/server')}";
+}
+
+</script>
+<import type='js' file="theme.js.common_theme" />
+<block name="footer_script"></block>
+</block>
+
+</body>
+</html>

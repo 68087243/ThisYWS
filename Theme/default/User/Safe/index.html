@@ -1,0 +1,119 @@
+<extend name="Public/layout"/>
+
+
+
+<block name="style">
+
+</block>
+
+
+
+<block name="body">
+	<div class="p-cr">
+					<div class="p-rtit">
+							<h3>帐号安全</h3>
+					</div>
+
+
+					<div class="p-rbigwrap">
+					<div class="p-profile">
+						<div class="p-security">
+							<i class="p-secio-0"></i>
+							
+								<div class="p-sectit ">
+								<h4>修改密码</h4><present name="_qq">
+您使用的QQ帐号登录，暂不支持修改密码，您可以选择去QQ安全中心改您的QQ帐号密码
+<else/>经常更改您的密码，可有效保护帐号安全</present>													</div>
+								<present name="_qq">
+<!---->
+<else/>	<span class="p-secr"><span id="xgmm" class="p-gay">修改密码</span></span></present>
+						</div>
+
+
+												<div class="p-security">
+														<i class="p-secio-1"></i>
+														<div class="p-sectit">
+																<h4>安全手机</h4>绑定后可用于找回密码和接收游戏福利	
+														</div>
+														<span class="p-secm"><notempty name="__USER__.mobile"><i class="p-yes">已完成</i><else /> <i class="p-no">未完成</i></notempty></span>
+
+														<span class="p-secr"><notempty name="__USER__.mobile"><span id="ggsj" class="p-gay">更改手机 </span><else /><span id="sjbd" class="ljbd">立即绑定 </span></notempty></span>
+
+												</div>
+
+
+												<div class="p-security">
+														<i class="p-secio-2"></i>
+														<div class="p-sectit">
+																<h4>密保邮箱</h4>绑定后可通过密保邮箱找回密码	
+														</div>
+														<span class="p-secm"><notempty name="__USER__.email"><i class="p-yes">已完成</i><else /> <i class="p-no">未完成</i></notempty></span>
+
+														<span class="p-secr"><notempty name="__USER__.email"><span id="ggyx" class="p-gay">更改邮箱 </span><else /><span id="yxyz" class="ljbd">立即绑定 </span></notempty></span>
+
+												</div>
+
+												
+												<div class="p-security">
+														<i class="p-secio-3"></i>
+														<div class="p-sectit">
+																<h4>防沉迷认证</h4>身份认证可解除防沉迷限制	
+														</div>
+														<span id="sfz_ishas" class="p-secm"><notempty name="__USER__.idcard_no"><i class="p-yes">已完成</i><else /> <i class="p-no">未完成</i></notempty></span>
+														<span id="sfz_ishas_bd" class="p-secr"><notempty name="__USER__.idcard_no"><a class="p-gay" href="{:U('User/profile/index')}">查看详情</a><else /><span id="sfyz" class="ljbd">立即绑定 </span></notempty></span>
+												</div>
+
+
+												<div class="p-security">
+														<i class="p-secio-4"></i>
+														<div class="p-sectit">
+																<h4>个人资料</h4>完善个人资料可提高帐号申诉成功率	
+														</div>
+														<php>$__getPerfect=D('User')->getPerfect($__USER__);</php>
+														<span class="p-secm"><if condition="$__getPerfect EQ '100'"><i class="p-yes">已完善</i><else /><i class="p-no">待完善</i></if></span>
+														<span class="p-secr"><if condition="$__getPerfect EQ '100'"><a class="p-gay" href="{:U('User/profile/index')}">查看详情</a><else /><a class="ljbd" href="{:U('User/profile/index')}">立即完善</a></if>
+														</span>
+												</div>
+
+									</div>
+
+					</div>
+
+
+	</div>
+</block>
+
+
+
+<block name="footer_script">
+	<script type="text/javascript">
+
+		var save_mail='{$save_mail}';
+		var check_mail='{$check_mail}';
+		var modify_mail='{$modify_mail}';
+
+		var email='<notempty name="Think.session.emailtemp">{$Think.session.emailtemp}<else />{$__USER__.email}</notempty>';
+		var phone='{$__USER__.mobile}';
+		var view_phone='{:half_replace($__USER__['mobile'])}';
+		var view_email='<notempty name="Think.session.emailtemp">{:half_replace(session('emailtemp'))}<else />{:half_replace($__USER__['email'])}</notempty>';
+
+		var has_email=0;
+		var has_sj=0;
+		var t='{$Think.get.t}';
+
+		var ccaptcha='<img alt="点击换图" title="点击换图" style="cursor:pointer" id="yw0" src="{:U('User/public/vcode')}" />';
+
+	</script>
+<import type='js' file="theme.user.js.safe" />
+<script type="text/javascript">
+/*<![CDATA[*/
+
+jQuery(document).on('click', '#yw0', function(){
+	jQuery('#yw0').attr('src', U('User/public/vcode','_v='+Math.random()));
+	return false;
+});
+
+/*]]>*/
+</script>
+</block>
+

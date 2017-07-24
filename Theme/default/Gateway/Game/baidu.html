@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>齐鲁玩百度搜索</title>
+<import type='js' file="jquery.jquery183min" />
+<style type="text/css">
+/*左侧菜单*/
+body{background:#fff;}
+.baiduPage{margin-top:100px;}
+.logo{width:100%; text-align:center;}
+.formBox{text-align:center; margin:40px auto 0; width:641px; text-align:left;}
+.borde1{float:left; width:539px; height:34px; border:1px solid #b8b8b8; border-right:none; vertical-align:top;}
+.bd-txt{width:526px; margin-left:7px; margin-top:6px; border:none; height:22px; outline: 0 none; font-size:14px; line-height:22px;}
+.borde2{float:left;  width:100px;  height:36px; vertical-align: top;}
+.bd-btn{background-color:#3385ff; border:0; border-bottom:1px solid #2d78f4; color:#fff; font-size:15px; height:36px; line-height:36px; letter-spacing:1px; width:100px; cursor:pointer;}
+.bd-btn:hover{background-color:#317ef3; border-bottom:1px solid #2868c8;}
+</style>
+</head>
+
+<body>
+<div class="baiduPage">
+<div class="logo"><a href="http://www.baidu.com/s"><img style="border:none;" width="300" height="144" src="https://www.baidu.com/img/bd_logo1.png" /></a></div>
+<div class="formBox">
+<form action="http://www.baidu.com/" target="_blank">
+<span class="borde1">
+<input type="text" name="wd" size="30" autocomplete="off" class="bd-txt" onfocus="$(this).parent().css('borderColor','#2d78f4');" onblur="$(this).parent().css('borderColor','#b8b8b8');">
+</span>
+<span class="borde2">
+<input type="submit" value="百度一下" class="bd-btn">
+</span>
+</form>
+</div>
+
+</div>
+</body>
+</html>

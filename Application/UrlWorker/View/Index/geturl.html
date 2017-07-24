@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>网址工匠UrlWorker - 提供网址缩短服务</title>
+<link rel="stylesheet" href="/Application/UrlWorker/View/Index/style.css" type="text/css" />
+</head>
+<body>
+<div class="container">
+	<form action="" method="post" >
+    	<div id="url">
+    		<input name="url" type="text" id="website" placeholder="请在这里输入你要转换的网址" value="{$url}" />
+    	</div>
+        <div class="center">
+            <!--div id="tail">
+           	  <input name="tail" type="text" id="tailtext" value="自定义网址后缀（选填）"/>
+            </div-->
+            <div class="create">
+            	<input name="button" type="submit" value=" " id="button" />
+            </div>
+        </div>
+        </form>
+        <div class="clearfix"></div>
+        <div id="result">
+        	<input name="result" type="text" id="resultsite" placeholder="提交后这里会显示短网址^_^" value="{$result}" />
+        </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<extend name="Public/layout"/>
+
+
+
+<block name="style"> </block>
+
+
+
+<block name="body">
+	<div class="p-cr">
+		<empty name="__USER__.mobile">
+			<div class="p-rtips">
+				<div class="p-rtips-l">为了您的帐号安全，请尽快绑定手机。<a href="{:U('User/safe/index')}" target="_blank">立即绑定</a></div>
+				<span class="p-rtips-c" data-type="mobile">关闭提示</span>
+			</div>
+		</empty>
+
+             
+      <div class="clearfix">
+          <div class="p-w458">
+              <div class="p-tit">
+                  <h3>积分信息</h3>
+                  <a href="{:U('User/score/index')}" class="pilinks">什么是积分？</a>
+              </div>
+			  
+			  <php>$score=getlevel($__USER__['total_score']);</php>
+              <div class="p-jfwrap">
+                  <div class="p-slidetop"><a href="{:U('User/score/index')}" class="p-kscz">加速成长</a>我的等级：<span>LV{$score.level}</span>我的积分：<span>{$__USER__.score}</span></div>
+                  <div class="p-slides"><span class="p-islide" style="width:{$score.bfb}%" title="当前等级：LV{$score.level}&nbsp;&nbsp;;&nbsp;&nbsp;累计积分：{$__USER__.total_score}"></span></div>
+                  <div class="p-slidel"><span>LV{$score.x} ({$score.e})</span>LV{$score.level} ({$score.s})</div>
+              </div>
+          </div>
+          <div class="p-w265">
+              <div class="p-tit">
+                  <h3>VIP信息</h3>
+              </div>
+              <div class="p-vipwrap">
+                  <div class="p-vipings">
+                    <p>
+                      <a target="_blank" href="{:U('User/vip/index')}" title="VIP等级：{$vip.title}">VIP等级<span>{$__USER__.vip}</span></a>
+					  <a target="_blank" href="{:U('User/vip/index')}" title="VIP成长值：{$__USER__.upgrade}">成长值<span>{$__USER__.upgrade}</span></a>
+                    </p>
+                  </div>
+                  <a target="_blank" href="{:U('User/vip/index')}" class="pilinks">如何获取VIP成长值？</a>
+              </div>
+          </div>
+      </div>
+
+	  <php>
+		$_user_qiandao=D('UserSignConfig')->find(1);
+		$taskconfig=M('Task')->select();
+		$task2=D('TaskLog')->isTask($__USER__['id'],13);
+		$task3=D('TaskLog')->isTask($__USER__['id'],14);
+		$gameurl=D('Game')->randGame();
+		$gameurlf=D('Game')->randGame();
+	  </php>
+      <div class="clearfix">
+          <div class="p-w458">
+              <div class="p-tit">
+                  <h3>每日任务</h3>
+                  <span class="p-subtit" title="">(<span></span>/4)</span>
+              </div>
+              <div class="p-task">
+                  <p>
+    <empty name="__USER__.sign"><a href="#" id="sign-task" target="_self"><img src="__PUBLIC__/theme/user/images/qd.jpg" alt="">每日签到 +{$_user_qiandao.reward_score}积分<span>去完成</span></a><else /><i><img src="__PUBLIC__/theme/user/images/qd.jpg" alt="">每日签到 +{$_user_qiandao.reward_score}积分<span class="task-complete">已完成</span></i></empty>
+	
+	<empty name="task2"><a href="{$gameurl}" target="_blank"><img src="__PUBLIC__/theme/user/images/wxy.jpg" alt="">玩1款游戏 +{$taskconfig.12.config}积分<span>去完成</span></a><else /><a href="{$gameurl}" target="_blank"><img src="__PUBLIC__/theme/user/images/wyx.jpg" alt="">玩1款游戏 +{$taskconfig.12.config}积分<span class="p-ywch task-complete">已完成</span></a></empty>
+	
+	<empty name="task3"><a href="{$gameurlf}" target="_blank"><img src="__PUBLIC__/theme/user/images/dp.jpg" alt="">点评1款游戏 +{$taskconfig.13.config}积分<span>去完成</span></a><else /><a href="{$gameurlf}" target="_blank"><img src="__PUBLIC__/theme/user/images/dp.jpg" alt="">点评1款游戏 +{$taskconfig.13.config}积分<span class="p-ywch task-complete">已完成</span></empty>
+																					
+																					
+	<empty name="__USER__.pay"><a href="{:U('Pay/index/index')}" target="_blank"><img src="__PUBLIC__/theme/user/images/cz.jpg" alt="">每日充值+VIP成长值<span>去完成</span></a><else /><i><img src="__PUBLIC__/theme/user/images/cz.jpg" alt="">每日充值+VIP成长值<span class="task-complete">已完成</span></i></empty>	
+                               
+                          
+                  </p>
+                  
+              </div>
+          </div>
+
+          <div class="p-w265">
+              <div class="p-tit">
+                  <h3>论坛热点</h3>
+              </div>
+              <div class="p-bbs">
+				<volist name=":W('Common/Game/RandGame',array(1,'UserIndexBBs'))" id="vx">
+					<div class="p-bbshot"><a href="{$vx.gameurl}" target="_blank"><img src="{$vx.pic.pic_j|get_cover=###}" style="height: 85px;width: 250px;" alt="{$vx.name}"></a></div>
+				</volist>
+                                 
+                  <ul class="p-bbslist"></ul>
+              </div>
+          </div>
+      </div>
+
+
+      <div class="p-tit">
+          <h3>我玩过的游戏</h3>
+          <span class="p-subtit" id="myplaynums"></span>
+          <a href="{:U('User/record/index')}" class="p-mores">更多</a>
+      </div>
+      <div class="p-pf" id="myplaybox">
+          <div  class="tmycon"><ul></ul></div>
+      </div>
+
+<div class="p-tit">
+          <h3>我收藏的游戏</h3>
+          <span class="p-subtit" id="myfavnums"></span>
+          <a href="/record" class="p-mores">更多</a>
+      </div>
+      <div class="p-pf" id="myfavbox">
+
+          <div class="tmycon"><ul></ul></div>
+      </div>
+
+  </div>
+	
+	
+	
+	
+	
+	
+	
+	
+</block>
+
+
+
+<block name="footer_script">
+<import type='js' file="theme.user.js.index" />
+<import type='js' file="theme.user.js.task" />
+</block>
+

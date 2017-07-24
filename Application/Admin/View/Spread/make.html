@@ -1,0 +1,18 @@
+<extend name="Public/layout"/>
+
+<block name="body">
+
+  <div class="form-group item_gid ">
+                                    <label class="item-label">游戏</label>
+                                <div class="controls">
+                    <select name="gid" class="form-control" id='gid' onchange="var s = $('#sid');$.post('http://api.t3t2.com/index.php/game/ajaxgameserverbygid.html',{gid:$('#gid').val()},function(re){s.empty();s.append($('<option>').text('全服').val('0'));s.trigger('chosen:updated');s.chosen();if(re!=''&&re!='[]'){var temp=0;$.each(re,function(index,item){var opt=$('<option>').text(item.name).val(item.id);s.append(opt);s.trigger('chosen:updated');s.chosen()})}});">
+                                <option value=''>请选择：</option>
+                                <option value="1" >风云无双</option><option value="2" >魔龙诀</option><option value="3" >天书世界</option><option value="4" >大闹天宫</option><option value="5" >街机三国</option><option value="6" >核金战争</option><option value="7" >战旗时代</option><option value="8" >战天堂</option><option value="9" >烈火西游</option><option value="10" >莽荒纪</option><option value="11" >百战天下</option><option value="12" >无上神兵</option><option value="13" >奇迹归来</option><option value="14" >七杀</option><option value="15" >神仙道</option>                            </select>                </div>
+            </div><div class="form-group item_sid ">
+                                    <label class="item-label">服务器</label>
+                                <div class="controls">
+                    <select name="sid" class="form-control" id="sid">
+                                <option value=''>请选择：</option>
+                                                            </select>                </div>
+            </div>
+</block>

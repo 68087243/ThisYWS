@@ -1,0 +1,216 @@
+<extend name="./Theme/default/Game/Default/layout.html"/>
+
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="script">
+
+</block>
+
+<block name="style">
+
+</block>
+
+
+
+<block name="body">
+
+	<div class="serves">
+		<div class="recmend">
+			<p class="p3">推荐服务器</p>
+			<span id="favg" class="favg {:W('Common/Game/isGameCollects',array($__USER__['id'],$gamedata['id']))}" data-gid="{$gamedata.id}" title="收藏"></span>
+			<div class="servesenter">
+				<a href="{:U($gamedata['mark'].'/server')}"  class="enter">更多服务器</a>
+			</div>
+		</div>
+		<div class="recmendserv">
+			<ul class="J_hot_server">
+			<volist name=":W('Common/Game/getNewServerBygid',Array($gamedata['id'],3,'PublicTheme_num4_getNewServerBygid_2016'))" id="ig">
+			<li><a href="{$ig.gameurl}" target="_blank"><em class="fb">火爆</em>{$ig.name}</a></li>
+			</volist></ul>
+		</div>
+		<div class="choice"></div>
+
+		<div class="infom">
+			<div class="infonav">
+				<ul class="navtitle clearfix">
+					<li>
+						<a href="javascript:void(0);">综合</a>
+					</li>
+					<corethink:category_list name="side_category" post_auth='1' num='3' >
+						<li>
+							<a href="javascript:void(0);">{$side_category.title|mb_substr=###,2,2,'utf-8'}</a>
+						</li>
+					</corethink:category_list>
+				</ul>
+				<div class="slide">
+					<div class="list"></div>
+				</div>
+				<div class="tab_more">
+					<a href="{:U($gamedata['mark'].'/news_list')}">更多+</a>
+				</div>
+			</div>
+
+			<div class="infonavcon">
+				<ul>
+					<volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],false,5,'PublicTheme_getNewsListByGid_2016_5_false_1'))" id="vo">
+						<li>
+						<eq name="i" value="1">
+							<a target="_blank" class="gonggaotopone" href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">
+								<font style="color:#FF0000;">{$vo.title}</font></a>
+						<else/>
+							<a target="_blank" href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">
+								<font>{$vo.title}</font></a>
+							<i>{$vo.ctime|date="m-d",###}</i>
+						</eq>
+						</li>
+					</volist>
+				</ul>
+			</div>
+			<corethink:category_list name="side_category" post_auth='1' num='3' >
+				<div class="infonavcon">
+					<ul>
+						<volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],$side_category['id'],5,'PublicTheme_getNewsListByGid_2016_5_false_2'))" id="vo">
+							<li>
+								<a target="_blank" href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">
+									<font style="color:#FF0000;">{$vo.title}</font>
+								</a>
+								<i>{$vo.ctime|date="m-d",###}</i>
+							</li>
+						</volist>
+					</ul>
+				</div>
+			</corethink:category_list>
+		</div>
+
+		<div class="infor">
+			<ul>
+				<li>
+					<a href="{:U('Service/Index/index')}">
+						<i class="nav1 navli"></i>
+						<p class="navword">在线客服</p>
+					</a>
+				</li>
+				<li>
+					<a href="{:U('Pay/index/'.$gamedata['id'])}">
+						<i class="nav2 navli"></i>
+						<p class="navword">在线充值</p>
+					</a>
+				</li>
+				<li>
+					<a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>6))}">
+						<i class="nav3 navli"></i>
+						<p class="navword">游戏公告</p>
+					</a>
+				</li>
+				<li>
+					<a href="{:U($gamedata['mark'].'/server')}">
+						<i class="nav4 navli"></i>
+						<p class="navword">开服排期</p>
+					</a>
+				</li>
+				<li>
+					<a href="{:U('Forum/'.$gamedata['mark'].'/index')}">
+						<i class="nav5 navli"></i>
+						<p class="navword">论坛交流</p>
+					</a>
+				</li>
+				<li>
+					<a href="{:U($gamedata['mark'].'/news_list',Array('cid'=>5))}">
+						<i class="nav5 navli"></i>
+						<p class="navword">游戏攻略</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="inforbanr">
+			<ul>
+				<li>
+					<div class="btncolor1 btncolor" target="_blank" style="background:url(http://static.yiwanshu.com/Public/theme/images/14534353623735.jpg) no-repeat;">
+						<a class="ibtn ibtn1" target="_blank" href="{:U($gamedata['mark'].'/news_list',Array('cid'=>7))}">查看详情</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="tag_li">
+		<div class="tag_eg">
+			<div class="tag_til"></div>
+			<div class="tag_con">
+				<ul>
+					 <volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],9,8,'PublicTheme_getNewsListByGid_2016_5_false_3'))" id="vo">
+                         <li><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a></li>
+					</volist>   <div class="clear"></div>
+				</ul>
+			</div>
+		</div>
+		<div class="tag_eg">
+			<div class="tag_til tag_til2"></div>
+			<div class="tag_con">
+				<ul>
+				  <volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],11,8,'PublicTheme_getNewsListByGid_2016_5_false_3'))" id="vo">
+						<li><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a></li>
+				</volist>   
+				  <div class="clear"></div>
+				</ul>
+			</div>
+		</div>
+		<div class="tag_eg">
+			<div class="tag_til tag_til3"></div>
+			<div class="tag_con">
+				<ul>
+					 <volist name=":W('Common/Document/getNewsListByGid',Array($gamedata['id'],10,8,'PublicTheme_getNewsListByGid_2016_5_false_3'))" id="vo">
+                          <li><a href="{:U($gamedata['mark'].'/news_read',Array('id'=>$vo['id']))}">{$vo.title}</a></li>
+					</volist>                                 <div class="clear"></div>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div style="width: 830px;margin: 0 auto;">	<div id="SOHUCS" sid="{$gamedata.id}"></div>
+{:hook("ChangyanCode")}</div>
+
+</block>
+
+
+
+<block name="footer_script">
+<import type='js' file="theme.js.game" />
+<import type='js' file="theme.js.index" />
+<import type='js' file="layer.layer" />
+<script type="text/javascript">
+	var gid = {$gamedata.id};
+    var navNode = ".server_nav>.d-server_nav";
+    var serverListNode = ".server_wrap";
+	var latestLimit="{$__USER__.id}";
+    var latestNode = ".server_zui";
+	layer.config({
+		skin:'layer-ext-moon',
+		extend: ['skin/moon/style.css', 'extend/layer.ext.js']
+	});
+	$(document).ready(function(){
+	
+		$("#searchG").click(function(){
+			var obj=$('#searchTxt');
+			if(obj.val()==""){
+				layer.alert('请输入正确的服务器ID', {icon: 2,title: '提示'});
+				return;
+			}
+			var input=parseInt(obj.val());
+			var server=$('#server_'+input);
+			if(server.size()>0){
+				event.preventDefault();
+				event.stopPropagation();
+				window.open(server.attr('href'), '_blank');
+			}else{
+				layer.alert('服务器不存在', {icon: 2,title: '提示'});
+				return;
+			}
+		});
+	});
+	//if($(ID).size()>0){
+   // 存在
+
+//}
+</script>
+<import type='js' file="theme.js.dbgw" />
+</block>

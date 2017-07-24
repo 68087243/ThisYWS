@@ -1,0 +1,158 @@
+<extend name="./Theme/default/Common/Public/layout.html"/>
+
+<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}{:C('WEB_SITE_SLOGAN')}</title></block>
+
+<block name="style">
+<import type='css' file="theme.css.game" />
+<import type='css' file="theme.css.others" />
+</block>
+
+
+
+<block name="body">
+<php>$gameurl=D('Game')->getGameUrl($gametj[0]['id']);</php>
+<div class="w-wrap">
+        <div class="w-section">
+                <div class="w-tit">
+                  <h2 class="w-tit-tjyx">推荐游戏</h2>
+                    <ul class="w-notice" id="w-notices">
+                        <volist name=":W('Common/Horn/getHorn',array(5,'Smallspeakers'))" id="vo">
+							<li><a href="{$vo.url}">{$vo.name}</a></li>
+						</volist>
+					</ul>
+                </div>
+				
+                <div class="w-tuigames">
+                                <div class="w-tuifirst">
+                                    <div class="w-tuifcon">
+                                            <a href="{$gameurl}" class="w-tuifcon-a"><img src="{$gametj.0.pic.pic_t_max|get_cover=###}" alt="{$gametj.0.name}">
+											<notempty name='gametj.0.flags.r'><i class="w-jqyxicoh"></i><else /><notempty name='gametj.0.flags.x'><i class="w-jqyxicon"></i></notempty></notempty></a>
+                                            <div class="w-jqyxb">
+                                                    <a href="{$gameurl}" class="w-jqyxplay"><i></i>开始游戏</a>
+                                                    <a href="{$gameurl}">{$gametj.0.name}</a>
+                                            </div>
+                                    </div>
+                                    <i class="w-jpyxpngbg"></i>
+									
+                                </div>
+								<php>unset($gametj[0]);</php>
+                                <div class="w-tuilist">
+                                <ul class="w-agames-ul">
+                                             <volist name="gametj" id="vo">
+											 <php>$gameurl=D('Game')->getGameUrl($vo['id']);</php>
+                                            <li>
+                                                <div class="w-agamescon">
+                                                    <a href="{$gameurl}" class="w-agamescon-a"><img src="{$vo.pic.pic_r|get_cover=###}" alt="{$vo.name}"><notempty name='vo.flags.r'><i class="w-jqyxicoh"></i><else /><notempty name='vo.flags.x'><i class="w-jqyxicon"></i></notempty></notempty></a>
+                                                    <div class="w-jqyxb">
+                                                            <a href="{$gameurl}" class="w-jqyxplay"><i></i>开始游戏</a>
+                                                            <a href="{$gameurl}">{$vo.name}</a>
+                                                    </div>
+                                                </div>
+                                                <i class="w-agamesbg"></i>
+                                            </li>
+											</volist>
+											
+                                </ul>
+                        </div>
+                </div>
+				
+                <div class="w-tit">
+                    <h2 class="w-tit-sort">游戏筛选</h2>
+                    <div class="w-paixu">
+                        <input type="text" placeholder="搜索游戏名称" class="w-pais" id="searchTxt">
+                        <input type="button" class="w-paib" id="searchG">
+                    </div>
+                </div>
+                <div class="w-nav-sort">
+                    <ul class="w-nav-ul">
+                        <li id="class-key-w">
+                            游戏类型：
+                            <span class="cur" data-key="不限">不限</span>
+							<php>$GAME_TYPE_LIST=C('GAME_TYPE_LIST');</php>
+							<volist name="GAME_TYPE_LIST" id="vo">
+								<span data-key="{$vo}">{$vo}</span>
+							</volist>
+                        </li>
+                        <li id="initial-key-w">
+                            按首字母：
+                            <span class="cur" data-key="不限">不限</span>
+							<php>$GAME_INITIALS_LIST=C('GAME_INITIALS_LIST');</php>
+							<volist name="GAME_INITIALS_LIST" id="vo">
+								<span data-key="{$vo}">{$vo}</span>
+							</volist>
+                        </li>
+                        <li id="tag-key-w">
+                            热门标签：
+                            <span class="cur" data-key="不限">不限</span>
+                            <span data-key="三国">三国</span>
+                            <span data-key="玄幻">玄幻</span>
+                            <span data-key="西游">西游</span>
+                            <span data-key="武侠">武侠</span>
+                            <span data-key="体育">体育</span>
+                            <span data-key="动漫">动漫</span>
+                            <span data-key="休闲">休闲</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="w-con-sort">
+                    <ul class="w-agames-ul" id="w-allgames">
+							<volist name="gameall" id="vo">
+								 <li data-main="{:strtolower(pinyin($vo['name'],true))}|<php>echo $GAME_TYPE_LIST[$vo['type']];</php>|{$vo.pic.pic_r|get_cover=###}|{:getexplode($vo['tag'],0)}"><a href="<php>echo D('Game')->getGameUrl($vo['id']);</php>">{$vo.name}</a>
+							</volist>
+                    </ul>
+                    <div class="pages-w hidden" id="ztpage">
+                    </div>
+
+                    <div class="bgames" id="bgames">
+                            <p>
+								<volist name=":W('Common/Game/RandGame',array(30,'GamesicoRecommended'))" id="vo">
+									<a href='{$vo.gameurl}'><img alt='{$vo.name}' a='{$vo.pic.pic_icon|get_cover}'>{$vo.name}</a>
+								</volist>
+							</p>
+                    </div>
+
+                    <div class="w-con-none hidden" id="w-con-none">
+                        <p class="w-con-tp">哎呀，未找到符合条件的结果~</p>
+                        <div class="w-fav-t">
+                            您可能喜欢
+                        </div>
+                        <div class="w-fav-c">
+                            <ul class="w-agames-ul">
+								<volist name=":W('Common/Game/RandGame',array(4,'Youmightlike'))" id="vo">
+									<li><div class="w-agamescon"><a href="{$vo.gameurl}" class="w-agamescon-a"><img src="{$vo.pic.pic_r|get_cover}" alt="{$vo.name}"></a><div class="w-jqyxb"><a href="{$vo.gameurl}" class="w-jqyxplay"><i></i>开始游戏</a><a href="{$vo.gameurl}">{$vo.name}</a></div></div><i class="w-agamesbg"></i></li>
+								</volist>
+							</ul>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="w-article">
+
+                <div class="w-tit">
+                        <h2 class="w-tit-newkf">最新开服</h2>
+                        <div class="w-kfitemtab" id="newkfbtns"></div>
+                </div>
+                <div class="w-jjkflist" id="newkfcons">
+				
+                </div>
+
+                <div class="w-tit">
+                        <h2 class="w-tit-xyx">精品游戏</h2>
+                </div>
+                <div class="w-tit-xyx-c">
+				<volist name=":W('Common/Game/RandGame',array(6,'ToysGames'))" id="vo">
+					<a href='{$vo.gameurl}'><img alt='{$vo.name}' src='{$vo.pic.pic_icon_max|get_cover}'>{$vo.name}</a>
+				</volist>
+                </div>
+        </div>
+</div>
+</block>
+
+
+
+<block name="footer_script">
+<import type='js' file="theme.js.game" />
+<import type='js' file="theme.js.index" />
+
+</block>
+

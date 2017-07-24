@@ -1,0 +1,53 @@
+html{-webkit-font-smoothing:antialiased}
+body,h1,h2,h3,h4,h5,h6,p,dl,dt,dd,ul,ol,li,form,button,input,textarea,th,td{margin:0;padding:0}
+body,button,input,select,textarea{font:12px arial,\5b8b\4f53}
+h1,h2,h3,h4,h5,h6{font-size:100%}
+cite,em,var,i{font-style:normal}
+form{display:inline}
+small{font-size:12px}
+ul,ol,li{list-style:none}
+sup{vertical-align:text-top}
+sub{vertical-align:text-bottom}
+a{text-decoration:none;color:#EECBFF}
+a:hover{text-decoration:underline;color:#fff}
+img{vertical-align:top;border:0;-ms-interpolation-mode:bicubic}
+button,input,select,textarea{font-size:100%}
+table{border-collapse:collapse;border-spacing:0}
+input,button,select,textarea{outline:none}
+textarea{resize:none}
+
+/*common*/
+.clearfix{*zoom:1}
+.clearfix:after{content:'\20';display:block;height:0;clear:both}
+.hidden{display:none}
+/*header*/
+.headerbox{height:37px;background:url(../images/hd_bg.jpg) repeat-x}
+.hd960{height:37px;width:960px;margin:0 auto}
+.hd960 a{color:#666}
+.hd960 a:hover{color:#f60}
+.hd_logo{float:left;width:137px;height:35px}
+.hd_logo a{display:block;height:35px;background:url(../images/hd_logo.jpg) no-repeat;text-indent:-999em;overflow:hidden}
+.hd_ico{float:left;height:16px;padding-left:36px;margin-top:11px}
+.hd_ico a{float:left;height:16px;line-height:16px;padding:0 12px 0 0}
+.hd_ico img{width:16px;height:16px;margin-right:4px;vertical-align:top}
+.hd_right{z-index:9999;position:relative;float:right;color:#E7E7E7}
+.hd_a a{display:inline-block;height:37px;line-height:37px;margin:0 10px}
+#all_a,.hd_jiao{background:url(../images/hd_ico.png) no-repeat}
+#all_a:hover{text-decoration:none}
+.hd_a a#all_a{padding:0 12px 0 10px;margin:0;background-position:right 17px}
+.hd_pop{z-index:9999;display:none;position:absolute;top:36px;right:0;width:349px;padding:2px;border:2px solid #C6C6C6;background:#fff}
+.hd_jiao{width:12px;height:8px;position:absolute;background-position:0 -50px;right:22px;top:-8px}
+.pop_ul{width:348px;border-left:1px solid #EBEBEB;border-top:1px solid #EBEBEB}
+.pop_ul li{float:left;width:84px;height:27px;padding:1px;border-right:1px dotted #DEDEDE;border-bottom:1px solid #DEDEDE;overflow:hidden}
+.pop_ul a{display:block;width:75px;height:27px;line-height:27px;padding-left:9px}
+.pop_ul a:hover{text-decoration:none;background:#F3F3F3}
+
+/*footer*/
+#footer{padding:8px 0 16px;color:#fff;text-align:center;line-height:2.2}
+#footer p{height:32px;line-height:33px;overflow:hidden}
+#footer p a{color:#fff;margin:0 9px}
+#footer p a:hover{color:#fff}
+
+.tips188{float:left;height:37px;line-height:37px;color:#cb3131;padding-left:16px}
+
+.p-footer{position: absolute;width: 100%;text-align: center;background:#242730;padding:15px 0;line-height:2;color:#9fa2a8;margin-top:30px}.p-footer p{color:#545C69}.p-footer a{color:#9fa2a8;margin:0 12px}

@@ -1,0 +1,25 @@
+<div class="kfarticle">
+			<a href="{:U('Service/ticket/query')}" class="kfprogress">进度查询</a>
+<div class="kftit"><h2>申诉流程</h2></div>
+<ol class="kfprocess">
+    <li><i>01</i>登陆
+    </li><li><i>02</i>选择申诉类型
+    </li><li><i>03</i>填写申诉内容
+    </li><li><i>04</i>查询申诉结果
+    </li><li><i>05</i>服务评价
+    </li>
+</ol>
+
+<div class="kftit"><h2>常见问题</h2></div>
+<ul class="kfrank">
+	<volist name=":W('Common/Document/getListByCid',array(5,4,'ServiceHelpCenter'))" id="vo">
+		<li><a href="{:U('News/Read/'.$vo['id'])}">{$vo.title}</a></li>
+	</volist>
+</ul>
+
+<div class="kfcontact">
+    <p>热线：<b>{:C('WEB_SITE_MOBILE')}</b></p>
+    <p>QQ：<b>{:C('WEB_SITE_QQ')}</b></p>
+    <a href="http://wpa.qq.com/msgrd?v=3&uin={:C('WEB_SITE_QQ')}&site=qq&menu=yes" target="_blank">在线提问</a>
+</div>
+</div>
