@@ -184,7 +184,8 @@ class UserController extends ApiController
     }
 
 
-    public function loginbox(){
+    public function loginbox()
+    {
         $userinfo = D('User')->find(is_login());
         $this->assign('userinfo', $userinfo);
         $this->display();

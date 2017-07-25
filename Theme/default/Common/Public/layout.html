@@ -11,11 +11,8 @@
 <script type="text/javascript">
 {:W('Common/Public/script')}
 </script>
-<link rel="stylesheet" href="/Public/theme/css/common.css"/>
-<link rel="stylesheet" href="/Public/theme/css/index1.css"/>
-<script style="/Public/jquery/jquery183min.js"></script>
-<!--<import type='css' file="theme.css.common" />-->
-<!--<import type='js' file="jquery.jquery183min" />-->
+<import type='css' file="theme.css.common" />
+<import type='js' file="jquery.jquery183min" />
 <block name="style"></block>
 <block name="script"></block>
 <base target="_blank">
@@ -119,12 +116,9 @@
   {$gamedata.script_code}<br>
 </notempty> 
 </div>
-
-    <script src="/Public/theme/js/index.js"></script>
-    <script src="/Public/theme/js/common.js"></script>
-    <script src="/Public/theme/js/t3t2_popup_plus.js"></script>
-    <!--<import type='js' file="theme.js.common" />-->
-    <!--<import type='js' file="theme.js.t3t2_popup_plus" />-->
+<block name="footer_script"></block>
+<import type='js' file="theme.js.common" />
+<import type='js' file="theme.js.t3t2_popup_plus" />
 <script type="text/javascript">
 var MODULE_NAME='{:MODULE_NAME}'.toUpperCase();
 $('#NAV_'+MODULE_NAME).addClass('cur');

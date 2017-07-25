@@ -10,32 +10,15 @@ return array(
     //数据库配置
     'DB_TYPE'   =>  'mysql', // 数据库类型
     'DB_HOST'   =>  '127.0.0.1', // 服务器地址
-    'DB_NAME'   =>  'yiwanshu', // 数据库名
+    'DB_NAME'   =>  'qiluwan', // 数据库名
     'DB_USER'   =>  'root', // 用户名
-    'DB_PWD'    =>  'root', // 密码
+    'DB_PWD'    =>  '00294483a8', // 密码
     'DB_PORT'   =>  '3306', // 端口
     'DB_PREFIX' =>  'ct_', // 数据库表前缀
 
     //URL模式
     'URL_MODEL' => '2',
-    'MODULE_ALLOW_LIST' => array(
-        'Admin',
-        'Api',
-        'Common',
-        'Forum',
-        'Game',
-        'Gateway',
-        'Gift',
-        'Home',
-        'Mix',
-        'News',
-        'Pay',
-        'Service',
-        'Shop',
-        'Spread',
-        'UrlWorker',
-        'User',
-    ),
+
 
 
     //全局过滤配置

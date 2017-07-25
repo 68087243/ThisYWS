@@ -11,14 +11,10 @@
 <script type="text/javascript">
 <?php echo W('Common/Public/script');?>
 </script>
-<link rel="stylesheet" href="/Public/theme/css/common.css"/>
-<link rel="stylesheet" href="/Public/theme/css/index1.css"/>
-<script style="/Public/jquery/jquery183min.js"></script>
-<!--<link rel="stylesheet" type="text/css" href="http://static.yiwanshu.com//Public/theme/css/common.css" />-->
-<!--<script type="text/javascript" src="http://static.yiwanshu.com//Public/jquery/jquery183min.js"></script>-->
+<link rel="stylesheet" type="text/css" href="http://static.yiwanshu.com//Public/theme/css/common.css" />
+<script type="text/javascript" src="http://static.yiwanshu.com//Public/jquery/jquery183min.js"></script>
 
-<!--<link rel="stylesheet" type="text/css" href="http://static.yiwanshu.com//Public/theme/css/index.css" />-->
-    <link rel="stylesheet" href="/Public/theme/css/index1.css"/>
+<link rel="stylesheet" type="text/css" href="http://static.yiwanshu.com//Public/theme/css/index.css" />
 
 
 <base target="_blank">
@@ -232,10 +228,17 @@
 <ul class="w-allgames" id="allGames">
 <?php $GAME_TYPE_LIST=C('GAME_TYPE_LIST'); ?>
 <?php if(is_array($GAME_TYPE_LIST)): $k = 0; $__LIST__ = $GAME_TYPE_LIST;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><li><h3><?php echo ($vo); ?></h3><div class="gcons"><p><?php if(is_array($Game["all"])): $i = 0; $__LIST__ = $Game["all"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vog): $mod = ($i % 2 );++$i; if(in_array(($vog["type"]), is_array($k)?$k:explode(',',$k))): ?><a href="<?php echo D('Game')->getGameUrl($vog['id']); ?>" v="<?php echo strtolower(pinyin($vog['name'],true));?>"><img alt="<?php echo ($vog["name"]); ?>"a="<?php if(empty($vog["pic"]["pic_icon"])): ?>/Public/theme/empty/emptyicon.png<?php else: echo (get_cover($vog["pic"]["pic_icon"])); endif; ?>"><?php echo ($vog["name"]); ?></a><?php endif; endforeach; endif; else: echo "" ;endif; ?></p></div></li><?php endforeach; endif; else: echo "" ;endif; ?>
-
+							
 </ul>
 
-
+<script type="text/JavaScript">
+//解决allGame错位
+$("#allGames>li>.gcons>p").each(function(i,n){
+    if(n.innerHTML =="" || n.innerHTML==null ){
+	  n.innerHTML="&nbsp;";
+	}
+})
+</script>
 <div class="w-tit w-gtit">
         <h2 class="w-tit-wjfc">合作联盟</h2>
         <a href="http://wpa.qq.com/msgrd?v=3&uin=<?php echo C('WEB_SITE_QQ');?>&site=qq&menu=yes" class="w-rmore">互换</a>
@@ -245,7 +248,7 @@
 	<div class="w-wjfc" id="w-wjfcbox">
         <div class="w-wjfcwrap">
             <ul>
-
+            				
             				<?php if(is_array($style)): $i = 0; $__LIST__ = $style;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
 								<a href="<?php echo ($vo["url"]); ?>"><img alt=" 1区 无痕" a="<?php echo (get_cover($vo["pic"])); ?>"><span><?php echo ($vo["name"]); ?> </span></a>
                                 </li><?php endforeach; endif; else: echo "" ;endif; ?>
@@ -262,7 +265,7 @@ a{font-size:12px; color:#666; text-decoration:none;}
 .lanrenzhijia{ width:260px; height:160px;   position:fixed; right:-300px; bottom:10px;}
 .lanrenzhijia .close{ width:30px; height:22px; line-height:22px;display:block; float:right;}
 </style>
-<script src="/Public/jquery/jquery-2.1.1.min.js"></script>
+<script src="js/jquery.min.js"></script>
 <script>
 $(function (){
 $('.lanrenzhijia').animate({right:'10px'},1000);
@@ -270,7 +273,7 @@ $('.lanrenzhijia .close').click(function(){
    $('.lanrenzhijia').hide();
 });
 });
-</script>
+</script>  
 
 <div class="lanrenzhijia"><a href="<?php echo ($bgad["5"]["url"]); ?>"><img src="<?php echo (get_cover($bgad["5"]["pic"])); ?>" wdith="260px" height="160px" /></a><a href="javascript:" style="position: absolute;top:-0px;right:0px;" class="close">关闭</a></div>
 <!-- 右下角弹窗广告end  -->
@@ -284,7 +287,7 @@ $('.lanrenzhijia .close').click(function(){
 
 <div class="w-friends"><p><strong>友情链接：</strong><?php echo W('Common/Public/link');?></p></div>
 <?php $bgad=M('Bgad')->select(); ?>
-<a href="<?php echo ($bgad["0"]["url"]); ?>" class="bgad_l"><img src="<?php echo (get_cover($bgad["0"]["pic"])); ?>" alt="<?php echo ($bgad["0"]["name"]); ?>"></a><a href="<?php echo ($bgad["1"]["url"]); ?>" class="bgad_r"><img src="<?php echo (get_cover($bgad["1"]["pic"])); ?>" alt="<?php echo ($bgad["1"]["name"]); ?>"></a>
+<a href="<?php echo ($bgad["0"]["url"]); ?>" class="bgad_l"><img src="<?php echo (get_cover($bgad["0"]["pic"])); ?>" alt="<?php echo ($bgad["0"]["name"]); ?>"></a><a href="<?php echo ($bgad["1"]["url"]); ?>" class="bgad_r"><img src="<?php echo (get_cover($bgad["1"]["pic"])); ?>" alt="<?php echo ($bgad["1"]["name"]); ?>"></a>  
 
 
 
@@ -294,12 +297,9 @@ $('.lanrenzhijia .close').click(function(){
     <div class="hidden"><?php echo C('WEB_SITE_STATISTICS');?></div>
 	<?php if(!empty($gamedata["script_code"])): echo ($gamedata["script_code"]); ?><br><?php endif; ?> 
 </div>
-
-    <script src="/Public/theme/js/index.js"></script>
-    <script src="/Public/theme/js/common.js"></script>
-    <script src="/Public/theme/js/t3t2_popup_plus.js"></script>
-    <!--<script type="text/javascript" src="http://static.yiwanshu.com//Public/theme/js/common.js"></script>-->
-    <!--<script type="text/javascript" src="http://static.yiwanshu.com//Public/theme/js/t3t2_popup_plus.js"></script>-->
+<script type="text/javascript" src="http://static.yiwanshu.com//Public/theme/js/index.js"></script>
+<script type="text/javascript" src="http://static.yiwanshu.com//Public/theme/js/common.js"></script>
+<script type="text/javascript" src="http://static.yiwanshu.com//Public/theme/js/t3t2_popup_plus.js"></script>
 <script type="text/javascript">
 var MODULE_NAME='<?php echo MODULE_NAME;?>'.toUpperCase();
 $('#NAV_'+MODULE_NAME).addClass('cur');

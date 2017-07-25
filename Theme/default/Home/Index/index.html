@@ -3,8 +3,7 @@
 <block name="title"><title>{:C('WEB_SITE_TITLE')}{:C('WEB_SITE_SLOGAN')}</title></block> -->
 
 <block name="style">
-<!--<import type='css' file="theme.css.index" />-->
-    <link rel="stylesheet" href="/Public/theme/css/index1.css"/>
+<import type='css' file="theme.css.index" />
 </block>
 
 
@@ -154,10 +153,17 @@
 <li><h3>{$vo}</h3><div class="gcons"><p><volist name="Game.all" id="vog"><in name="vog.type" value="$k"><a href="<php>echo D('Game')->getGameUrl($vog['id']);</php>" v="{:strtolower(pinyin($vog['name'],true))}"><img alt="{$vog.name}"a="<empty name="vog.pic.pic_icon">__PUBLIC__/theme/empty/emptyicon.png<else />{$vog.pic.pic_icon|get_cover=###}</empty>">{$vog.name}</a></in></volist></p></div></li>
 
 </volist>
-
+							
 </ul>
 
-
+<script type="text/JavaScript">
+//解决allGame错位
+$("#allGames>li>.gcons>p").each(function(i,n){
+    if(n.innerHTML =="" || n.innerHTML==null ){
+	  n.innerHTML="&nbsp;";
+	}
+})
+</script>
 <div class="w-tit w-gtit">
         <h2 class="w-tit-wjfc">合作联盟</h2>
         <a href="http://wpa.qq.com/msgrd?v=3&uin={:C('WEB_SITE_QQ')}&site=qq&menu=yes" class="w-rmore">互换</a>
@@ -167,7 +173,7 @@
 	<div class="w-wjfc" id="w-wjfcbox">
         <div class="w-wjfcwrap">
             <ul>
-
+            				
             				<volist name="style" id="vo">
                                 <li>
 								<a href="{$vo.url}"><img alt=" 1区 无痕" a="{$vo.pic|get_cover=###}"><span>{$vo.name} </span></a>
@@ -186,7 +192,7 @@ a{font-size:12px; color:#666; text-decoration:none;}
 .lanrenzhijia{ width:260px; height:160px;   position:fixed; right:-300px; bottom:10px;}
 .lanrenzhijia .close{ width:30px; height:22px; line-height:22px;display:block; float:right;}
 </style>
-<script src="/Public/jquery/jquery-2.1.1.min.js"></script>
+<script src="js/jquery.min.js"></script>
 <script>
 $(function (){
 $('.lanrenzhijia').animate({right:'10px'},1000);
@@ -194,7 +200,7 @@ $('.lanrenzhijia .close').click(function(){
    $('.lanrenzhijia').hide();
 });
 });
-</script>
+</script>  
 
 <div class="lanrenzhijia"><a href="{$bgad.5.url}"><img src="{$bgad.5.pic|get_cover=###}" wdith="260px" height="160px" /></a><a href="javascript:" style="position: absolute;top:-0px;right:0px;" class="close">关闭</a></div>
 <!-- 右下角弹窗广告end  -->
@@ -207,17 +213,8 @@ $('.lanrenzhijia .close').click(function(){
 <!-- 分享end  -->
 <block name="link"><div class="w-friends"><p><strong>友情链接：</strong>{:W('Common/Public/link')}</p></div>
 <php>$bgad=M('Bgad')->select();</php>
-<a href="{$bgad.0.url}" class="bgad_l"><img src="{$bgad.0.pic|get_cover=###}" alt="{$bgad.0.name}"></a><a href="{$bgad.1.url}" class="bgad_r"><img src="{$bgad.1.pic|get_cover=###}" alt="{$bgad.1.name}"></a>
+<a href="{$bgad.0.url}" class="bgad_l"><img src="{$bgad.0.pic|get_cover=###}" alt="{$bgad.0.name}"></a><a href="{$bgad.1.url}" class="bgad_r"><img src="{$bgad.1.pic|get_cover=###}" alt="{$bgad.1.name}"></a>  
 
 </block>
 
 <block name="footer_script"><import type='js' file="theme.js.index" /></block>
-
-<script type="text/JavaScript">
-    //解决allGame错位
-    $("#allGames>li>.gcons>p").each(function(i,n){
-        if(n.innerHTML =="" || n.innerHTML==null ){
-            n.innerHTML="&nbsp;";
-        }
-    })
-</script>

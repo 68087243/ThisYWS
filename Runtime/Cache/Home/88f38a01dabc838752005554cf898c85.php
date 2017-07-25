@@ -11,11 +11,8 @@
 <script type="text/javascript">
 <?php echo W('Common/Public/script');?>
 </script>
-<link rel="stylesheet" href="/Public/theme/css/common.css"/>
-<link rel="stylesheet" href="/Public/theme/css/index1.css"/>
-<script style="/Public/jquery/jquery183min.js"></script>
-<!--<link rel="stylesheet" type="text/css" href="http://static.yiwanshu.com//Public/theme/css/common.css" />-->
-<!--<script type="text/javascript" src="http://static.yiwanshu.com//Public/jquery/jquery183min.js"></script>-->
+<link rel="stylesheet" type="text/css" href="http://static.yiwanshu.com//Public/theme/css/common.css" />
+<script type="text/javascript" src="http://static.yiwanshu.com//Public/jquery/jquery183min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="http://static.yiwanshu.com//Public/theme/css/index.css" />
 
@@ -149,12 +146,9 @@ a{ margin:0; padding:0;}
     <div class="hidden"><?php echo C('WEB_SITE_STATISTICS');?></div>
 	<?php if(!empty($gamedata["script_code"])): echo ($gamedata["script_code"]); ?><br><?php endif; ?> 
 </div>
-
-    <script src="/Public/theme/js/index.js"></script>
-    <script src="/Public/theme/js/common.js"></script>
-    <script src="/Public/theme/js/t3t2_popup_plus.js"></script>
-    <!--<script type="text/javascript" src="http://static.yiwanshu.com//Public/theme/js/common.js"></script>-->
-    <!--<script type="text/javascript" src="http://static.yiwanshu.com//Public/theme/js/t3t2_popup_plus.js"></script>-->
+<script type="text/javascript" src="http://static.yiwanshu.com//Public/theme/js/index.js"></script>
+<script type="text/javascript" src="http://static.yiwanshu.com//Public/theme/js/common.js"></script>
+<script type="text/javascript" src="http://static.yiwanshu.com//Public/theme/js/t3t2_popup_plus.js"></script>
 <script type="text/javascript">
 var MODULE_NAME='<?php echo MODULE_NAME;?>'.toUpperCase();
 $('#NAV_'+MODULE_NAME).addClass('cur');
