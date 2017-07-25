@@ -246,7 +246,7 @@ webGameObj.newkf = function() {
         s = $(this).parent().prev().find(".w-jjkf3").text(),
         i = $(this).parent().prev().find(".w-jjkf0").text(),
         r = $(this).parent().prev().find(".w-jjkf1").text();
-        return t.content = "齐鲁玩网页游戏提醒您：《" + n + "》" + s + "正在开启，点击进入游戏！",
+        return t.content = "一玩速网页游戏提醒您：《" + n + "》" + s + "正在开启，点击进入游戏！",
         t.url = e,
         t.time = a(i) + r,
         window.open("http://qzs.qq.com/snsapp/app/bee/widget/open.htm#content=" + encodeURIComponent(t.content) + "&time=" + encodeURIComponent(t.time) + "&advance=" + t.advance + "&url=" + encodeURIComponent(t.url)),

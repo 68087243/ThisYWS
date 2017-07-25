@@ -140,10 +140,10 @@
             <div class="allpromise">
                 <ul>
                     <li>
-                        <a href="<?php echo U('News/Read/9');?>" class="pr0"> 《齐鲁玩》用户守则<i></i></a>
-                        <a href="<?php echo U('News/Read/10');?>" class="pr1">《齐鲁玩》交易纠纷处理<i></i></a>
-                        <a href="<?php echo U('News/Read/11');?>" class="pr2">《齐鲁玩》防沉迷系统问题<i></i></a>
-                        <a href="<?php echo U('News/Read/12');?>" class="pr3">《齐鲁玩》充值规则<i></i></a>
+                        <a href="<?php echo U('News/Read/9');?>" class="pr0"> 《一玩速》用户守则<i></i></a>
+                        <a href="<?php echo U('News/Read/10');?>" class="pr1">《一玩速》交易纠纷处理<i></i></a>
+                        <a href="<?php echo U('News/Read/11');?>" class="pr2">《一玩速》防沉迷系统问题<i></i></a>
+                        <a href="<?php echo U('News/Read/12');?>" class="pr3">《一玩速》充值规则<i></i></a>
                 </ul>
             </div>
         </div>
